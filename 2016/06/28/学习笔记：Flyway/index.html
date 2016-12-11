@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: ES6 | Sakura</title>
+  <title>学习笔记：Flyway | Sakura</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -86,7 +86,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -319,37 +319,95 @@
   <!-- ============================ END Hero Image =========================== -->
 
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/08/01/学习笔记：ES6语法/">学习笔记：ES6语法</a></h4>
-                            
-                            <p><time datetime="2016-08-01T09:53:08.000Z"><a href="/2016/08/01/学习笔记：ES6语法/">2016-08-01</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-06-28T01:35:01.000Z" itemprop="datePublished">
+          2016-06-28
+      </time>
+    
+    
+    | 
+    <a href='/tags/插件/'>插件</a>,
+    
+    <a href='/tags/maven/'>maven</a>,
+    
+    <a href='/tags/构建工具/'>构建工具</a>,
+    
+    <a href='/tags/flyway/'>flyway</a>
+    
+    
+</span>
+                <h1>学习笔记：Flyway</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>  Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.   It is based around just 6 basic commands: Migrate, Clean, Info, Validate, Baseline and Repair.   Migrations can be written in SQL (database-specific syntax (such as PL/SQL, T-SQL, …) is supported) or Java (for advanced data transformations or dealing with LOBs).   It has a Command-line client. If you are on the JVM, we recommend using the Java API (also works on Android) for migrating the database on application startup. Alternatively, you can also use the Maven plugin, Gradle plugin, SBT plugin or the Ant tasks.   And if that not enough, there are plugins available for Spring Boot, Dropwizard, Grails, Play, Griffon, Grunt, Ninja and more!</p>
+<hr>
+<h1 id="Maven配置"><a href="#Maven配置" class="headerlink" title="Maven配置"></a>Maven配置</h1><p>需要在pom.xml文件中加入flywaydb的插件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;plugin&gt;</div><div class="line">    &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;flyway-maven-plugin&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;3.1&lt;/version&gt;</div><div class="line">    &lt;configuration&gt;</div><div class="line">    ....</div><div class="line">    &lt;/configuration&gt;</div><div class="line">&lt;/plugin&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>配置方法一：在pom.xml里配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;plugin&gt;</div><div class="line">...</div><div class="line">  &lt;configuration&gt;</div><div class="line">    &lt;user&gt;myUser&lt;/user&gt;</div><div class="line">    &lt;password&gt;mySecretPwd&lt;/password&gt;</div><div class="line">    &lt;schemas&gt;</div><div class="line">        &lt;schema&gt;schema1&lt;/schema&gt;</div><div class="line">        &lt;schema&gt;schema2&lt;/schema&gt;</div><div class="line">        &lt;schema&gt;schema3&lt;/schema&gt;</div><div class="line">    &lt;/schemas&gt;</div><div class="line">    &lt;placeholders&gt;</div><div class="line">          &lt;keyABC&gt;valueXYZ&lt;/keyABC&gt;</div><div class="line">          &lt;otherplaceholder&gt;value123&lt;/otherplaceholder&gt;</div><div class="line">    &lt;/placeholders&gt;</div><div class="line">  &lt;/configuration&gt;</div><div class="line">&lt;/plugin&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置方法二：外部的配置文件来配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">flyway.user=</div><div class="line">flyway.password=</div><div class="line">flyway.schemas=schema1,schema2,schema3</div><div class="line">flyway.placeholders.keyABC=</div><div class="line">flyway.placeholders.otherplaceholder=</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置方法三：执行mvn时通过指定参数flyway.configFile的值来指定配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn -Dflyway.configFile=myConfig.properties</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置方法四：使用外部配置文件的方式进行配置，默认的flyway.properties文件和pom.xml在相同的路径下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">flyway.user=</div><div class="line">flyway.password=</div><div class="line">flyway.driver=org.postgresql.Driver</div><div class="line">flyway.url=jdbc:postgresql://localhost:5432/wjia</div><div class="line">flyway.locations=classpath:db/migration</div><div class="line">flyway.sqlMigrationPrefix=V</div><div class="line">flyway.sqlMigrationSeparator=__</div><div class="line">flyway.sqlMigrationSuffix&gt;=.sql</div><div class="line">flyway.encoding=UTF-8</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="六个命令"><a href="#六个命令" class="headerlink" title="六个命令"></a>六个命令</h1><ul>
+<li><p>Migrate</p>
+<p>flyway的最重要的功能当然是完成数据库迁移了，使用mvn flyway:migrate命令就可以方便的帮助我们执行flyway.locations目录中定义的migration任务。由于我们的使用了外部的flyway配置文件，因此在执行migration任务时需要加上参数flyway.properties来指定配置文件的位置。所以，在我们的工程中需要执行的任务为：</p>
+<p><code>mvn flyway:migrate -Dflyway.configFile=localPath/flyway.properties</code></p>
+<p>其中<code>localPath/</code>为<code>flyway.properties</code>文件在本地的路径。</p>
+</li>
+<li><p>Clean</p>
+<p>如果我们想初始化数据库，删除所有的表和数据，那么只需要执行命令：</p>
+<p><code>mvn flyway:clean</code></p>
+</li>
+<li><p>Info</p>
+<p>如果我们想知道所有migration的详细信息，可以通过执行下面命令来打印信息：</p>
+<p><code>mvn flyway:info</code></p>
+<p>执行之后，Terminal中会打印出所有migration的详细信息，其中包括版本号，描述，执行时间，以及状态.</p>
+</li>
+<li><p>Validate</p>
+<p><code>mvn flyway:validate</code> 用来执行已经执行过的migration任务.</p>
+</li>
+<li><p>Baseline</p>
+<p><code>mvn flyway:baseline</code> 用来回滚数据库到一个配置文件中设定好的baseline.</p>
+</li>
+<li><p>Repair</p>
+<p><code>mvn flyway:repair</code> 用来删除执行失败的migration任务.</p>
+</li>
+</ul>
+<hr>
+<h1 id="查看官方文档"><a href="#查看官方文档" class="headerlink" title="查看官方文档"></a>查看官方文档</h1><p>更多关于flyway的详细用法，请参见其<a href="https://flywaydb.org/documentation/" target="_blank" rel="external">官方文档</a>。</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>人生诸多无奈，流光浮影，所谓爱恨嗔痴，皆是虚妄。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/07/04/学习笔记：Markdown/" style="float: left;">
+        ← 学习笔记：Markdown
+    </a>
+    
+    
+</nav>
+
+        <div class="duoshuo"></div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 

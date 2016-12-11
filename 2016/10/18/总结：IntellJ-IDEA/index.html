@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>总结：IntelliJ-IDEA | Sakura</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Sakura">
+    <meta name="author" content="Sakura">
+    <meta name="description" content="Sakura's website" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Sakura" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+  <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+    <img src="/img/close.png" alt="Close" />
+  </div>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu">
+    <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+    <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+    <li><a href="/booklist" class="animsition-link" title="archive">booklist</a></li>
+    <!-- Dropdown Menu -->
+
+    
+      <li>
+        <a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+        <ul class="sb-submenu">
+          
+            <li>
+              <a href="/categories/English/" class="animsition-link">
+                English<small>(1)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/node/" class="animsition-link">
+                node<small>(2)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/note/" class="animsition-link">
+                note<small>(9)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/summary/" class="animsition-link">
+                summary<small>(4)</small></a>
+            </li>
+            
+        </ul>
+      </li>
+      
+
+        
+          <li>
+            <a class="sb-toggle-submenu">Tags<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+              
+                <li>
+                  <a href="/tags/Baseline/" class="animsition-link">
+                    Baseline<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Devops/" class="animsition-link">
+                    Devops<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/ES6/" class="animsition-link">
+                    ES6<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Git/" class="animsition-link">
+                    Git<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/IntelliJ-IDEA/" class="animsition-link">
+                    IntelliJ IDEA<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Migrate/" class="animsition-link">
+                    Migrate<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nginx/" class="animsition-link">
+                    Nginx<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nodejs/" class="animsition-link">
+                    Nodejs<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/PostgreSQL/" class="animsition-link">
+                    PostgreSQL<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Restful/" class="animsition-link">
+                    Restful<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Sequelize/" class="animsition-link">
+                    Sequelize<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/api/" class="animsition-link">
+                    api<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/english/" class="animsition-link">
+                    english<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/flyway/" class="animsition-link">
+                    flyway<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/http/" class="animsition-link">
+                    http<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/java/" class="animsition-link">
+                    java<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/markdown/" class="animsition-link">
+                    markdown<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/maven/" class="animsition-link">
+                    maven<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/shell/" class="animsition-link">
+                    shell<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/tomcat/" class="animsition-link">
+                    tomcat<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/学习笔记/" class="animsition-link">
+                    学习笔记<small>(3)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/导入导出/" class="animsition-link">
+                    导入导出<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/插件/" class="animsition-link">
+                    插件<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/构建工具/" class="animsition-link">
+                    构建工具<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/环境/" class="animsition-link">
+                    环境<small>(1)</small></a>
+                </li>
+                
+            </ul>
+          </li>
+          
+
+
+            
+              <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                  
+                    <li>
+                      <a href="http://space.bilibili.com/32668823" class="animsition-link">
+                        BiliBili
+                      </a>
+                    </li>
+                    
+                </ul>
+              </li>
+              
+  </ul>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu secondary">
+    <li><a href="/about" class="animsition-link" title="about">About Me</a></li>
+  </ul>
+
+  <div class="tag-cloue">
+    
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+        <h3 class="widget-title">tagcloud</h3>
+        <div id="myCanvasContainer" class="widget tagcloud">
+          <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <a href="/tags/Baseline/" style="font-size: 10px;">Baseline</a> <a href="/tags/Devops/" style="font-size: 10px;">Devops</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 10px;">IntelliJ IDEA</a> <a href="/tags/Migrate/" style="font-size: 10px;">Migrate</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Sequelize/" style="font-size: 10px;">Sequelize</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/flyway/" style="font-size: 15px;">flyway</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/导入导出/" style="font-size: 10px;">导入导出</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/构建工具/" style="font-size: 15px;">构建工具</a> <a href="/tags/环境/" style="font-size: 10px;">环境</a>
+          </canvas>
+        </div>
+      </div>
+      
+  </div>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+  <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <div id="navigation" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- Nav logo -->
+        <div class="logo">
+          <a href="/" title="Logo" class="animsition-link">
+             <img src="/img/logo.png" alt="Logo" width="35px;" />
+              
+          </a>
+        </div>
+        <!-- // Nav logo -->
+        <!-- Info-bar -->
+        <nav>
+          <ul class="nav">
+            <li>
+              <a href="/" class="animsition-link">
+                Sakura
+              </a>
+            </li>
+            <li class="nolink"><span>Write the code, </span>Change the world.</li>
+            
+              <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+              
+                
+                  <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                  
+                    
+                      <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                      
+                        
+                          <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                          
+                            <li class="nolink"><span>Welcome!</span></li>
+          </ul>
+        </nav>
+        <!--// Info-bar -->
+      </div>
+      <!-- // .container -->
+      <div class="learnmore sb-toggle-right">More</div>
+      <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar before"></span>
+        <span class="icon-bar main"></span>
+        <span class="icon-bar after"></span>
+      </button>
+    </div>
+    <!-- // .navbar-inner -->
+  </div>
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <!-- ============================ Hero Image =========================== -->
+
+  <section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+          <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+            <div>
+              
+                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                <p>
+                  
+                </p>
+                
+                <h2></h2>
+                <p>
+                  每一个不曾起舞的日子都是对生命的辜负。
+                </p>
+                
+
+            </div>
+          </div>
+        </div>
+        <!-- // .col-md-12 -->
+      </div>
+      <div class="herofade beige-dk"></div>
+    </div>
+  </section>
+
+  <!-- Height spacing helper -->
+  <div class="heightblock"></div>
+  <!-- // End height spacing helper -->
+
+  <!-- ============================ END Hero Image =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-10-18T08:26:04.000Z" itemprop="datePublished">
+          2016-10-18
+      </time>
+    
+    
+    | 
+    <a href='/tags/IntelliJ-IDEA/'>IntelliJ IDEA</a>
+    
+    
+</span>
+                <h1>总结：IntelliJ-IDEA</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="IntelliJ-IDEA-has-three-compilation-types-Compile、Make、Rebuild"><a href="#IntelliJ-IDEA-has-three-compilation-types-Compile、Make、Rebuild" class="headerlink" title="IntelliJ IDEA has three compilation types: Compile、Make、Rebuild."></a>IntelliJ IDEA has three compilation types: Compile、Make、Rebuild.</h2><h4 id="Compile"><a href="#Compile" class="headerlink" title="Compile"></a><strong>Compile</strong></h4><ul>
+<li>在指定的范围内进行编译。例如，可以编译一个类、包或模块。</li>
+<li>不会编译所依赖的模块。例如，Foo依赖于Bar，Bar先前没有被编译过，那么你去编译Foo则会报错。</li>
+<li>不会创建任何artifacts（JARs, WARs, etc.）。</li>
+</ul>
+<p>this just complies the files in the specified scope. So you can, for example, compile just a single class or a package (or, of course, a module). It does not transitively compile dependencies. So if Foo has a dependency on Bar, and Bar was not previously compiled, and you go to compile Foo only, the compilation fails. If Bar was previous compiled, but has changed, and you again only compile Foo, it uses the old compiled version and does not recompile the changed Bar class. Compile always compiles everything in the scope (i.e. a clean compile); this includes unmodified classes within the scope. But again, not transitively/recursively. If you compile module “GUI” which has a dependency on module “API”, only GUI is complied. If “API” was not previously compiled (or has changes) the compiling of GUI would fail. Finally, compile only compiles code. It does not create any artifacts (JARs, WARs, etc.)</p>
+<h4 id="Make"><a href="#Make" class="headerlink" title="Make"></a><strong>Make</strong></h4><ul>
+<li>对模块或项目进行编译，不能编译一个单独的class或package，只能编译修改后的classes。</li>
+<li>Make可以递归进行编译。</li>
+<li>不会创建任何artifacts（JARs, WARs, etc.）。</li>
+</ul>
+<p>Make is limited to the module or project level. (i.e. you cannot make a single class or package). It only compiles modified classes. Make, however, will transitively/recursively compile dependencies. Thus, using the above example, if we make “GUI”, it will also make “API” and compile any classes modified since last compilation. When you make a project, some additional tasks that tiled to the make process are performs, such as EJB validation. Finally, make only compiles classes and does not create any artifacts (JARs, WARs, etc.) So the main difference between compile and make is that compile can be performed on a finer level (class or package) and make compiles transitive/recursive dependencies.</p>
+<h4 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a><strong>Rebuild</strong></h4><ul>
+<li>编译整个项目，删除所有之前的编译文件。</li>
+<li>只能被用在项目层面。</li>
+<li>不会创建任何artifacts（JARs, WARs, etc.）。</li>
+</ul>
+<p>This performs a full clean make on the project. So unlike make, it deletes all previous compiled objects. Rebuild can only be performed at the project level (so, “No” to answer your question about a module rebuild). Rebuild only compiles classes and does not create any artifacts (JARs, WARs, etc.)</p>
+<p>There is also the “Build Artifact” action which allows you to “Build”, “Rebuild” or just clean the artifact. Build only builds it if there is modified code, whereas Rebuild always rebuilds it.</p>
+<p>Also of note, in the compiler configuration, you can select to “Make the project automatically” if you have the “Use external build” option selected. The latter simply runs the build in a separate OS process. Therefore you can select the former, and IDEA will automatically make the project in the background. As such, when you go to run code or tests, there is typically little if any code that needs to be compiled.</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/10/21/学习笔记：Nginx/" style="float: left;">
+        ← 学习笔记：Nginx
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/08/08/学习笔记：Shell/">
+        学习笔记：Shell →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo"></div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Sakura. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+
+    var duoshuoQuery = {short_name:"你的shortname"};
+        (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = 'http://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+
+</body>
+</html>

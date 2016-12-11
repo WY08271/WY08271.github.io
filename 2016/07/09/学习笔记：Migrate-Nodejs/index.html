@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>学习笔记：Migrate-Nodejs | Sakura</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Sakura">
+    <meta name="author" content="Sakura">
+    <meta name="description" content="Sakura's website" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Sakura" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+  <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+    <img src="/img/close.png" alt="Close" />
+  </div>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu">
+    <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+    <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+    <li><a href="/booklist" class="animsition-link" title="archive">booklist</a></li>
+    <!-- Dropdown Menu -->
+
+    
+      <li>
+        <a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+        <ul class="sb-submenu">
+          
+            <li>
+              <a href="/categories/English/" class="animsition-link">
+                English<small>(1)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/node/" class="animsition-link">
+                node<small>(2)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/note/" class="animsition-link">
+                note<small>(9)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/summary/" class="animsition-link">
+                summary<small>(4)</small></a>
+            </li>
+            
+        </ul>
+      </li>
+      
+
+        
+          <li>
+            <a class="sb-toggle-submenu">Tags<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+              
+                <li>
+                  <a href="/tags/Baseline/" class="animsition-link">
+                    Baseline<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Devops/" class="animsition-link">
+                    Devops<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/ES6/" class="animsition-link">
+                    ES6<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Git/" class="animsition-link">
+                    Git<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/IntelliJ-IDEA/" class="animsition-link">
+                    IntelliJ IDEA<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Migrate/" class="animsition-link">
+                    Migrate<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nginx/" class="animsition-link">
+                    Nginx<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nodejs/" class="animsition-link">
+                    Nodejs<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/PostgreSQL/" class="animsition-link">
+                    PostgreSQL<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Restful/" class="animsition-link">
+                    Restful<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Sequelize/" class="animsition-link">
+                    Sequelize<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/api/" class="animsition-link">
+                    api<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/english/" class="animsition-link">
+                    english<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/flyway/" class="animsition-link">
+                    flyway<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/http/" class="animsition-link">
+                    http<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/java/" class="animsition-link">
+                    java<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/markdown/" class="animsition-link">
+                    markdown<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/maven/" class="animsition-link">
+                    maven<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/shell/" class="animsition-link">
+                    shell<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/tomcat/" class="animsition-link">
+                    tomcat<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/学习笔记/" class="animsition-link">
+                    学习笔记<small>(3)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/导入导出/" class="animsition-link">
+                    导入导出<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/插件/" class="animsition-link">
+                    插件<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/构建工具/" class="animsition-link">
+                    构建工具<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/环境/" class="animsition-link">
+                    环境<small>(1)</small></a>
+                </li>
+                
+            </ul>
+          </li>
+          
+
+
+            
+              <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                  
+                    <li>
+                      <a href="http://space.bilibili.com/32668823" class="animsition-link">
+                        BiliBili
+                      </a>
+                    </li>
+                    
+                </ul>
+              </li>
+              
+  </ul>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu secondary">
+    <li><a href="/about" class="animsition-link" title="about">About Me</a></li>
+  </ul>
+
+  <div class="tag-cloue">
+    
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+        <h3 class="widget-title">tagcloud</h3>
+        <div id="myCanvasContainer" class="widget tagcloud">
+          <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <a href="/tags/Baseline/" style="font-size: 10px;">Baseline</a> <a href="/tags/Devops/" style="font-size: 10px;">Devops</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 10px;">IntelliJ IDEA</a> <a href="/tags/Migrate/" style="font-size: 10px;">Migrate</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Sequelize/" style="font-size: 10px;">Sequelize</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/flyway/" style="font-size: 15px;">flyway</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/导入导出/" style="font-size: 10px;">导入导出</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/构建工具/" style="font-size: 15px;">构建工具</a> <a href="/tags/环境/" style="font-size: 10px;">环境</a>
+          </canvas>
+        </div>
+      </div>
+      
+  </div>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+  <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <div id="navigation" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- Nav logo -->
+        <div class="logo">
+          <a href="/" title="Logo" class="animsition-link">
+             <img src="/img/logo.png" alt="Logo" width="35px;" />
+              
+          </a>
+        </div>
+        <!-- // Nav logo -->
+        <!-- Info-bar -->
+        <nav>
+          <ul class="nav">
+            <li>
+              <a href="/" class="animsition-link">
+                Sakura
+              </a>
+            </li>
+            <li class="nolink"><span>Write the code, </span>Change the world.</li>
+            
+              <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+              
+                
+                  <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                  
+                    
+                      <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                      
+                        
+                          <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                          
+                            <li class="nolink"><span>Welcome!</span></li>
+          </ul>
+        </nav>
+        <!--// Info-bar -->
+      </div>
+      <!-- // .container -->
+      <div class="learnmore sb-toggle-right">More</div>
+      <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar before"></span>
+        <span class="icon-bar main"></span>
+        <span class="icon-bar after"></span>
+      </button>
+    </div>
+    <!-- // .navbar-inner -->
+  </div>
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <!-- ============================ Hero Image =========================== -->
+
+  <section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+          <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+            <div>
+              
+                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                <p>
+                  
+                </p>
+                
+                <h2></h2>
+                <p>
+                  每一个不曾起舞的日子都是对生命的辜负。
+                </p>
+                
+
+            </div>
+          </div>
+        </div>
+        <!-- // .col-md-12 -->
+      </div>
+      <div class="herofade beige-dk"></div>
+    </div>
+  </section>
+
+  <!-- Height spacing helper -->
+  <div class="heightblock"></div>
+  <!-- // End height spacing helper -->
+
+  <!-- ============================ END Hero Image =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-07-09T09:32:53.000Z" itemprop="datePublished">
+          2016-07-09
+      </time>
+    
+    
+    | 
+    <a href='/tags/Migrate/'>Migrate</a>,
+    
+    <a href='/tags/Nodejs/'>Nodejs</a>,
+    
+    <a href='/tags/Sequelize/'>Sequelize</a>
+    
+    
+</span>
+                <h1>学习笔记：Migrate-Nodejs</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>用express框架，node语言和sequelize的ROM操纵MySQL做练习。</p>
+<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>1.用express搭起框架，在命令行输入<code>$ express demo</code>，利用npm和bower安装所需要的依赖，并管理相关依赖，部分插件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$npm install</div><div class="line">$npm install mysql —save-dev</div><div class="line">$npm install sequelize —save-dev</div><div class="line">$npm install sequelize-cli —save-dev</div><div class="line"></div><div class="line">$bower init</div><div class="line">$bower install bootstrap —save-dev</div><div class="line">$bower install jQuery —save-dev</div></pre></td></tr></table></figure>
+<p>2.添加.gitignore在根目录下，用来忽略bower_components/、node_modules/和bin/里的内容。</p>
+<hr>
+<h1 id="用Sequelize进行初始化"><a href="#用Sequelize进行初始化" class="headerlink" title="用Sequelize进行初始化"></a>用Sequelize进行初始化</h1><p>在根目录下输入<code>$sequelize init</code>后，会在当前目录下新建models/、seeders/、migrations/和config/文件夹。</p>
+<p>可以用<code>$seqlelize help</code>查看帮助命令，显示如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">Usage</div><div class="line">  sequelize [task]</div><div class="line"></div><div class="line">Available tasks</div><div class="line">  db:migrate             Run pending migrations.</div><div class="line">  db:migrate:old_schema  Update legacy migration table</div><div class="line">  db:migrate:undo        Revert the last migration run.</div><div class="line">  db:migrate:undo:all    Revert all migrations ran.</div><div class="line">  db:seed                Run specified seeder.</div><div class="line">  db:seed:all            Run every seeder.</div><div class="line">  db:seed:undo           Deletes data from the database.</div><div class="line">  db:seed:undo:all       Deletes data from the database.</div><div class="line">  help                   Display this help text. Aliases: h</div><div class="line">  init                   Initializes the project.</div><div class="line">  init:config            Initializes the configuration.</div><div class="line">  init:migrations        Initializes the migrations.</div><div class="line">  init:models            Initializes the models.</div><div class="line">  init:seeders           Initializes the seeders.</div><div class="line">  migration:create       Generates a new migration file. Aliases: migration:generate</div><div class="line">  model:create           Generates a model and its migration. Aliases: model:generate</div><div class="line">  seed:create            Generates a new seed file. Aliases: seed:generate</div><div class="line">  version                Prints the version number. Aliases: v</div><div class="line"></div><div class="line">Available manuals</div><div class="line">  help:db:migrate             The documentation for &quot;sequelize db:migrate&quot;.</div><div class="line">  help:db:migrate:old_schema  The documentation for &quot;sequelize db:migrate:old_schema&quot;.</div><div class="line">  help:db:migrate:undo        The documentation for &quot;sequelize db:migrate:undo&quot;.</div><div class="line">  help:db:migrate:undo:all    The documentation for &quot;sequelize db:migrate:undo:all&quot;.</div><div class="line">  help:db:seed                The documentation for &quot;sequelize db:seed&quot;.</div><div class="line">  help:db:seed:all            The documentation for &quot;sequelize db:seed:all&quot;.</div><div class="line">  help:db:seed:undo           The documentation for &quot;sequelize db:seed:undo&quot;.</div><div class="line">  help:db:seed:undo:all       The documentation for &quot;sequelize db:seed:undo:all&quot;.</div><div class="line">  help:init                   The documentation for &quot;sequelize init&quot;.</div><div class="line">  help:init:config            The documentation for &quot;sequelize init:config&quot;.</div><div class="line">  help:init:migrations        The documentation for &quot;sequelize init:migrations&quot;.</div><div class="line">  help:init:models            The documentation for &quot;sequelize init:models&quot;.</div><div class="line">  help:init:seeders           The documentation for &quot;sequelize init:seeders&quot;.</div><div class="line">  help:migration:create       The documentation for &quot;sequelize migration:create&quot;.</div><div class="line">  help:model:create           The documentation for &quot;sequelize model:create&quot;.</div><div class="line">  help:seed:create            The documentation for &quot;sequelize seed:create&quot;.</div><div class="line">  help:version                The documentation for &quot;sequelize version&quot;.</div></pre></td></tr></table></figure>
+<p>使用Available manuals可以看各种命令的使用方法，建立model可以同时建立model和migration。例如：</p>
+<p><code>$sequelize help:model:create</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">The attributes can be specified as in the following (and semantically equal) examples:</div><div class="line"></div><div class="line">    sequelize model:create --name User --attributes first_name:string,last_name:string,bio:text</div><div class="line">    sequelize model:create --name User --attributes &apos;first_name:string last_name:string bio:text&apos;</div><div class="line">    sequelize model:create --name User --attributes &apos;first_name:string, last_name:string, bio:text&apos;</div></pre></td></tr></table></figure>
+<p>输入命令就可以建立model和migration文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">// the model file</div><div class="line">// located under models/user.js</div><div class="line">&apos;use strict&apos;;</div><div class="line">    module.exports = function(sequelize, DataTypes) &#123;</div><div class="line">      var User = sequelize.define(&apos;User&apos;, &#123;</div><div class="line">        first_name: DataTypes.STRING,</div><div class="line">        last_name: DataTypes.STRING,</div><div class="line">        bio: DataTypes.TEXT</div><div class="line">      &#125;, &#123;</div><div class="line">        classMethods: &#123;</div><div class="line">          associate: function(models) &#123;</div><div class="line">            // associations can be defined here</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line">      return User;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">// the migration file</div><div class="line">// located under migrations/20160710153131-create-user.js</div><div class="line">    &apos;use strict&apos;;</div><div class="line">    module.exports = &#123;</div><div class="line">      up: function(queryInterface, Sequelize) &#123;</div><div class="line">        return queryInterface.createTable(&apos;Users&apos;, &#123;</div><div class="line">          id: &#123;</div><div class="line">            allowNull: false,</div><div class="line">            autoIncrement: true,</div><div class="line">            primaryKey: true,</div><div class="line">            type: Sequelize.INTEGER</div><div class="line">          &#125;,</div><div class="line">          first_name: &#123;</div><div class="line">            type: Sequelize.STRING</div><div class="line">          &#125;,</div><div class="line">          last_name: &#123;</div><div class="line">            type: Sequelize.STRING</div><div class="line">          &#125;,</div><div class="line">          bio: &#123;</div><div class="line">            type: Sequelize.TEXT</div><div class="line">          &#125;,</div><div class="line">          createdAt: &#123;</div><div class="line">            allowNull: false,</div><div class="line">            type: Sequelize.DATE</div><div class="line">          &#125;,</div><div class="line">          updatedAt: &#123;</div><div class="line">            allowNull: false,</div><div class="line">            type: Sequelize.DATE</div><div class="line">          &#125;</div><div class="line">        &#125;);</div><div class="line">      &#125;,</div><div class="line">      down: function(queryInterface, Sequelize) &#123;</div><div class="line">        return queryInterface.dropTable(&apos;Users&apos;);</div><div class="line">      &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<p>使用<code>$sequelize db:migrate</code>，可以执行migration/里的文件，建立MySQL里的表。 根目录下的config/文件夹里的config.json写着连接数据库的信息。 之后在controller/文件夹下调用model里的方法或sequelize里原生的方法使用数据库。</p>
+<hr>
+<h1 id="参考目录"><a href="#参考目录" class="headerlink" title="参考目录"></a>参考目录</h1><p>更多关于Sequelize的详细用法，请参见其<a href="http://docs.sequelizejs.com/en/latest/" target="_blank" rel="external">官方文档</a>。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/07/12/英语：常用100句/" style="float: left;">
+        ← 英语：100句常用句
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/07/09/学习笔记：Restful/">
+        学习笔记：Restful →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo"></div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Sakura. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+
+    var duoshuoQuery = {short_name:"你的shortname"};
+        (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = 'http://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+
+</body>
+</html>

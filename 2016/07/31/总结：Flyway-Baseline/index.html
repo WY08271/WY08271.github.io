@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>总结：Flyway-Baseline | Sakura</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Sakura">
+    <meta name="author" content="Sakura">
+    <meta name="description" content="Sakura's website" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Sakura" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+  <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+    <img src="/img/close.png" alt="Close" />
+  </div>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu">
+    <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+    <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+    <li><a href="/booklist" class="animsition-link" title="archive">booklist</a></li>
+    <!-- Dropdown Menu -->
+
+    
+      <li>
+        <a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+        <ul class="sb-submenu">
+          
+            <li>
+              <a href="/categories/English/" class="animsition-link">
+                English<small>(1)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/node/" class="animsition-link">
+                node<small>(2)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/note/" class="animsition-link">
+                note<small>(9)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/summary/" class="animsition-link">
+                summary<small>(4)</small></a>
+            </li>
+            
+        </ul>
+      </li>
+      
+
+        
+          <li>
+            <a class="sb-toggle-submenu">Tags<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+              
+                <li>
+                  <a href="/tags/Baseline/" class="animsition-link">
+                    Baseline<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Devops/" class="animsition-link">
+                    Devops<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/ES6/" class="animsition-link">
+                    ES6<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Git/" class="animsition-link">
+                    Git<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/IntelliJ-IDEA/" class="animsition-link">
+                    IntelliJ IDEA<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Migrate/" class="animsition-link">
+                    Migrate<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nginx/" class="animsition-link">
+                    Nginx<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nodejs/" class="animsition-link">
+                    Nodejs<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/PostgreSQL/" class="animsition-link">
+                    PostgreSQL<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Restful/" class="animsition-link">
+                    Restful<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Sequelize/" class="animsition-link">
+                    Sequelize<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/api/" class="animsition-link">
+                    api<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/english/" class="animsition-link">
+                    english<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/flyway/" class="animsition-link">
+                    flyway<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/http/" class="animsition-link">
+                    http<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/java/" class="animsition-link">
+                    java<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/markdown/" class="animsition-link">
+                    markdown<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/maven/" class="animsition-link">
+                    maven<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/shell/" class="animsition-link">
+                    shell<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/tomcat/" class="animsition-link">
+                    tomcat<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/学习笔记/" class="animsition-link">
+                    学习笔记<small>(3)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/导入导出/" class="animsition-link">
+                    导入导出<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/插件/" class="animsition-link">
+                    插件<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/构建工具/" class="animsition-link">
+                    构建工具<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/环境/" class="animsition-link">
+                    环境<small>(1)</small></a>
+                </li>
+                
+            </ul>
+          </li>
+          
+
+
+            
+              <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                  
+                    <li>
+                      <a href="http://space.bilibili.com/32668823" class="animsition-link">
+                        BiliBili
+                      </a>
+                    </li>
+                    
+                </ul>
+              </li>
+              
+  </ul>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu secondary">
+    <li><a href="/about" class="animsition-link" title="about">About Me</a></li>
+  </ul>
+
+  <div class="tag-cloue">
+    
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+        <h3 class="widget-title">tagcloud</h3>
+        <div id="myCanvasContainer" class="widget tagcloud">
+          <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <a href="/tags/Baseline/" style="font-size: 10px;">Baseline</a> <a href="/tags/Devops/" style="font-size: 10px;">Devops</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 10px;">IntelliJ IDEA</a> <a href="/tags/Migrate/" style="font-size: 10px;">Migrate</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Sequelize/" style="font-size: 10px;">Sequelize</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/flyway/" style="font-size: 15px;">flyway</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/导入导出/" style="font-size: 10px;">导入导出</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/构建工具/" style="font-size: 15px;">构建工具</a> <a href="/tags/环境/" style="font-size: 10px;">环境</a>
+          </canvas>
+        </div>
+      </div>
+      
+  </div>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+  <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <div id="navigation" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- Nav logo -->
+        <div class="logo">
+          <a href="/" title="Logo" class="animsition-link">
+             <img src="/img/logo.png" alt="Logo" width="35px;" />
+              
+          </a>
+        </div>
+        <!-- // Nav logo -->
+        <!-- Info-bar -->
+        <nav>
+          <ul class="nav">
+            <li>
+              <a href="/" class="animsition-link">
+                Sakura
+              </a>
+            </li>
+            <li class="nolink"><span>Write the code, </span>Change the world.</li>
+            
+              <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+              
+                
+                  <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                  
+                    
+                      <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                      
+                        
+                          <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                          
+                            <li class="nolink"><span>Welcome!</span></li>
+          </ul>
+        </nav>
+        <!--// Info-bar -->
+      </div>
+      <!-- // .container -->
+      <div class="learnmore sb-toggle-right">More</div>
+      <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar before"></span>
+        <span class="icon-bar main"></span>
+        <span class="icon-bar after"></span>
+      </button>
+    </div>
+    <!-- // .navbar-inner -->
+  </div>
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <!-- ============================ Hero Image =========================== -->
+
+  <section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+          <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+            <div>
+              
+                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                <p>
+                  
+                </p>
+                
+                <h2></h2>
+                <p>
+                  每一个不曾起舞的日子都是对生命的辜负。
+                </p>
+                
+
+            </div>
+          </div>
+        </div>
+        <!-- // .col-md-12 -->
+      </div>
+      <div class="herofade beige-dk"></div>
+    </div>
+  </section>
+
+  <!-- Height spacing helper -->
+  <div class="heightblock"></div>
+  <!-- // End height spacing helper -->
+
+  <!-- ============================ END Hero Image =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-07-31T04:01:42.000Z" itemprop="datePublished">
+          2016-07-31
+      </time>
+    
+    
+    | 
+    <a href='/tags/flyway/'>flyway</a>,
+    
+    <a href='/tags/Baseline/'>Baseline</a>
+    
+    
+</span>
+                <h1>总结：Flyway-Baseline</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="Flyway"><a href="#Flyway" class="headerlink" title="Flyway"></a>Flyway</h2><p><strong>Q: Flyway 是什么？</strong><br>&emsp;Flyway 是独立于数据库的应用、管理并跟踪数据库变更的数据库版本管理工具。<a href="https://flywaydb.org/documentation/" target="_blank" rel="external">官方文档</a>。</p>
+<p><strong>Q: Flyway 如何工作？</strong><br>&emsp;假设将Flyway应用在一个空的数据库中，它会去寻找metadata table（元数据表），如果找不到这张metadata table，Flyway会去创建一张叫SCHEMA_VERSION的空表作为metadata table。这张表将会被Flyway用来追踪记录数据库的状态。</p>
+<p>&emsp;Migration文件会按照他们的版本进行排序，每一个Migration文件被执行（应用），都会去更新metadata table。当再次扫描（执行）Migration文件时，会对metadata table进行检查，如果在metadata table里已经存在该Migration文件，则该Migration文件不会被执行。</p>
+<p>&emsp;所以需要改变当前数据库的表信息或者表结构的时候，只需要添加一个高于当前版本的Migration文件，当再次执行Flyway的时候，数据库就会被改变（升级）。</p>
+<p><strong>Q: Flyway 怎么用？</strong><br>&emsp;官网上介绍，Flyway的使用有六种方式，分别是Command-line、API、Maven、Gradle、Ant、SBT。<br><a href="https://flywaydb.org/getstarted/firststeps/commandline" target="_blank" rel="external">具体方式</a>。</p>
+<p><strong>Q: Flyway 支持的数据库？</strong><br>Oracle、SQL Server、SQL Azure、DB2、MySQL、MariaDB、PostgreSQL、Redshift、Vertica、H2、Hsql、Derby、SQLite、SAP HANA、solidDB、Sybase ASE、Phoenix等。</p>
+<p><strong>Q: Flyway 用在哪些框架里？</strong><br>Spring Boot、Play、Dropwizard、Ninja Framework、Jooby Framework、flyway-test-extensions、Chef cookbook、Griffon Plugin、Grunt Plugin、Spring Roo Add-on等。</p>
+<p><strong>Q: Flyway 常用语句有哪些，各自的作用？</strong><br>Flyway的主要语句有六个，分别是Migrate、Clean、Info、Validata、Baseline、Repair。</p>
+<ul>
+<li>migrate<br>主要有两个作用：一是migrate数据库到最新的版本，二是如果没有metadata table会自动创建。</li>
+<li>clean<br>会清空数据库中所有的对象，包括metadata table。一定不要用在生产环境。</li>
+<li>info<br>会打印所有Migration文件的详细信息和状态信息。这些信息可以让我们知道，哪些文件被执行，哪些没有被执行。</li>
+<li>validata<br>会帮助验证Migration文件与本地数据库是否匹配。</li>
+<li>baseline<br>基线是引入Flyway到现有数据库的一个特点的版本。它会忽略包括基线在内的所有数据库的版本，对于新的Migration文件也适用。</li>
+<li>repair<br>主要用来修复metadata table，包括两类问题：删除失败的Migration文件；调整和检验可用的Migration文件。</li>
+</ul>
+<hr>
+<h2 id="Migration"><a href="#Migration" class="headerlink" title="Migration"></a>Migration</h2><p><strong>Q: Migration 产生的背景？</strong><br>&emsp;假设我们有一个项目叫Shiny，这个项目主要经营的是一个可持续交付的名叫Shiny Soft的软件，这个软件背后有一个数据库叫Shiny DB。</p>
+<p>&emsp;在多人合作的时候，这种模式就会变成各自机器上的环境、不断集成的环境、测试环境、生产环境等等一系列不同的环境，与之对应的也就有了不同的Shiny DB和Shiny Soft版本。</p>
+<p>&emsp;所以这个时候不仅要处理我们自己机器上的环境，同时也要解决其他环境出现的问题。如果是代码出现问题很容易解决，因为有版本管理工具、构建工具、持续集成、明确的发布和部署的过程。同样数据库也会出现很多和代码一样的问题，比如：这台机器上数据库的版本是什么？生产环境上数据库的版本是什么？怎么样在测试通过后应用在生产环境上？</p>
+<p>&emsp;Database migration 就会解决这些问题。它可以从头创建一个数据库，在任何时候都清楚数据库处于什么状态。</p>
+<p>&emsp;所以使用Migration对我们来说很方便。</p>
+<p><strong>Q: Migration 命名规则？</strong></p>
+<ul>
+<li>包含至少一个数字</li>
+<li>由.或_分隔</li>
+<li>开始的0是被忽略的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">例子：</div><div class="line">1.2.3.4.5.6.7.8.9</div><div class="line">205.68</div><div class="line">20130115113556</div><div class="line">2013.1.15.11.35.56</div><div class="line">2013.01.15.11.35.56</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Flyway的使用方法"><a href="#Flyway的使用方法" class="headerlink" title="Flyway的使用方法"></a>Flyway的使用方法</h2><h3 id="创建一个项目"><a href="#创建一个项目" class="headerlink" title="创建一个项目"></a>创建一个项目</h3><p>使用Maven Archetype Plugin创建项目，语句如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ mvn archetype:generate -B \</div><div class="line">      -DarchetypeGroupId=org.apache.maven.archetypes \</div><div class="line">      -DarchetypeArtifactId=maven-archetype-quickstart \</div><div class="line">      -DarchetypeVersion=1.1 \</div><div class="line">      -DgroupId=foo \</div><div class="line">      -DartifactId=bar \</div><div class="line">      -Dversion=1.0-SNAPSHOT \</div><div class="line">      -Dpackage=foobar</div></pre></td></tr></table></figure></p>
+<p>然后进入到项目目录：<code>$ cd bar</code></p>
+<h3 id="添加Flyway"><a href="#添加Flyway" class="headerlink" title="添加Flyway"></a>添加Flyway</h3><p>在pom.xml里添加Flyway和H2的插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;project ...&gt;</div><div class="line">    ...</div><div class="line">    &lt;build&gt;</div><div class="line">        &lt;plugins&gt;</div><div class="line">            &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;flyway-maven-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;4.0.3&lt;/version&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;url&gt;jdbc:h2:file:./target/foobar&lt;/url&gt;</div><div class="line">                    &lt;user&gt;sa&lt;/user&gt;</div><div class="line">                &lt;/configuration&gt;</div><div class="line">                &lt;dependencies&gt;</div><div class="line">                    &lt;dependency&gt;</div><div class="line">                        &lt;groupId&gt;com.h2database&lt;/groupId&gt;</div><div class="line">                        &lt;artifactId&gt;h2&lt;/artifactId&gt;</div><div class="line">                        &lt;version&gt;1.4.191&lt;/version&gt;</div><div class="line">                    &lt;/dependency&gt;</div><div class="line">                &lt;/dependencies&gt;</div><div class="line">            &lt;/plugin&gt;</div><div class="line">        &lt;/plugins&gt;</div><div class="line">    &lt;/build&gt;</div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="创建Migration文件"><a href="#创建Migration文件" class="headerlink" title="创建Migration文件"></a>创建Migration文件</h3><p>进入到Migration目录：<code>src/main/resources/db/migration</code>，然后新建<code>V1__Create_person_table.sql</code>文件，内容为SQL语句。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table PERSON (</div><div class="line">    ID int not null,</div><div class="line">    NAME varchar(100) not null</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<h3 id="执行Migrate"><a href="#执行Migrate" class="headerlink" title="执行Migrate"></a>执行Migrate</h3><p>在demo目录下创建数据库表，使用：<code>$ mvn flyway:migrate</code>。会有以下提示信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[INFO] Creating Metadata table: &quot;PUBLIC&quot;.&quot;schema_version&quot;</div><div class="line">[INFO] Current version of schema &quot;PUBLIC&quot;: &lt;&lt; Empty Schema &gt;&gt;</div><div class="line">[INFO] Migrating schema &quot;PUBLIC&quot; to version 1 - Create person table</div><div class="line">[INFO] Successfully applied 1 migration to schema &quot;PUBLIC&quot; (execution time 00:00.062s).</div></pre></td></tr></table></figure></p>
+<h3 id="创建第二个Migration文件"><a href="#创建第二个Migration文件" class="headerlink" title="创建第二个Migration文件"></a>创建第二个Migration文件</h3><p>进入到Migration目录：<code>src/main/resources/db/migration</code>，然后新建<code>V2__Add_people.sql</code>文件，内容为SQL语句。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into PERSON (ID, NAME) values (1, &apos;Axel&apos;);</div><div class="line">insert into PERSON (ID, NAME) values (2, &apos;Mr. Foo&apos;);</div><div class="line">insert into PERSON (ID, NAME) values (3, &apos;Ms. Bar&apos;);</div></pre></td></tr></table></figure></p>
+<p>执行<code>$ mvn flyway:migrate</code>，命令行里提示以下信息表示成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[INFO] Current version of schema &quot;PUBLIC&quot;: 1</div><div class="line">[INFO] Migrating schema &quot;PUBLIC&quot; to version 2 - Add people</div><div class="line">[INFO] Successfully applied 1 migration to schema &quot;PUBLIC&quot; (execution time 00:00.090s).</div></pre></td></tr></table></figure></p>
+<h3 id="使用其他命令"><a href="#使用其他命令" class="headerlink" title="使用其他命令"></a>使用其他命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ mvn flyway:clean</div><div class="line">$ mvn flyway:migrate</div><div class="line">$ mvn flyway:info</div><div class="line">$ mvn flyway:validata</div><div class="line">$ mvn flyway:baseline</div><div class="line">$ mvn flyway:repair</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="项目上出现的问题"><a href="#项目上出现的问题" class="headerlink" title="项目上出现的问题"></a>项目上出现的问题</h3><p><strong>问题背景</strong><br>问题出在Develop环境向QA环境上传时，最开始QA与develop环境的代码是相同的，具体如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">**db.migration/文件夹**</div><div class="line">V1__Create_ProfitExcel_Table.sql</div><div class="line">V3__Create_Client_Catalogue_Table.sql</div><div class="line">V6__Create_Catalogues_Table.sql</div><div class="line">V7__Add_Catalogues.sql</div><div class="line">V8__Create_User_table.sql</div><div class="line">V9__Add_User.sql</div><div class="line">V10__Create_Authorities_Table.sql</div><div class="line">V11__Add_Authorities.sql</div><div class="line">V12__Create_Sub_Client_Table.sql</div><div class="line">V13__Create_Project_Manager_Table.sql</div><div class="line"></div><div class="line">**V1__Create_ProfitExcel_Table.sql的文件内容**</div><div class="line">create table ProfitExcel (</div><div class="line">	id serial PRIMARY KEY,</div><div class="line">	profitYear INTEGER,</div><div class="line">	profitMonth INTEGER,</div><div class="line">	client varchar(40) not null,</div><div class="line">	subProject varchar(40) not null,</div><div class="line">	projectDescription varchar(140),</div><div class="line">	netRevenue FLOAT ,</div><div class="line">	wages FLOAT ,</div><div class="line">	totalTravel FLOAT ,</div><div class="line">	otherCosts FLOAT ,</div><div class="line">	grossProfitMargin FLOAT ,</div><div class="line">	grossProfitMarginPercent varchar (100)</div><div class="line">);</div><div class="line">CREATE INDEX profit_report_index ON ProfitExcel (profitYear, profitMonth, client, subProject);</div></pre></td></tr></table></figure></p>
+<p>因为要对<code>V1__Create_ProfitExcel_Table.sql</code>创建的ProfitExcel表新增属性，所以增加了<code>V14__Alter_Profit_Cloumn.sql</code>，具体内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE ProfitExcel ADD professional FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD revenueprofessional FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD revenuebillable FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD revenuebaddebt FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD costtravelbillable FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD costtraveltravel FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD costtotalcosts FLOAT;</div></pre></td></tr></table></figure></p>
+<p>在本地环境里migrate完全没有任何问题，执行<code>git add &amp; git commit</code>后，诡异的事情出现了，QA环境编译报错了。报错如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">找不到报错信息了= =。</div><div class="line">大概就是不存在V1的ProfitExcel表。</div></pre></td></tr></table></figure></p>
+<p><strong>解决过程</strong></p>
+<ol>
+<li>认为<code>V1__Create_ProfitExcel_Table.sql</code>的名字写错了，更改为<code>V1__Create_Profit_Table.sql</code>之类的。<br>当然不是这个原因。就在这个时候又出现了一个问题：<strong>Ci提示QA环境有两个V1文件</strong>。</li>
+</ol>
+<p>这就奇怪了，在本地执行时我会先执行<code>mvn flyway:clean</code>保证本地的数据库是空的，再去执行<code>mvn flyway:migrate</code>，在QA环境是不需要我去执行clean的命令的，因为每一次跑代码都是一个新的容器。</p>
+<p>先去检查了QA环境上CI生成的war包，发现war包里只有一个V1的文件。所以问题就定位在了docker里，经过好长时间的检查，发现是因为JenkinsFile的配置文件里，在打包的时候没有清空之前的class文件。</p>
+<p>解决方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">修改前：</div><div class="line">stage &apos;BUILD&apos;</div><div class="line">   docker.image(&apos;maven:3.3.3-jdk-8&apos;).inside(&apos;-v/root/.m2:/root/.m2&apos;) &#123;</div><div class="line">     sh &apos;mvn package&apos;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">修改后：</div><div class="line">   stage &apos;BUILD&apos;</div><div class="line">      docker.image(&apos;maven:3.3.3-jdk-8&apos;).inside(&apos;-v/root/.m2:/root/.m2&apos;) &#123;</div><div class="line">        sh &apos;mvn clean package&apos;</div><div class="line">      &#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>推测V1没有执行，可以把V1的内容写在V2里。<br>可是并没有起作用，又把V1的内容复制在V5里，依旧没有用。</li>
+</ol>
+<p>…<br>…</p>
+<ol>
+<li><p>经过很多次的试验之后，发现在配置文件里有<code>flyway.baselineVersion=0</code>是被注释掉的，执行baseline之后也没有什么卵用。</p>
+</li>
+<li><p>又把配置文件的<code>flyway.baselineVersion=0</code>改为<code>flyway.baselineVersion=1</code>，发现报错信息变了。提示已经存在ProfitExcel表，不能重复创建。到这里问题就解决了！WoW~</p>
+</li>
+</ol>
+<p><strong>解决方法</strong><br>按照道理来说QA环境每一次编译War包都是会新的database（空空的database，一张表也没有），但奇怪的是QA环境每一次都会有一张表存在在database里，这就是导致develop和QA环境不同的最根本的原因。设置Flyway的Baseline为1，将<code>V1__Create_ProfitExcel_Table.sql</code>里的文件写在<code>V2__Create_ProfitExcel_Table.sql</code>里，这样就能保证QA环境与Develop环境初始化时候的database是相同的。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/08/01/学习笔记：ES6语法/" style="float: left;">
+        ← 学习笔记：ES6语法
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/07/12/英语：常用100句/">
+        英语：100句常用句 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo"></div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Sakura. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+
+    var duoshuoQuery = {short_name:"你的shortname"};
+        (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = 'http://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+
+</body>
+</html>

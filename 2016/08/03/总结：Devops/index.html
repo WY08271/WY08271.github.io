@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>总结：Devops | Sakura</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Sakura">
+    <meta name="author" content="Sakura">
+    <meta name="description" content="Sakura's website" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Sakura" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+  <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+    <img src="/img/close.png" alt="Close" />
+  </div>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu">
+    <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+    <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+    <li><a href="/booklist" class="animsition-link" title="archive">booklist</a></li>
+    <!-- Dropdown Menu -->
+
+    
+      <li>
+        <a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+        <ul class="sb-submenu">
+          
+            <li>
+              <a href="/categories/English/" class="animsition-link">
+                English<small>(1)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/node/" class="animsition-link">
+                node<small>(2)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/note/" class="animsition-link">
+                note<small>(9)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/summary/" class="animsition-link">
+                summary<small>(4)</small></a>
+            </li>
+            
+        </ul>
+      </li>
+      
+
+        
+          <li>
+            <a class="sb-toggle-submenu">Tags<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+              
+                <li>
+                  <a href="/tags/Baseline/" class="animsition-link">
+                    Baseline<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Devops/" class="animsition-link">
+                    Devops<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/ES6/" class="animsition-link">
+                    ES6<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Git/" class="animsition-link">
+                    Git<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/IntelliJ-IDEA/" class="animsition-link">
+                    IntelliJ IDEA<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Migrate/" class="animsition-link">
+                    Migrate<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nginx/" class="animsition-link">
+                    Nginx<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nodejs/" class="animsition-link">
+                    Nodejs<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/PostgreSQL/" class="animsition-link">
+                    PostgreSQL<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Restful/" class="animsition-link">
+                    Restful<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Sequelize/" class="animsition-link">
+                    Sequelize<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/api/" class="animsition-link">
+                    api<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/english/" class="animsition-link">
+                    english<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/flyway/" class="animsition-link">
+                    flyway<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/http/" class="animsition-link">
+                    http<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/java/" class="animsition-link">
+                    java<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/markdown/" class="animsition-link">
+                    markdown<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/maven/" class="animsition-link">
+                    maven<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/shell/" class="animsition-link">
+                    shell<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/tomcat/" class="animsition-link">
+                    tomcat<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/学习笔记/" class="animsition-link">
+                    学习笔记<small>(3)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/导入导出/" class="animsition-link">
+                    导入导出<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/插件/" class="animsition-link">
+                    插件<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/构建工具/" class="animsition-link">
+                    构建工具<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/环境/" class="animsition-link">
+                    环境<small>(1)</small></a>
+                </li>
+                
+            </ul>
+          </li>
+          
+
+
+            
+              <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                  
+                    <li>
+                      <a href="http://space.bilibili.com/32668823" class="animsition-link">
+                        BiliBili
+                      </a>
+                    </li>
+                    
+                </ul>
+              </li>
+              
+  </ul>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu secondary">
+    <li><a href="/about" class="animsition-link" title="about">About Me</a></li>
+  </ul>
+
+  <div class="tag-cloue">
+    
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+        <h3 class="widget-title">tagcloud</h3>
+        <div id="myCanvasContainer" class="widget tagcloud">
+          <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <a href="/tags/Baseline/" style="font-size: 10px;">Baseline</a> <a href="/tags/Devops/" style="font-size: 10px;">Devops</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 10px;">IntelliJ IDEA</a> <a href="/tags/Migrate/" style="font-size: 10px;">Migrate</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Sequelize/" style="font-size: 10px;">Sequelize</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/flyway/" style="font-size: 15px;">flyway</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/导入导出/" style="font-size: 10px;">导入导出</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/构建工具/" style="font-size: 15px;">构建工具</a> <a href="/tags/环境/" style="font-size: 10px;">环境</a>
+          </canvas>
+        </div>
+      </div>
+      
+  </div>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+  <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <div id="navigation" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- Nav logo -->
+        <div class="logo">
+          <a href="/" title="Logo" class="animsition-link">
+             <img src="/img/logo.png" alt="Logo" width="35px;" />
+              
+          </a>
+        </div>
+        <!-- // Nav logo -->
+        <!-- Info-bar -->
+        <nav>
+          <ul class="nav">
+            <li>
+              <a href="/" class="animsition-link">
+                Sakura
+              </a>
+            </li>
+            <li class="nolink"><span>Write the code, </span>Change the world.</li>
+            
+              <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+              
+                
+                  <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                  
+                    
+                      <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                      
+                        
+                          <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                          
+                            <li class="nolink"><span>Welcome!</span></li>
+          </ul>
+        </nav>
+        <!--// Info-bar -->
+      </div>
+      <!-- // .container -->
+      <div class="learnmore sb-toggle-right">More</div>
+      <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar before"></span>
+        <span class="icon-bar main"></span>
+        <span class="icon-bar after"></span>
+      </button>
+    </div>
+    <!-- // .navbar-inner -->
+  </div>
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <!-- ============================ Hero Image =========================== -->
+
+  <section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+          <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+            <div>
+              
+                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                <p>
+                  
+                </p>
+                
+                <h2></h2>
+                <p>
+                  每一个不曾起舞的日子都是对生命的辜负。
+                </p>
+                
+
+            </div>
+          </div>
+        </div>
+        <!-- // .col-md-12 -->
+      </div>
+      <div class="herofade beige-dk"></div>
+    </div>
+  </section>
+
+  <!-- Height spacing helper -->
+  <div class="heightblock"></div>
+  <!-- // End height spacing helper -->
+
+  <!-- ============================ END Hero Image =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-08-03T02:28:27.000Z" itemprop="datePublished">
+          2016-08-03
+      </time>
+    
+    
+    | 
+    <a href='/tags/Devops/'>Devops</a>
+    
+    
+</span>
+                <h1>总结：Devops</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="一、开发-运维环境准备"><a href="#一、开发-运维环境准备" class="headerlink" title="一、开发/运维环境准备"></a><strong>一、开发/运维环境准备</strong></h2><h4 id="1-安装HomeBrew"><a href="#1-安装HomeBrew" class="headerlink" title="1. 安装HomeBrew"></a><strong>1. 安装HomeBrew</strong></h4><p>安装方法：<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">HomeBrew官网</a>，打开终端窗口，粘贴以下脚本，<br><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p>
+<h4 id="2-通过HomeBrew安装工作中需要的软件"><a href="#2-通过HomeBrew安装工作中需要的软件" class="headerlink" title="2. 通过HomeBrew安装工作中需要的软件"></a><strong>2. 通过HomeBrew安装工作中需要的软件</strong></h4><ol>
+<li><strong>Git</strong><ul>
+<li><code>brew install git</code></li>
+</ul>
+</li>
+<li><strong>Java</strong><ul>
+<li>在<a href="https://www.java.com/zh_CN/download/mac_download.jsp" target="_blank" rel="external">Java网站</a>下载<code>jre-8u65-macosx-x64.dmg</code>文件；</li>
+<li>双击 .dmg 文件以启动它；</li>
+<li>双击程序包图标以启动安装向导。</li>
+</ul>
+</li>
+<li><p><strong>Maven</strong></p>
+<ul>
+<li>在<a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Maven网站</a>下载Maven，并解压到某个目录；</li>
+<li><p>打开Terminal，进入到<code>$ vi ~/.bash_profile</code>，设置Maven ClassPath；</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export M2_HOME=/Users/robbie/apache-maven-3.3.3</div><div class="line">export PATH=$PATH:$M2_HOME/bin</div><div class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_11,jdk/Contents/Home</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启<code>bash_profile</code>，使配置生效，<code>$ source ~/.bash_profile</code>；</p>
+</li>
+<li>输入<code>mvn -v</code>查看Maven是否安装成功。</li>
+</ul>
+</li>
+<li><p><strong>Gradle</strong></p>
+<ul>
+<li>在<a href="https://gradle.org/gradle-download/" target="_blank" rel="external">Gradle网站</a>下载Gradle，并解压到某个目录<code>mv Downloads/gradle-2.14.1 /usr/local</code>；</li>
+<li><p>打开Terminal，进入到<code>$ vi ~/.bash_profile</code>，设置Gradle ClassPath；</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GRADLE_HOME=/usr/local/gradle-2.14.1;</div><div class="line">export GRADLE_HOME</div><div class="line">export PATH=$PATH:$GRADLE_HOME/bin</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启<code>bash_profile</code>，使配置生效，<code>$ source ~/.bash_profile</code>；</p>
+</li>
+<li>输入<code>gradle -version</code>查看Maven是否安装成功。</li>
+</ul>
+</li>
+<li><strong>Ansible</strong><ul>
+<li><code>brew install ansible</code></li>
+</ul>
+</li>
+<li><p><strong>Ant</strong></p>
+<ul>
+<li>在<a href="http://ant.apache.org/bindownload.cgi" target="_blank" rel="external">Ant网站</a>下载Ant(apache-ant-1.9.7-bin.zip)，并解压到某个目录<code>mv Downloads/apache-ant-1.9.7 /usr/local</code>；</li>
+<li><p>打开Terminal，进入到<code>$ vi ~/.bash_profile</code>，设置Gradle ClassPath；</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export ANT_HOME=/usr/local/apache-ant-1.9.3  </div><div class="line">export PATH=$&#123;PATH&#125;:$&#123;ANT_HOME&#125;/bin</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启<code>bash_profile</code>，使配置生效，<code>$ source ~/.bash_profile</code>；</p>
+</li>
+<li>输入<code>ant -version</code>查看Ant是否安装成功。</li>
+</ul>
+</li>
+<li><strong>Ruby</strong><ul>
+<li><code>brew update</code></li>
+<li><code>brew install ruby</code></li>
+<li><code>ruby --version</code></li>
+</ul>
+</li>
+<li><strong>Rails</strong><ul>
+<li><code>gem install rails</code></li>
+</ul>
+</li>
+<li><strong>Python</strong><ul>
+<li><code>brew install python</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="3-配置相关环境变量-bashrc"><a href="#3-配置相关环境变量-bashrc" class="headerlink" title="3. 配置相关环境变量(~/.bashrc)"></a><strong>3. 配置相关环境变量(~/.bashrc)</strong></h4><h4 id="4-安装Virtual-Box虚拟机工具"><a href="#4-安装Virtual-Box虚拟机工具" class="headerlink" title="4. 安装Virtual Box虚拟机工具"></a><strong>4. 安装Virtual Box虚拟机工具</strong></h4><p>  <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">Virtual Box网站</a>，直接下载安装Virtual Box。</p>
+<hr>
+<h2 id="二、安装和配置第一台虚拟机"><a href="#二、安装和配置第一台虚拟机" class="headerlink" title="二、安装和配置第一台虚拟机"></a><strong>二、安装和配置第一台虚拟机</strong></h2><h4 id="1-下载Ubuntu-14-04-的ISO镜像"><a href="#1-下载Ubuntu-14-04-的ISO镜像" class="headerlink" title="1. 下载Ubuntu 14.04 的ISO镜像"></a><strong>1. 下载Ubuntu 14.04 的ISO镜像</strong></h4><p>  <a href="http://www.ubuntu.org.cn/download/desktop" target="_blank" rel="external">Ubuntu14.04 Desktop版</a><br>  <a href="http://www.ubuntu.org.cn/download/server" target="_blank" rel="external">Ubuntu14.04 Server版</a></p>
+<h4 id="2-使用VirtualBox安装一个ubuntu-14-04的虚拟机"><a href="#2-使用VirtualBox安装一个ubuntu-14-04的虚拟机" class="headerlink" title="2. 使用VirtualBox安装一个ubuntu 14.04的虚拟机"></a><strong>2. 使用VirtualBox安装一个ubuntu 14.04的虚拟机</strong></h4><h5 id="虚拟机的配置是1核1G内存50G磁盘空间"><a href="#虚拟机的配置是1核1G内存50G磁盘空间" class="headerlink" title="虚拟机的配置是1核1G内存50G磁盘空间"></a><strong>虚拟机的配置是1核1G内存50G磁盘空间</strong></h5><ul>
+<li>打开 Virtual Box，点击 New 创建新的box；</li>
+<li>输入 Name，选择 Type，点击 Next；</li>
+<li>Memory size 通常选择 1024MB，点击Next；</li>
+<li>Hard disk 页面选择 Create a Virtual hard disk now，点击Next；</li>
+<li>Hard disk file type 选择 VDI(VirtualBox Disk Image)，点击Next；</li>
+<li>Storage on physical hard disk 页面选择 Dynamically allocated，点击Next；</li>
+<li>File location and size 页面选择 50GB，点击Create；</li>
+<li>运行新建的虚拟机，打开下载的镜像；</li>
+<li>选择语言，建议 English；</li>
+<li>开启安装模式，选择 Install Ubuntu Server；</li>
+<li>进入Ubuntu Server的安装程序后，还要再选择一次语言，建议选择 English；</li>
+<li>选择服务器的位置；</li>
+<li>设定系统使用的语言，建议选择 United States - en_US.UTF-8；</li>
+<li>设定键盘，使用手动设定，选择 English(US)；</li>
+<li>设定网卡；</li>
+<li>设置主机名，使用者名，使用者账号和密码；</li>
+<li>选择是否需要加密目录，看情况选择是否加密；</li>
+<li>设置时区，通常Ubuntu Server会自动选择时区；</li>
+<li>设置硬盘，建议使用 LVM(Logical Volume Manager)，方便以后扩充；</li>
+<li>设置自动更新，为了保持系统稳定，通常手动更新，选择 No automatic update；</li>
+<li>安装openSSH server、GRUB管理器；</li>
+<li>重新开机即可！</li>
+</ul>
+<h5 id="本地可以通过-2222-端口通过SSH远程访问"><a href="#本地可以通过-2222-端口通过SSH远程访问" class="headerlink" title="本地可以通过 2222 端口通过SSH远程访问"></a><strong>本地可以通过 2222 端口通过SSH远程访问</strong></h5><p>  进入虚拟机，输入<code>sudo vim /etc/ssh/sshd_config</code>，将端口号改为2222即可。</p>
+<p>  PS:更新Ubuntu Server到最新的版本<code>sudo apt-get update &amp;&amp; sudo apt-get upgrade &amp;&amp; sudo apt-get dist-upgrade</code></p>
+<h4 id="3-虚拟机网络配置"><a href="#3-虚拟机网络配置" class="headerlink" title="3. 虚拟机网络配置"></a><strong>3. 虚拟机网络配置</strong></h4><h5 id="使用静态ip配置虚拟机的网络"><a href="#使用静态ip配置虚拟机的网络" class="headerlink" title="使用静态ip配置虚拟机的网络"></a><strong>使用静态ip配置虚拟机的网络</strong></h5><p>  设置IP地址、子网掩码、网关：<code>sudo vim /etc/network/interfaces</code>，重启文件<code>sudo /etc/init.d/networking restart</code></p>
+<ol>
+<li><p>动态IP地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">auto eth0</div><div class="line">iface eth0 inet dhcp</div></pre></td></tr></table></figure>
+</li>
+<li><p>静态IP地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">auto eth0</div><div class="line">iface eth0 inet static</div><div class="line"></div><div class="line">address 192.168.56.100 //地址</div><div class="line">netmask 255.255.255.0  //子网掩码</div><div class="line">network 192.168.56.0  //</div><div class="line">boardcast 192.168.56.255  //广播地址</div></pre></td></tr></table></figure>
+<p>PS: 关闭网卡<code>sudo ifconfig eth0 down</code><br> 打开网卡<code>sudo ifconfig eth0 up</code><br> 重启<code>sudo /etc/init.d/networking restart</code></p>
+</li>
+</ol>
+<h5 id="设置虚拟机的DNS为114-114-114-114"><a href="#设置虚拟机的DNS为114-114-114-114" class="headerlink" title="设置虚拟机的DNS为114.114.114.114"></a><strong>设置虚拟机的DNS为114.114.114.114</strong></h5><p>  <code>sudo vim /etc/resolv.conf</code></p>
+<h4 id="4-配置免密码ssh登录"><a href="#4-配置免密码ssh登录" class="headerlink" title="4. 配置免密码ssh登录"></a><strong>4. 配置免密码ssh登录</strong></h4><ul>
+<li>在虚拟机上生成公钥和私钥，输入<code>ssh-keygen</code>；</li>
+<li><p>编辑虚拟机ssh配置，开启ssh，<code>vim /etc/ssh/sshd_config</code>；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">取消这三行的注释</div><div class="line">RSAAuthentication yes</div><div class="line">PubkeyAuthentication yes</div><div class="line">AuthorizedKeysFile      .ssh/authorized_keys</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启ssh服务，<code>service sshd restart</code>；</p>
+</li>
+<li>验证ssh服务，<code>netstat -tlnp | grep ssh</code>；</li>
+<li>新增ssh认证文件，保存其他主机的公钥，<code>vim /root/.ssh/authorized_keys</code>，把MAC上的id_rsa.pub复制在这个文件里；</li>
+<li>Mac下输入<code>ssh sakura@192.128.56.100</code>就可以进入虚拟机。</li>
+</ul>
+<hr>
+<h2 id="三、Ansible使用"><a href="#三、Ansible使用" class="headerlink" title="三、Ansible使用"></a><strong>三、Ansible使用</strong></h2><h4 id="1-使用ansible"><a href="#1-使用ansible" class="headerlink" title="1. 使用ansible"></a><strong>1. 使用ansible</strong></h4><p>  “Ansible is Simple IT Automation”——简单的自动化IT工具。它可以让我们自动化部署APP；自动化管理配置项；自动化的持续交付；自动化的（AWS）云服务管理。就是批量的在远程服务器上执行命令。最主要的是它是基于 paramiko 开发的。这个paramiko是什么呢？它是一个纯Python实现的ssh协议库。因此fabric和ansible还有一个共同点就是不需要在远程主机上安装client/agents，因为它们是基于ssh来和远程主机通讯的。</p>
+<p>  Ansilbe通过SSH协议进行管理节点和远程节点之间的通信。理论上说管理员通过ssh到一台远程主机上能做的操作Ansible都可以做。</p>
+<p>  <strong>安装：</strong></p>
+<pre><code>* `$ sudo pip install ansible`
+  `升级 $ pip install –upgrade ansible`
+* `$ git clone git://github.com/ansible/ansible.git`
+   `$ cd ansible &amp;&amp; sudo make&amp;&amp;make install`
+</code></pre><p>  Ansible工作机制：</p>
+<ul>
+<li>Ansible：核心；</li>
+<li>Modules：包括Ansible自带的核心模块及自定义模块；</li>
+<li>Plugins：完成模块功能的补充，包括连接插件、邮件插件等；</li>
+<li>Playbooks：定义Ansible多任务配置文件，有Ansible自动执行；</li>
+<li><p>Inventory：定义Ansible管理主机的清单。</p>
+<p><strong>配置免密钥登陆</strong><br>为了避免Ansible下发指令时输入目标主机密码，通过证书签名达到SSH无密码登录，使用ssh-keygen与ssh-copy-id来实现快速证书的生成和公钥下发，其中ssh-keygen生成一对密钥，使用ssh-copy-id来下发生成的公钥。具体操作如下：<br><code>ssh-keygen -t rsa -P &#39;&#39;</code><br><code>ssh-copy-id -i .ssh/id_rsa.pub deploy@192.168.1.100</code><br><code>ssh-copy-id -i .ssh/id_rsa.pub deploy@192.168.1.101</code></p>
+</li>
+</ul>
+<h4 id="2-playbook解析"><a href="#2-playbook解析" class="headerlink" title="2. playbook解析"></a><strong>2. playbook解析</strong></h4><p>  playbook 是一个不同于使用Ansible命令行执行方式的模式。简单来说，playbook是一个非常简单的配置管理系统，可作为一个适合部署复杂应用程序的基础。Playbook可以定制配置，可以按照指定的操作步骤有序执行，支持同步和异步方式。值得注意的是playbook是通过<a href="http://docs.ansible.com/ansible/YAMLSyntax.html" target="_blank" rel="external">YAML</a>格式来进行描述定义的。</p>
+<p>  <strong>Playbook组成</strong></p>
+<ul>
+<li><code>Target section</code>，定义将要执行的playbook的远程主机组；</li>
+<li><code>Variable section</code>，定义playbook运行时需要使用的变量；</li>
+<li><code>Task section</code>，定义将要在远程主机上执行的任务列表；</li>
+<li><code>Handler section</code>，定义task执行完成以后需要调用的任务。</li>
+</ul>
+<p>  <strong>运行Playbook</strong></p>
+<ul>
+<li>查看模块执行成功与否的详细信息，<code>$ ansible-playbook playbook.yml –v</code></li>
+<li>查看一个 playbook 中都会对哪些主机产生影响，<code>$ ansible-playbook playbook.yml –list-hosts</code></li>
+<li>查看都有哪些任务要执行，<code>$ ansible-playbook playbook.yml –list-tasks</code></li>
+</ul>
+<h4 id="3-主机清单Hosts"><a href="#3-主机清单Hosts" class="headerlink" title="3. 主机清单Hosts"></a><strong>3. 主机清单Hosts</strong></h4><p>  Ansible通过读取默认的主机清单配置<code>/etc/ansible/hosts</code>，可以同时连接到多个远程主机上执行任务，默认路径可以通过修改<code>ansible.cfg</code>的hostfile参数指定路径。</p>
+<p>  <code>/etc/ansible/hosts</code>主机清单配置格式如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">[dbservers]    //[]表示主机的分组名,可以按照功能、系统等进行分类，便于对某些主机或者某一组功能相同的主机进行操作</div><div class="line">192.168.1.12</div><div class="line">one.example.com</div><div class="line">badwolf.example.com:5309   //支持指定 SSH 端口 5309</div><div class="line">jumper ansible_ssh_port=5555 ansible_ssh_host=192.168.1.50     //设置主机别名为jumper</div><div class="line">www[01:50].example.com    //支持通配符匹配 www01 www02 … www50</div><div class="line"></div><div class="line">[databases]</div><div class="line">db-[a:f].example.com     //支持字母匹配 a b c … f</div><div class="line"></div><div class="line">[sakura]  //为某主机指定连接类型和连接用户</div><div class="line">Localhost  ansible_connection=local</div><div class="line">other1.example.com ansible_connection=ssh ansible_ssh_user=deploy</div><div class="line">other2.example.com ansible_connection=ssh ansible_ssh_user=deploy</div><div class="line"></div><div class="line">//hosts文件指令</div><div class="line">ansible_ssh_host       //指定主机别名对应的真实 IP，如：100 ansible_ssh_host=192.168.1.100，随后连接该主机无须指定完整 IP，只需指定 251 就行</div><div class="line">ansible_ssh_port      //指定连接到这个主机的 ssh 端口，默认 22</div><div class="line">ansible_ssh_user      //连接到该主机的 ssh 用户</div><div class="line">ansible_ssh_pass      //连接到该主机的 ssh 密码（连-k 选项都省了），安全考虑还是建议使用私钥或在命令行指定-k 选项输入</div><div class="line">ansible_sudo_pass     //sudo 密码</div><div class="line">ansible_sudo_exe          //sudo 命令路径</div><div class="line">ansible_connection          //连接类型，可以是 local、ssh 或 paramiko，ansible1.2 之前默认为 paramiko</div><div class="line">ansible_ssh_private_key_file     //私钥文件路径</div><div class="line">ansible_shell_type         //目标系统的 shell 类型，默认为 sh,如果设置 csh/fish，那么命令需要遵循它们语法</div><div class="line">ansible_python_interpreter      //python 解释器路径，默认是/usr/bin/python，但是如要要连*BSD系统的话，就需要该指令修改 python 路径</div><div class="line">ansible_*_interpreter     //这里的&quot;*&quot;可以是 ruby 或 perl 或其他语言的解释器，作用和 ansible_python_interpreter 类似</div></pre></td></tr></table></figure></p>
+<h4 id="4-ansible常用模块"><a href="#4-ansible常用模块" class="headerlink" title="4. ansible常用模块"></a><strong>4. ansible常用模块</strong></h4><ul>
+<li><p><strong>shell模块</strong><br>默认情况下，ansible使用的module是command，这个模块不支持shell变量和管道，若想使用shell来执行模块，使用-m参数指定shell模块,但是值得注意的是普通的命令执行模块是通过python的ssh执行。<br>使用shell模块在远程主机上执行命令：<code>$ ansible web -m shell -a ‘echo $TERM’</code></p>
+</li>
+<li><p><strong>raw模块</strong><br>Raw也是命令执行模块，而raw模块则是直接用ssh模块进行执行，通常用在客户机还没有python的环境的时候。<br>使用raw模块在远程主机上执行命令：<code>$ansible web -m raw -a ‘echo $TERM’</code></p>
+</li>
+<li><p><strong>copy模块</strong><br>实现主控端向目标主机拷贝文件，类似于scp的功能。<br>拷贝本地的/etc/hosts文件到web主机组所有主机的/tmp/hosts（空目录除外），<code>$ ansible web -m copy -a &quot;src=/etc/hosts dest=/tmp/hosts&quot;</code></p>
+</li>
+<li><p><strong>file模块</strong><br>file模块称之为文件属性模块，可以做的操作如下：</p>
+<ul>
+<li>使用 file 模块创建文件<br><code>$ ansible web -m file -a &quot;dest=/tmp/zhao/a.txt state=touch&quot;</code></li>
+<li>file 模块允许更改文件的用户及权限<br><code>$ ansible web -m file -a &quot;dest=/tmp/zhao/a.txt mode=600&quot;</code><br><code>$ ansible web -m file -a &quot;dest=/tmp/zhao/b.txt mode=600 owner=deploy group=root&quot;</code></li>
+<li>使用 file 模块创建目录，类似 mkdir -p<br><code>$ ansible web -m file -a &quot;dest=/tmp/yong mode=755 owner=deploy group=sa state=directory&quot;</code></li>
+<li>使用 file 模块删除文件或者目录<br><code>$ ansible web -m file -a &quot;dest=/tmp/yong state=absent&quot;</code></li>
+</ul>
+</li>
+<li><p><strong>template模块</strong><br>template使用了Jinjia2格式作为文件模板，进行文档内变量的替换的模块。每次使用都会被ansible标记为changed状态。</p>
+</li>
+<li><p><strong>stat模块</strong><br>获取远程文件状态信息，包含atime、ctime、mtime、md5、uid、gid等。<br><code>$ ansible web -m stat -a &quot;path=/tmp/zhao/a.txt&quot;</code></p>
+</li>
+<li><p><strong>管理软件模块</strong><br>apt、yum模块分别用于管理ubuntu系列和redhat系列系统软件包。Ansible支持很多操作系统的软件包管理，使用时 <code>-m</code> 指定相应的软件包管理工具模块。如果没有这样的模块，可以自己定义类似的模块或者使用<code>command模块</code>来安装软件包。</p>
+<ul>
+<li>安装nginx软件包<br><code>$ ansible web -m yum -a &quot;name=nginx state=present&quot;</code><br><code>$ ansible web -m apt -a &quot;name=nginx state=present&quot;</code></li>
+<li>安装包到一个特定的版本<br><code>$ ansible web -m yum -a &quot;name=nginx-1.6.2 state=present&quot;</code><br><code>$ ansible web -m apt -a &quot;name=nginx-1.6.2 state=present&quot;</code></li>
+<li>指定某个源仓库安装某软件包<br><code>$ ansible web -m yum -a &quot;name=php55w enablerepo= remi state=present&quot;</code></li>
+<li>更新一个软件包是最新版本<br><code>$ ansible web -m yum -a &quot;name=nginx state=latest&quot;</code><br><code>$ ansible web -m apt -a &quot;name=nginx state=latest&quot;</code></li>
+<li>卸载一个软件<br><code>$ ansible web -m yum -a &quot;name=nginx state=absent&quot;</code><br><code>$ ansible web –m apt -a &quot;name=nginx state=absent&quot;</code></li>
+</ul>
+</li>
+<li><p><strong>user模块</strong><br>使用user模块对于创建新用户和更改、删除已存在用户非常方便。</p>
+<ul>
+<li>创建一个用户sakura并更新密码(密码必须为加密过的字符串)<br><code>$ ansible all -m user -a &quot;name=sakura password=$6$YyF5qLN8$edF1l.d/xcd9kv4ZQD/VVq5g2Uavlwoo/l.W4YVIQgsNghN4CbJKSEdZ5ihxztkYJ.bZV2PCP6MnGOioSLqUK.&quot;</code></li>
+<li>删除用户sakura<br><code>$ ansible all -m user -a &quot;name=zhao state=absent&quot;</code></li>
+</ul>
+</li>
+<li><p><strong>service模块</strong></p>
+<ul>
+<li>启动web组所有主机的httpd服务<br><code>$ ansible web -m service -a &quot;name=httpd state=started&quot;</code></li>
+<li>重启web组所有主机的httpd服务<br><code>$ ansible web -m service -a &quot;name=httpd state=restarted&quot;</code></li>
+<li>关闭web组所有主机的httpd服务<br><code>$ ansible web -m service -a &quot;name=httpd state=stopped&quot;</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、Vagrant使用"><a href="#四、Vagrant使用" class="headerlink" title="四、Vagrant使用"></a><strong>四、Vagrant使用</strong></h2><h4 id="1-使用HomeBrew安装Vagrant"><a href="#1-使用HomeBrew安装Vagrant" class="headerlink" title="1. 使用HomeBrew安装Vagrant"></a><strong>1. 使用HomeBrew安装Vagrant</strong></h4><p>  直接使用<code>brew install vagrant</code>，<a href="https://www.vagrantup.com/docs/" target="_blank" rel="external">Vagrant官网</a>。</p>
+<h4 id="2-使用Vagrant创建一个Ubuntu14-04的虚拟机"><a href="#2-使用Vagrant创建一个Ubuntu14-04的虚拟机" class="headerlink" title="2. 使用Vagrant创建一个Ubuntu14.04的虚拟机"></a><strong>2. 使用Vagrant创建一个Ubuntu14.04的虚拟机</strong></h4><ul>
+<li>专门建立一个文件夹存放Vagrant project，在<code>mkdir ~/Vagrant</code>；</li>
+<li>进入到这个文件夹<code>cd Vagrant</code>，输入<code>vagrant box add [name/version]</code>，虚拟机的版本可以在<a href="https://atlas.hashicorp.com/boxes/search" target="_blank" rel="external">版本网站</a>选择；</li>
+<li><p>下载完成后进入到虚拟机，使用<code>vagrant init</code>，<code>vagrant up</code>，<code>vagrant ssh</code>，<code>logout</code>的命令初始化，启动，进入以及登出，如果想要完全移除一个vagrant box，使用<code>vagrant box remove</code>命令。</p>
+<p><strong>Vagrant常用命令</strong></p>
+</li>
+<li>vagrant box add “boxName” remoteURL/localFile 添加box</li>
+<li>vagrant init “boxName” 初始化box</li>
+<li>vagrant up 启动虚拟机</li>
+<li>vagrant ssh 登录虚拟机</li>
+<li>vagrant box list 显示当前已添加的box列表</li>
+<li>vagrant box remove “boxIdentity” 删除box</li>
+<li>vagrant destroy 停止当前正在运行的虚拟机并销毁所有创建的资源</li>
+<li>vagrant halt 关闭虚拟机</li>
+<li>vagrant package 打包当前运行的虚拟机的环境</li>
+<li>vagrant plugin 用于安装卸载插件</li>
+<li>vagrant reload 重启虚拟机，主要用于重新载入配置文件</li>
+<li>vagrant suspend 挂起虚拟机</li>
+<li>vagrant resume 恢复挂起状态</li>
+<li>vagrant ssh-config 输出ssh连接信息</li>
+<li>vagrant status 输出当前虚拟机的状态</li>
+</ul>
+<h5 id="VagrantFile配置"><a href="#VagrantFile配置" class="headerlink" title="VagrantFile配置"></a><strong>VagrantFile配置</strong></h5><p>  <code>VagrantFile</code>里面包含有大量的配置信息，主要包括三个方面的配置，虚拟机的配置、SSH配置、Vagrant的一些基础配置。</p>
+<ul>
+<li>配置版本<br><code>Vagrant.configure(&quot;2&quot;) do |config|
+end</code></li>
+<li><p>box设置<br><code>config.vm.box = &quot;base&quot;</code><br>Vagrant要去启用哪个box作为系统，也就是上面我们输入<code>vagrant init Box名称</code>时所指定的box，如果没有输入box名称，那么默认就是base。</p>
+<p><code>config.vm.provider &quot;virtualbox&quot; do |v|
+ v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;astaxie&quot;, &quot;--memory&quot;, &quot;512&quot;]
+ end</code><br> 调用VBoxManage的modifyvm的命令，设置VM的名称为astaxie，内存为512MB。</p>
+</li>
+<li>网络设置<br>Vagrant有两种方式来进行网络连接：<ul>
+<li>host-only(主机模式)，意思是主机和虚拟机之间的网络互访，而不是虚拟机访问internet的技术。</li>
+<li>Bridge(桥接模式)，该模式下的VM就像是局域网中的一台独立的主机，也就是说需要VM到你的路由器要IP，这样的话局域网里面其他机器就可以访问它了。</li>
+</ul>
+</li>
+<li>hostname设置<br><code>config.vm.hostname = &quot;go-app&quot;</code><br>设置hostname非常重要，因为当我们有很多台虚拟服务器的时候，都是依靠hostname來做识别的。</li>
+<li>同步目录<br><code>config.vm.synced_folder  &quot;/Users/astaxie/data&quot;, &quot;/vagrant_data&quot;</code><br><code>/vagrant</code>目录默认就是当前的开发目录，它在虚拟机开启的时候默认挂载同步的。第一个参数是主机的目录，第二个参数是虚拟机挂载的目录。</li>
+<li><p>端口转发<br><code>config.vm.network :forwarded_port, guest: 80, host: 8080</code><br>把对host机器上8080端口的访问请求forward到虚拟机的80端口的服务上，例如你在你的虚拟机上使用nginx跑了一个Go应用，那么你在host机器上的浏览器中打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>时，Vagrant就会把这个请求转发到VM里面跑在80端口的nginx服务上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">Vagrant.configure(2) do |config|</div><div class="line"></div><div class="line"># 设置虚拟机的Box</div><div class="line">config.vm.box = &quot;ubuntu/trusty64&quot;</div><div class="line"></div><div class="line"># 设置虚拟机的主机名</div><div class="line">config.vm.hostname=&quot;ubuntu&quot;</div><div class="line"></div><div class="line"># 设置虚拟机的IP</div><div class="line">config.vm.network &quot;private_network&quot;, ip: &quot;192.168.56.100&quot;</div><div class="line"></div><div class="line"># 设置主机与虚拟机的共享目录</div><div class="line">config.vm.synced_folder &quot;~/Desktop/share&quot;, &quot;/home/vagrant/share&quot;</div><div class="line"></div><div class="line"># VirtaulBox相关配置</div><div class="line">config.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line"></div><div class="line">  # 设置虚拟机的名称</div><div class="line">  v.name = &quot;ubuntu&quot;</div><div class="line"></div><div class="line">  # 设置虚拟机的内存大小</div><div class="line">  v.memory = 2048</div><div class="line"></div><div class="line">  # 设置虚拟机的CPU个数</div><div class="line">  v.cpus = 1</div><div class="line">end</div><div class="line"></div><div class="line"># 使用shell脚本进行软件安装和配置</div><div class="line">config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL</div><div class="line"></div><div class="line"> # 安装Docker 1.11.0</div><div class="line"> apt-get update</div><div class="line"> apt-get install apt-transport-https ca-certificates</div><div class="line"> apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</div><div class="line"> echo deb https://apt.dockerproject.org/repo ubuntu-trusty main &gt; /etc/apt/sources.list.d/docker.list</div><div class="line"> apt-get update;</div><div class="line"> apt-get install -y -q docker-engine=1.11.0-0~trusty</div><div class="line"> usermod -aG docker vagrant</div><div class="line"></div><div class="line">SHELL</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
+<p><strong>修改完Vagrantfile的配置后，记得要用vagrant reload命令来重启VM之后才能使用VM更新后的配置</strong></p>
+</li>
+</ul>
+<h5 id="VagrantFile配置网络"><a href="#VagrantFile配置网络" class="headerlink" title="VagrantFile配置网络"></a><strong>VagrantFile配置网络</strong></h5><p>  想要让虚拟机作为一台服务器，就需要让主机与虚拟机之间通过网络连接在一起，配置虚拟机的网络的设置，就可以让主机可以访问到虚拟机。可以通过 VagrantFile 去配置虚拟机的网络，Vagrant 提供了三种方法：<code>端口转发</code>，<code>公有网络</code>，<code>私有网络</code>。</p>
+<ul>
+<li>端口转发<br>forwarded_port，就是你可以设置主机与虚拟机之间的端口的映射关系，这样请求主机上的这个端口，就会把请求转发到虚拟机上的对应的端口上。<br>打开VagrantFile文件，取消<code>config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080</code>的注释。<br>意思：<code>config.vm.network</code>是 vm 的 network 网络配置是 forwarded_port，要转发到虚拟机（guest）上的端口是 80，转发的是主机（host）上的 8080 端口。<br>保存这个文件，然后启动或者重启虚拟机，这样配置才会生效。</li>
+<li>公有网络/桥接网络<br>如果需要将虚拟机作为当前局域网中的一台计算机，由局域网进行DHCP服务器自动分配IP，在Vagrantfile中配置：<br><code>Vagrant.configure(&quot;2&quot;) do |config|
+ config.vm.network :public_network
+ end</code></li>
+<li>私有网络<br>允许多个虚拟机通过主机通过网络互相通信，vagrant允许用户分配一个静态IP，然后使用私有网络设置。<br><code>Vagrant.configure(&quot;2&quot;) do |config|
+ config.vm.network :private_network, ip: &quot;192.168.50.4&quot;
+ end</code></li>
+</ul>
+<h5 id="通过vagrant-ssh远程管理登录并操作虚拟机"><a href="#通过vagrant-ssh远程管理登录并操作虚拟机" class="headerlink" title="通过vagrant ssh远程管理登录并操作虚拟机"></a><strong>通过vagrant ssh远程管理登录并操作虚拟机</strong></h5><p>  使用vagrant ssh命令登陆虚拟机必须切换到VagrantFile所在的目录，而直接使用虚拟机IP登陆虚拟机则更为方便:<br>  <code>ssh vagrant@192.168.56.100</code><br>  此时SSH登陆需要输入虚拟机vagrant用户的密码，即<code>vagrant</code><br>  将主机的公钥复制到虚拟机的authorized_keys文件中即可实现SSH无密码登陆:<br>  <code>cat $HOME/.ssh/id_rsa.pub | ssh vagrant@127.0.0.1 -p 2222 &#39;cat &gt;&gt; $HOME/.ssh/authorized_keys&#39;</code><br>  其中，2222是主机SSH登陆虚拟机的转发端口，可以通过以下命令查看:<br>  <code>vagrant ssh-config | grep Port</code><br>  <code>Port 2222</code><br>  此时SSH登陆虚拟机则不再需要输入密码。</p>
+<h4 id="3-使用Vagrant创建一组虚拟机"><a href="#3-使用Vagrant创建一组虚拟机" class="headerlink" title="3. 使用Vagrant创建一组虚拟机"></a><strong>3. 使用Vagrant创建一组虚拟机</strong></h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">Vagrant.configure(&quot;2&quot;) do |config|</div><div class="line"></div><div class="line">  config.vm.define :ansible do |ansible|</div><div class="line">      ansible.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">          v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;ansible&quot;, &quot;--memory&quot;, &quot;2048&quot;]</div><div class="line">      end</div><div class="line">      ansible.vm.box = &quot;ubuntu/trusty64&quot;</div><div class="line">      ansible.vm.hostname = &quot;ansible&quot;</div><div class="line">      ansible.vm.network :private_network, ip: &quot;192.168.33.100&quot;</div><div class="line"></div><div class="line">      ansible.vm.provision :shell, path: &quot;ansible.sh&quot;</div><div class="line"></div><div class="line">      ansible.vm.provision &quot;ansible_local&quot; do |ansible|</div><div class="line">        ansible.inventory_path = &quot;./hosts&quot;</div><div class="line">        ansible.limit = &quot;all&quot;</div><div class="line">        ansible.playbook = &quot;ansible.yml&quot;</div><div class="line">      end</div><div class="line">  end</div><div class="line"></div><div class="line">    config.vm.define :web do |web|</div><div class="line">        web.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">            v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;web&quot;, &quot;--memory&quot;, &quot;2048&quot;]</div><div class="line">        end</div><div class="line">        web.vm.box = &quot;ubuntu/trusty64&quot;</div><div class="line">        web.vm.hostname = &quot;web&quot;</div><div class="line">        web.vm.network :private_network, ip: &quot;192.168.33.201&quot;</div><div class="line">    end</div><div class="line"></div><div class="line">    config.vm.define :db do |db|</div><div class="line">        db.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">            v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;db&quot;, &quot;--memory&quot;, &quot;2048&quot;]</div><div class="line">        end</div><div class="line">        db.vm.box = &quot;ubuntu/trusty64&quot;</div><div class="line">        db.vm.hostname = &quot;db&quot;</div><div class="line">        db.vm.network :private_network, ip: &quot;192.168.33.202&quot;</div><div class="line">    end</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
+
+`:web`和`:db`定义了两个VM，设置完后再使用`vagrant up`启动。可以通过`vagrant ssh web`和`vagrant ssh db`分别登录指定虚拟机上。
+验证两台虚拟机间的通信: (验证方法: 在web虚拟机上通过ssh登录到db虚拟机)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vagrant ssh web</div><div class="line">@web: ssh 192.168.33.202</div><div class="line">@db:</div></pre></td></tr></table></figure>
+</code></pre><h5 id="VagrantFile里面定义机器数量"><a href="#VagrantFile里面定义机器数量" class="headerlink" title="VagrantFile里面定义机器数量"></a><strong>VagrantFile里面定义机器数量</strong></h5><h5 id="定义机器名、网络、cpu、内存等信息"><a href="#定义机器名、网络、cpu、内存等信息" class="headerlink" title="定义机器名、网络、cpu、内存等信息"></a><strong>定义机器名、网络、cpu、内存等信息</strong></h5><h4 id="4-使用Vagrant的Provisioning功能执行一个shell脚本"><a href="#4-使用Vagrant的Provisioning功能执行一个shell脚本" class="headerlink" title="4. 使用Vagrant的Provisioning功能执行一个shell脚本"></a><strong>4. 使用Vagrant的Provisioning功能执行一个shell脚本</strong></h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL</div><div class="line">dire=&quot;/opt/test/&quot;</div><div class="line">if [ -d &quot;$dire&quot; ]; then</div><div class="line">  rmdir &quot;$dire&quot;</div><div class="line">  mkdir &quot;$dire&quot;</div><div class="line">else</div><div class="line">  mkdir &quot;$dire&quot;</div><div class="line">fi</div><div class="line"></div><div class="line">SHELL</div></pre></td></tr></table></figure>
+<p>  Provision就是嵌入了一段Shell脚本进行软件的安装和配置，当然也可以安装其他所需要的软件。修改此段内容之后，重新创建虚拟机需要使用”–provision”选项。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vagrant halt</div><div class="line">vagrant up --provider virtualbox --provision</div></pre></td></tr></table></figure></p>
+<h4 id="5-使用Vagrant的Provisioning功能执行一个ansible脚本"><a href="#5-使用Vagrant的Provisioning功能执行一个ansible脚本" class="headerlink" title="5. 使用Vagrant的Provisioning功能执行一个ansible脚本"></a><strong>5. 使用Vagrant的Provisioning功能执行一个ansible脚本</strong></h4><h5 id="在一台虚拟机上安装gogs，jenkins"><a href="#在一台虚拟机上安装gogs，jenkins" class="headerlink" title="在一台虚拟机上安装gogs，jenkins"></a><strong>在一台虚拟机上安装gogs，jenkins</strong></h5><p>  在VagrantFile同级路径下，创建<code>ansible.sh</code>、<code>hosts</code>和<code>ansible.yml</code>。代码如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">wget -qO - https://deb.packager.io/key | sudo apt-key add -</div><div class="line">echo &quot;deb https://deb.packager.io/gh/pkgr/gogs trusty pkgr&quot; | sudo tee /etc/apt/sources.list.d/gogs.list</div><div class="line">wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -</div><div class="line">sudo sh -c &apos;echo deb http://pkg.jenkins.io/debian-stable binary/ &gt; /etc/apt/sources.list.d/jenkins.list&apos;</div><div class="line">sudo apt-get update</div><div class="line"></div><div class="line">---</div><div class="line">- hosts: ansible-yue</div><div class="line">  become_user: root</div><div class="line">  become: true</div><div class="line">  tasks:</div><div class="line">  - name: install gogs if it is not already installed</div><div class="line">    apt: name=gogs state=present</div><div class="line">  - name: install jenkins if it is not already installed</div><div class="line">    apt: name=jenkins state=present</div><div class="line"></div><div class="line">[ansible-yue]</div><div class="line">192.168.33.100 ansible_user=vagrant ansible_ssh_pass=vagrant</div></pre></td></tr></table></figure></p>
+<h2 id="进入虚拟机ansible，打开网址192-168-33-100，3000端口是gogs，8080端口是Jenkins。账号密码分别为：admin1，admin。"><a href="#进入虚拟机ansible，打开网址192-168-33-100，3000端口是gogs，8080端口是Jenkins。账号密码分别为：admin1，admin。" class="headerlink" title="  进入虚拟机ansible，打开网址192.168.33.100，3000端口是gogs，8080端口是Jenkins。账号密码分别为：admin1，admin。"></a>  进入虚拟机ansible，打开网址192.168.33.100，3000端口是gogs，8080端口是Jenkins。账号密码分别为：<code>admin1</code>，<code>admin</code>。</h2><h2 id="五、Git使用"><a href="#五、Git使用" class="headerlink" title="五、Git使用"></a><strong>五、Git使用</strong></h2><h4 id="1-在gogs上创建一个git仓库，把本地一个空目录push到该仓库"><a href="#1-在gogs上创建一个git仓库，把本地一个空目录push到该仓库" class="headerlink" title="1.在gogs上创建一个git仓库，把本地一个空目录push到该仓库"></a><strong>1.在gogs上创建一个git仓库，把本地一个空目录push到该仓库</strong></h4><p>  步骤与github相同，只需要把虚拟机的ssh放到gogs的SSH Keys里。</p>
+<hr>
+<h2 id="六、Jenkins使用"><a href="#六、Jenkins使用" class="headerlink" title="六、Jenkins使用"></a><strong>六、Jenkins使用</strong></h2><h4 id="1-编写相关ansible脚本，使用Vagrant的Provisioning功能执行一个脚本安装Jenkins"><a href="#1-编写相关ansible脚本，使用Vagrant的Provisioning功能执行一个脚本安装Jenkins" class="headerlink" title="1.编写相关ansible脚本，使用Vagrant的Provisioning功能执行一个脚本安装Jenkins"></a><strong>1.编写相关ansible脚本，使用Vagrant的Provisioning功能执行一个脚本安装Jenkins</strong></h4><h5 id="在一台虚拟机上安装Jenkins"><a href="#在一台虚拟机上安装Jenkins" class="headerlink" title="在一台虚拟机上安装Jenkins"></a><strong>在一台虚拟机上安装Jenkins</strong></h5><h5 id="Jenkins可以通过ip和端口在浏览器中访问"><a href="#Jenkins可以通过ip和端口在浏览器中访问" class="headerlink" title="Jenkins可以通过ip和端口在浏览器中访问"></a><strong>Jenkins可以通过ip和端口在浏览器中访问</strong></h5><p>  以上两个步骤参考4.5。</p>
+<h5 id="用安装好构建依赖的环境如gradle、git等"><a href="#用安装好构建依赖的环境如gradle、git等" class="headerlink" title="用安装好构建依赖的环境如gradle、git等"></a><strong>用安装好构建依赖的环境如gradle、git等</strong></h5><h4 id="2-配置Jenkins"><a href="#2-配置Jenkins" class="headerlink" title="2.配置Jenkins"></a><strong>2.配置Jenkins</strong></h4><h5 id="Jenkins相关功能"><a href="#Jenkins相关功能" class="headerlink" title="Jenkins相关功能"></a><strong>Jenkins相关功能</strong></h5><h5 id="Jenkins常用插件"><a href="#Jenkins常用插件" class="headerlink" title="Jenkins常用插件"></a><strong>Jenkins常用插件</strong></h5><h4 id="3-配置第一个构建任务"><a href="#3-配置第一个构建任务" class="headerlink" title="3.配置第一个构建任务"></a><strong>3.配置第一个构建任务</strong></h4><h5 id="从gogs获取到上步使用的git仓库"><a href="#从gogs获取到上步使用的git仓库" class="headerlink" title="从gogs获取到上步使用的git仓库"></a><strong>从gogs获取到上步使用的git仓库</strong></h5><h5 id="该构建任务会每隔5分钟检查是否有代码提交"><a href="#该构建任务会每隔5分钟检查是否有代码提交" class="headerlink" title="该构建任务会每隔5分钟检查是否有代码提交"></a><strong>该构建任务会每隔5分钟检查是否有代码提交</strong></h5><h5 id="执行构建任务，编译并打包-war"><a href="#执行构建任务，编译并打包-war" class="headerlink" title="执行构建任务，编译并打包(war)"></a><strong>执行构建任务，编译并打包(war)</strong></h5><h5 id="构建成功会有war包的产出物"><a href="#构建成功会有war包的产出物" class="headerlink" title="构建成功会有war包的产出物"></a><strong>构建成功会有war包的产出物</strong></h5><hr>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><strong>参考链接</strong></h2><ul>
+<li><a href="https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/preface.md" target="_blank" rel="external">vagrant介绍</a></li>
+<li><a href="http://www.cnblogs.com/zz0412/p/jenkins01.html" target="_blank" rel="external">Jenkins介绍</a></li>
+<li><a href="https://ansible-book.gitbooks.io/ansible-first-book/content/" target="_blank" rel="external">ansible介绍</a></li>
+<li><a href="http://ansible-tran.readthedocs.io/en/latest/" target="_blank" rel="external">ansible权威中文指南</a></li>
+</ul>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/08/08/学习笔记：Shell/" style="float: left;">
+        ← 学习笔记：Shell
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/08/02/总结：完整的软件生命周期/">
+        总结：完整的软件生命周期 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo"></div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Sakura. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+
+    var duoshuoQuery = {short_name:"你的shortname"};
+        (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = 'http://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+
+</body>
+</html>

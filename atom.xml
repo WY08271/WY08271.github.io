@@ -47,6 +47,501 @@
   </entry>
   
   <entry>
+    <title>学习笔记：Nginx</title>
+    <link href="https://wy08271.github.io/2016/10/21/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ANginx/"/>
+    <id>https://wy08271.github.io/2016/10/21/学习笔记：Nginx/</id>
+    <published>2016-10-21T00:30:04.000Z</published>
+    <updated>2016-12-11T14:49:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Installing-Nginx-in-Mac-OS-X-Mountain-Lion-With-Homebrew"><a href="#Installing-Nginx-in-Mac-OS-X-Mountain-Lion-With-Homebrew" class="headerlink" title="Installing Nginx in Mac OS X Mountain Lion With Homebrew"></a><strong>Installing Nginx in Mac OS X Mountain Lion With Homebrew</strong></h2><h3 id="Install-with-brew"><a href="#Install-with-brew" class="headerlink" title="Install with brew"></a><strong>Install with brew</strong></h3><p>Use brew to install the nginx with command:<br><code>$ brew install nginx</code></p>
+<p>After install run:<br><code>$ sudo nginx</code></p>
+<hr>
+<h3 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a><strong>Testing</strong></h3><p>Test it by going to URL:<br><code>http://localhost:8080</code></p>
+<hr>
+<h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a><strong>Configuration</strong></h3><p>The default place of nginx.conf on Mac after installing with brew is:<br><code>/usr/local/etc/nginx/nginx.conf</code></p>
+<p>The nginx default port is 8080, we shall change it to 80. First stop the nginx server if it is running by:<br><code>$ sudo nginx -s stop</code></p>
+<p>Then open nginx.conf with:<br><code>$ vim /usr/local/etc/nginx/nginx.conf</code></p>
+<p>and change the:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       8080;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        root   html;</div><div class="line">        index  index.html index.htm;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>to:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        root   html;</div><div class="line">        index  index.html index.htm;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>Save configuration and start nginx by:<br><code>$ sudo nginx</code></p>
+<hr>
+<h3 id="Changing-the-path-of-defualt-web-location"><a href="#Changing-the-path-of-defualt-web-location" class="headerlink" title="Changing the path of defualt web location"></a><strong>Changing the path of defualt web location</strong></h3><p>The nginx html folder (brew install only) is by the defult in:<br><code>/usr/local/Cellar/nginx/1.2.3/html</code></p>
+<p>The defualt path configuration:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        root   html;</div><div class="line">        index  index.html index.htm;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>to:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        root   /Users/xajler/www;</div><div class="line">        index  index.html index.htm;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>After change stop and start nginix server and nginx is now serving pages from your custom folder!</p>
+<p><a href="http://learnaholic.me/2012/10/10/installing-nginx-in-mac-os-x-mountain-lion/" target="_blank" rel="external">参考链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Installing-Nginx-in-Mac-OS-X-Mountain-Lion-With-Homebrew&quot;&gt;&lt;a href=&quot;#Installing-Nginx-in-Mac-OS-X-Mountain-Lion-With-Homebrew&quot; class=
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="Nginx" scheme="https://wy08271.github.io/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>总结：IntelliJ-IDEA</title>
+    <link href="https://wy08271.github.io/2016/10/18/%E6%80%BB%E7%BB%93%EF%BC%9AIntellJ-IDEA/"/>
+    <id>https://wy08271.github.io/2016/10/18/总结：IntellJ-IDEA/</id>
+    <published>2016-10-18T08:26:04.000Z</published>
+    <updated>2016-12-11T14:47:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="IntelliJ-IDEA-has-three-compilation-types-Compile、Make、Rebuild"><a href="#IntelliJ-IDEA-has-three-compilation-types-Compile、Make、Rebuild" class="headerlink" title="IntelliJ IDEA has three compilation types: Compile、Make、Rebuild."></a>IntelliJ IDEA has three compilation types: Compile、Make、Rebuild.</h2><h4 id="Compile"><a href="#Compile" class="headerlink" title="Compile"></a><strong>Compile</strong></h4><ul>
+<li>在指定的范围内进行编译。例如，可以编译一个类、包或模块。</li>
+<li>不会编译所依赖的模块。例如，Foo依赖于Bar，Bar先前没有被编译过，那么你去编译Foo则会报错。</li>
+<li>不会创建任何artifacts（JARs, WARs, etc.）。</li>
+</ul>
+<p>this just complies the files in the specified scope. So you can, for example, compile just a single class or a package (or, of course, a module). It does not transitively compile dependencies. So if Foo has a dependency on Bar, and Bar was not previously compiled, and you go to compile Foo only, the compilation fails. If Bar was previous compiled, but has changed, and you again only compile Foo, it uses the old compiled version and does not recompile the changed Bar class. Compile always compiles everything in the scope (i.e. a clean compile); this includes unmodified classes within the scope. But again, not transitively/recursively. If you compile module “GUI” which has a dependency on module “API”, only GUI is complied. If “API” was not previously compiled (or has changes) the compiling of GUI would fail. Finally, compile only compiles code. It does not create any artifacts (JARs, WARs, etc.)</p>
+<h4 id="Make"><a href="#Make" class="headerlink" title="Make"></a><strong>Make</strong></h4><ul>
+<li>对模块或项目进行编译，不能编译一个单独的class或package，只能编译修改后的classes。</li>
+<li>Make可以递归进行编译。</li>
+<li>不会创建任何artifacts（JARs, WARs, etc.）。</li>
+</ul>
+<p>Make is limited to the module or project level. (i.e. you cannot make a single class or package). It only compiles modified classes. Make, however, will transitively/recursively compile dependencies. Thus, using the above example, if we make “GUI”, it will also make “API” and compile any classes modified since last compilation. When you make a project, some additional tasks that tiled to the make process are performs, such as EJB validation. Finally, make only compiles classes and does not create any artifacts (JARs, WARs, etc.) So the main difference between compile and make is that compile can be performed on a finer level (class or package) and make compiles transitive/recursive dependencies.</p>
+<h4 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a><strong>Rebuild</strong></h4><ul>
+<li>编译整个项目，删除所有之前的编译文件。</li>
+<li>只能被用在项目层面。</li>
+<li>不会创建任何artifacts（JARs, WARs, etc.）。</li>
+</ul>
+<p>This performs a full clean make on the project. So unlike make, it deletes all previous compiled objects. Rebuild can only be performed at the project level (so, “No” to answer your question about a module rebuild). Rebuild only compiles classes and does not create any artifacts (JARs, WARs, etc.)</p>
+<p>There is also the “Build Artifact” action which allows you to “Build”, “Rebuild” or just clean the artifact. Build only builds it if there is modified code, whereas Rebuild always rebuilds it.</p>
+<p>Also of note, in the compiler configuration, you can select to “Make the project automatically” if you have the “Use external build” option selected. The latter simply runs the build in a separate OS process. Therefore you can select the former, and IDEA will automatically make the project in the background. As such, when you go to run code or tests, there is typically little if any code that needs to be compiled.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;IntelliJ-IDEA-has-three-compilation-types-Compile、Make、Rebuild&quot;&gt;&lt;a href=&quot;#IntelliJ-IDEA-has-three-compilation-types-Compile、Make、Reb
+    
+    </summary>
+    
+      <category term="summary" scheme="https://wy08271.github.io/categories/summary/"/>
+    
+    
+      <category term="IntelliJ IDEA" scheme="https://wy08271.github.io/tags/IntelliJ-IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记：Shell</title>
+    <link href="https://wy08271.github.io/2016/08/08/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AShell/"/>
+    <id>https://wy08271.github.io/2016/08/08/学习笔记：Shell/</id>
+    <published>2016-08-08T00:00:56.000Z</published>
+    <updated>2016-12-11T14:45:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Shell与Shell语言"><a href="#Shell与Shell语言" class="headerlink" title="Shell与Shell语言"></a><strong>Shell与Shell语言</strong></h3><p>Shell是一种编程语言，但是sh/bash/csh/zsh/…它们也叫Shell，实际上这里的Shell是一种应用程序，它负责解释执行编写的Shell脚本。</p>
+<h3 id="Shell脚本"><a href="#Shell脚本" class="headerlink" title="Shell脚本"></a><strong>Shell脚本</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#! /bin/sh</div><div class="line">echo &quot;hello shell!&quot;</div></pre></td></tr></table></figure>
+<p>第一行的#!是一个约定标记，它告诉脚本这段脚本需要什么解释器来执行。第二行的echo命令则负责向屏幕上输出一句话。</p>
+<h3 id="运行方式"><a href="#运行方式" class="headerlink" title="运行方式"></a><strong>运行方式</strong></h3><p>运行shell程序有3种方法:</p>
+<ol>
+<li>chmod +x使文件具有可执行权限, 直接运行；</li>
+<li>直接调用解释器, 将脚本文件作为参数传入 (比如bash hi.sh)；</li>
+<li>使用source(也可用 . 代替)执行文件。</li>
+</ol>
+<p>通常情况下，最方便的方式就是方式1，通过方式1执行你需要在脚本第一行写好这段脚本由哪个解释器来解释，除此之外方式1与方式2执行命令就没有区别了，但方式3执行的方式与前两种都不同：<strong>使用source执行shell脚本时, 不会创建子进程, 而是在父进程中直接执行!</strong></p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a><strong>变量</strong></h3><p>和其它语言一样Shell中也有变量，而且更简单，但有一些比较特殊的地方。</p>
+<ol>
+<li>Shell中的变量只有字符串这一种类型；</li>
+<li>Shell中变量名与变量值没有长度限制；</li>
+<li>Shell的变量也允许比较操作和整数操作，只要变量中的字符串为数字。</li>
+</ol>
+<h4 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">PS：= 两边不能加空格, 当赋值语句包含空格时请加引号(单引号/双引号均可)</div><div class="line">variable_name=&quot;ghui&apos;s blog&quot;</div></pre></td></tr></table></figure>
+<p>Shell中的变量可以分为 <strong>两种</strong> 类型:</p>
+<ol>
+<li>局部变量 (定义变量时在前面加local修饰符)</li>
+<li>全局变量 (定义变量时不加任何修饰符)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">局部变量的可见范围是代码块或函数内，全局变量在全局范围内可见，例子：</div><div class="line">#! /bin/sh</div><div class="line">num=111 #全局变量</div><div class="line"></div><div class="line">func1()</div><div class="line">&#123;</div><div class="line">  local num=222 #局部变量</div><div class="line">  echo $num</div><div class="line">&#125;</div><div class="line"></div><div class="line">echo &quot;before---$num&quot;</div><div class="line">func1</div><div class="line">echo &quot;after---$num&quot;</div><div class="line"></div><div class="line">输出：</div><div class="line">before---111</div><div class="line">222</div><div class="line">after---111</div></pre></td></tr></table></figure>
+<h4 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h4><p>使用一个定义过的变量，只要在变量名前面加<code>$</code>即可，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">name=ghui</div><div class="line">echo $name</div><div class="line">echo $&#123;name&#125;</div><div class="line">PS：#&#123;&#125; 为了帮助解释器识别变量边界, 非必须</div><div class="line"></div><div class="line">注意：被双引号括起来的变量会发生变量替换, 单引号不会，例子：</div><div class="line">#! /bin/sh</div><div class="line">str=&apos;abc&apos;</div><div class="line">echo &quot;1 print $str&quot;</div><div class="line">echo &apos;2 print $str&apos;</div><div class="line"></div><div class="line">输出：</div><div class="line">1 print abc</div><div class="line">2 print $str</div></pre></td></tr></table></figure>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a><strong>注释</strong></h3><p>Shell中注释使用<code>#</code>，而且它不支持多行注释。</p>
+<h3 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a><strong>字符串操作</strong></h3><h4 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">name=&quot;shell&quot;</div><div class="line">sayHi=&quot;hello, &quot;$name&quot; !&quot;</div><div class="line">sayHi2=&quot;hello, $&#123;name&#125; !&quot;</div><div class="line">echo $sayHi $sayHi2</div></pre></td></tr></table></figure>
+<h4 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">string=&quot;abcd&quot;</div><div class="line">echo $&#123;#string&#125;</div><div class="line"></div><div class="line">输出：</div><div class="line">4</div></pre></td></tr></table></figure>
+<h4 id="截取字符串"><a href="#截取字符串" class="headerlink" title="截取字符串"></a>截取字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">str=&quot;hello shell&quot;</div><div class="line">echo $&#123;str:2&#125;</div><div class="line">echo $&#123;string:1:3&#125;</div><div class="line"></div><div class="line">输出：</div><div class="line">llo shell</div><div class="line">ell</div></pre></td></tr></table></figure>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a><strong>流程控制</strong></h3><h4 id="if-else"><a href="#if-else" class="headerlink" title="if/else"></a>if/else</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">if condition</div><div class="line">then</div><div class="line">     do something</div><div class="line">elif condition</div><div class="line">then</div><div class="line">    do something</div><div class="line">elif condition</div><div class="line">then</div><div class="line">    do something</div><div class="line">else</div><div class="line">    do something</div><div class="line">fi</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#! /bin/sh</div><div class="line">a=1</div><div class="line">if [ $1=$a ]</div><div class="line">then</div><div class="line">    echo &quot;you input 1&quot;</div><div class="line">elif [ $1=2 ]</div><div class="line">then</div><div class="line">    echo &quot;you input 2&quot;</div><div class="line">else</div><div class="line">    #do nothing</div><div class="line">    echo &quot; you input $1&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<ul>
+<li>如果某个条件下的执行体为空，不能写这个条件</li>
+<li>[ ] 两边一定要加空格</li>
+</ul>
+<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">基本结构：</div><div class="line">case expression in</div><div class="line">    pattern1)</div><div class="line">        do something... ;;</div><div class="line">    pattern2)</div><div class="line">        do something... ;;</div><div class="line">    pattern2)</div><div class="line">        do something... ;;</div><div class="line">    ...</div><div class="line">esac</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#! /bin/sh</div><div class="line">input=$1</div><div class="line">case $input in</div><div class="line">        1 | 0)</div><div class="line">        str=&quot;一or零&quot;;;</div><div class="line">        2)</div><div class="line">        str=&quot;二&quot;;;</div><div class="line">        3)</div><div class="line">        str=&quot;三&quot;;;</div><div class="line">        *)</div><div class="line">        str=$input;;</div><div class="line">esac</div><div class="line">echo &quot;---$str&quot;</div></pre></td></tr></table></figure>
+<p>这个例子会根据你执行此脚本时传入的参数不同在屏幕上输出不同的值，其中第一个case 1 | 0代表逻辑或。</p>
+<ul>
+<li>;;相当于其它语言中的break</li>
+<li>每个pattern之后记得加)</li>
+<li>最后记得加esac (反的case)</li>
+</ul>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a><strong>循环</strong></h3><h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">基本结构：</div><div class="line">for name [in list]</div><div class="line">do</div><div class="line">    ...</div><div class="line">done</div><div class="line"></div><div class="line">PS：[]括起来的 in list 为可选部分，如果省略in list则默认为in &quot;$@&quot;，即你执行此命令时传入的参数列表。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">遍历当前目录下的所有txt文件，并依次打开。例子：</div><div class="line">for file in *.txt</div><div class="line">do</div><div class="line">    open $file</div><div class="line">done</div></pre></td></tr></table></figure>
+<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">基本结构：</div><div class="line">while condition</div><div class="line">do</div><div class="line">    do something</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#! /bin/sh</div><div class="line">i=0</div><div class="line">while ((i&lt;5));</div><div class="line">do</div><div class="line">    ((i++))</div><div class="line">    echo &quot;i=$i&quot;</div><div class="line">done</div><div class="line"></div><div class="line">输出：</div><div class="line">i=1</div><div class="line">i=2</div><div class="line">i=3</div><div class="line">i=4</div><div class="line">i=5</div></pre></td></tr></table></figure>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a><strong>函数</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">方式一：</div><div class="line">function funcname()</div><div class="line">&#123;</div><div class="line">    do something</div><div class="line">&#125;</div><div class="line"></div><div class="line">方式二：</div><div class="line">funcname ()</div><div class="line">&#123;</div><div class="line">    do something</div><div class="line">&#125;</div><div class="line"></div><div class="line">例子：</div><div class="line">#! /bin/sh</div><div class="line"># ad.sh 计算sum</div><div class="line">add()</div><div class="line">&#123;</div><div class="line">    let &quot;sum=$1+$2&quot;</div><div class="line">    return $sum</div><div class="line">&#125;</div><div class="line"></div><div class="line">add $1 $2</div><div class="line">echo &quot;sum=$?&quot;</div><div class="line"></div><div class="line">输入：</div><div class="line">ad 1 2</div><div class="line"></div><div class="line">输出：</div><div class="line">sum=3</div></pre></td></tr></table></figure>
+<h3 id="向脚本传参数"><a href="#向脚本传参数" class="headerlink" title="向脚本传参数"></a><strong>向脚本传参数</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#! /bin/sh</div><div class="line"># test.sh</div><div class="line">echo &quot;$# parameters&quot;;</div><div class="line">echo &quot;$@&quot;;</div><div class="line">echo &quot;$0&quot;</div><div class="line">echo &quot;$1&quot;</div><div class="line"></div><div class="line">输入：</div><div class="line">test.sh 11 22</div><div class="line"></div><div class="line">输出：</div><div class="line">2 parameters</div><div class="line">11 22</div><div class="line">test.sh</div><div class="line">11</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Shell与Shell语言&quot;&gt;&lt;a href=&quot;#Shell与Shell语言&quot; class=&quot;headerlink&quot; title=&quot;Shell与Shell语言&quot;&gt;&lt;/a&gt;&lt;strong&gt;Shell与Shell语言&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;Shell是一种编
+    
+    </summary>
+    
+      <category term="node" scheme="https://wy08271.github.io/categories/node/"/>
+    
+    
+      <category term="shell" scheme="https://wy08271.github.io/tags/shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>总结：Devops</title>
+    <link href="https://wy08271.github.io/2016/08/03/%E6%80%BB%E7%BB%93%EF%BC%9ADevops/"/>
+    <id>https://wy08271.github.io/2016/08/03/总结：Devops/</id>
+    <published>2016-08-03T02:28:27.000Z</published>
+    <updated>2016-12-11T14:46:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、开发-运维环境准备"><a href="#一、开发-运维环境准备" class="headerlink" title="一、开发/运维环境准备"></a><strong>一、开发/运维环境准备</strong></h2><h4 id="1-安装HomeBrew"><a href="#1-安装HomeBrew" class="headerlink" title="1. 安装HomeBrew"></a><strong>1. 安装HomeBrew</strong></h4><p>安装方法：<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">HomeBrew官网</a>，打开终端窗口，粘贴以下脚本，<br><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p>
+<h4 id="2-通过HomeBrew安装工作中需要的软件"><a href="#2-通过HomeBrew安装工作中需要的软件" class="headerlink" title="2. 通过HomeBrew安装工作中需要的软件"></a><strong>2. 通过HomeBrew安装工作中需要的软件</strong></h4><ol>
+<li><strong>Git</strong><ul>
+<li><code>brew install git</code></li>
+</ul>
+</li>
+<li><strong>Java</strong><ul>
+<li>在<a href="https://www.java.com/zh_CN/download/mac_download.jsp" target="_blank" rel="external">Java网站</a>下载<code>jre-8u65-macosx-x64.dmg</code>文件；</li>
+<li>双击 .dmg 文件以启动它；</li>
+<li>双击程序包图标以启动安装向导。</li>
+</ul>
+</li>
+<li><p><strong>Maven</strong></p>
+<ul>
+<li>在<a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Maven网站</a>下载Maven，并解压到某个目录；</li>
+<li><p>打开Terminal，进入到<code>$ vi ~/.bash_profile</code>，设置Maven ClassPath；</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export M2_HOME=/Users/robbie/apache-maven-3.3.3</div><div class="line">export PATH=$PATH:$M2_HOME/bin</div><div class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_11,jdk/Contents/Home</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启<code>bash_profile</code>，使配置生效，<code>$ source ~/.bash_profile</code>；</p>
+</li>
+<li>输入<code>mvn -v</code>查看Maven是否安装成功。</li>
+</ul>
+</li>
+<li><p><strong>Gradle</strong></p>
+<ul>
+<li>在<a href="https://gradle.org/gradle-download/" target="_blank" rel="external">Gradle网站</a>下载Gradle，并解压到某个目录<code>mv Downloads/gradle-2.14.1 /usr/local</code>；</li>
+<li><p>打开Terminal，进入到<code>$ vi ~/.bash_profile</code>，设置Gradle ClassPath；</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GRADLE_HOME=/usr/local/gradle-2.14.1;</div><div class="line">export GRADLE_HOME</div><div class="line">export PATH=$PATH:$GRADLE_HOME/bin</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启<code>bash_profile</code>，使配置生效，<code>$ source ~/.bash_profile</code>；</p>
+</li>
+<li>输入<code>gradle -version</code>查看Maven是否安装成功。</li>
+</ul>
+</li>
+<li><strong>Ansible</strong><ul>
+<li><code>brew install ansible</code></li>
+</ul>
+</li>
+<li><p><strong>Ant</strong></p>
+<ul>
+<li>在<a href="http://ant.apache.org/bindownload.cgi" target="_blank" rel="external">Ant网站</a>下载Ant(apache-ant-1.9.7-bin.zip)，并解压到某个目录<code>mv Downloads/apache-ant-1.9.7 /usr/local</code>；</li>
+<li><p>打开Terminal，进入到<code>$ vi ~/.bash_profile</code>，设置Gradle ClassPath；</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export ANT_HOME=/usr/local/apache-ant-1.9.3  </div><div class="line">export PATH=$&#123;PATH&#125;:$&#123;ANT_HOME&#125;/bin</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启<code>bash_profile</code>，使配置生效，<code>$ source ~/.bash_profile</code>；</p>
+</li>
+<li>输入<code>ant -version</code>查看Ant是否安装成功。</li>
+</ul>
+</li>
+<li><strong>Ruby</strong><ul>
+<li><code>brew update</code></li>
+<li><code>brew install ruby</code></li>
+<li><code>ruby --version</code></li>
+</ul>
+</li>
+<li><strong>Rails</strong><ul>
+<li><code>gem install rails</code></li>
+</ul>
+</li>
+<li><strong>Python</strong><ul>
+<li><code>brew install python</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="3-配置相关环境变量-bashrc"><a href="#3-配置相关环境变量-bashrc" class="headerlink" title="3. 配置相关环境变量(~/.bashrc)"></a><strong>3. 配置相关环境变量(~/.bashrc)</strong></h4><h4 id="4-安装Virtual-Box虚拟机工具"><a href="#4-安装Virtual-Box虚拟机工具" class="headerlink" title="4. 安装Virtual Box虚拟机工具"></a><strong>4. 安装Virtual Box虚拟机工具</strong></h4><p>  <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">Virtual Box网站</a>，直接下载安装Virtual Box。</p>
+<hr>
+<h2 id="二、安装和配置第一台虚拟机"><a href="#二、安装和配置第一台虚拟机" class="headerlink" title="二、安装和配置第一台虚拟机"></a><strong>二、安装和配置第一台虚拟机</strong></h2><h4 id="1-下载Ubuntu-14-04-的ISO镜像"><a href="#1-下载Ubuntu-14-04-的ISO镜像" class="headerlink" title="1. 下载Ubuntu 14.04 的ISO镜像"></a><strong>1. 下载Ubuntu 14.04 的ISO镜像</strong></h4><p>  <a href="http://www.ubuntu.org.cn/download/desktop" target="_blank" rel="external">Ubuntu14.04 Desktop版</a><br>  <a href="http://www.ubuntu.org.cn/download/server" target="_blank" rel="external">Ubuntu14.04 Server版</a></p>
+<h4 id="2-使用VirtualBox安装一个ubuntu-14-04的虚拟机"><a href="#2-使用VirtualBox安装一个ubuntu-14-04的虚拟机" class="headerlink" title="2. 使用VirtualBox安装一个ubuntu 14.04的虚拟机"></a><strong>2. 使用VirtualBox安装一个ubuntu 14.04的虚拟机</strong></h4><h5 id="虚拟机的配置是1核1G内存50G磁盘空间"><a href="#虚拟机的配置是1核1G内存50G磁盘空间" class="headerlink" title="虚拟机的配置是1核1G内存50G磁盘空间"></a><strong>虚拟机的配置是1核1G内存50G磁盘空间</strong></h5><ul>
+<li>打开 Virtual Box，点击 New 创建新的box；</li>
+<li>输入 Name，选择 Type，点击 Next；</li>
+<li>Memory size 通常选择 1024MB，点击Next；</li>
+<li>Hard disk 页面选择 Create a Virtual hard disk now，点击Next；</li>
+<li>Hard disk file type 选择 VDI(VirtualBox Disk Image)，点击Next；</li>
+<li>Storage on physical hard disk 页面选择 Dynamically allocated，点击Next；</li>
+<li>File location and size 页面选择 50GB，点击Create；</li>
+<li>运行新建的虚拟机，打开下载的镜像；</li>
+<li>选择语言，建议 English；</li>
+<li>开启安装模式，选择 Install Ubuntu Server；</li>
+<li>进入Ubuntu Server的安装程序后，还要再选择一次语言，建议选择 English；</li>
+<li>选择服务器的位置；</li>
+<li>设定系统使用的语言，建议选择 United States - en_US.UTF-8；</li>
+<li>设定键盘，使用手动设定，选择 English(US)；</li>
+<li>设定网卡；</li>
+<li>设置主机名，使用者名，使用者账号和密码；</li>
+<li>选择是否需要加密目录，看情况选择是否加密；</li>
+<li>设置时区，通常Ubuntu Server会自动选择时区；</li>
+<li>设置硬盘，建议使用 LVM(Logical Volume Manager)，方便以后扩充；</li>
+<li>设置自动更新，为了保持系统稳定，通常手动更新，选择 No automatic update；</li>
+<li>安装openSSH server、GRUB管理器；</li>
+<li>重新开机即可！</li>
+</ul>
+<h5 id="本地可以通过-2222-端口通过SSH远程访问"><a href="#本地可以通过-2222-端口通过SSH远程访问" class="headerlink" title="本地可以通过 2222 端口通过SSH远程访问"></a><strong>本地可以通过 2222 端口通过SSH远程访问</strong></h5><p>  进入虚拟机，输入<code>sudo vim /etc/ssh/sshd_config</code>，将端口号改为2222即可。</p>
+<p>  PS:更新Ubuntu Server到最新的版本<code>sudo apt-get update &amp;&amp; sudo apt-get upgrade &amp;&amp; sudo apt-get dist-upgrade</code></p>
+<h4 id="3-虚拟机网络配置"><a href="#3-虚拟机网络配置" class="headerlink" title="3. 虚拟机网络配置"></a><strong>3. 虚拟机网络配置</strong></h4><h5 id="使用静态ip配置虚拟机的网络"><a href="#使用静态ip配置虚拟机的网络" class="headerlink" title="使用静态ip配置虚拟机的网络"></a><strong>使用静态ip配置虚拟机的网络</strong></h5><p>  设置IP地址、子网掩码、网关：<code>sudo vim /etc/network/interfaces</code>，重启文件<code>sudo /etc/init.d/networking restart</code></p>
+<ol>
+<li><p>动态IP地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">auto eth0</div><div class="line">iface eth0 inet dhcp</div></pre></td></tr></table></figure>
+</li>
+<li><p>静态IP地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">auto eth0</div><div class="line">iface eth0 inet static</div><div class="line"></div><div class="line">address 192.168.56.100 //地址</div><div class="line">netmask 255.255.255.0  //子网掩码</div><div class="line">network 192.168.56.0  //</div><div class="line">boardcast 192.168.56.255  //广播地址</div></pre></td></tr></table></figure>
+<p>PS: 关闭网卡<code>sudo ifconfig eth0 down</code><br> 打开网卡<code>sudo ifconfig eth0 up</code><br> 重启<code>sudo /etc/init.d/networking restart</code></p>
+</li>
+</ol>
+<h5 id="设置虚拟机的DNS为114-114-114-114"><a href="#设置虚拟机的DNS为114-114-114-114" class="headerlink" title="设置虚拟机的DNS为114.114.114.114"></a><strong>设置虚拟机的DNS为114.114.114.114</strong></h5><p>  <code>sudo vim /etc/resolv.conf</code></p>
+<h4 id="4-配置免密码ssh登录"><a href="#4-配置免密码ssh登录" class="headerlink" title="4. 配置免密码ssh登录"></a><strong>4. 配置免密码ssh登录</strong></h4><ul>
+<li>在虚拟机上生成公钥和私钥，输入<code>ssh-keygen</code>；</li>
+<li><p>编辑虚拟机ssh配置，开启ssh，<code>vim /etc/ssh/sshd_config</code>；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">取消这三行的注释</div><div class="line">RSAAuthentication yes</div><div class="line">PubkeyAuthentication yes</div><div class="line">AuthorizedKeysFile      .ssh/authorized_keys</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启ssh服务，<code>service sshd restart</code>；</p>
+</li>
+<li>验证ssh服务，<code>netstat -tlnp | grep ssh</code>；</li>
+<li>新增ssh认证文件，保存其他主机的公钥，<code>vim /root/.ssh/authorized_keys</code>，把MAC上的id_rsa.pub复制在这个文件里；</li>
+<li>Mac下输入<code>ssh sakura@192.128.56.100</code>就可以进入虚拟机。</li>
+</ul>
+<hr>
+<h2 id="三、Ansible使用"><a href="#三、Ansible使用" class="headerlink" title="三、Ansible使用"></a><strong>三、Ansible使用</strong></h2><h4 id="1-使用ansible"><a href="#1-使用ansible" class="headerlink" title="1. 使用ansible"></a><strong>1. 使用ansible</strong></h4><p>  “Ansible is Simple IT Automation”——简单的自动化IT工具。它可以让我们自动化部署APP；自动化管理配置项；自动化的持续交付；自动化的（AWS）云服务管理。就是批量的在远程服务器上执行命令。最主要的是它是基于 paramiko 开发的。这个paramiko是什么呢？它是一个纯Python实现的ssh协议库。因此fabric和ansible还有一个共同点就是不需要在远程主机上安装client/agents，因为它们是基于ssh来和远程主机通讯的。</p>
+<p>  Ansilbe通过SSH协议进行管理节点和远程节点之间的通信。理论上说管理员通过ssh到一台远程主机上能做的操作Ansible都可以做。</p>
+<p>  <strong>安装：</strong></p>
+<pre><code>* `$ sudo pip install ansible`
+  `升级 $ pip install –upgrade ansible`
+* `$ git clone git://github.com/ansible/ansible.git`
+   `$ cd ansible &amp;&amp; sudo make&amp;&amp;make install`
+</code></pre><p>  Ansible工作机制：</p>
+<ul>
+<li>Ansible：核心；</li>
+<li>Modules：包括Ansible自带的核心模块及自定义模块；</li>
+<li>Plugins：完成模块功能的补充，包括连接插件、邮件插件等；</li>
+<li>Playbooks：定义Ansible多任务配置文件，有Ansible自动执行；</li>
+<li><p>Inventory：定义Ansible管理主机的清单。</p>
+<p><strong>配置免密钥登陆</strong><br>为了避免Ansible下发指令时输入目标主机密码，通过证书签名达到SSH无密码登录，使用ssh-keygen与ssh-copy-id来实现快速证书的生成和公钥下发，其中ssh-keygen生成一对密钥，使用ssh-copy-id来下发生成的公钥。具体操作如下：<br><code>ssh-keygen -t rsa -P &#39;&#39;</code><br><code>ssh-copy-id -i .ssh/id_rsa.pub deploy@192.168.1.100</code><br><code>ssh-copy-id -i .ssh/id_rsa.pub deploy@192.168.1.101</code></p>
+</li>
+</ul>
+<h4 id="2-playbook解析"><a href="#2-playbook解析" class="headerlink" title="2. playbook解析"></a><strong>2. playbook解析</strong></h4><p>  playbook 是一个不同于使用Ansible命令行执行方式的模式。简单来说，playbook是一个非常简单的配置管理系统，可作为一个适合部署复杂应用程序的基础。Playbook可以定制配置，可以按照指定的操作步骤有序执行，支持同步和异步方式。值得注意的是playbook是通过<a href="http://docs.ansible.com/ansible/YAMLSyntax.html" target="_blank" rel="external">YAML</a>格式来进行描述定义的。</p>
+<p>  <strong>Playbook组成</strong></p>
+<ul>
+<li><code>Target section</code>，定义将要执行的playbook的远程主机组；</li>
+<li><code>Variable section</code>，定义playbook运行时需要使用的变量；</li>
+<li><code>Task section</code>，定义将要在远程主机上执行的任务列表；</li>
+<li><code>Handler section</code>，定义task执行完成以后需要调用的任务。</li>
+</ul>
+<p>  <strong>运行Playbook</strong></p>
+<ul>
+<li>查看模块执行成功与否的详细信息，<code>$ ansible-playbook playbook.yml –v</code></li>
+<li>查看一个 playbook 中都会对哪些主机产生影响，<code>$ ansible-playbook playbook.yml –list-hosts</code></li>
+<li>查看都有哪些任务要执行，<code>$ ansible-playbook playbook.yml –list-tasks</code></li>
+</ul>
+<h4 id="3-主机清单Hosts"><a href="#3-主机清单Hosts" class="headerlink" title="3. 主机清单Hosts"></a><strong>3. 主机清单Hosts</strong></h4><p>  Ansible通过读取默认的主机清单配置<code>/etc/ansible/hosts</code>，可以同时连接到多个远程主机上执行任务，默认路径可以通过修改<code>ansible.cfg</code>的hostfile参数指定路径。</p>
+<p>  <code>/etc/ansible/hosts</code>主机清单配置格式如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">[dbservers]    //[]表示主机的分组名,可以按照功能、系统等进行分类，便于对某些主机或者某一组功能相同的主机进行操作</div><div class="line">192.168.1.12</div><div class="line">one.example.com</div><div class="line">badwolf.example.com:5309   //支持指定 SSH 端口 5309</div><div class="line">jumper ansible_ssh_port=5555 ansible_ssh_host=192.168.1.50     //设置主机别名为jumper</div><div class="line">www[01:50].example.com    //支持通配符匹配 www01 www02 … www50</div><div class="line"></div><div class="line">[databases]</div><div class="line">db-[a:f].example.com     //支持字母匹配 a b c … f</div><div class="line"></div><div class="line">[sakura]  //为某主机指定连接类型和连接用户</div><div class="line">Localhost  ansible_connection=local</div><div class="line">other1.example.com ansible_connection=ssh ansible_ssh_user=deploy</div><div class="line">other2.example.com ansible_connection=ssh ansible_ssh_user=deploy</div><div class="line"></div><div class="line">//hosts文件指令</div><div class="line">ansible_ssh_host       //指定主机别名对应的真实 IP，如：100 ansible_ssh_host=192.168.1.100，随后连接该主机无须指定完整 IP，只需指定 251 就行</div><div class="line">ansible_ssh_port      //指定连接到这个主机的 ssh 端口，默认 22</div><div class="line">ansible_ssh_user      //连接到该主机的 ssh 用户</div><div class="line">ansible_ssh_pass      //连接到该主机的 ssh 密码（连-k 选项都省了），安全考虑还是建议使用私钥或在命令行指定-k 选项输入</div><div class="line">ansible_sudo_pass     //sudo 密码</div><div class="line">ansible_sudo_exe          //sudo 命令路径</div><div class="line">ansible_connection          //连接类型，可以是 local、ssh 或 paramiko，ansible1.2 之前默认为 paramiko</div><div class="line">ansible_ssh_private_key_file     //私钥文件路径</div><div class="line">ansible_shell_type         //目标系统的 shell 类型，默认为 sh,如果设置 csh/fish，那么命令需要遵循它们语法</div><div class="line">ansible_python_interpreter      //python 解释器路径，默认是/usr/bin/python，但是如要要连*BSD系统的话，就需要该指令修改 python 路径</div><div class="line">ansible_*_interpreter     //这里的&quot;*&quot;可以是 ruby 或 perl 或其他语言的解释器，作用和 ansible_python_interpreter 类似</div></pre></td></tr></table></figure></p>
+<h4 id="4-ansible常用模块"><a href="#4-ansible常用模块" class="headerlink" title="4. ansible常用模块"></a><strong>4. ansible常用模块</strong></h4><ul>
+<li><p><strong>shell模块</strong><br>默认情况下，ansible使用的module是command，这个模块不支持shell变量和管道，若想使用shell来执行模块，使用-m参数指定shell模块,但是值得注意的是普通的命令执行模块是通过python的ssh执行。<br>使用shell模块在远程主机上执行命令：<code>$ ansible web -m shell -a ‘echo $TERM’</code></p>
+</li>
+<li><p><strong>raw模块</strong><br>Raw也是命令执行模块，而raw模块则是直接用ssh模块进行执行，通常用在客户机还没有python的环境的时候。<br>使用raw模块在远程主机上执行命令：<code>$ansible web -m raw -a ‘echo $TERM’</code></p>
+</li>
+<li><p><strong>copy模块</strong><br>实现主控端向目标主机拷贝文件，类似于scp的功能。<br>拷贝本地的/etc/hosts文件到web主机组所有主机的/tmp/hosts（空目录除外），<code>$ ansible web -m copy -a &quot;src=/etc/hosts dest=/tmp/hosts&quot;</code></p>
+</li>
+<li><p><strong>file模块</strong><br>file模块称之为文件属性模块，可以做的操作如下：</p>
+<ul>
+<li>使用 file 模块创建文件<br><code>$ ansible web -m file -a &quot;dest=/tmp/zhao/a.txt state=touch&quot;</code></li>
+<li>file 模块允许更改文件的用户及权限<br><code>$ ansible web -m file -a &quot;dest=/tmp/zhao/a.txt mode=600&quot;</code><br><code>$ ansible web -m file -a &quot;dest=/tmp/zhao/b.txt mode=600 owner=deploy group=root&quot;</code></li>
+<li>使用 file 模块创建目录，类似 mkdir -p<br><code>$ ansible web -m file -a &quot;dest=/tmp/yong mode=755 owner=deploy group=sa state=directory&quot;</code></li>
+<li>使用 file 模块删除文件或者目录<br><code>$ ansible web -m file -a &quot;dest=/tmp/yong state=absent&quot;</code></li>
+</ul>
+</li>
+<li><p><strong>template模块</strong><br>template使用了Jinjia2格式作为文件模板，进行文档内变量的替换的模块。每次使用都会被ansible标记为changed状态。</p>
+</li>
+<li><p><strong>stat模块</strong><br>获取远程文件状态信息，包含atime、ctime、mtime、md5、uid、gid等。<br><code>$ ansible web -m stat -a &quot;path=/tmp/zhao/a.txt&quot;</code></p>
+</li>
+<li><p><strong>管理软件模块</strong><br>apt、yum模块分别用于管理ubuntu系列和redhat系列系统软件包。Ansible支持很多操作系统的软件包管理，使用时 <code>-m</code> 指定相应的软件包管理工具模块。如果没有这样的模块，可以自己定义类似的模块或者使用<code>command模块</code>来安装软件包。</p>
+<ul>
+<li>安装nginx软件包<br><code>$ ansible web -m yum -a &quot;name=nginx state=present&quot;</code><br><code>$ ansible web -m apt -a &quot;name=nginx state=present&quot;</code></li>
+<li>安装包到一个特定的版本<br><code>$ ansible web -m yum -a &quot;name=nginx-1.6.2 state=present&quot;</code><br><code>$ ansible web -m apt -a &quot;name=nginx-1.6.2 state=present&quot;</code></li>
+<li>指定某个源仓库安装某软件包<br><code>$ ansible web -m yum -a &quot;name=php55w enablerepo= remi state=present&quot;</code></li>
+<li>更新一个软件包是最新版本<br><code>$ ansible web -m yum -a &quot;name=nginx state=latest&quot;</code><br><code>$ ansible web -m apt -a &quot;name=nginx state=latest&quot;</code></li>
+<li>卸载一个软件<br><code>$ ansible web -m yum -a &quot;name=nginx state=absent&quot;</code><br><code>$ ansible web –m apt -a &quot;name=nginx state=absent&quot;</code></li>
+</ul>
+</li>
+<li><p><strong>user模块</strong><br>使用user模块对于创建新用户和更改、删除已存在用户非常方便。</p>
+<ul>
+<li>创建一个用户sakura并更新密码(密码必须为加密过的字符串)<br><code>$ ansible all -m user -a &quot;name=sakura password=$6$YyF5qLN8$edF1l.d/xcd9kv4ZQD/VVq5g2Uavlwoo/l.W4YVIQgsNghN4CbJKSEdZ5ihxztkYJ.bZV2PCP6MnGOioSLqUK.&quot;</code></li>
+<li>删除用户sakura<br><code>$ ansible all -m user -a &quot;name=zhao state=absent&quot;</code></li>
+</ul>
+</li>
+<li><p><strong>service模块</strong></p>
+<ul>
+<li>启动web组所有主机的httpd服务<br><code>$ ansible web -m service -a &quot;name=httpd state=started&quot;</code></li>
+<li>重启web组所有主机的httpd服务<br><code>$ ansible web -m service -a &quot;name=httpd state=restarted&quot;</code></li>
+<li>关闭web组所有主机的httpd服务<br><code>$ ansible web -m service -a &quot;name=httpd state=stopped&quot;</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、Vagrant使用"><a href="#四、Vagrant使用" class="headerlink" title="四、Vagrant使用"></a><strong>四、Vagrant使用</strong></h2><h4 id="1-使用HomeBrew安装Vagrant"><a href="#1-使用HomeBrew安装Vagrant" class="headerlink" title="1. 使用HomeBrew安装Vagrant"></a><strong>1. 使用HomeBrew安装Vagrant</strong></h4><p>  直接使用<code>brew install vagrant</code>，<a href="https://www.vagrantup.com/docs/" target="_blank" rel="external">Vagrant官网</a>。</p>
+<h4 id="2-使用Vagrant创建一个Ubuntu14-04的虚拟机"><a href="#2-使用Vagrant创建一个Ubuntu14-04的虚拟机" class="headerlink" title="2. 使用Vagrant创建一个Ubuntu14.04的虚拟机"></a><strong>2. 使用Vagrant创建一个Ubuntu14.04的虚拟机</strong></h4><ul>
+<li>专门建立一个文件夹存放Vagrant project，在<code>mkdir ~/Vagrant</code>；</li>
+<li>进入到这个文件夹<code>cd Vagrant</code>，输入<code>vagrant box add [name/version]</code>，虚拟机的版本可以在<a href="https://atlas.hashicorp.com/boxes/search" target="_blank" rel="external">版本网站</a>选择；</li>
+<li><p>下载完成后进入到虚拟机，使用<code>vagrant init</code>，<code>vagrant up</code>，<code>vagrant ssh</code>，<code>logout</code>的命令初始化，启动，进入以及登出，如果想要完全移除一个vagrant box，使用<code>vagrant box remove</code>命令。</p>
+<p><strong>Vagrant常用命令</strong></p>
+</li>
+<li>vagrant box add “boxName” remoteURL/localFile 添加box</li>
+<li>vagrant init “boxName” 初始化box</li>
+<li>vagrant up 启动虚拟机</li>
+<li>vagrant ssh 登录虚拟机</li>
+<li>vagrant box list 显示当前已添加的box列表</li>
+<li>vagrant box remove “boxIdentity” 删除box</li>
+<li>vagrant destroy 停止当前正在运行的虚拟机并销毁所有创建的资源</li>
+<li>vagrant halt 关闭虚拟机</li>
+<li>vagrant package 打包当前运行的虚拟机的环境</li>
+<li>vagrant plugin 用于安装卸载插件</li>
+<li>vagrant reload 重启虚拟机，主要用于重新载入配置文件</li>
+<li>vagrant suspend 挂起虚拟机</li>
+<li>vagrant resume 恢复挂起状态</li>
+<li>vagrant ssh-config 输出ssh连接信息</li>
+<li>vagrant status 输出当前虚拟机的状态</li>
+</ul>
+<h5 id="VagrantFile配置"><a href="#VagrantFile配置" class="headerlink" title="VagrantFile配置"></a><strong>VagrantFile配置</strong></h5><p>  <code>VagrantFile</code>里面包含有大量的配置信息，主要包括三个方面的配置，虚拟机的配置、SSH配置、Vagrant的一些基础配置。</p>
+<ul>
+<li>配置版本<br><code>Vagrant.configure(&quot;2&quot;) do |config|
+end</code></li>
+<li><p>box设置<br><code>config.vm.box = &quot;base&quot;</code><br>Vagrant要去启用哪个box作为系统，也就是上面我们输入<code>vagrant init Box名称</code>时所指定的box，如果没有输入box名称，那么默认就是base。</p>
+<p><code>config.vm.provider &quot;virtualbox&quot; do |v|
+ v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;astaxie&quot;, &quot;--memory&quot;, &quot;512&quot;]
+ end</code><br> 调用VBoxManage的modifyvm的命令，设置VM的名称为astaxie，内存为512MB。</p>
+</li>
+<li>网络设置<br>Vagrant有两种方式来进行网络连接：<ul>
+<li>host-only(主机模式)，意思是主机和虚拟机之间的网络互访，而不是虚拟机访问internet的技术。</li>
+<li>Bridge(桥接模式)，该模式下的VM就像是局域网中的一台独立的主机，也就是说需要VM到你的路由器要IP，这样的话局域网里面其他机器就可以访问它了。</li>
+</ul>
+</li>
+<li>hostname设置<br><code>config.vm.hostname = &quot;go-app&quot;</code><br>设置hostname非常重要，因为当我们有很多台虚拟服务器的时候，都是依靠hostname來做识别的。</li>
+<li>同步目录<br><code>config.vm.synced_folder  &quot;/Users/astaxie/data&quot;, &quot;/vagrant_data&quot;</code><br><code>/vagrant</code>目录默认就是当前的开发目录，它在虚拟机开启的时候默认挂载同步的。第一个参数是主机的目录，第二个参数是虚拟机挂载的目录。</li>
+<li><p>端口转发<br><code>config.vm.network :forwarded_port, guest: 80, host: 8080</code><br>把对host机器上8080端口的访问请求forward到虚拟机的80端口的服务上，例如你在你的虚拟机上使用nginx跑了一个Go应用，那么你在host机器上的浏览器中打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>时，Vagrant就会把这个请求转发到VM里面跑在80端口的nginx服务上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">Vagrant.configure(2) do |config|</div><div class="line"></div><div class="line"># 设置虚拟机的Box</div><div class="line">config.vm.box = &quot;ubuntu/trusty64&quot;</div><div class="line"></div><div class="line"># 设置虚拟机的主机名</div><div class="line">config.vm.hostname=&quot;ubuntu&quot;</div><div class="line"></div><div class="line"># 设置虚拟机的IP</div><div class="line">config.vm.network &quot;private_network&quot;, ip: &quot;192.168.56.100&quot;</div><div class="line"></div><div class="line"># 设置主机与虚拟机的共享目录</div><div class="line">config.vm.synced_folder &quot;~/Desktop/share&quot;, &quot;/home/vagrant/share&quot;</div><div class="line"></div><div class="line"># VirtaulBox相关配置</div><div class="line">config.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line"></div><div class="line">  # 设置虚拟机的名称</div><div class="line">  v.name = &quot;ubuntu&quot;</div><div class="line"></div><div class="line">  # 设置虚拟机的内存大小</div><div class="line">  v.memory = 2048</div><div class="line"></div><div class="line">  # 设置虚拟机的CPU个数</div><div class="line">  v.cpus = 1</div><div class="line">end</div><div class="line"></div><div class="line"># 使用shell脚本进行软件安装和配置</div><div class="line">config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL</div><div class="line"></div><div class="line"> # 安装Docker 1.11.0</div><div class="line"> apt-get update</div><div class="line"> apt-get install apt-transport-https ca-certificates</div><div class="line"> apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</div><div class="line"> echo deb https://apt.dockerproject.org/repo ubuntu-trusty main &gt; /etc/apt/sources.list.d/docker.list</div><div class="line"> apt-get update;</div><div class="line"> apt-get install -y -q docker-engine=1.11.0-0~trusty</div><div class="line"> usermod -aG docker vagrant</div><div class="line"></div><div class="line">SHELL</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
+<p><strong>修改完Vagrantfile的配置后，记得要用vagrant reload命令来重启VM之后才能使用VM更新后的配置</strong></p>
+</li>
+</ul>
+<h5 id="VagrantFile配置网络"><a href="#VagrantFile配置网络" class="headerlink" title="VagrantFile配置网络"></a><strong>VagrantFile配置网络</strong></h5><p>  想要让虚拟机作为一台服务器，就需要让主机与虚拟机之间通过网络连接在一起，配置虚拟机的网络的设置，就可以让主机可以访问到虚拟机。可以通过 VagrantFile 去配置虚拟机的网络，Vagrant 提供了三种方法：<code>端口转发</code>，<code>公有网络</code>，<code>私有网络</code>。</p>
+<ul>
+<li>端口转发<br>forwarded_port，就是你可以设置主机与虚拟机之间的端口的映射关系，这样请求主机上的这个端口，就会把请求转发到虚拟机上的对应的端口上。<br>打开VagrantFile文件，取消<code>config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080</code>的注释。<br>意思：<code>config.vm.network</code>是 vm 的 network 网络配置是 forwarded_port，要转发到虚拟机（guest）上的端口是 80，转发的是主机（host）上的 8080 端口。<br>保存这个文件，然后启动或者重启虚拟机，这样配置才会生效。</li>
+<li>公有网络/桥接网络<br>如果需要将虚拟机作为当前局域网中的一台计算机，由局域网进行DHCP服务器自动分配IP，在Vagrantfile中配置：<br><code>Vagrant.configure(&quot;2&quot;) do |config|
+ config.vm.network :public_network
+ end</code></li>
+<li>私有网络<br>允许多个虚拟机通过主机通过网络互相通信，vagrant允许用户分配一个静态IP，然后使用私有网络设置。<br><code>Vagrant.configure(&quot;2&quot;) do |config|
+ config.vm.network :private_network, ip: &quot;192.168.50.4&quot;
+ end</code></li>
+</ul>
+<h5 id="通过vagrant-ssh远程管理登录并操作虚拟机"><a href="#通过vagrant-ssh远程管理登录并操作虚拟机" class="headerlink" title="通过vagrant ssh远程管理登录并操作虚拟机"></a><strong>通过vagrant ssh远程管理登录并操作虚拟机</strong></h5><p>  使用vagrant ssh命令登陆虚拟机必须切换到VagrantFile所在的目录，而直接使用虚拟机IP登陆虚拟机则更为方便:<br>  <code>ssh vagrant@192.168.56.100</code><br>  此时SSH登陆需要输入虚拟机vagrant用户的密码，即<code>vagrant</code><br>  将主机的公钥复制到虚拟机的authorized_keys文件中即可实现SSH无密码登陆:<br>  <code>cat $HOME/.ssh/id_rsa.pub | ssh vagrant@127.0.0.1 -p 2222 &#39;cat &gt;&gt; $HOME/.ssh/authorized_keys&#39;</code><br>  其中，2222是主机SSH登陆虚拟机的转发端口，可以通过以下命令查看:<br>  <code>vagrant ssh-config | grep Port</code><br>  <code>Port 2222</code><br>  此时SSH登陆虚拟机则不再需要输入密码。</p>
+<h4 id="3-使用Vagrant创建一组虚拟机"><a href="#3-使用Vagrant创建一组虚拟机" class="headerlink" title="3. 使用Vagrant创建一组虚拟机"></a><strong>3. 使用Vagrant创建一组虚拟机</strong></h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">Vagrant.configure(&quot;2&quot;) do |config|</div><div class="line"></div><div class="line">  config.vm.define :ansible do |ansible|</div><div class="line">      ansible.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">          v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;ansible&quot;, &quot;--memory&quot;, &quot;2048&quot;]</div><div class="line">      end</div><div class="line">      ansible.vm.box = &quot;ubuntu/trusty64&quot;</div><div class="line">      ansible.vm.hostname = &quot;ansible&quot;</div><div class="line">      ansible.vm.network :private_network, ip: &quot;192.168.33.100&quot;</div><div class="line"></div><div class="line">      ansible.vm.provision :shell, path: &quot;ansible.sh&quot;</div><div class="line"></div><div class="line">      ansible.vm.provision &quot;ansible_local&quot; do |ansible|</div><div class="line">        ansible.inventory_path = &quot;./hosts&quot;</div><div class="line">        ansible.limit = &quot;all&quot;</div><div class="line">        ansible.playbook = &quot;ansible.yml&quot;</div><div class="line">      end</div><div class="line">  end</div><div class="line"></div><div class="line">    config.vm.define :web do |web|</div><div class="line">        web.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">            v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;web&quot;, &quot;--memory&quot;, &quot;2048&quot;]</div><div class="line">        end</div><div class="line">        web.vm.box = &quot;ubuntu/trusty64&quot;</div><div class="line">        web.vm.hostname = &quot;web&quot;</div><div class="line">        web.vm.network :private_network, ip: &quot;192.168.33.201&quot;</div><div class="line">    end</div><div class="line"></div><div class="line">    config.vm.define :db do |db|</div><div class="line">        db.vm.provider &quot;virtualbox&quot; do |v|</div><div class="line">            v.customize [&quot;modifyvm&quot;, :id, &quot;--name&quot;, &quot;db&quot;, &quot;--memory&quot;, &quot;2048&quot;]</div><div class="line">        end</div><div class="line">        db.vm.box = &quot;ubuntu/trusty64&quot;</div><div class="line">        db.vm.hostname = &quot;db&quot;</div><div class="line">        db.vm.network :private_network, ip: &quot;192.168.33.202&quot;</div><div class="line">    end</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
+
+`:web`和`:db`定义了两个VM，设置完后再使用`vagrant up`启动。可以通过`vagrant ssh web`和`vagrant ssh db`分别登录指定虚拟机上。
+验证两台虚拟机间的通信: (验证方法: 在web虚拟机上通过ssh登录到db虚拟机)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vagrant ssh web</div><div class="line">@web: ssh 192.168.33.202</div><div class="line">@db:</div></pre></td></tr></table></figure>
+</code></pre><h5 id="VagrantFile里面定义机器数量"><a href="#VagrantFile里面定义机器数量" class="headerlink" title="VagrantFile里面定义机器数量"></a><strong>VagrantFile里面定义机器数量</strong></h5><h5 id="定义机器名、网络、cpu、内存等信息"><a href="#定义机器名、网络、cpu、内存等信息" class="headerlink" title="定义机器名、网络、cpu、内存等信息"></a><strong>定义机器名、网络、cpu、内存等信息</strong></h5><h4 id="4-使用Vagrant的Provisioning功能执行一个shell脚本"><a href="#4-使用Vagrant的Provisioning功能执行一个shell脚本" class="headerlink" title="4. 使用Vagrant的Provisioning功能执行一个shell脚本"></a><strong>4. 使用Vagrant的Provisioning功能执行一个shell脚本</strong></h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL</div><div class="line">dire=&quot;/opt/test/&quot;</div><div class="line">if [ -d &quot;$dire&quot; ]; then</div><div class="line">  rmdir &quot;$dire&quot;</div><div class="line">  mkdir &quot;$dire&quot;</div><div class="line">else</div><div class="line">  mkdir &quot;$dire&quot;</div><div class="line">fi</div><div class="line"></div><div class="line">SHELL</div></pre></td></tr></table></figure>
+<p>  Provision就是嵌入了一段Shell脚本进行软件的安装和配置，当然也可以安装其他所需要的软件。修改此段内容之后，重新创建虚拟机需要使用”–provision”选项。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vagrant halt</div><div class="line">vagrant up --provider virtualbox --provision</div></pre></td></tr></table></figure></p>
+<h4 id="5-使用Vagrant的Provisioning功能执行一个ansible脚本"><a href="#5-使用Vagrant的Provisioning功能执行一个ansible脚本" class="headerlink" title="5. 使用Vagrant的Provisioning功能执行一个ansible脚本"></a><strong>5. 使用Vagrant的Provisioning功能执行一个ansible脚本</strong></h4><h5 id="在一台虚拟机上安装gogs，jenkins"><a href="#在一台虚拟机上安装gogs，jenkins" class="headerlink" title="在一台虚拟机上安装gogs，jenkins"></a><strong>在一台虚拟机上安装gogs，jenkins</strong></h5><p>  在VagrantFile同级路径下，创建<code>ansible.sh</code>、<code>hosts</code>和<code>ansible.yml</code>。代码如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">wget -qO - https://deb.packager.io/key | sudo apt-key add -</div><div class="line">echo &quot;deb https://deb.packager.io/gh/pkgr/gogs trusty pkgr&quot; | sudo tee /etc/apt/sources.list.d/gogs.list</div><div class="line">wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -</div><div class="line">sudo sh -c &apos;echo deb http://pkg.jenkins.io/debian-stable binary/ &gt; /etc/apt/sources.list.d/jenkins.list&apos;</div><div class="line">sudo apt-get update</div><div class="line"></div><div class="line">---</div><div class="line">- hosts: ansible-yue</div><div class="line">  become_user: root</div><div class="line">  become: true</div><div class="line">  tasks:</div><div class="line">  - name: install gogs if it is not already installed</div><div class="line">    apt: name=gogs state=present</div><div class="line">  - name: install jenkins if it is not already installed</div><div class="line">    apt: name=jenkins state=present</div><div class="line"></div><div class="line">[ansible-yue]</div><div class="line">192.168.33.100 ansible_user=vagrant ansible_ssh_pass=vagrant</div></pre></td></tr></table></figure></p>
+<h2 id="进入虚拟机ansible，打开网址192-168-33-100，3000端口是gogs，8080端口是Jenkins。账号密码分别为：admin1，admin。"><a href="#进入虚拟机ansible，打开网址192-168-33-100，3000端口是gogs，8080端口是Jenkins。账号密码分别为：admin1，admin。" class="headerlink" title="  进入虚拟机ansible，打开网址192.168.33.100，3000端口是gogs，8080端口是Jenkins。账号密码分别为：admin1，admin。"></a>  进入虚拟机ansible，打开网址192.168.33.100，3000端口是gogs，8080端口是Jenkins。账号密码分别为：<code>admin1</code>，<code>admin</code>。</h2><h2 id="五、Git使用"><a href="#五、Git使用" class="headerlink" title="五、Git使用"></a><strong>五、Git使用</strong></h2><h4 id="1-在gogs上创建一个git仓库，把本地一个空目录push到该仓库"><a href="#1-在gogs上创建一个git仓库，把本地一个空目录push到该仓库" class="headerlink" title="1.在gogs上创建一个git仓库，把本地一个空目录push到该仓库"></a><strong>1.在gogs上创建一个git仓库，把本地一个空目录push到该仓库</strong></h4><p>  步骤与github相同，只需要把虚拟机的ssh放到gogs的SSH Keys里。</p>
+<hr>
+<h2 id="六、Jenkins使用"><a href="#六、Jenkins使用" class="headerlink" title="六、Jenkins使用"></a><strong>六、Jenkins使用</strong></h2><h4 id="1-编写相关ansible脚本，使用Vagrant的Provisioning功能执行一个脚本安装Jenkins"><a href="#1-编写相关ansible脚本，使用Vagrant的Provisioning功能执行一个脚本安装Jenkins" class="headerlink" title="1.编写相关ansible脚本，使用Vagrant的Provisioning功能执行一个脚本安装Jenkins"></a><strong>1.编写相关ansible脚本，使用Vagrant的Provisioning功能执行一个脚本安装Jenkins</strong></h4><h5 id="在一台虚拟机上安装Jenkins"><a href="#在一台虚拟机上安装Jenkins" class="headerlink" title="在一台虚拟机上安装Jenkins"></a><strong>在一台虚拟机上安装Jenkins</strong></h5><h5 id="Jenkins可以通过ip和端口在浏览器中访问"><a href="#Jenkins可以通过ip和端口在浏览器中访问" class="headerlink" title="Jenkins可以通过ip和端口在浏览器中访问"></a><strong>Jenkins可以通过ip和端口在浏览器中访问</strong></h5><p>  以上两个步骤参考4.5。</p>
+<h5 id="用安装好构建依赖的环境如gradle、git等"><a href="#用安装好构建依赖的环境如gradle、git等" class="headerlink" title="用安装好构建依赖的环境如gradle、git等"></a><strong>用安装好构建依赖的环境如gradle、git等</strong></h5><h4 id="2-配置Jenkins"><a href="#2-配置Jenkins" class="headerlink" title="2.配置Jenkins"></a><strong>2.配置Jenkins</strong></h4><h5 id="Jenkins相关功能"><a href="#Jenkins相关功能" class="headerlink" title="Jenkins相关功能"></a><strong>Jenkins相关功能</strong></h5><h5 id="Jenkins常用插件"><a href="#Jenkins常用插件" class="headerlink" title="Jenkins常用插件"></a><strong>Jenkins常用插件</strong></h5><h4 id="3-配置第一个构建任务"><a href="#3-配置第一个构建任务" class="headerlink" title="3.配置第一个构建任务"></a><strong>3.配置第一个构建任务</strong></h4><h5 id="从gogs获取到上步使用的git仓库"><a href="#从gogs获取到上步使用的git仓库" class="headerlink" title="从gogs获取到上步使用的git仓库"></a><strong>从gogs获取到上步使用的git仓库</strong></h5><h5 id="该构建任务会每隔5分钟检查是否有代码提交"><a href="#该构建任务会每隔5分钟检查是否有代码提交" class="headerlink" title="该构建任务会每隔5分钟检查是否有代码提交"></a><strong>该构建任务会每隔5分钟检查是否有代码提交</strong></h5><h5 id="执行构建任务，编译并打包-war"><a href="#执行构建任务，编译并打包-war" class="headerlink" title="执行构建任务，编译并打包(war)"></a><strong>执行构建任务，编译并打包(war)</strong></h5><h5 id="构建成功会有war包的产出物"><a href="#构建成功会有war包的产出物" class="headerlink" title="构建成功会有war包的产出物"></a><strong>构建成功会有war包的产出物</strong></h5><hr>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><strong>参考链接</strong></h2><ul>
+<li><a href="https://github.com/astaxie/Go-in-Action/blob/master/ebook/zh/preface.md" target="_blank" rel="external">vagrant介绍</a></li>
+<li><a href="http://www.cnblogs.com/zz0412/p/jenkins01.html" target="_blank" rel="external">Jenkins介绍</a></li>
+<li><a href="https://ansible-book.gitbooks.io/ansible-first-book/content/" target="_blank" rel="external">ansible介绍</a></li>
+<li><a href="http://ansible-tran.readthedocs.io/en/latest/" target="_blank" rel="external">ansible权威中文指南</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、开发-运维环境准备&quot;&gt;&lt;a href=&quot;#一、开发-运维环境准备&quot; class=&quot;headerlink&quot; title=&quot;一、开发/运维环境准备&quot;&gt;&lt;/a&gt;&lt;strong&gt;一、开发/运维环境准备&lt;/strong&gt;&lt;/h2&gt;&lt;h4 id=&quot;1-安装HomeBrew
+    
+    </summary>
+    
+      <category term="summary" scheme="https://wy08271.github.io/categories/summary/"/>
+    
+    
+      <category term="Devops" scheme="https://wy08271.github.io/tags/Devops/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>总结：完整的软件生命周期</title>
+    <link href="https://wy08271.github.io/2016/08/02/%E6%80%BB%E7%BB%93%EF%BC%9A%E5%AE%8C%E6%95%B4%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    <id>https://wy08271.github.io/2016/08/02/总结：完整的软件生命周期/</id>
+    <published>2016-08-02T01:27:14.000Z</published>
+    <updated>2016-12-11T14:48:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="软件生命周期（Software-Development-LiftCycle"><a href="#软件生命周期（Software-Development-LiftCycle" class="headerlink" title="软件生命周期（Software Development LiftCycle)"></a><strong>软件生命周期（Software Development LiftCycle)</strong></h3><p>它一般指对是软件从计划到完成的整个过程。</p>
+<p>常见的软件生命周期模型有 <strong>原型模型</strong>，<strong>螺旋模型</strong>，<strong>瀑布模型</strong>，<strong>迭代模型</strong>，现在正在使用敏捷软件开发和精益软件。</p>
+<p>无论是瀑布软件开发还是敏捷软件开发都包含完整的软件生命周期。完整的软件生命周期包含以下结果方面：</p>
+<ul>
+<li><p>客户调研：假设一个公司有意向去做一个软件，但是不知道这个软件是否有发展前途，是否可以盈利，所以要去做一个客户调研，去调查用户有多少人愿意使用这个软件，从而确定去软件的前景。</p>
+</li>
+<li><p>合同：如果客户调研的结果较好，这个公司就会去着手实现这个软件。在签订合同后，还需要去做inception确定需求。因为多数情况下公司可能并不知道自己到底想要做一些什么功能。除了inception，还需要确定软件的技术架构。</p>
+</li>
+<li><p>BA分析：当软件所有的大需求，技术架构都确定好了后，就会交给BA分析。BA会把大的需求拆分成一个一个小的故事卡，然后将故事卡分配给Dev。</p>
+</li>
+<li><p>Dev：现在就进入了developer的开发阶段，developer会去选择自己想做的故事卡，然后把故事卡差分为task卡，完成开发的任务。当然在开发的时候Dev会自己编写单元测试，也就是开发写的测试。</p>
+</li>
+<li><p>集成：</p>
+</li>
+<li><p>QA：QA负责质量保证，检测Dev编写的代码是否有逻辑或使用上的问题。如果有的话会反馈给Dev改正。</p>
+</li>
+<li><p>运维：为了保证软件的稳定性，需要运维人员去管理软件。</p>
+</li>
+<li><p>反馈：软件在使用过程中肯定会有测试没有测出来的Bug，这个时候会接收到用户的反馈，Dev和QA会针对用户提出的反馈再进行改进。</p>
+</li>
+<li><p>一个软件在上线一段时间后会发现功能不完善、功能不够好等，所以会再进行新的软件迭代。</p>
+</li>
+</ul>
+<hr>
+<h3 id="瀑布开发模式与敏捷开发模式的区别"><a href="#瀑布开发模式与敏捷开发模式的区别" class="headerlink" title="瀑布开发模式与敏捷开发模式的区别"></a>瀑布开发模式与敏捷开发模式的区别</h3><h4 id="瀑布模型开发"><a href="#瀑布模型开发" class="headerlink" title="瀑布模型开发"></a><strong>瀑布模型开发</strong></h4><p>严格把软件项目的开发分隔成各个开发阶段：需求分析，要件定义，基本设计，详细设计，编码，单体测试，结合测试，系统测试等。</p>
+<p>使用里程碑的方式，严格定义了各开发阶段的输入和输出。如果达不到要求的输出，下一阶段的工作就不展开。</p>
+<p>强调文档，在开发的后期才会看到软件的模样。在这种情况下，文档的重要性仿佛已经超过了代码的重要性。</p>
+<p>瀑布模型把开发人员定义为流水线上的工人。由于各阶段的开发人员只能接触到自己工作范围内的东西，所以对客户需求的理解程度高低不等。对于客户需求变更，编码人员会比设计人员更容易产生很强的抵触情绪。</p>
+<p>瀑布模型产生的管理文档(计划书，进度表)等，能让不太了解该项目的人也能看懂项目的进度情况，很适合向领导汇报用。所以管理人员比较喜欢瀑布模型，但是开发人员不喜欢，因为它束缚了开发人员的创造性。</p>
+<p>既然叫做瀑布，就意味着不应该走回头路。否则如果出现返工，付出的代价会很大。软件生命周期前期造成的Bug的影响比后期的大的多。</p>
+<h4 id="敏捷模型开发"><a href="#敏捷模型开发" class="headerlink" title="敏捷模型开发"></a><strong>敏捷模型开发</strong></h4><p>核心是迭代。因为最终目标是让客户满意，所以能够主动接受需求变更，这就使设计出来的软件有灵活性，可扩展性。</p>
+<p><strong>宣言：</strong><br>个体和交互 胜过 过程和工具<br>可以工作的软件 胜过 面面俱到的文档<br>客户合作 胜过 合同谈判<br>响应变化 胜过 遵循计划</p>
+<p>简单设计，重复迭代。减少不必要的文档。客户最关心的功能最先完成。要求客户有时间对每次迭代的成果进行确认，提出改进意见。沟通是非常重要的，所有的开发人员对项目活动的理解应该是一致的。</p>
+<p>开发团队有两个队伍，业务团队和技术团队。如果任何一方控制了沟通，那么项目注定会失败。如果业务一方控制，项目会议上就会不断的要求功能和交付日，而不太担心开发人员是否能够全部完成或开发人员是否明白他们的真正要求；如果开发人员控制了沟通，那么项目会议上技术术语会代替面向客户的业务语言，开发人员也失去了通过倾听来了解客户真正需求的机会。</p>
+<p>敏捷开发不能在一开始就给出项目的成本计划。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;软件生命周期（Software-Development-LiftCycle&quot;&gt;&lt;a href=&quot;#软件生命周期（Software-Development-LiftCycle&quot; class=&quot;headerlink&quot; title=&quot;软件生命周期（Software De
+    
+    </summary>
+    
+      <category term="summary" scheme="https://wy08271.github.io/categories/summary/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>学习笔记：ES6语法</title>
     <link href="https://wy08271.github.io/2016/08/01/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AES6%E8%AF%AD%E6%B3%95/"/>
     <id>https://wy08271.github.io/2016/08/01/学习笔记：ES6语法/</id>
@@ -142,6 +637,176 @@
     
     
       <category term="ES6" scheme="https://wy08271.github.io/tags/ES6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>总结：Flyway-Baseline</title>
+    <link href="https://wy08271.github.io/2016/07/31/%E6%80%BB%E7%BB%93%EF%BC%9AFlyway-Baseline/"/>
+    <id>https://wy08271.github.io/2016/07/31/总结：Flyway-Baseline/</id>
+    <published>2016-07-31T04:01:42.000Z</published>
+    <updated>2016-12-11T14:47:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Flyway"><a href="#Flyway" class="headerlink" title="Flyway"></a>Flyway</h2><p><strong>Q: Flyway 是什么？</strong><br>&emsp;Flyway 是独立于数据库的应用、管理并跟踪数据库变更的数据库版本管理工具。<a href="https://flywaydb.org/documentation/" target="_blank" rel="external">官方文档</a>。</p>
+<p><strong>Q: Flyway 如何工作？</strong><br>&emsp;假设将Flyway应用在一个空的数据库中，它会去寻找metadata table（元数据表），如果找不到这张metadata table，Flyway会去创建一张叫SCHEMA_VERSION的空表作为metadata table。这张表将会被Flyway用来追踪记录数据库的状态。</p>
+<p>&emsp;Migration文件会按照他们的版本进行排序，每一个Migration文件被执行（应用），都会去更新metadata table。当再次扫描（执行）Migration文件时，会对metadata table进行检查，如果在metadata table里已经存在该Migration文件，则该Migration文件不会被执行。</p>
+<p>&emsp;所以需要改变当前数据库的表信息或者表结构的时候，只需要添加一个高于当前版本的Migration文件，当再次执行Flyway的时候，数据库就会被改变（升级）。</p>
+<p><strong>Q: Flyway 怎么用？</strong><br>&emsp;官网上介绍，Flyway的使用有六种方式，分别是Command-line、API、Maven、Gradle、Ant、SBT。<br><a href="https://flywaydb.org/getstarted/firststeps/commandline" target="_blank" rel="external">具体方式</a>。</p>
+<p><strong>Q: Flyway 支持的数据库？</strong><br>Oracle、SQL Server、SQL Azure、DB2、MySQL、MariaDB、PostgreSQL、Redshift、Vertica、H2、Hsql、Derby、SQLite、SAP HANA、solidDB、Sybase ASE、Phoenix等。</p>
+<p><strong>Q: Flyway 用在哪些框架里？</strong><br>Spring Boot、Play、Dropwizard、Ninja Framework、Jooby Framework、flyway-test-extensions、Chef cookbook、Griffon Plugin、Grunt Plugin、Spring Roo Add-on等。</p>
+<p><strong>Q: Flyway 常用语句有哪些，各自的作用？</strong><br>Flyway的主要语句有六个，分别是Migrate、Clean、Info、Validata、Baseline、Repair。</p>
+<ul>
+<li>migrate<br>主要有两个作用：一是migrate数据库到最新的版本，二是如果没有metadata table会自动创建。</li>
+<li>clean<br>会清空数据库中所有的对象，包括metadata table。一定不要用在生产环境。</li>
+<li>info<br>会打印所有Migration文件的详细信息和状态信息。这些信息可以让我们知道，哪些文件被执行，哪些没有被执行。</li>
+<li>validata<br>会帮助验证Migration文件与本地数据库是否匹配。</li>
+<li>baseline<br>基线是引入Flyway到现有数据库的一个特点的版本。它会忽略包括基线在内的所有数据库的版本，对于新的Migration文件也适用。</li>
+<li>repair<br>主要用来修复metadata table，包括两类问题：删除失败的Migration文件；调整和检验可用的Migration文件。</li>
+</ul>
+<hr>
+<h2 id="Migration"><a href="#Migration" class="headerlink" title="Migration"></a>Migration</h2><p><strong>Q: Migration 产生的背景？</strong><br>&emsp;假设我们有一个项目叫Shiny，这个项目主要经营的是一个可持续交付的名叫Shiny Soft的软件，这个软件背后有一个数据库叫Shiny DB。</p>
+<p>&emsp;在多人合作的时候，这种模式就会变成各自机器上的环境、不断集成的环境、测试环境、生产环境等等一系列不同的环境，与之对应的也就有了不同的Shiny DB和Shiny Soft版本。</p>
+<p>&emsp;所以这个时候不仅要处理我们自己机器上的环境，同时也要解决其他环境出现的问题。如果是代码出现问题很容易解决，因为有版本管理工具、构建工具、持续集成、明确的发布和部署的过程。同样数据库也会出现很多和代码一样的问题，比如：这台机器上数据库的版本是什么？生产环境上数据库的版本是什么？怎么样在测试通过后应用在生产环境上？</p>
+<p>&emsp;Database migration 就会解决这些问题。它可以从头创建一个数据库，在任何时候都清楚数据库处于什么状态。</p>
+<p>&emsp;所以使用Migration对我们来说很方便。</p>
+<p><strong>Q: Migration 命名规则？</strong></p>
+<ul>
+<li>包含至少一个数字</li>
+<li>由.或_分隔</li>
+<li>开始的0是被忽略的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">例子：</div><div class="line">1.2.3.4.5.6.7.8.9</div><div class="line">205.68</div><div class="line">20130115113556</div><div class="line">2013.1.15.11.35.56</div><div class="line">2013.01.15.11.35.56</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Flyway的使用方法"><a href="#Flyway的使用方法" class="headerlink" title="Flyway的使用方法"></a>Flyway的使用方法</h2><h3 id="创建一个项目"><a href="#创建一个项目" class="headerlink" title="创建一个项目"></a>创建一个项目</h3><p>使用Maven Archetype Plugin创建项目，语句如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ mvn archetype:generate -B \</div><div class="line">      -DarchetypeGroupId=org.apache.maven.archetypes \</div><div class="line">      -DarchetypeArtifactId=maven-archetype-quickstart \</div><div class="line">      -DarchetypeVersion=1.1 \</div><div class="line">      -DgroupId=foo \</div><div class="line">      -DartifactId=bar \</div><div class="line">      -Dversion=1.0-SNAPSHOT \</div><div class="line">      -Dpackage=foobar</div></pre></td></tr></table></figure></p>
+<p>然后进入到项目目录：<code>$ cd bar</code></p>
+<h3 id="添加Flyway"><a href="#添加Flyway" class="headerlink" title="添加Flyway"></a>添加Flyway</h3><p>在pom.xml里添加Flyway和H2的插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;project ...&gt;</div><div class="line">    ...</div><div class="line">    &lt;build&gt;</div><div class="line">        &lt;plugins&gt;</div><div class="line">            &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;flyway-maven-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;4.0.3&lt;/version&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;url&gt;jdbc:h2:file:./target/foobar&lt;/url&gt;</div><div class="line">                    &lt;user&gt;sa&lt;/user&gt;</div><div class="line">                &lt;/configuration&gt;</div><div class="line">                &lt;dependencies&gt;</div><div class="line">                    &lt;dependency&gt;</div><div class="line">                        &lt;groupId&gt;com.h2database&lt;/groupId&gt;</div><div class="line">                        &lt;artifactId&gt;h2&lt;/artifactId&gt;</div><div class="line">                        &lt;version&gt;1.4.191&lt;/version&gt;</div><div class="line">                    &lt;/dependency&gt;</div><div class="line">                &lt;/dependencies&gt;</div><div class="line">            &lt;/plugin&gt;</div><div class="line">        &lt;/plugins&gt;</div><div class="line">    &lt;/build&gt;</div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="创建Migration文件"><a href="#创建Migration文件" class="headerlink" title="创建Migration文件"></a>创建Migration文件</h3><p>进入到Migration目录：<code>src/main/resources/db/migration</code>，然后新建<code>V1__Create_person_table.sql</code>文件，内容为SQL语句。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table PERSON (</div><div class="line">    ID int not null,</div><div class="line">    NAME varchar(100) not null</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<h3 id="执行Migrate"><a href="#执行Migrate" class="headerlink" title="执行Migrate"></a>执行Migrate</h3><p>在demo目录下创建数据库表，使用：<code>$ mvn flyway:migrate</code>。会有以下提示信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[INFO] Creating Metadata table: &quot;PUBLIC&quot;.&quot;schema_version&quot;</div><div class="line">[INFO] Current version of schema &quot;PUBLIC&quot;: &lt;&lt; Empty Schema &gt;&gt;</div><div class="line">[INFO] Migrating schema &quot;PUBLIC&quot; to version 1 - Create person table</div><div class="line">[INFO] Successfully applied 1 migration to schema &quot;PUBLIC&quot; (execution time 00:00.062s).</div></pre></td></tr></table></figure></p>
+<h3 id="创建第二个Migration文件"><a href="#创建第二个Migration文件" class="headerlink" title="创建第二个Migration文件"></a>创建第二个Migration文件</h3><p>进入到Migration目录：<code>src/main/resources/db/migration</code>，然后新建<code>V2__Add_people.sql</code>文件，内容为SQL语句。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into PERSON (ID, NAME) values (1, &apos;Axel&apos;);</div><div class="line">insert into PERSON (ID, NAME) values (2, &apos;Mr. Foo&apos;);</div><div class="line">insert into PERSON (ID, NAME) values (3, &apos;Ms. Bar&apos;);</div></pre></td></tr></table></figure></p>
+<p>执行<code>$ mvn flyway:migrate</code>，命令行里提示以下信息表示成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[INFO] Current version of schema &quot;PUBLIC&quot;: 1</div><div class="line">[INFO] Migrating schema &quot;PUBLIC&quot; to version 2 - Add people</div><div class="line">[INFO] Successfully applied 1 migration to schema &quot;PUBLIC&quot; (execution time 00:00.090s).</div></pre></td></tr></table></figure></p>
+<h3 id="使用其他命令"><a href="#使用其他命令" class="headerlink" title="使用其他命令"></a>使用其他命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ mvn flyway:clean</div><div class="line">$ mvn flyway:migrate</div><div class="line">$ mvn flyway:info</div><div class="line">$ mvn flyway:validata</div><div class="line">$ mvn flyway:baseline</div><div class="line">$ mvn flyway:repair</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="项目上出现的问题"><a href="#项目上出现的问题" class="headerlink" title="项目上出现的问题"></a>项目上出现的问题</h3><p><strong>问题背景</strong><br>问题出在Develop环境向QA环境上传时，最开始QA与develop环境的代码是相同的，具体如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">**db.migration/文件夹**</div><div class="line">V1__Create_ProfitExcel_Table.sql</div><div class="line">V3__Create_Client_Catalogue_Table.sql</div><div class="line">V6__Create_Catalogues_Table.sql</div><div class="line">V7__Add_Catalogues.sql</div><div class="line">V8__Create_User_table.sql</div><div class="line">V9__Add_User.sql</div><div class="line">V10__Create_Authorities_Table.sql</div><div class="line">V11__Add_Authorities.sql</div><div class="line">V12__Create_Sub_Client_Table.sql</div><div class="line">V13__Create_Project_Manager_Table.sql</div><div class="line"></div><div class="line">**V1__Create_ProfitExcel_Table.sql的文件内容**</div><div class="line">create table ProfitExcel (</div><div class="line">	id serial PRIMARY KEY,</div><div class="line">	profitYear INTEGER,</div><div class="line">	profitMonth INTEGER,</div><div class="line">	client varchar(40) not null,</div><div class="line">	subProject varchar(40) not null,</div><div class="line">	projectDescription varchar(140),</div><div class="line">	netRevenue FLOAT ,</div><div class="line">	wages FLOAT ,</div><div class="line">	totalTravel FLOAT ,</div><div class="line">	otherCosts FLOAT ,</div><div class="line">	grossProfitMargin FLOAT ,</div><div class="line">	grossProfitMarginPercent varchar (100)</div><div class="line">);</div><div class="line">CREATE INDEX profit_report_index ON ProfitExcel (profitYear, profitMonth, client, subProject);</div></pre></td></tr></table></figure></p>
+<p>因为要对<code>V1__Create_ProfitExcel_Table.sql</code>创建的ProfitExcel表新增属性，所以增加了<code>V14__Alter_Profit_Cloumn.sql</code>，具体内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE ProfitExcel ADD professional FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD revenueprofessional FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD revenuebillable FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD revenuebaddebt FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD costtravelbillable FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD costtraveltravel FLOAT;</div><div class="line">ALTER TABLE ProfitExcel ADD costtotalcosts FLOAT;</div></pre></td></tr></table></figure></p>
+<p>在本地环境里migrate完全没有任何问题，执行<code>git add &amp; git commit</code>后，诡异的事情出现了，QA环境编译报错了。报错如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">找不到报错信息了= =。</div><div class="line">大概就是不存在V1的ProfitExcel表。</div></pre></td></tr></table></figure></p>
+<p><strong>解决过程</strong></p>
+<ol>
+<li>认为<code>V1__Create_ProfitExcel_Table.sql</code>的名字写错了，更改为<code>V1__Create_Profit_Table.sql</code>之类的。<br>当然不是这个原因。就在这个时候又出现了一个问题：<strong>Ci提示QA环境有两个V1文件</strong>。</li>
+</ol>
+<p>这就奇怪了，在本地执行时我会先执行<code>mvn flyway:clean</code>保证本地的数据库是空的，再去执行<code>mvn flyway:migrate</code>，在QA环境是不需要我去执行clean的命令的，因为每一次跑代码都是一个新的容器。</p>
+<p>先去检查了QA环境上CI生成的war包，发现war包里只有一个V1的文件。所以问题就定位在了docker里，经过好长时间的检查，发现是因为JenkinsFile的配置文件里，在打包的时候没有清空之前的class文件。</p>
+<p>解决方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">修改前：</div><div class="line">stage &apos;BUILD&apos;</div><div class="line">   docker.image(&apos;maven:3.3.3-jdk-8&apos;).inside(&apos;-v/root/.m2:/root/.m2&apos;) &#123;</div><div class="line">     sh &apos;mvn package&apos;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">修改后：</div><div class="line">   stage &apos;BUILD&apos;</div><div class="line">      docker.image(&apos;maven:3.3.3-jdk-8&apos;).inside(&apos;-v/root/.m2:/root/.m2&apos;) &#123;</div><div class="line">        sh &apos;mvn clean package&apos;</div><div class="line">      &#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>推测V1没有执行，可以把V1的内容写在V2里。<br>可是并没有起作用，又把V1的内容复制在V5里，依旧没有用。</li>
+</ol>
+<p>…<br>…</p>
+<ol>
+<li><p>经过很多次的试验之后，发现在配置文件里有<code>flyway.baselineVersion=0</code>是被注释掉的，执行baseline之后也没有什么卵用。</p>
+</li>
+<li><p>又把配置文件的<code>flyway.baselineVersion=0</code>改为<code>flyway.baselineVersion=1</code>，发现报错信息变了。提示已经存在ProfitExcel表，不能重复创建。到这里问题就解决了！WoW~</p>
+</li>
+</ol>
+<p><strong>解决方法</strong><br>按照道理来说QA环境每一次编译War包都是会新的database（空空的database，一张表也没有），但奇怪的是QA环境每一次都会有一张表存在在database里，这就是导致develop和QA环境不同的最根本的原因。设置Flyway的Baseline为1，将<code>V1__Create_ProfitExcel_Table.sql</code>里的文件写在<code>V2__Create_ProfitExcel_Table.sql</code>里，这样就能保证QA环境与Develop环境初始化时候的database是相同的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Flyway&quot;&gt;&lt;a href=&quot;#Flyway&quot; class=&quot;headerlink&quot; title=&quot;Flyway&quot;&gt;&lt;/a&gt;Flyway&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Q: Flyway 是什么？&lt;/strong&gt;&lt;br&gt;&amp;emsp;Flyway 是独立于数据
+    
+    </summary>
+    
+      <category term="summary" scheme="https://wy08271.github.io/categories/summary/"/>
+    
+    
+      <category term="flyway" scheme="https://wy08271.github.io/tags/flyway/"/>
+    
+      <category term="Baseline" scheme="https://wy08271.github.io/tags/Baseline/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>英语：100句常用句</title>
+    <link href="https://wy08271.github.io/2016/07/12/%E8%8B%B1%E8%AF%AD%EF%BC%9A%E5%B8%B8%E7%94%A8100%E5%8F%A5/"/>
+    <id>https://wy08271.github.io/2016/07/12/英语：常用100句/</id>
+    <published>2016-07-12T06:51:01.000Z</published>
+    <updated>2016-12-11T14:50:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">经典的词或短语：  </div><div class="line">be pleased and honored</div><div class="line">my pleasure and honour</div><div class="line"></div><div class="line">举栗子：</div><div class="line">Hi everyone, My name is xxx. I&apos;m a Dev/QA.</div><div class="line">It&apos;s my pleasure and honour/(I&apos;m really pleased and honored)to be a member of the team,</div><div class="line">and work with a distinguished group of people like you.</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="表达感谢"><a href="#表达感谢" class="headerlink" title="表达感谢"></a>表达感谢</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">经典的词或短语：</div><div class="line">-感谢、感激：</div><div class="line">    (much)appreciated;</div><div class="line">    Thanks a billion/thanks a lot;</div><div class="line">    thanks in advance</div><div class="line">-感谢别人的帮助： assistance/help/support</div><div class="line">-感谢别人的快速回应：quick/prompt reply；get back to me</div><div class="line"></div><div class="line">举栗子：</div><div class="line">Thank you for your prompt reply.</div><div class="line">Thank you for getting back to me.</div><div class="line">I really appreciate all your assistance in resolving the problem.</div><div class="line">Thanks for everything Tom, it has been a pleasure and a huge learning experience to work with you.（一起工作的同事离开团队时，表达感谢)</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="回复感谢"><a href="#回复感谢" class="headerlink" title="回复感谢"></a>回复感谢</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">经典的词或短语：  </div><div class="line">no worries</div><div class="line">not a problem</div><div class="line">(it&apos;s) my pleasure</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="表示抱歉"><a href="#表示抱歉" class="headerlink" title="表示抱歉"></a>表示抱歉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">经典的词或短语：</div><div class="line">-为自己的错误道歉：</div><div class="line">It&apos;s my fault；</div><div class="line">Forgive my thoughtless(careless, ignorance,forgetless)</div><div class="line">- 非常抱歉：</div><div class="line">（really/terribly） sorry</div><div class="line"></div><div class="line">举栗子：</div><div class="line">Apologies but could you please rephrase?</div><div class="line">I&apos;m really/terribly sorry for forgetting my promise.</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="回复道歉"><a href="#回复道歉" class="headerlink" title="回复道歉"></a>回复道歉</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">经典的词或短语：  </div><div class="line">That‘s(It&apos;s) all right(OK);</div><div class="line">It doesn&apos;t matter;</div><div class="line">Never mind;</div><div class="line">Not at all;</div><div class="line">No Problem;</div><div class="line">Forget it.</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="请求或是询问"><a href="#请求或是询问" class="headerlink" title="请求或是询问"></a>请求或是询问</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">经典的词或短语：</div><div class="line">Could you please...?</div><div class="line">(I would appreciate it) if you could...</div><div class="line">Could you possibly... ?</div><div class="line">I would like to know if...</div><div class="line"></div><div class="line">举栗子：</div><div class="line">- Could you please let me know if you can attend the meeting?  </div><div class="line">- I would appreciate it if you could please send me a brochure/( if you could please reply within two days).  </div><div class="line">- Could you possibly arrange a meeting with the Iteration Manager?  </div><div class="line">- I would like to know if there are any other question we need to discuss?</div><div class="line">- Would you mind fixing the data issue if you get a chance.</div><div class="line">- When you get the chance, does not have to be today, but even early next week,  can you please run the test?</div><div class="line">- Can you please look at this immediately? It&apos;s high priority. / Can you give this priority?</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="请假"><a href="#请假" class="headerlink" title="请假"></a>请假</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">举栗子：</div><div class="line">- Tom not feeling well, not working today.</div><div class="line">- Tom will take one day annual leave.</div><div class="line">- Tom is on leave from Monday to Firday</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="打招呼"><a href="#打招呼" class="headerlink" title="打招呼"></a>打招呼</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">经典的词或短语：</div><div class="line">-第一次见面：</div><div class="line">    how do you do?</div><div class="line">    nice to meet you.</div><div class="line">-平时见面：</div><div class="line">    how are you?</div><div class="line">    How have you been = How are you doing 你过得如何?</div><div class="line">    What&apos;s up? 你好(=What&apos;s new? 或Hi/hey) - nothing much</div><div class="line">    How are you getting on? 近来过得怎么样?</div><div class="line">    How is it going?</div><div class="line"></div><div class="line">举栗子</div><div class="line">-如何回答 &quot;how are you?&quot;   </div><div class="line">    I&apos;m doing great. 我过得很好</div><div class="line">    Nothing special. 没什幺特别的</div><div class="line">    So far so good. 到目前为止，一切都好</div><div class="line">    Things couldn&apos;t be better. 一切顺利</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="邮件中表达自己的观点"><a href="#邮件中表达自己的观点" class="headerlink" title="邮件中表达自己的观点"></a>邮件中表达自己的观点</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">In my opinion/In my view,</div><div class="line">From my point of view/From my perspective</div><div class="line">According to...</div><div class="line">To me,</div><div class="line">I think/I believe/I suppose/ I feel</div><div class="line"></div><div class="line">举例子:</div><div class="line">Such as</div><div class="line">For instance,</div><div class="line">Like/namely</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="一般来说，总的来看"><a href="#一般来说，总的来看" class="headerlink" title="一般来说，总的来看"></a>一般来说，总的来看</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Overall</div><div class="line">In general</div><div class="line">It seems to me that</div><div class="line">All in all</div><div class="line">Generally/Generally speaking</div><div class="line">On the whole</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="常用语气词"><a href="#常用语气词" class="headerlink" title="常用语气词"></a>常用语气词</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">- Mhmm,Hmmm 相当于中文里的嗯的意思， 第二个表示自己在思考或者“yes, I am listening”  </div><div class="line">    1. what&apos;s one plus two? Mhmm, let me see... 嗯，让我想想  </div><div class="line">    2.I think I&apos;ve got a crash on her... - Hmmm, go head. 我在听，继续说   </div><div class="line">    3. Transformer 3 sucks. - hmmm 变形金刚3糟糕透了。 - 嗯。</div><div class="line">- Phew 紧张之后松一口气发出的声音  </div><div class="line">    1. Phew,my work is done.  </div><div class="line">    2，Pheeww! it&apos;s all over now.</div><div class="line">- Um, Erm 嗯， 表犹豫，表思考</div><div class="line">    1. Well， the password is Um..., 12345  </div><div class="line">    2. Last night I was in the erm... Wilson’s pub</div><div class="line">- Bravo,well down 好极了  </div><div class="line">- Nope/Nah, Yep/Yup No/Yes的口语体</div><div class="line">    1. Are you a student？- Nahhh. -哪里哪里（不是）</div><div class="line">    2. Does it work for you? - Yup, sure</div><div class="line">- Aha &quot;啊哈&quot;，表示突然看到了什么或是想到了什么  </div><div class="line">    1. Aha, I&apos;ve got a great idea</div><div class="line">    2. Aha, I find it.</div><div class="line">- Ahh &quot;啊&quot;，表示激动喜悦，恍然大悟的意思  </div><div class="line">    1. Ahh, I see! It must be the plug not working.</div><div class="line">    2. Ahh, Now it all make sense</div><div class="line">- hehe/ hahaha 与中文意思相同</div><div class="line">- lol 这是大笑的意思， laugh out loud</div><div class="line">- Awww 看到可爱的东西或听到可爱的话语时的语气  </div><div class="line">    1. Awww, that puppy is sooooo cute!!! 哇，那个小狗好可爱  </div><div class="line">    2. Ilove you. - Awww, you&apos;re so sweet. - 哇，你嘴真甜</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;自我介绍&quot;&gt;&lt;a href=&quot;#自我介绍&quot; class=&quot;headerlink&quot; title=&quot;自我介绍&quot;&gt;&lt;/a&gt;自我介绍&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+    
+    </summary>
+    
+      <category term="English" scheme="https://wy08271.github.io/categories/English/"/>
+    
+    
+      <category term="english" scheme="https://wy08271.github.io/tags/english/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记：Migrate-Nodejs</title>
+    <link href="https://wy08271.github.io/2016/07/09/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMigrate-Nodejs/"/>
+    <id>https://wy08271.github.io/2016/07/09/学习笔记：Migrate-Nodejs/</id>
+    <published>2016-07-09T09:32:53.000Z</published>
+    <updated>2016-12-11T14:43:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>用express框架，node语言和sequelize的ROM操纵MySQL做练习。</p>
+<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>1.用express搭起框架，在命令行输入<code>$ express demo</code>，利用npm和bower安装所需要的依赖，并管理相关依赖，部分插件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$npm install</div><div class="line">$npm install mysql —save-dev</div><div class="line">$npm install sequelize —save-dev</div><div class="line">$npm install sequelize-cli —save-dev</div><div class="line"></div><div class="line">$bower init</div><div class="line">$bower install bootstrap —save-dev</div><div class="line">$bower install jQuery —save-dev</div></pre></td></tr></table></figure>
+<p>2.添加.gitignore在根目录下，用来忽略bower_components/、node_modules/和bin/里的内容。</p>
+<hr>
+<h1 id="用Sequelize进行初始化"><a href="#用Sequelize进行初始化" class="headerlink" title="用Sequelize进行初始化"></a>用Sequelize进行初始化</h1><p>在根目录下输入<code>$sequelize init</code>后，会在当前目录下新建models/、seeders/、migrations/和config/文件夹。</p>
+<p>可以用<code>$seqlelize help</code>查看帮助命令，显示如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">Usage</div><div class="line">  sequelize [task]</div><div class="line"></div><div class="line">Available tasks</div><div class="line">  db:migrate             Run pending migrations.</div><div class="line">  db:migrate:old_schema  Update legacy migration table</div><div class="line">  db:migrate:undo        Revert the last migration run.</div><div class="line">  db:migrate:undo:all    Revert all migrations ran.</div><div class="line">  db:seed                Run specified seeder.</div><div class="line">  db:seed:all            Run every seeder.</div><div class="line">  db:seed:undo           Deletes data from the database.</div><div class="line">  db:seed:undo:all       Deletes data from the database.</div><div class="line">  help                   Display this help text. Aliases: h</div><div class="line">  init                   Initializes the project.</div><div class="line">  init:config            Initializes the configuration.</div><div class="line">  init:migrations        Initializes the migrations.</div><div class="line">  init:models            Initializes the models.</div><div class="line">  init:seeders           Initializes the seeders.</div><div class="line">  migration:create       Generates a new migration file. Aliases: migration:generate</div><div class="line">  model:create           Generates a model and its migration. Aliases: model:generate</div><div class="line">  seed:create            Generates a new seed file. Aliases: seed:generate</div><div class="line">  version                Prints the version number. Aliases: v</div><div class="line"></div><div class="line">Available manuals</div><div class="line">  help:db:migrate             The documentation for &quot;sequelize db:migrate&quot;.</div><div class="line">  help:db:migrate:old_schema  The documentation for &quot;sequelize db:migrate:old_schema&quot;.</div><div class="line">  help:db:migrate:undo        The documentation for &quot;sequelize db:migrate:undo&quot;.</div><div class="line">  help:db:migrate:undo:all    The documentation for &quot;sequelize db:migrate:undo:all&quot;.</div><div class="line">  help:db:seed                The documentation for &quot;sequelize db:seed&quot;.</div><div class="line">  help:db:seed:all            The documentation for &quot;sequelize db:seed:all&quot;.</div><div class="line">  help:db:seed:undo           The documentation for &quot;sequelize db:seed:undo&quot;.</div><div class="line">  help:db:seed:undo:all       The documentation for &quot;sequelize db:seed:undo:all&quot;.</div><div class="line">  help:init                   The documentation for &quot;sequelize init&quot;.</div><div class="line">  help:init:config            The documentation for &quot;sequelize init:config&quot;.</div><div class="line">  help:init:migrations        The documentation for &quot;sequelize init:migrations&quot;.</div><div class="line">  help:init:models            The documentation for &quot;sequelize init:models&quot;.</div><div class="line">  help:init:seeders           The documentation for &quot;sequelize init:seeders&quot;.</div><div class="line">  help:migration:create       The documentation for &quot;sequelize migration:create&quot;.</div><div class="line">  help:model:create           The documentation for &quot;sequelize model:create&quot;.</div><div class="line">  help:seed:create            The documentation for &quot;sequelize seed:create&quot;.</div><div class="line">  help:version                The documentation for &quot;sequelize version&quot;.</div></pre></td></tr></table></figure>
+<p>使用Available manuals可以看各种命令的使用方法，建立model可以同时建立model和migration。例如：</p>
+<p><code>$sequelize help:model:create</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">The attributes can be specified as in the following (and semantically equal) examples:</div><div class="line"></div><div class="line">    sequelize model:create --name User --attributes first_name:string,last_name:string,bio:text</div><div class="line">    sequelize model:create --name User --attributes &apos;first_name:string last_name:string bio:text&apos;</div><div class="line">    sequelize model:create --name User --attributes &apos;first_name:string, last_name:string, bio:text&apos;</div></pre></td></tr></table></figure>
+<p>输入命令就可以建立model和migration文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">// the model file</div><div class="line">// located under models/user.js</div><div class="line">&apos;use strict&apos;;</div><div class="line">    module.exports = function(sequelize, DataTypes) &#123;</div><div class="line">      var User = sequelize.define(&apos;User&apos;, &#123;</div><div class="line">        first_name: DataTypes.STRING,</div><div class="line">        last_name: DataTypes.STRING,</div><div class="line">        bio: DataTypes.TEXT</div><div class="line">      &#125;, &#123;</div><div class="line">        classMethods: &#123;</div><div class="line">          associate: function(models) &#123;</div><div class="line">            // associations can be defined here</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line">      return User;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">// the migration file</div><div class="line">// located under migrations/20160710153131-create-user.js</div><div class="line">    &apos;use strict&apos;;</div><div class="line">    module.exports = &#123;</div><div class="line">      up: function(queryInterface, Sequelize) &#123;</div><div class="line">        return queryInterface.createTable(&apos;Users&apos;, &#123;</div><div class="line">          id: &#123;</div><div class="line">            allowNull: false,</div><div class="line">            autoIncrement: true,</div><div class="line">            primaryKey: true,</div><div class="line">            type: Sequelize.INTEGER</div><div class="line">          &#125;,</div><div class="line">          first_name: &#123;</div><div class="line">            type: Sequelize.STRING</div><div class="line">          &#125;,</div><div class="line">          last_name: &#123;</div><div class="line">            type: Sequelize.STRING</div><div class="line">          &#125;,</div><div class="line">          bio: &#123;</div><div class="line">            type: Sequelize.TEXT</div><div class="line">          &#125;,</div><div class="line">          createdAt: &#123;</div><div class="line">            allowNull: false,</div><div class="line">            type: Sequelize.DATE</div><div class="line">          &#125;,</div><div class="line">          updatedAt: &#123;</div><div class="line">            allowNull: false,</div><div class="line">            type: Sequelize.DATE</div><div class="line">          &#125;</div><div class="line">        &#125;);</div><div class="line">      &#125;,</div><div class="line">      down: function(queryInterface, Sequelize) &#123;</div><div class="line">        return queryInterface.dropTable(&apos;Users&apos;);</div><div class="line">      &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<p>使用<code>$sequelize db:migrate</code>，可以执行migration/里的文件，建立MySQL里的表。 根目录下的config/文件夹里的config.json写着连接数据库的信息。 之后在controller/文件夹下调用model里的方法或sequelize里原生的方法使用数据库。</p>
+<hr>
+<h1 id="参考目录"><a href="#参考目录" class="headerlink" title="参考目录"></a>参考目录</h1><p>更多关于Sequelize的详细用法，请参见其<a href="http://docs.sequelizejs.com/en/latest/" target="_blank" rel="external">官方文档</a>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用express框架，node语言和sequelize的ROM操纵MySQL做练习。&lt;/p&gt;
+&lt;h1 id=&quot;前期准备&quot;&gt;&lt;a href=&quot;#前期准备&quot; class=&quot;headerlink&quot; title=&quot;前期准备&quot;&gt;&lt;/a&gt;前期准备&lt;/h1&gt;&lt;p&gt;1.用express搭起
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="Migrate" scheme="https://wy08271.github.io/tags/Migrate/"/>
+    
+      <category term="Nodejs" scheme="https://wy08271.github.io/tags/Nodejs/"/>
+    
+      <category term="Sequelize" scheme="https://wy08271.github.io/tags/Sequelize/"/>
     
   </entry>
   
@@ -293,6 +958,387 @@
       <category term="构建工具" scheme="https://wy08271.github.io/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
     
       <category term="flyway" scheme="https://wy08271.github.io/tags/flyway/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记：PostgreSQL</title>
+    <link href="https://wy08271.github.io/2016/06/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9APostgreSQL/"/>
+    <id>https://wy08271.github.io/2016/06/27/学习笔记：PostgreSQL/</id>
+    <published>2016-06-27T15:01:35.000Z</published>
+    <updated>2016-12-11T14:44:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用PostgreSQL数据库进行数据的导入和导出。</p>
+<hr>
+<h1 id="导出数据库"><a href="#导出数据库" class="headerlink" title="导出数据库"></a>导出数据库</h1><ol>
+<li><p>导出单个表</p>
+<pre><code>从ip为255.255.255.0的数据库test中导出testTable的表结构和数据到本地文件data.sql：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -t testTable -h 255.255.255.0 test -U userName -p 5432  -f data.sql</div></pre></td></tr></table></figure>
+
+参数说明：-t 指定导出的表名
+        -h 数据库地址
+        -U 数据库用户
+        -p 访问端口
+        -f 导出到指定文件
+</code></pre></li>
+<li><p>导出所有表和所有数据</p>
+<pre><code>从ip为255.255.255.0的数据库test导出所有表结构和数据到文件data.sql:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -h 255.255.255.0 test -U userName -p 5432  -f data.sql</div></pre></td></tr></table></figure>
+
+参数说明：-t 指定导出的表名
+        -h 数据库地址
+        -U 数据库用户
+        -p 访问端口
+        -f 导出到指定文件
+</code></pre></li>
+<li><p>仅导出所有表结构</p>
+<pre><code>从ip为255.255.255.0的数据库test导出所有的表结构到文件data.sql:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -s -h 255.255.255.0 test -U userName -p 5432 -f data.sql</div></pre></td></tr></table></figure>
+
+参数说明：-s 表示只导出表结构，不导数据
+</code></pre></li>
+</ol>
+<p>PS：一般数据库数据量比较大，如果远程导出所有的表结构和数据的话会非常慢，可以先导入表结构，随后再导出/入单个重要表结构和数据。</p>
+<hr>
+<h1 id="导入数据库"><a href="#导入数据库" class="headerlink" title="导入数据库"></a>导入数据库</h1><ol>
+<li><p>导入到远程数据库</p>
+<pre><code>从本地文件data.sql导入表结构和数据到ip为255.255.255.0的数据库test中：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">psql -h 255.255.255.0 -d test -U userName -f data.sql</div></pre></td></tr></table></figure>
+
+参数说明：-h 数据库地址
+        -d 数据库
+        -U 指定用户
+        -f 要导入的文件
+</code></pre></li>
+<li><p>导入到本地数据库</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">psql -h 127.0.0.1 -d test -U userName -p 5432 -f data.sql</div></pre></td></tr></table></figure>
+
+参数说明： -p 指定数据库服务端口，默认是5432端口的可以不加
+</code></pre></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用PostgreSQL数据库进行数据的导入和导出。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;导出数据库&quot;&gt;&lt;a href=&quot;#导出数据库&quot; class=&quot;headerlink&quot; title=&quot;导出数据库&quot;&gt;&lt;/a&gt;导出数据库&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;导出单个表&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="PostgreSQL" scheme="https://wy08271.github.io/tags/PostgreSQL/"/>
+    
+      <category term="导入导出" scheme="https://wy08271.github.io/tags/%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记：Maven-2</title>
+    <link href="https://wy08271.github.io/2016/06/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMaven-2/"/>
+    <id>https://wy08271.github.io/2016/06/27/学习笔记：Maven-2/</id>
+    <published>2016-06-26T18:31:34.000Z</published>
+    <updated>2016-12-11T14:42:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<h1 id="多模块项目介绍"><a href="#多模块项目介绍" class="headerlink" title="多模块项目介绍"></a>多模块项目介绍</h1><p>Maven中，一个大型项目分为若干个子项目，也就是module。提高重用率。相关的业务逻辑放在一个模块中进行集中管理，体现了单一原则。</p>
+<hr>
+<h1 id="创建骨架结构"><a href="#创建骨架结构" class="headerlink" title="创建骨架结构"></a>创建骨架结构</h1><ol>
+<li>进入helloweb根目录，新建四个文件夹，分别是：/helloweb-core，/helloweb-parent，/helloweb-web，/helloweb-entity</li>
+<li>将根目录下的/src与pom.xml分别复制到新创建的四个文件夹，根目录删掉/src</li>
+<li><p>修改根目录下的pom.xml，删除<name>后的所有标签</name></p>
+<ul>
+<li><code>&lt;modelVersion&gt;</code>用来说明当前的pom文件遵循的是哪个model版本</li>
+<li><code>&lt;packaging&gt;</code>是打包的类型：jar普通的java类库（默认类型）；war普通的javaweb应用程序；ear包含全部企业应用程序，包括jar，war；pom不打包成任何文件，代表副项目</li>
+</ul>
+</li>
+<li><p>添加以下内容，用来添加模块列表，<module>里面填写文件的相对路径</module></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;modules&gt;</div><div class="line">    &lt;module&gt;helloweb-parent&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-entity&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-web&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-core&lt;/module&gt;</div><div class="line">&lt;/modules&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在四个文件夹下的pom.xml的<modelversion>下面添加以下代码：</modelversion></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;parent&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;relationPath&gt;&lt;/relationPath&gt;</div><div class="line">&lt;/parent&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>删除四个文件pom.xml的冗余配置信息，从<name>下的标签开始，helloweb-web从<build>开始删除</build></name></p>
+<hr>
+<h1 id="使用dependencyManagement管理依赖"><a href="#使用dependencyManagement管理依赖" class="headerlink" title="使用dependencyManagement管理依赖"></a>使用dependencyManagement管理依赖</h1><p>Maven使用dependencyManagement元素来定义一种管理依赖版本号的方法。</p>
+<ol>
+<li><p>在helloweb-parent的pom.xml中，添加以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;dependencyManagement&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;3.0.1&lt;/version&gt;</div><div class="line">            &lt;scope&gt;provided&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;2.1&lt;/version&gt;</div><div class="line">            &lt;scope&gt;provided&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;4.11&lt;/version&gt;</div><div class="line">            &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;5.1.21&lt;/version&gt;</div><div class="line">            &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line">    &lt;/dependencies&gt;</div><div class="line">&lt;/dependencyManagement&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>构建项目，<code>$maven install</code>    ，成功后不需要再子项目中添加具体依赖的版本号</p>
+</li>
+<li><p>例如在helloweb-entity的pom.xml中加上以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpency&gt;</div><div class="line">        &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">        &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">    &lt;/denpency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>构建成功即可说明，在父项目中添加dependencyManagement了就可以在子项目中省略版本号        </p>
+</li>
+</ol>
+<h1 id="使用PluginManagement管理插件"><a href="#使用PluginManagement管理插件" class="headerlink" title="使用PluginManagement管理插件"></a>使用PluginManagement管理插件</h1><p>PluginManagement作用：Maven使用PluginManagement元素来提供了一种管理插件的方式。</p>
+<ol>
+<li><p>进入helloweb-parent文件夹下的pom.xml，添加以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;</div><div class="line">    &lt;pluginManagement&gt;</div><div class="line">        &lt;plugins&gt;</div><div class="line">            &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.3.2&lt;/version&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;source&gt;1.7&lt;/source&gt;</div><div class="line">                    &lt;target&gt;1.7&lt;/source&gt;</div><div class="line">                    &lt;encoding&gt;UTF-8&lt;encouding&gt;</div><div class="line">                &lt;/configuration&gt;                    &lt;/plugin&gt;</div><div class="line"></div><div class="line">        &lt;plugin&gt;</div><div class="line">            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.6&lt;/version&gt;</div><div class="line">        &lt;/plugin&gt;</div><div class="line">        &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.4&lt;/version&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;warName&gt;$&#123;priject.artifactId&#125;&lt;/warName&gt;</div><div class="line">                &lt;/configuration&gt;                    &lt;/plugin&gt;</div><div class="line">        &lt;/plugins&gt;</div><div class="line">    &lt;/pluginManagement&gt;</div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>进入helloweb-entity文件夹下的pom.xml的<plugin>已经进行了相应的改变</plugin></p>
+</li>
+</ol>
+<h1 id="定义项目属性及配置信息"><a href="#定义项目属性及配置信息" class="headerlink" title="定义项目属性及配置信息"></a>定义项目属性及配置信息</h1><ol>
+<li><p>打开helloweb-parent文件夹下的pom.xml文件，在<name>标签下添加以下的代码：</name></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;properties&gt;</div><div class="line">    &lt;jdk.version&gt;1.7&lt;/jdk.version&gt;</div><div class="line">    &lt;servlet.api.version&gt;3.0.1&lt;/servlet.api.version&gt;</div><div class="line">    &lt;jsp.api.version&gt;2.1&lt;/jsp.api.version&gt;</div><div class="line">    &lt;junit.version&gt;4.11&lt;/junit.version&gt;</div><div class="line">    &lt;mysql.version&gt;5.1.21&lt;/mysql.version&gt;</div><div class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</div><div class="line">&lt;/properties&gt;</div><div class="line"></div><div class="line">//ps:&lt;properties&gt;功能是定义一些常量，可以在pom.xml的其他地方进行引用</div></pre></td></tr></table></figure>
+</li>
+<li><p>替换常量时候的格式<code>${jdk.version}</code></p>
+</li>
+<li>重新构建<code>$maven install</code>，若正确则说明修改成功</li>
+</ol>
+<ul>
+<li>description 项目表示信息</li>
+<li>url 项目的地址</li>
+<li>inceptionYear 项目起止年份</li>
+<li>其他</li>
+</ul>
+<hr>
+<h1 id="完善helloweb-entity模块"><a href="#完善helloweb-entity模块" class="headerlink" title="完善helloweb-entity模块"></a>完善helloweb-entity模块</h1><ol>
+<li>启动MySQL，新建数据库<code>maven_db</code></li>
+<li>在新建的数据库上点击右键，将其设置为默认的”scheme”</li>
+<li><p>新建表，语句成功后点击”闪电”图标，刷新scheme</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">create table users(</div><div class="line">id int(11) unsigned not null auto_increment,</div><div class="line">name varchar(50) not null,</div><div class="line">password varchar(50) not null,</div><div class="line">email varchar(50),</div><div class="line">primary key(id) engine = InnoDB default charset=utf8</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+<li><p>插入一条数据，填写完成后选中这条sql语句，点击闪电图标，显示插入成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into user(name,password,email)values(&apos;Tom&apos;,&apos;123456&apos;,&apos;tom@163.com&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>在helloweb-entity的src/中建立User.java文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class User&#123;</div><div class="line">    private long id;</div><div class="line">    private String name;</div><div class="line">    private String password;</div><div class="line">    private String email;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Override</div><div class="line">public String toString()&#123;</div><div class="line">    return &quot;User [id=&quot;+ id +&quot;,name=&quot; + name + &quot;,password=&quot; +  password+ &quot;,email=&quot;   + email + &quot;]&quot;;</div><div class="line">&#125;</div><div class="line">//自动生成get，set方法</div></pre></td></tr></table></figure>
+</li>
+<li><p>打包，run as <code>$maven install</code></p>
+</li>
+</ol>
+<hr>
+<h1 id="完善helloweb-core模块"><a href="#完善helloweb-core模块" class="headerlink" title="完善helloweb-core模块"></a>完善helloweb-core模块</h1><ol>
+<li>在helloweb-code的src/main中建立resources/文件夹，设置其为Source Folder</li>
+<li>在其下建立一个新文件dbconfig.properties</li>
+<li><p>在属性文件里添加数据库的配置信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//驱动名称</div><div class="line">driver=com.mysql.jdbc.Driver</div><div class="line">//jdbc链接地址</div><div class="line">dburl=jdbc:mysql://localhost:3306/maven_db</div><div class="line">//用户名</div><div class="line">user=root</div><div class="line">//密码为空</div><div class="line">password</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建一个java/util文件夹，其下新建ConnectionFactory.java文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">package com.XXX.util;</div><div class="line">public class ConnectionFactory&#123;</div><div class="line">    private static String driver;</div><div class="line">    private static String dburl;</div><div class="line">    private static String user;</div><div class="line">    private static String password;</div><div class="line"></div><div class="line">    private static final ConnectionFactory factory = new ConnectionFactory();</div><div class="line">    private Connection conn;</div><div class="line">    static&#123;</div><div class="line">        Properties prop = new Properties();</div><div class="line">        try&#123;</div><div class="line">            InputStream in = ConnectionFactory class getClassLoader().getResourceAsStream(&quot;dbconfig.properties&quot;);</div><div class="line">            prop.load(in);</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            //TODO</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        driver = prop.getProperty(&quot;driver&quot;);</div><div class="line">        dburl=prop.getProperty(&quot;dburl&quot;);</div><div class="line">        user=prop.getProperty(&quot;user&quot;);</div><div class="line">        password=prop.getProperty(&quot;password&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private ConnectionFactory()&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static ConnectionFactory getInstance()&#123;</div><div class="line">        return factory;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Connection makeConnection()&#123;</div><div class="line">        try&#123;</div><div class="line">            Class forName(driver)</div><div class="line">            conn = DriverManager.getConnection(dburl,user,password);</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return conn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在helloweb-code的pom.xml文件中添加MySQL驱动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</div><div class="line">            &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>与util同级建立dao和service文件夹，dao文件夹下建立impl文件夹和UserDao.java，service文件夹下建立CheckUserService.java；</p>
+</li>
+<li><p>添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.sakura&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;helloweb-entity&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;1.0&lt;/version&gt;</div><div class="line">    &lt;type&gt;jar&lt;/type&gt;</div><div class="line">    &lt;scope&gt;complie&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>打包项目，<code>$mvn install</code></p>
+</li>
+</ol>
+<hr>
+<h1 id="完善helloweb-web模块"><a href="#完善helloweb-web模块" class="headerlink" title="完善helloweb-web模块"></a>完善helloweb-web模块</h1><ol>
+<li><p>在helloweb-web的main/下建立<code>action</code>包，再建立<code>CheckAction.java</code>，引入<code>HttpServlet</code>，引入<code>doGet</code>和<code>doPost</code>方法，并在其中补充完整业务逻辑代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">private CheckUserService cku = new CheckUserService();</div><div class="line"></div><div class="line">@Override</div><div class="line">protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOExceotion&#123;</div><div class="line">    doPost(req, resp);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Override</div><div class="line">protected void doPost(HttpservletRequest req, HttpServletResopnse resp)throws SerletException, IOException&#123;</div><div class="line">    String uname = req.getParameter(&quot;uname&quot;);</div><div class="line">    String password = req.getParameter(&quot;upwd&quot;);</div><div class="line"></div><div class="line">    RequestDispatcher rd = null;</div><div class="line">    String forward = null;</div><div class="line"></div><div class="line">    if(uname == null || password == null)&#123;</div><div class="line">    req.setAttribute(&quot;msg&quot;,&quot;error!&quot;);</div><div class="line">    rd = req.getRequestDispatcher(&quot;error.jsp&quot;);</div><div class="line">    rd.forward(req,resp);</div><div class="line">    &#125;else&#123;</div><div class="line">        User user = new User();</div><div class="line">        user.setName(uname);</div><div class="line">        user.setPassword(password);</div><div class="line">        boolean bool = cku check(user);</div><div class="line"></div><div class="line">        if(bool)&#123;</div><div class="line">            forward = &quot;success.jsp&quot;;</div><div class="line">        &#125;else&#123;</div><div class="line">            req.setAttribute(&quot;msg&quot;,&quot;error&quot;);</div><div class="line">            forward = &quot;error.jsp&quot;;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        rd = req.getRequestDispatcher(forward);</div><div class="line">        rd.forward(req,resp);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.XXX&lt;groupId&gt;</div><div class="line">    &lt;artifactId&gt;helloweb-core&lt;artifactId&gt;</div><div class="line">    &lt;version&gt;1.0&lt;version&gt;</div><div class="line">    &lt;type&gt;jar&lt;type&gt;</div><div class="line">    &lt;scope&gt;compile&lt;scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在webapp文件夹下写入<code>error.jsp,index.jsp,login.jsp,success.jsp</code></p>
+</li>
+<li>在webapp/WEB-INF下写入<code>web.xml</code></li>
+<li>使用Tomcat启动</li>
+</ol>
+<hr>
+<h1 id="使用log4j打印日志"><a href="#使用log4j打印日志" class="headerlink" title="使用log4j打印日志"></a>使用log4j打印日志</h1><ol>
+<li><p>打开helloweb-parent的pom.xml，添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-api&lt;/            artifactId&gt;</div><div class="line">    &lt;version&gt;2.2&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-core&lt;/            artifactId&gt;</div><div class="line">    &lt;version&gt;2.2&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>打开helloweb-entity的pom.xml，添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-api&lt;/            artifactId&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-core&lt;/            artifactId&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>构建helloweb-parent模块，在构建helloweb-entity.<code>$mvn install</code></p>
+</li>
+<li>在helloweb-entity的main/建立与java同级的resources文件夹</li>
+<li>在新建的文件夹中建立log4j2.xml文件</li>
+<li><p>添加内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;configuration status=&quot;OFF&quot;&gt;</div><div class="line">&lt;appenders&gt;</div><div class="line">&lt;Console name=&quot;Console&quot; target=&quot;SYSTEM_OUT&quot;&gt;</div><div class="line">    &lt;PatternLayout pattern=&quot;%d&#123;HH:mm:ss.SSS&#125; [%t] %-5level %logger&#123;36&#125; - %msg%n&quot;/&gt;</div><div class="line">&lt;/Console&gt;</div><div class="line">&lt;/appenders&gt;</div><div class="line">&lt;loggers&gt;</div><div class="line">&lt;root level=&quot;trace&quot;&gt;</div><div class="line">    &lt;appender-ref ref=&quot;Console&quot;/&gt;</div><div class="line">&lt;/root&gt;</div><div class="line">&lt;/loggers&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="POM-xml的配置信息"><a href="#POM-xml的配置信息" class="headerlink" title="POM.xml的配置信息"></a>POM.xml的配置信息</h1><ul>
+<li>project 包含了pom的信息</li>
+<li>modelVersion 指定当前pom版本</li>
+<li>groupId 包名，反写的公司网址+项目名</li>
+<li>artifactId 模块名，项目名+模块名</li>
+<li>version 三位数，大版本号+分支版本号+小版本号</li>
+<li>packaging 打包类型，默认是jar</li>
+<li>name 项目描述名</li>
+<li>url 项目地址</li>
+<li>description 项目的描述</li>
+<li>developers 开发者列表</li>
+<li>licenses 许可号</li>
+<li>organization 组织信息</li>
+<li><p>dependencies 依赖信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;type&gt;&lt;/type&gt;</div><div class="line">    &lt;scope&gt;&lt;/scope&gt;  //可用的范围，test,system,runtime等</div><div class="line">    &lt;optional&gt;&lt;/optional&gt; //设置依赖是否可选</div><div class="line">    &lt;exclusions&gt; //排除依赖传递列表</div><div class="line">        &lt;exclusion&gt;</div><div class="line">        &lt;/exclusion&gt;</div><div class="line">    &lt;/exclusions&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>dependencyManagement 依赖管理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpendency&gt;</div><div class="line">        &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;/denpendency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>build 插件列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;plugins&gt;</div><div class="line">    &lt;plugin&gt;</div><div class="line">        &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;/plugin&gt;</div><div class="line">&lt;/plugins&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>parent 子模块中对父模块pom的继承</p>
+</li>
+<li>modules 聚合运行多个模块</li>
+</ul>
+<p>具体的结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">    &lt;project&gt;</div><div class="line"></div><div class="line">    &lt;modelVersion&gt;&lt;/modelVersion&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;packaging&gt;&lt;/packaging&gt;</div><div class="line">    &lt;name&gt;&lt;/name&gt;</div><div class="line">    &lt;url&gt;&lt;/url&gt;</div><div class="line">    &lt;description&gt;&lt;/description&gt;</div><div class="line"></div><div class="line">    &lt;developers&gt;</div><div class="line">        &lt;developer&gt;</div><div class="line">        &lt;/developer&gt;</div><div class="line">    &lt;/developers&gt;</div><div class="line"></div><div class="line">    &lt;licenses&gt;&lt;/licenses&gt;</div><div class="line">    &lt;organization&gt;&lt;/organization&gt;</div><div class="line"></div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;dependency&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">            &lt;type&gt;&lt;/type&gt;</div><div class="line">            &lt;scope&gt;&lt;/scope&gt;</div><div class="line">            &lt;optional&gt;&lt;/optional&gt;</div><div class="line">            &lt;exclusions&gt;</div><div class="line">                &lt;exclusion&gt;</div><div class="line">                &lt;/exclusion&gt;</div><div class="line">            &lt;/exclusions&gt;</div><div class="line">        &lt;/dependency&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line"></div><div class="line">&lt;dependencyManagement&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;denpendency&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">        &lt;/denpendency&gt;</div><div class="line">    &lt;/dependencies&gt;</div><div class="line">&lt;/dependencyManagement&gt;            </div><div class="line"></div><div class="line">&lt;build&gt;</div><div class="line">    &lt;plugins&gt;</div><div class="line">        &lt;plugin&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">        &lt;/plugin&gt;</div><div class="line">    &lt;/plugins&gt;</div><div class="line">&lt;/build&gt;        </div><div class="line"></div><div class="line">&lt;parent&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">&lt;/parent&gt;</div><div class="line">&lt;modules&gt;</div><div class="line">    &lt;module&gt;&lt;/module&gt;</div><div class="line">&lt;/modules&gt;</div><div class="line"></div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
+<h1 id="依赖的范围"><a href="#依赖的范围" class="headerlink" title="依赖的范围"></a>依赖的范围</h1><p>maven中提供了三种classpath：<strong>编译，测试，运行</strong> scope共有六种：</p>
+<ul>
+<li>complie 默认，只在编译测试运行时有效</li>
+<li>provided 编译测试时有效</li>
+<li>runtime 测试和运行时有效</li>
+<li>test 测试时有效</li>
+<li>system 编译和测试时有效，与本机系统相关联</li>
+<li>import 导入的依赖范围，表示从其他的pom中继承过来，只在dependencesManagement中使用</li>
+</ul>
+<h1 id="依赖传递"><a href="#依赖传递" class="headerlink" title="依赖传递"></a>依赖传递</h1><h1 id="依赖冲突"><a href="#依赖冲突" class="headerlink" title="依赖冲突"></a>依赖冲突</h1><ol>
+<li>短路优先</li>
+<li>路径相同，先声明先依赖</li>
+</ol>
+<h1 id="聚合和继承"><a href="#聚合和继承" class="headerlink" title="聚合和继承"></a>聚合和继承</h1><p>聚合：使用modules标签</p>
+<p>继承：使用parent标签</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;h1 id=&quot;多模块项目介绍&quot;&gt;&lt;a href=&quot;#多模块项目介绍&quot; class=&quot;headerlink&quot; title=&quot;多模块项目介绍&quot;&gt;&lt;/a&gt;多模块项目介绍&lt;/h1&gt;&lt;p&gt;Maven中，一个大型项目分为若干个子项目，也就是module。提高重用率。相关的业务逻辑
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="maven" scheme="https://wy08271.github.io/tags/maven/"/>
+    
+      <category term="构建工具" scheme="https://wy08271.github.io/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="学习笔记" scheme="https://wy08271.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="java" scheme="https://wy08271.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记：Tomcat</title>
+    <link href="https://wy08271.github.io/2016/06/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ATomcat/"/>
+    <id>https://wy08271.github.io/2016/06/27/学习笔记：Tomcat/</id>
+    <published>2016-06-26T17:30:34.000Z</published>
+    <updated>2016-12-11T14:45:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="网站转移"><a href="#网站转移" class="headerlink" title="网站转移"></a>网站转移</h1><ul>
+<li><p>第一步是将项目在本地电脑上可以正确跑起来，这是开发环境。</p>
+<p>  了解所用技术栈、构建工具、可能出现的bug，一个比较有用的方式就是看目录。</p>
+</li>
+<li><p>为生产环境做准备，将第一步所用到的技术栈，构建工具、依赖等布置完。</p>
+</li>
+<li>部署</li>
+<li>维护</li>
+</ul>
+<hr>
+<h1 id="Maven创建及安装"><a href="#Maven创建及安装" class="headerlink" title="Maven创建及安装"></a>Maven创建及安装</h1><ol>
+<li>进入Maven官网：<a href="http://maven.apache.org/，进入Download界面点击所需版本的Binary" target="_blank" rel="external">http://maven.apache.org/，进入Download界面点击所需版本的Binary</a> Zip文件下载</li>
+<li>将下载好的zip包移动到”~/java/Maven”目录下，解压缩</li>
+<li>打开终端，输入 <code>$vi .bash_profile</code></li>
+</ol>
+<ul>
+<li><p>输入一下的命令，（M2_HOME的目录地址需要改成自己的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export M2_HOME=/Users/Thoughtworks/Maven/apache-maven-3.3.9</div><div class="line">export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH:.</div></pre></td></tr></table></figure>
+</li>
+<li><p>刷新 <code>$source .bash_profile</code></p>
+</li>
+</ul>
+<ol>
+<li>检查是否安装成功 <code>$mvn -version</code></li>
+</ol>
+<p>ps：终端里输入 <code>$pwd</code> 显示当前目录</p>
+<hr>
+<h1 id="使用Maven构建java项目"><a href="#使用Maven构建java项目" class="headerlink" title="使用Maven构建java项目"></a>使用Maven构建java项目</h1><h2 id="命令行创建"><a href="#命令行创建" class="headerlink" title="命令行创建"></a>命令行创建</h2><ol>
+<li>在终端中创建并进入目录，<code>$mvn archetype:generate</code></li>
+<li>会遇到填写groupId，artifactId，version等，可以自己按照情况填写</li>
+<li>创建成功后可以查看文件夹</li>
+<li>将项目打包 <code>$mvn package</code></li>
+<li>目录里target/下对应生成jar包</li>
+</ol>
+<p>自动生成的目录包括：</p>
+<ul>
+<li>bin/ mvn运行的脚本</li>
+<li>boot/ 类加载器框架</li>
+<li>config/ 配置文件</li>
+<li>lib/ 包括了很多的类库</li>
+</ul>
+<h3 id="intellij创建"><a href="#intellij创建" class="headerlink" title="intellij创建"></a>intellij创建</h3><ol>
+<li>“new project–&gt;maven–&gt;maven-archetype-quickstart的第二个1.1–&gt;next”</li>
+<li>填写groupId，artifactId，version</li>
+<li>添加maven的目录地址，user settings file与local repository的override都打勾，next</li>
+<li>给项目起名字，finish</li>
+<li>将项目打包，右侧点击maven projects–&gt;Lifecycle–&gt;package</li>
+<li>运行生成的项目 <code>$java -cp target/mvndemo-1.0-SNAPSHOT.jar com.sakura.App</code></li>
+</ol>
+<hr>
+<h1 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h1><ol>
+<li>下载 jre-8u65-macosx-x64.dmg 文件</li>
+<li>双击 .dmg 文件以启动它</li>
+<li>双击程序包图标以启动安装向导</li>
+</ol>
+<hr>
+<h1 id="电脑上同时安装两个jdk"><a href="#电脑上同时安装两个jdk" class="headerlink" title="电脑上同时安装两个jdk"></a>电脑上同时安装两个jdk</h1><ol>
+<li>下载jdk地址：<a href="http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html" target="_blank" rel="external">http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html</a></li>
+<li>Mac自带了的JDK6，安装在目录：/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/下</li>
+<li>JDK7，JDK8需要自己到Oracle官网下载安装对应的版本，自己安装的JDK默认路径为：/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk</li>
+</ol>
+<ul>
+<li><p>在$vi .bash_profile</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">export JAVA_6_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home  </div><div class="line">export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0.jdk/Contents/Home  </div><div class="line">export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home  </div><div class="line">export JAVA_HOME=$JAVA_7_HOME</div><div class="line">alias jdk8=&apos;export JAVA_HOME=$JAVA_8_HOME&apos;  </div><div class="line">alias jdk7=&apos;export JAVA_HOME=$JAVA_7_HOME&apos;  </div><div class="line">alias jdk6=&apos;export JAVA_HOME=$JAVA_6_HOME&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>验证是否安装成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$java -version</div><div class="line">$jdk8</div><div class="line">$java -version</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h1><ol>
+<li>从apache官网（<a href="http://tomcat.apache.org/" target="_blank" rel="external">http://tomcat.apache.org/</a> ）上下载最新的tomcat二进制包（注：是mac版本的.gz文件包）</li>
+<li>将上述二进制包解压后改名为Tomcat，并复制到/Library目录下</li>
+<li>修改权限，打开终端，输入 <code>$sudo chmod 755 /Library/Tomcat</code></li>
+<li>转移到/Library/Tomcat/bin目录下：在终端输入命令：<code>$sudo ./startup.sh start</code>命令启动tomcat；在终端输入命令：<code>$sudo ./shutdown.sh stop</code>命令关闭tomcat</li>
+<li>验证tomcat是否安装成功，启动tomcat后，打开<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a>查看是否Tomcat已经启动</li>
+<li>（ps：电脑的/Library目录下装了Tomcat6、Tomcat7、Tomcat8、Tomcat9，端口分别是3006、3007、3008、3009）</li>
+</ol>
+<h2 id="修改端口号和登录账号密码"><a href="#修改端口号和登录账号密码" class="headerlink" title="修改端口号和登录账号密码"></a>修改端口号和登录账号密码</h2><p>   配置管理员用户名和密码，需要修改tomcat安装文件下的conf中的tomcat-user.xml文件。用户名 admin 密码admin。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">   &lt;role rolename=&quot;manager-gui&quot;/&gt;</div><div class="line">&lt;user username=&quot;tomcat&quot; password=&quot;s3cret&quot; roles=&quot;manager-gui&quot;/&gt;</div></pre></td></tr></table></figure>
+<p>   配置端口号，需要修改tomcat安装文件下的conf中的server.xml文件。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;网站转移&quot;&gt;&lt;a href=&quot;#网站转移&quot; class=&quot;headerlink&quot; title=&quot;网站转移&quot;&gt;&lt;/a&gt;网站转移&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;第一步是将项目在本地电脑上可以正确跑起来，这是开发环境。&lt;/p&gt;
+&lt;p&gt;  了解所用技术栈、构建工具、可能
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="学习笔记" scheme="https://wy08271.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="java" scheme="https://wy08271.github.io/tags/java/"/>
+    
+      <category term="tomcat" scheme="https://wy08271.github.io/tags/tomcat/"/>
+    
+      <category term="环境" scheme="https://wy08271.github.io/tags/%E7%8E%AF%E5%A2%83/"/>
     
   </entry>
   

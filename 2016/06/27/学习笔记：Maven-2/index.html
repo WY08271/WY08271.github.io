@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>学习笔记：Maven-2 | Sakura</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Sakura">
+    <meta name="author" content="Sakura">
+    <meta name="description" content="Sakura's website" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Sakura" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+  <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+    <img src="/img/close.png" alt="Close" />
+  </div>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu">
+    <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+    <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+    <li><a href="/booklist" class="animsition-link" title="archive">booklist</a></li>
+    <!-- Dropdown Menu -->
+
+    
+      <li>
+        <a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+        <ul class="sb-submenu">
+          
+            <li>
+              <a href="/categories/English/" class="animsition-link">
+                English<small>(1)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/node/" class="animsition-link">
+                node<small>(2)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/note/" class="animsition-link">
+                note<small>(9)</small></a>
+            </li>
+            
+            <li>
+              <a href="/categories/summary/" class="animsition-link">
+                summary<small>(4)</small></a>
+            </li>
+            
+        </ul>
+      </li>
+      
+
+        
+          <li>
+            <a class="sb-toggle-submenu">Tags<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+              
+                <li>
+                  <a href="/tags/Baseline/" class="animsition-link">
+                    Baseline<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Devops/" class="animsition-link">
+                    Devops<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/ES6/" class="animsition-link">
+                    ES6<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Git/" class="animsition-link">
+                    Git<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/IntelliJ-IDEA/" class="animsition-link">
+                    IntelliJ IDEA<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Migrate/" class="animsition-link">
+                    Migrate<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nginx/" class="animsition-link">
+                    Nginx<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Nodejs/" class="animsition-link">
+                    Nodejs<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/PostgreSQL/" class="animsition-link">
+                    PostgreSQL<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Restful/" class="animsition-link">
+                    Restful<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/Sequelize/" class="animsition-link">
+                    Sequelize<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/api/" class="animsition-link">
+                    api<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/english/" class="animsition-link">
+                    english<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/flyway/" class="animsition-link">
+                    flyway<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/http/" class="animsition-link">
+                    http<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/java/" class="animsition-link">
+                    java<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/markdown/" class="animsition-link">
+                    markdown<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/maven/" class="animsition-link">
+                    maven<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/shell/" class="animsition-link">
+                    shell<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/tomcat/" class="animsition-link">
+                    tomcat<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/学习笔记/" class="animsition-link">
+                    学习笔记<small>(3)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/导入导出/" class="animsition-link">
+                    导入导出<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/插件/" class="animsition-link">
+                    插件<small>(1)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/构建工具/" class="animsition-link">
+                    构建工具<small>(2)</small></a>
+                </li>
+                
+                <li>
+                  <a href="/tags/环境/" class="animsition-link">
+                    环境<small>(1)</small></a>
+                </li>
+                
+            </ul>
+          </li>
+          
+
+
+            
+              <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                  
+                    <li>
+                      <a href="http://space.bilibili.com/32668823" class="animsition-link">
+                        BiliBili
+                      </a>
+                    </li>
+                    
+                </ul>
+              </li>
+              
+  </ul>
+  <!-- Lists in Slidebars -->
+  <ul class="sb-menu secondary">
+    <li><a href="/about" class="animsition-link" title="about">About Me</a></li>
+  </ul>
+
+  <div class="tag-cloue">
+    
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+        <h3 class="widget-title">tagcloud</h3>
+        <div id="myCanvasContainer" class="widget tagcloud">
+          <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <a href="/tags/Baseline/" style="font-size: 10px;">Baseline</a> <a href="/tags/Devops/" style="font-size: 10px;">Devops</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 10px;">IntelliJ IDEA</a> <a href="/tags/Migrate/" style="font-size: 10px;">Migrate</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Sequelize/" style="font-size: 10px;">Sequelize</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/flyway/" style="font-size: 15px;">flyway</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/导入导出/" style="font-size: 10px;">导入导出</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/构建工具/" style="font-size: 15px;">构建工具</a> <a href="/tags/环境/" style="font-size: 10px;">环境</a>
+          </canvas>
+        </div>
+      </div>
+      
+  </div>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+  <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <div id="navigation" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- Nav logo -->
+        <div class="logo">
+          <a href="/" title="Logo" class="animsition-link">
+             <img src="/img/logo.png" alt="Logo" width="35px;" />
+              
+          </a>
+        </div>
+        <!-- // Nav logo -->
+        <!-- Info-bar -->
+        <nav>
+          <ul class="nav">
+            <li>
+              <a href="/" class="animsition-link">
+                Sakura
+              </a>
+            </li>
+            <li class="nolink"><span>Write the code, </span>Change the world.</li>
+            
+              <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+              
+                
+                  <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                  
+                    
+                      <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                      
+                        
+                          <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                          
+                            <li class="nolink"><span>Welcome!</span></li>
+          </ul>
+        </nav>
+        <!--// Info-bar -->
+      </div>
+      <!-- // .container -->
+      <div class="learnmore sb-toggle-right">More</div>
+      <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar before"></span>
+        <span class="icon-bar main"></span>
+        <span class="icon-bar after"></span>
+      </button>
+    </div>
+    <!-- // .navbar-inner -->
+  </div>
+
+  <!-- ============================ Header & Logo bar =========================== -->
+
+  <!-- ============================ Hero Image =========================== -->
+
+  <section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+          <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+            <div>
+              
+                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                <p>
+                  
+                </p>
+                
+                <h2></h2>
+                <p>
+                  每一个不曾起舞的日子都是对生命的辜负。
+                </p>
+                
+
+            </div>
+          </div>
+        </div>
+        <!-- // .col-md-12 -->
+      </div>
+      <div class="herofade beige-dk"></div>
+    </div>
+  </section>
+
+  <!-- Height spacing helper -->
+  <div class="heightblock"></div>
+  <!-- // End height spacing helper -->
+
+  <!-- ============================ END Hero Image =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-06-26T18:31:34.000Z" itemprop="datePublished">
+          2016-06-27
+      </time>
+    
+    
+    | 
+    <a href='/tags/maven/'>maven</a>,
+    
+    <a href='/tags/构建工具/'>构建工具</a>,
+    
+    <a href='/tags/学习笔记/'>学习笔记</a>,
+    
+    <a href='/tags/java/'>java</a>
+    
+    
+</span>
+                <h1>学习笔记：Maven-2</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<hr>
+<h1 id="多模块项目介绍"><a href="#多模块项目介绍" class="headerlink" title="多模块项目介绍"></a>多模块项目介绍</h1><p>Maven中，一个大型项目分为若干个子项目，也就是module。提高重用率。相关的业务逻辑放在一个模块中进行集中管理，体现了单一原则。</p>
+<hr>
+<h1 id="创建骨架结构"><a href="#创建骨架结构" class="headerlink" title="创建骨架结构"></a>创建骨架结构</h1><ol>
+<li>进入helloweb根目录，新建四个文件夹，分别是：/helloweb-core，/helloweb-parent，/helloweb-web，/helloweb-entity</li>
+<li>将根目录下的/src与pom.xml分别复制到新创建的四个文件夹，根目录删掉/src</li>
+<li><p>修改根目录下的pom.xml，删除<name>后的所有标签</name></p>
+<ul>
+<li><code>&lt;modelVersion&gt;</code>用来说明当前的pom文件遵循的是哪个model版本</li>
+<li><code>&lt;packaging&gt;</code>是打包的类型：jar普通的java类库（默认类型）；war普通的javaweb应用程序；ear包含全部企业应用程序，包括jar，war；pom不打包成任何文件，代表副项目</li>
+</ul>
+</li>
+<li><p>添加以下内容，用来添加模块列表，<module>里面填写文件的相对路径</module></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;modules&gt;</div><div class="line">    &lt;module&gt;helloweb-parent&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-entity&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-web&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-core&lt;/module&gt;</div><div class="line">&lt;/modules&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在四个文件夹下的pom.xml的<modelversion>下面添加以下代码：</modelversion></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;parent&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;relationPath&gt;&lt;/relationPath&gt;</div><div class="line">&lt;/parent&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>删除四个文件pom.xml的冗余配置信息，从<name>下的标签开始，helloweb-web从<build>开始删除</build></name></p>
+<hr>
+<h1 id="使用dependencyManagement管理依赖"><a href="#使用dependencyManagement管理依赖" class="headerlink" title="使用dependencyManagement管理依赖"></a>使用dependencyManagement管理依赖</h1><p>Maven使用dependencyManagement元素来定义一种管理依赖版本号的方法。</p>
+<ol>
+<li><p>在helloweb-parent的pom.xml中，添加以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;dependencyManagement&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;3.0.1&lt;/version&gt;</div><div class="line">            &lt;scope&gt;provided&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;2.1&lt;/version&gt;</div><div class="line">            &lt;scope&gt;provided&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;4.11&lt;/version&gt;</div><div class="line">            &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;5.1.21&lt;/version&gt;</div><div class="line">            &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line">    &lt;/dependencies&gt;</div><div class="line">&lt;/dependencyManagement&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>构建项目，<code>$maven install</code>    ，成功后不需要再子项目中添加具体依赖的版本号</p>
+</li>
+<li><p>例如在helloweb-entity的pom.xml中加上以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpency&gt;</div><div class="line">        &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">        &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">    &lt;/denpency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>构建成功即可说明，在父项目中添加dependencyManagement了就可以在子项目中省略版本号        </p>
+</li>
+</ol>
+<h1 id="使用PluginManagement管理插件"><a href="#使用PluginManagement管理插件" class="headerlink" title="使用PluginManagement管理插件"></a>使用PluginManagement管理插件</h1><p>PluginManagement作用：Maven使用PluginManagement元素来提供了一种管理插件的方式。</p>
+<ol>
+<li><p>进入helloweb-parent文件夹下的pom.xml，添加以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;</div><div class="line">    &lt;pluginManagement&gt;</div><div class="line">        &lt;plugins&gt;</div><div class="line">            &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.3.2&lt;/version&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;source&gt;1.7&lt;/source&gt;</div><div class="line">                    &lt;target&gt;1.7&lt;/source&gt;</div><div class="line">                    &lt;encoding&gt;UTF-8&lt;encouding&gt;</div><div class="line">                &lt;/configuration&gt;                    &lt;/plugin&gt;</div><div class="line"></div><div class="line">        &lt;plugin&gt;</div><div class="line">            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.6&lt;/version&gt;</div><div class="line">        &lt;/plugin&gt;</div><div class="line">        &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.4&lt;/version&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;warName&gt;$&#123;priject.artifactId&#125;&lt;/warName&gt;</div><div class="line">                &lt;/configuration&gt;                    &lt;/plugin&gt;</div><div class="line">        &lt;/plugins&gt;</div><div class="line">    &lt;/pluginManagement&gt;</div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>进入helloweb-entity文件夹下的pom.xml的<plugin>已经进行了相应的改变</plugin></p>
+</li>
+</ol>
+<h1 id="定义项目属性及配置信息"><a href="#定义项目属性及配置信息" class="headerlink" title="定义项目属性及配置信息"></a>定义项目属性及配置信息</h1><ol>
+<li><p>打开helloweb-parent文件夹下的pom.xml文件，在<name>标签下添加以下的代码：</name></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;properties&gt;</div><div class="line">    &lt;jdk.version&gt;1.7&lt;/jdk.version&gt;</div><div class="line">    &lt;servlet.api.version&gt;3.0.1&lt;/servlet.api.version&gt;</div><div class="line">    &lt;jsp.api.version&gt;2.1&lt;/jsp.api.version&gt;</div><div class="line">    &lt;junit.version&gt;4.11&lt;/junit.version&gt;</div><div class="line">    &lt;mysql.version&gt;5.1.21&lt;/mysql.version&gt;</div><div class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</div><div class="line">&lt;/properties&gt;</div><div class="line"></div><div class="line">//ps:&lt;properties&gt;功能是定义一些常量，可以在pom.xml的其他地方进行引用</div></pre></td></tr></table></figure>
+</li>
+<li><p>替换常量时候的格式<code>${jdk.version}</code></p>
+</li>
+<li>重新构建<code>$maven install</code>，若正确则说明修改成功</li>
+</ol>
+<ul>
+<li>description 项目表示信息</li>
+<li>url 项目的地址</li>
+<li>inceptionYear 项目起止年份</li>
+<li>其他</li>
+</ul>
+<hr>
+<h1 id="完善helloweb-entity模块"><a href="#完善helloweb-entity模块" class="headerlink" title="完善helloweb-entity模块"></a>完善helloweb-entity模块</h1><ol>
+<li>启动MySQL，新建数据库<code>maven_db</code></li>
+<li>在新建的数据库上点击右键，将其设置为默认的”scheme”</li>
+<li><p>新建表，语句成功后点击”闪电”图标，刷新scheme</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">create table users(</div><div class="line">id int(11) unsigned not null auto_increment,</div><div class="line">name varchar(50) not null,</div><div class="line">password varchar(50) not null,</div><div class="line">email varchar(50),</div><div class="line">primary key(id) engine = InnoDB default charset=utf8</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+<li><p>插入一条数据，填写完成后选中这条sql语句，点击闪电图标，显示插入成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into user(name,password,email)values(&apos;Tom&apos;,&apos;123456&apos;,&apos;tom@163.com&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>在helloweb-entity的src/中建立User.java文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class User&#123;</div><div class="line">    private long id;</div><div class="line">    private String name;</div><div class="line">    private String password;</div><div class="line">    private String email;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Override</div><div class="line">public String toString()&#123;</div><div class="line">    return &quot;User [id=&quot;+ id +&quot;,name=&quot; + name + &quot;,password=&quot; +  password+ &quot;,email=&quot;   + email + &quot;]&quot;;</div><div class="line">&#125;</div><div class="line">//自动生成get，set方法</div></pre></td></tr></table></figure>
+</li>
+<li><p>打包，run as <code>$maven install</code></p>
+</li>
+</ol>
+<hr>
+<h1 id="完善helloweb-core模块"><a href="#完善helloweb-core模块" class="headerlink" title="完善helloweb-core模块"></a>完善helloweb-core模块</h1><ol>
+<li>在helloweb-code的src/main中建立resources/文件夹，设置其为Source Folder</li>
+<li>在其下建立一个新文件dbconfig.properties</li>
+<li><p>在属性文件里添加数据库的配置信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//驱动名称</div><div class="line">driver=com.mysql.jdbc.Driver</div><div class="line">//jdbc链接地址</div><div class="line">dburl=jdbc:mysql://localhost:3306/maven_db</div><div class="line">//用户名</div><div class="line">user=root</div><div class="line">//密码为空</div><div class="line">password</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建一个java/util文件夹，其下新建ConnectionFactory.java文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">package com.XXX.util;</div><div class="line">public class ConnectionFactory&#123;</div><div class="line">    private static String driver;</div><div class="line">    private static String dburl;</div><div class="line">    private static String user;</div><div class="line">    private static String password;</div><div class="line"></div><div class="line">    private static final ConnectionFactory factory = new ConnectionFactory();</div><div class="line">    private Connection conn;</div><div class="line">    static&#123;</div><div class="line">        Properties prop = new Properties();</div><div class="line">        try&#123;</div><div class="line">            InputStream in = ConnectionFactory class getClassLoader().getResourceAsStream(&quot;dbconfig.properties&quot;);</div><div class="line">            prop.load(in);</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            //TODO</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        driver = prop.getProperty(&quot;driver&quot;);</div><div class="line">        dburl=prop.getProperty(&quot;dburl&quot;);</div><div class="line">        user=prop.getProperty(&quot;user&quot;);</div><div class="line">        password=prop.getProperty(&quot;password&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private ConnectionFactory()&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static ConnectionFactory getInstance()&#123;</div><div class="line">        return factory;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Connection makeConnection()&#123;</div><div class="line">        try&#123;</div><div class="line">            Class forName(driver)</div><div class="line">            conn = DriverManager.getConnection(dburl,user,password);</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return conn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在helloweb-code的pom.xml文件中添加MySQL驱动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</div><div class="line">            &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>与util同级建立dao和service文件夹，dao文件夹下建立impl文件夹和UserDao.java，service文件夹下建立CheckUserService.java；</p>
+</li>
+<li><p>添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.sakura&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;helloweb-entity&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;1.0&lt;/version&gt;</div><div class="line">    &lt;type&gt;jar&lt;/type&gt;</div><div class="line">    &lt;scope&gt;complie&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>打包项目，<code>$mvn install</code></p>
+</li>
+</ol>
+<hr>
+<h1 id="完善helloweb-web模块"><a href="#完善helloweb-web模块" class="headerlink" title="完善helloweb-web模块"></a>完善helloweb-web模块</h1><ol>
+<li><p>在helloweb-web的main/下建立<code>action</code>包，再建立<code>CheckAction.java</code>，引入<code>HttpServlet</code>，引入<code>doGet</code>和<code>doPost</code>方法，并在其中补充完整业务逻辑代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">private CheckUserService cku = new CheckUserService();</div><div class="line"></div><div class="line">@Override</div><div class="line">protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOExceotion&#123;</div><div class="line">    doPost(req, resp);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Override</div><div class="line">protected void doPost(HttpservletRequest req, HttpServletResopnse resp)throws SerletException, IOException&#123;</div><div class="line">    String uname = req.getParameter(&quot;uname&quot;);</div><div class="line">    String password = req.getParameter(&quot;upwd&quot;);</div><div class="line"></div><div class="line">    RequestDispatcher rd = null;</div><div class="line">    String forward = null;</div><div class="line"></div><div class="line">    if(uname == null || password == null)&#123;</div><div class="line">    req.setAttribute(&quot;msg&quot;,&quot;error!&quot;);</div><div class="line">    rd = req.getRequestDispatcher(&quot;error.jsp&quot;);</div><div class="line">    rd.forward(req,resp);</div><div class="line">    &#125;else&#123;</div><div class="line">        User user = new User();</div><div class="line">        user.setName(uname);</div><div class="line">        user.setPassword(password);</div><div class="line">        boolean bool = cku check(user);</div><div class="line"></div><div class="line">        if(bool)&#123;</div><div class="line">            forward = &quot;success.jsp&quot;;</div><div class="line">        &#125;else&#123;</div><div class="line">            req.setAttribute(&quot;msg&quot;,&quot;error&quot;);</div><div class="line">            forward = &quot;error.jsp&quot;;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        rd = req.getRequestDispatcher(forward);</div><div class="line">        rd.forward(req,resp);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.XXX&lt;groupId&gt;</div><div class="line">    &lt;artifactId&gt;helloweb-core&lt;artifactId&gt;</div><div class="line">    &lt;version&gt;1.0&lt;version&gt;</div><div class="line">    &lt;type&gt;jar&lt;type&gt;</div><div class="line">    &lt;scope&gt;compile&lt;scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在webapp文件夹下写入<code>error.jsp,index.jsp,login.jsp,success.jsp</code></p>
+</li>
+<li>在webapp/WEB-INF下写入<code>web.xml</code></li>
+<li>使用Tomcat启动</li>
+</ol>
+<hr>
+<h1 id="使用log4j打印日志"><a href="#使用log4j打印日志" class="headerlink" title="使用log4j打印日志"></a>使用log4j打印日志</h1><ol>
+<li><p>打开helloweb-parent的pom.xml，添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-api&lt;/            artifactId&gt;</div><div class="line">    &lt;version&gt;2.2&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-core&lt;/            artifactId&gt;</div><div class="line">    &lt;version&gt;2.2&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>打开helloweb-entity的pom.xml，添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-api&lt;/            artifactId&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-core&lt;/            artifactId&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>构建helloweb-parent模块，在构建helloweb-entity.<code>$mvn install</code></p>
+</li>
+<li>在helloweb-entity的main/建立与java同级的resources文件夹</li>
+<li>在新建的文件夹中建立log4j2.xml文件</li>
+<li><p>添加内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;configuration status=&quot;OFF&quot;&gt;</div><div class="line">&lt;appenders&gt;</div><div class="line">&lt;Console name=&quot;Console&quot; target=&quot;SYSTEM_OUT&quot;&gt;</div><div class="line">    &lt;PatternLayout pattern=&quot;%d&#123;HH:mm:ss.SSS&#125; [%t] %-5level %logger&#123;36&#125; - %msg%n&quot;/&gt;</div><div class="line">&lt;/Console&gt;</div><div class="line">&lt;/appenders&gt;</div><div class="line">&lt;loggers&gt;</div><div class="line">&lt;root level=&quot;trace&quot;&gt;</div><div class="line">    &lt;appender-ref ref=&quot;Console&quot;/&gt;</div><div class="line">&lt;/root&gt;</div><div class="line">&lt;/loggers&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="POM-xml的配置信息"><a href="#POM-xml的配置信息" class="headerlink" title="POM.xml的配置信息"></a>POM.xml的配置信息</h1><ul>
+<li>project 包含了pom的信息</li>
+<li>modelVersion 指定当前pom版本</li>
+<li>groupId 包名，反写的公司网址+项目名</li>
+<li>artifactId 模块名，项目名+模块名</li>
+<li>version 三位数，大版本号+分支版本号+小版本号</li>
+<li>packaging 打包类型，默认是jar</li>
+<li>name 项目描述名</li>
+<li>url 项目地址</li>
+<li>description 项目的描述</li>
+<li>developers 开发者列表</li>
+<li>licenses 许可号</li>
+<li>organization 组织信息</li>
+<li><p>dependencies 依赖信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;type&gt;&lt;/type&gt;</div><div class="line">    &lt;scope&gt;&lt;/scope&gt;  //可用的范围，test,system,runtime等</div><div class="line">    &lt;optional&gt;&lt;/optional&gt; //设置依赖是否可选</div><div class="line">    &lt;exclusions&gt; //排除依赖传递列表</div><div class="line">        &lt;exclusion&gt;</div><div class="line">        &lt;/exclusion&gt;</div><div class="line">    &lt;/exclusions&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>dependencyManagement 依赖管理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpendency&gt;</div><div class="line">        &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;/denpendency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>build 插件列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;plugins&gt;</div><div class="line">    &lt;plugin&gt;</div><div class="line">        &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;/plugin&gt;</div><div class="line">&lt;/plugins&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>parent 子模块中对父模块pom的继承</p>
+</li>
+<li>modules 聚合运行多个模块</li>
+</ul>
+<p>具体的结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">    &lt;project&gt;</div><div class="line"></div><div class="line">    &lt;modelVersion&gt;&lt;/modelVersion&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;packaging&gt;&lt;/packaging&gt;</div><div class="line">    &lt;name&gt;&lt;/name&gt;</div><div class="line">    &lt;url&gt;&lt;/url&gt;</div><div class="line">    &lt;description&gt;&lt;/description&gt;</div><div class="line"></div><div class="line">    &lt;developers&gt;</div><div class="line">        &lt;developer&gt;</div><div class="line">        &lt;/developer&gt;</div><div class="line">    &lt;/developers&gt;</div><div class="line"></div><div class="line">    &lt;licenses&gt;&lt;/licenses&gt;</div><div class="line">    &lt;organization&gt;&lt;/organization&gt;</div><div class="line"></div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;dependency&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">            &lt;type&gt;&lt;/type&gt;</div><div class="line">            &lt;scope&gt;&lt;/scope&gt;</div><div class="line">            &lt;optional&gt;&lt;/optional&gt;</div><div class="line">            &lt;exclusions&gt;</div><div class="line">                &lt;exclusion&gt;</div><div class="line">                &lt;/exclusion&gt;</div><div class="line">            &lt;/exclusions&gt;</div><div class="line">        &lt;/dependency&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line"></div><div class="line">&lt;dependencyManagement&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;denpendency&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">        &lt;/denpendency&gt;</div><div class="line">    &lt;/dependencies&gt;</div><div class="line">&lt;/dependencyManagement&gt;            </div><div class="line"></div><div class="line">&lt;build&gt;</div><div class="line">    &lt;plugins&gt;</div><div class="line">        &lt;plugin&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">        &lt;/plugin&gt;</div><div class="line">    &lt;/plugins&gt;</div><div class="line">&lt;/build&gt;        </div><div class="line"></div><div class="line">&lt;parent&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">&lt;/parent&gt;</div><div class="line">&lt;modules&gt;</div><div class="line">    &lt;module&gt;&lt;/module&gt;</div><div class="line">&lt;/modules&gt;</div><div class="line"></div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
+<h1 id="依赖的范围"><a href="#依赖的范围" class="headerlink" title="依赖的范围"></a>依赖的范围</h1><p>maven中提供了三种classpath：<strong>编译，测试，运行</strong> scope共有六种：</p>
+<ul>
+<li>complie 默认，只在编译测试运行时有效</li>
+<li>provided 编译测试时有效</li>
+<li>runtime 测试和运行时有效</li>
+<li>test 测试时有效</li>
+<li>system 编译和测试时有效，与本机系统相关联</li>
+<li>import 导入的依赖范围，表示从其他的pom中继承过来，只在dependencesManagement中使用</li>
+</ul>
+<h1 id="依赖传递"><a href="#依赖传递" class="headerlink" title="依赖传递"></a>依赖传递</h1><h1 id="依赖冲突"><a href="#依赖冲突" class="headerlink" title="依赖冲突"></a>依赖冲突</h1><ol>
+<li>短路优先</li>
+<li>路径相同，先声明先依赖</li>
+</ol>
+<h1 id="聚合和继承"><a href="#聚合和继承" class="headerlink" title="聚合和继承"></a>聚合和继承</h1><p>聚合：使用modules标签</p>
+<p>继承：使用parent标签</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/06/27/学习笔记：PostgreSQL/" style="float: left;">
+        ← 学习笔记：PostgreSQL
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/06/27/学习笔记：Tomcat/">
+        学习笔记：Tomcat →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo"></div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By Sakura. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/WY08271" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/Sakura999_" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/profile.php?id=100012662670947" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+
+    var duoshuoQuery = {short_name:"你的shortname"};
+        (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = 'http://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+
+</body>
+</html>

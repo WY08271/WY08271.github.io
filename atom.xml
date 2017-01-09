@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wy08271.github.io/"/>
-  <updated>2016-12-11T14:43:13.000Z</updated>
+  <updated>2017-01-09T04:50:54.000Z</updated>
   <id>https://wy08271.github.io/</id>
   
   <author>
@@ -14,6 +14,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>总结：Rails发送邮件</title>
+    <link href="https://wy08271.github.io/2017/01/09/%E6%80%BB%E7%BB%93%EF%BC%9Arails%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/"/>
+    <id>https://wy08271.github.io/2017/01/09/总结：rails发送邮件/</id>
+    <published>2017-01-09T01:23:15.000Z</published>
+    <updated>2017-01-09T04:50:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Rails中实现发送邮件的三种方式"><a href="#Rails中实现发送邮件的三种方式" class="headerlink" title="Rails中实现发送邮件的三种方式"></a>Rails中实现发送邮件的三种方式</h2><h4 id="1-Transactional-Email"><a href="#1-Transactional-Email" class="headerlink" title="1. Transactional Email"></a><strong>1. Transactional Email</strong></h4><p>从应用中发出的邮件，用户的行为触发的邮件，比如邀请注册、验证邮箱、修改密码、回复提醒等。这时候需要有一个邮件服务商”email service provider”，来提供SMTP转发服务。</p>
+<p>需要专业的邮件服务商来避免你发送的邮件被作为垃圾邮件过滤掉、提升邮件送达稳定性、追踪邮件送达状况。</p>
+<p>大多数邮件服务商都支持每天免费发200封邮件：<a href="http://mandrill.com/" target="_blank" rel="external">Mandrill by MailChimp</a>、<a href="https://sendgrid.com/pricing/" target="_blank" rel="external">SendGrid</a>、<a href="http://www.mailgun.com/pricing" target="_blank" rel="external">Mailgun</a>、<a href="https://aws.amazon.com/ses/pricing/" target="_blank" rel="external">Amazon Simple Email Service</a>、<a href="http://elasticemail.com/pricing/" target="_blank" rel="external">Elastic Email</a>、<a href="http://www.critsend.com/pricing/" target="_blank" rel="external">CritSend</a>、<a href="https://www.mailjet.com/pricing_v3" target="_blank" rel="external">Mailjet</a>、<a href="http://messagegears.com/" target="_blank" rel="external">MessageGears</a>、<a href="https://www.serversmtp.com/en/cart.php?systpl=turbo-smtp&amp;systpl=turbo-smtp&amp;currency=3" target="_blank" rel="external">turboSMTP</a>、<a href="https://secure.postageapp.com/register" target="_blank" rel="external">PostageApp</a>、<a href="https://postmarkapp.com/pricing" target="_blank" rel="external">Postmark</a>。</p>
+<p>使用Transactional Email，需要同时配置应用和邮件服务商才能生效。</p>
+<ul>
+<li><p><strong>配置Devise</strong><br>假如你有使用Devise的confirmable模块来发验证邮件，修改下面的文件，填写你的发件人邮件地址：<code>config/initializers/devise.rb</code></p>
+<pre><code>config.mailer_sender ＝ &quot;sender@yourwebsite.com&quot;
+</code></pre></li>
+<li><p><strong>配置ActionMailer</strong><br>修改production环境里面的文件，填入如下代码，注意把default_url改成你自己的网站：<code>config/environments/production.rb</code></p>
+<pre><code>config.action_mailer.default_url_options = { :host =&gt; &apos;yourwebsite.com&apos; }
+# ActionMailer Config
+# Setup for production - deliveries, no errors raised
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = false
+config.action_mailer.default :charset =&gt; &quot;utf-8&quot;
+</code></pre></li>
+</ul>
+<p>修改下面的文件，填写你的发件人邮件地址：<code>app/mailers/application_mailer.rb</code></p>
+<pre><code>class ApplicationMailer &lt; ActionMailer::Base
+default from: &quot;sender@yourwebsite.com&quot;
+layout &quot;mailer&quot;
+end
+</code></pre><ul>
+<li><p><strong>配置邮件服务商</strong><br>实现SMTP转发功能。修改production环境里面的文件，先创建Gmail帐号和密码：<code>config/environments/production.rb</code></p>
+<pre><code>config.action_mailer.smtp_settings = {
+  address: &quot;smtp.gmail.com&quot;,
+  port: 587,
+  domain: &quot;example.com&quot;,
+  authentication: &quot;plain&quot;,
+  enable_starttls_auto: true,
+  user_name: ENV[&quot;GMAIL_USERNAME&quot;],
+  password: ENV[&quot;GMAIL_PASSWORD&quot;]
+}
+
+config.action_mailer.smtp_settings = {
+  address: &quot;smtp.sendgrid.net&quot;,
+  port: 25,
+  domain: &quot;heroku.com&quot;,
+  authentication: &quot;plain&quot;,
+  enable_starttls_auto: true,
+  user_name: ENV[&quot;SENDGRID_USERNAME&quot;],
+  password: ENV[&quot;SENDGRID_PASSWORD&quot;]
+}
+
+config.action_mailer.smtp_settings = {
+  :address   =&gt; &quot;smtp.mandrillapp.com&quot;,
+  :port      =&gt; 25,
+  :user_name =&gt; ENV[&quot;MANDRILL_USERNAME&quot;],
+  :password  =&gt; ENV[&quot;MANDRILL_API_KEY&quot;]
+}
+</code></pre></li>
+</ul>
+<h4 id="2-Mailing-list"><a href="#2-Mailing-list" class="headerlink" title="2. Mailing list"></a><strong>2. Mailing list</strong></h4><p>对所有列表用户发送的新闻或通知等。上面提到的SMTP转发服务比如SendGrid通常只提供基本的转发服务，这时候需要更加专业的邮件服务来实现群发功能、管理未订阅者、管理不同的邮件模版等。</p>
+<p>群发邮件，可以选择以下邮件服务商：<a href="https://mailchimp.com/pricing/" target="_blank" rel="external">MailChimp</a>、<a href="https://madmimi.com/service_agreements/choose_plan" target="_blank" rel="external">MadMimi</a>、<a href="https://www.constantcontact.com/pricing" target="_blank" rel="external">CampaignMonitor</a>、<a href="https://www.constantcontact.com/pricing" target="_blank" rel="external">Constant Contact</a>、<a href="https://www.ymlp.com/pricing.html" target="_blank" rel="external">YMLP</a>、<a href="https://jangomail.com/pricing.asp" target="_blank" rel="external">JangoMail</a>、<a href="https://www.icontact.com/pricing" target="_blank" rel="external">iContact</a>、<a href="http://www.verticalresponse.com/pricing-plans" target="_blank" rel="external">VerticalResponse</a>。</p>
+<h4 id="3-Company-Email"><a href="#3-Company-Email" class="headerlink" title="3. Company Email"></a><strong>3. Company Email</strong></h4><p>用你的公司邮箱给供应商、客户、同事等发邮件，可以用Gmail解决掉这个问题，设置Gmail代收公司邮箱，然后用Gmail回复时，再选择从不同地址发送邮件。当然你也可以选择更专业版的<a href="https://gsuite.google.com" target="_blank" rel="external">Google Apps for Business</a>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Rails中实现发送邮件的三种方式&quot;&gt;&lt;a href=&quot;#Rails中实现发送邮件的三种方式&quot; class=&quot;headerlink&quot; title=&quot;Rails中实现发送邮件的三种方式&quot;&gt;&lt;/a&gt;Rails中实现发送邮件的三种方式&lt;/h2&gt;&lt;h4 id=&quot;1-Tra
+    
+    </summary>
+    
+      <category term="summary" scheme="https://wy08271.github.io/categories/summary/"/>
+    
+    
+      <category term="rails" scheme="https://wy08271.github.io/tags/rails/"/>
+    
+  </entry>
   
   <entry>
     <title>学习笔记：Git</title>
@@ -214,7 +292,7 @@ SQL: select a.a, a.b, a.c, b.c, b.d, b.f from a LEFT OUT JOIN b ON a.a = b.c</co
     <link href="https://wy08271.github.io/2016/10/21/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMySQL-2/"/>
     <id>https://wy08271.github.io/2016/10/21/学习笔记：MySQL-2/</id>
     <published>2016-10-21T00:28:56.000Z</published>
-    <updated>2016-12-11T15:06:59.000Z</updated>
+    <updated>2016-12-11T15:40:15.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="三、事务与存储过程"><a href="#三、事务与存储过程" class="headerlink" title="三、事务与存储过程"></a><strong>三、事务与存储过程</strong></h3><p>事务的概念，会开启、提交和回滚事务<br>事务的四种隔离级别<br>创建存储过程<br>调用、查看、修改和删除存储过程</p>
 <hr>
@@ -1382,11 +1460,11 @@ end</code></li>
       <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
     
     
+      <category term="学习笔记" scheme="https://wy08271.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
       <category term="maven" scheme="https://wy08271.github.io/tags/maven/"/>
     
       <category term="构建工具" scheme="https://wy08271.github.io/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="学习笔记" scheme="https://wy08271.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
       <category term="java" scheme="https://wy08271.github.io/tags/java/"/>
     

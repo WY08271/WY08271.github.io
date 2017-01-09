@@ -125,7 +125,7 @@
             
             <li>
               <a href="/categories/summary/" class="animsition-link">
-                summary<small>(4)</small></a>
+                summary<small>(5)</small></a>
             </li>
             
         </ul>
@@ -233,6 +233,11 @@
                 </li>
                 
                 <li>
+                  <a href="/tags/rails/" class="animsition-link">
+                    rails<small>(1)</small></a>
+                </li>
+                
+                <li>
                   <a href="/tags/shell/" class="animsition-link">
                     shell<small>(1)</small></a>
                 </li>
@@ -300,7 +305,7 @@
         <h3 class="widget-title">tagcloud</h3>
         <div id="myCanvasContainer" class="widget tagcloud">
           <canvas width="250" height="250" id="resCanvas" style="width=100%">
-            <a href="/tags/Baseline/" style="font-size: 10px;">Baseline</a> <a href="/tags/Devops/" style="font-size: 10px;">Devops</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 10px;">IntelliJ IDEA</a> <a href="/tags/Migrate/" style="font-size: 10px;">Migrate</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Sequelize/" style="font-size: 10px;">Sequelize</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/flyway/" style="font-size: 15px;">flyway</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/导入导出/" style="font-size: 10px;">导入导出</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/构建工具/" style="font-size: 15px;">构建工具</a> <a href="/tags/环境/" style="font-size: 10px;">环境</a>
+            <a href="/tags/Baseline/" style="font-size: 10px;">Baseline</a> <a href="/tags/Devops/" style="font-size: 10px;">Devops</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IntelliJ-IDEA/" style="font-size: 10px;">IntelliJ IDEA</a> <a href="/tags/Migrate/" style="font-size: 10px;">Migrate</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Sequelize/" style="font-size: 10px;">Sequelize</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/english/" style="font-size: 10px;">english</a> <a href="/tags/flyway/" style="font-size: 15px;">flyway</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/rails/" style="font-size: 10px;">rails</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/导入导出/" style="font-size: 10px;">导入导出</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/构建工具/" style="font-size: 15px;">构建工具</a> <a href="/tags/环境/" style="font-size: 10px;">环境</a>
           </canvas>
         </div>
       </div>
@@ -407,6 +412,43 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2017/01/09/总结：rails发送邮件/">总结：Rails发送邮件</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2017-01-09T01:23:15.000Z" itemprop="datePublished">
+          2017-01-09
+      </time>
+    
+    
+    | 
+    <a href='/tags/rails/'>rails</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        Rails中实现发送邮件的三种方式1. Transactional Email从应用中发出的邮件，用户的行为触发的邮件，比如邀请注册、验证邮箱、修改密码、回复提醒等。这时候需要有一个邮件服务商”email service provider”，来提供SMTP转发服务。
+需要专业的邮件服务商来避免你发送的邮件被作为垃圾邮件过滤掉、提升邮件送达稳定性、追踪邮件送达状况。
+大多数邮件服务商都支持每天免费发200封邮件：Mandrill by M
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2017/01/09/总结：rails发送邮件/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -744,44 +786,6 @@ let 在同一作用域下，不允许重复声明，而
                     
                     <p class="pull-right readMore">
                         <a href="/2016/08/01/学习笔记：ES6语法/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/07/31/总结：Flyway-Baseline/">总结：Flyway-Baseline</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-07-31T04:01:42.000Z" itemprop="datePublished">
-          2016-07-31
-      </time>
-    
-    
-    | 
-    <a href='/tags/flyway/'>flyway</a>,
-    
-    <a href='/tags/Baseline/'>Baseline</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        FlywayQ: Flyway 是什么？&emsp;Flyway 是独立于数据库的应用、管理并跟踪数据库变更的数据库版本管理工具。官方文档。
-Q: Flyway 如何工作？&emsp;假设将Flyway应用在一个空的数据库中，它会去寻找metadata table（元数据表），如果找不到这张metadata table，Flyway会去创建一张叫SCHEMA_VERSION的空表作为metadata table。这张表将会被Flyway
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/07/31/总结：Flyway-Baseline/">Read More...</a>
                     </p>
                     
                 </div>

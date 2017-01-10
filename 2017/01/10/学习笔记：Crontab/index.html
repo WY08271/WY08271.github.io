@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>About Me | Sakura</title>
+  <title>学习笔记：Crontab | Sakura</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -413,107 +413,109 @@
 
   <!-- ============================ END Hero Image =========================== -->
 
-      <section id="intro">
+      
+<section id="intro">
     <div class="container">
         <div class="row col-md-offset-2">
             <div class="col-md-8">
-                <h1>About Me</h1>
+    			<span class="post-meta">
+      <time datetime="2017-01-10T07:40:52.000Z" itemprop="datePublished">
+          2017-01-10
+      </time>
+    
+    
+    | 
+    <a href='/tags/Crontab/'>Crontab</a>
+    
+    
+</span>
+                <h1>学习笔记：Crontab</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-            <h3 id="南宫调"><a href="#南宫调" class="headerlink" title="南宫调"></a><center><strong>南宫调</strong></center></h3> <center>正城郭秋意凋,落英散今朝。</center><br> <center>琉璃暗藏倾城笑,转瞬容颜老。</center><br> <center>霓裳薄,琼楼高,惶终日良辰少,欲把相思熬。</center><br> <center>玉碎满地琴声渺,红妆难掩泪妖娆。</center><br> <center>愁心深错黛眉梢,为君一曲南宫调。</center>
+      		<h3 id="Crontab"><a href="#Crontab" class="headerlink" title="Crontab"></a>Crontab</h3><p>一个自定义定时器</p>
+<h3 id="Crontab配置文件"><a href="#Crontab配置文件" class="headerlink" title="Crontab配置文件"></a>Crontab配置文件</h3><p><code>/var/spool/cron/</code>，该目录下存放的是每个用户（包括root）的crontab任务，文件名以用户名命名<br><code>/etc/cron.d/</code>，这个目录用来存放任何要执行的crontab文件或脚本</p>
+<h3 id="Crontab时间"><a href="#Crontab时间" class="headerlink" title="Crontab时间"></a>Crontab时间</h3><pre><code># .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7)  OR
+#sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  *  command to be executed
+</code></pre><p>minute：代表一小时内的第几分，范围 0-59。<br>hour：代表一天中的第几小时，范围 0-23。<br>mday：代表一个月中的第几天，范围 1-31。<br>month：代表一年中第几个月，范围 1-12。<br>wday：代表星期几，范围 0-7 (0及7都是星期天)。<br>who：要使用什么身份执行该指令，当您使用 crontab -e 时，不必加此字段。<br>command：所要执行的指令。</p>
+<h3 id="Crontab服务状态"><a href="#Crontab服务状态" class="headerlink" title="Crontab服务状态"></a>Crontab服务状态</h3><ul>
+<li>sudo service crond start     #启动服务</li>
+<li>sudo service crond stop      #关闭服务</li>
+<li>sudo service crond restart   #重启服务</li>
+<li>sudo service crond reload    #重新载入配置</li>
+<li>sudo service crond status    #查看服务状态</li>
+</ul>
+<h3 id="Crontab命令"><a href="#Crontab命令" class="headerlink" title="Crontab命令"></a>Crontab命令</h3><ul>
+<li>crontab -l 查看crontab定时任务</li>
+<li>crontab -e 编辑定时任务【删除-添加-修改】</li>
+<li>添加定时任务<br>Step-One : 编辑任务脚本【分目录存放】【ex: backup.sh】<br>Step-Two : 编辑定时文件【命名规则:backup.cron】<br>Step-Three : crontab命令添加到系统crontab backup.cron<br>Step-Four : 查看crontab列表 crontab -l</li>
+</ul>
+<h3 id="Crontab时间-1"><a href="#Crontab时间-1" class="headerlink" title="Crontab时间"></a>Crontab时间</h3><pre><code># 每天早上6点
+0 6 * * * echo &quot;Good morning.&quot; &gt;&gt; /tmp/test.txt
 
-<hr>
-<hr>
+# 每两个小时
+0 */2 * * * echo &quot;Have a break now.&quot; &gt;&gt; /tmp/test.txt  
 
+# 晚上11点到早上8点之间每两个小时和早上八点
+0 23-7/2，8 * * * echo &quot;Have a good dream&quot; &gt;&gt; /tmp/test.txt
+
+# 每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点
+0 11 4 * 1-3 command line
+
+# 1月1日早上4点
+0 4 1 1 * command line SHELL=/bin/bash PATH=/sbin:/bin:/usr/sbin:/usr/bin MAILTO=root //如果出现错误，或者有数据输出，数据作为邮件发给这个帐号 HOME=/
+
+# 每小时（第一分钟）执行/etc/cron.hourly内的脚本
+01 * * * * root run-parts /etc/cron.hourly
+
+# 每天（凌晨4：02）执行/etc/cron.daily内的脚本
+02 4 * * * root run-parts /etc/cron.daily
+
+# 每星期（周日凌晨4：22）执行/etc/cron.weekly内的脚本
+22 4 * * 0 root run-parts /etc/cron.weekly
+
+# 每月（1号凌晨4：42）去执行/etc/cron.monthly内的脚本
+42 4 1 * * root run-parts /etc/cron.monthly
+
+# 注意:  &quot;run-parts&quot;这个参数了，如果去掉这个参数的话，后面就可以写要运行的某个脚本名，而不是文件夹名。 　
+
+# 每天的下午4点、5点、6点的5 min、15 min、25 min、35 min、45 min、55 min时执行命令。
+5，15，25，35，45，55 16，17，18 * * * command
+
+# 每周一，三，五的下午3：00系统进入维护状态，重新启动系统。
+00 15 * *1，3，5 shutdown -r +5
+
+# 每小时的10分，40分执行用户目录下的innd/bbslin这个指令：
+10，40 * * * * innd/bbslink
+
+# 每小时的1分执行用户目录下的bin/account这个指令：
+1 * * * * bin/account
+
+# 每天早晨三点二十分执行用户目录下如下所示的两个指令（每个指令以;分隔）：
+203 * * * （/bin/rm -f expire.ls logins.bad;bin/expire$#@62;expire.1st）
+</code></pre>
             <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
-        
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2017/01/10/网址/">
+        网址 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo"></div>
     </div>
 </section>
-<section id="process">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
-                <div class="timeline-centered">
-                    <div class="line"></div>
-                    <div class="present">Past</div>
-                    <div class="dot_tp"></div>
-                    <div class="born">Now</div>
-                    <div class="dot_bt"></div>
-                    
-                        <div class="timeline-entry">
-                            <div class="timeline-entry-inner">
-                                <div class="timeline-icon wow fadeInUp" data-wow-delay="0.2s">
-                                    <span class="number">1</span>
-                                </div>
-                                <div class="timeline-label wow fadeInUp" data-wow-delay="0.2s">
-                                    <p>2003 - Begin to contact online games</p>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="timeline-entry">
-                            <div class="timeline-entry-inner">
-                                <div class="timeline-icon wow fadeInUp" data-wow-delay="0.2s">
-                                    <span class="number">2</span>
-                                </div>
-                                <div class="timeline-label wow fadeInUp" data-wow-delay="0.2s">
-                                    <p>2012 - Fall in love with two-dimension</p>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="timeline-entry">
-                            <div class="timeline-entry-inner">
-                                <div class="timeline-icon wow fadeInUp" data-wow-delay="0.2s">
-                                    <span class="number">3</span>
-                                </div>
-                                <div class="timeline-label wow fadeInUp" data-wow-delay="0.2s">
-                                    <p>2013 - Participate in professional match of online game, get professional Third</p>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="timeline-entry">
-                            <div class="timeline-entry-inner">
-                                <div class="timeline-icon wow fadeInUp" data-wow-delay="0.2s">
-                                    <span class="number">4</span>
-                                </div>
-                                <div class="timeline-label wow fadeInUp" data-wow-delay="0.2s">
-                                    <p>2014 - Learning to program</p>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="timeline-entry">
-                            <div class="timeline-entry-inner">
-                                <div class="timeline-icon wow fadeInUp" data-wow-delay="0.2s">
-                                    <span class="number">5</span>
-                                </div>
-                                <div class="timeline-label wow fadeInUp" data-wow-delay="0.2s">
-                                    <p>2016 - Work at ThoughtWorks</p>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="timeline-entry">
-                            <div class="timeline-entry-inner">
-                                <div class="timeline-icon wow fadeInUp" data-wow-delay="0.2s">
-                                    <span class="number">6</span>
-                                </div>
-                                <div class="timeline-label wow fadeInUp" data-wow-delay="0.2s">
-                                    <p>More</p>
-                                </div>
-                            </div>
-                        </div>
-                    
-                </div>
-                <!-- timeline-centered -->
-            </div>
-        </div>
-    </div>
-</section>
+
 
       
 <!-- ============================ Footer =========================== -->

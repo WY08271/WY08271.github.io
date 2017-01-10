@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wy08271.github.io/"/>
-  <updated>2017-01-09T04:50:54.000Z</updated>
+  <updated>2017-01-10T03:04:11.000Z</updated>
   <id>https://wy08271.github.io/</id>
   
   <author>
@@ -20,12 +20,17 @@
     <link href="https://wy08271.github.io/2017/01/09/%E6%80%BB%E7%BB%93%EF%BC%9Arails%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/"/>
     <id>https://wy08271.github.io/2017/01/09/总结：rails发送邮件/</id>
     <published>2017-01-09T01:23:15.000Z</published>
-    <updated>2017-01-09T04:50:54.000Z</updated>
+    <updated>2017-01-10T03:04:11.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Rails中实现发送邮件的三种方式"><a href="#Rails中实现发送邮件的三种方式" class="headerlink" title="Rails中实现发送邮件的三种方式"></a>Rails中实现发送邮件的三种方式</h2><h4 id="1-Transactional-Email"><a href="#1-Transactional-Email" class="headerlink" title="1. Transactional Email"></a><strong>1. Transactional Email</strong></h4><p>从应用中发出的邮件，用户的行为触发的邮件，比如邀请注册、验证邮箱、修改密码、回复提醒等。这时候需要有一个邮件服务商”email service provider”，来提供SMTP转发服务。</p>
 <p>需要专业的邮件服务商来避免你发送的邮件被作为垃圾邮件过滤掉、提升邮件送达稳定性、追踪邮件送达状况。</p>
 <p>大多数邮件服务商都支持每天免费发200封邮件：<a href="http://mandrill.com/" target="_blank" rel="external">Mandrill by MailChimp</a>、<a href="https://sendgrid.com/pricing/" target="_blank" rel="external">SendGrid</a>、<a href="http://www.mailgun.com/pricing" target="_blank" rel="external">Mailgun</a>、<a href="https://aws.amazon.com/ses/pricing/" target="_blank" rel="external">Amazon Simple Email Service</a>、<a href="http://elasticemail.com/pricing/" target="_blank" rel="external">Elastic Email</a>、<a href="http://www.critsend.com/pricing/" target="_blank" rel="external">CritSend</a>、<a href="https://www.mailjet.com/pricing_v3" target="_blank" rel="external">Mailjet</a>、<a href="http://messagegears.com/" target="_blank" rel="external">MessageGears</a>、<a href="https://www.serversmtp.com/en/cart.php?systpl=turbo-smtp&amp;systpl=turbo-smtp&amp;currency=3" target="_blank" rel="external">turboSMTP</a>、<a href="https://secure.postageapp.com/register" target="_blank" rel="external">PostageApp</a>、<a href="https://postmarkapp.com/pricing" target="_blank" rel="external">Postmark</a>。</p>
-<p>使用Transactional Email，需要同时配置应用和邮件服务商才能生效。</p>
+<h4 id="ActionMailer"><a href="#ActionMailer" class="headerlink" title="ActionMailer"></a><strong>ActionMailer</strong></h4><p>Rails在config/environments目录下针对不同执行环境会有不同的邮件服务器设定。在development.rb开发模式中，以下设定会忽略任何寄信的错误：</p>
+<pre><code># Don&apos;t care if the mailer can&apos;t send.
+config.action_mailer.raise_delivery_errors = false
+</code></pre><p>建议可以改成<code>true</code>，这样可以提早发现错误。</p>
+<p>寄信方式的选项包括有<code>:test</code>、<code>:sendmail</code>和<code>smtp</code>三种可以选择。<code>sendmail</code>是使用服务器的<code>/usr/bin/sendmail</code>程式，不过因为因为不是每台服务器都有适当安装sendmail。而<code>:test</code>代表并不会实际寄信出去，而是存在<code>ActionMailer::Base.deliveries</code>阵列中方便做自动化测试。</p>
+<p>最推荐的方式是采用<code>:smtp</code>协定来实际寄信出去，例如以下是一个使用Gmail寄信的范例，需要同时配置应用和邮件服务商才能生效。</p>
 <ul>
 <li><p><strong>配置Devise</strong><br>假如你有使用Devise的confirmable模块来发验证邮件，修改下面的文件，填写你的发件人邮件地址：<code>config/initializers/devise.rb</code></p>
 <pre><code>config.mailer_sender ＝ &quot;sender@yourwebsite.com&quot;
@@ -75,8 +80,56 @@ config.action_mailer.smtp_settings = {
 }
 </code></pre></li>
 </ul>
+<p>另外实际上，我们其实并不会将帐号密码写死进代码里面，而是希望拆出来另存一个设定档。例如我们可以放到<code>config/email.yml</code>如下，YAML第一层是适用的Rails环境：</p>
+<pre><code>development:
+  address: &quot;smtp.gmail.com&quot;
+  port: 587
+  domain: &quot;gmail.com&quot;
+  authentication: &quot;plain&quot;
+  user_name: &quot;example@gmail.com&quot;
+  password: &quot;123456&quot;
+  enable_starttls_auto: true
+production:
+  address: &quot;smtp.mailgun.org&quot;
+  port: 587
+  domain: &quot;ihower.com&quot;
+  authentication: &quot;plain&quot;
+  user_name: &quot;postmaster@ihower.tw&quot;
+  password: &quot;1234567890&quot;
+  enable_starttls_auto: true
+</code></pre><p>这样的话，<code>smtp_settings</code>就可以改成：</p>
+<pre><code>config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+</code></pre><p>其中<code>config_for</code>这个方法根据当时Rails启动环境会读取config目录下的YAML。而<code>symbolize_keys</code>这个方法会将Hash中的<code>String key</code>换成<code>Symbol key</code>，这是因为<code>smtp_settings</code>使用的值是<code>Symbol key</code>，如果没有转的话，会读不到设定。</p>
+<p>通常<code>config/email.yml</code>会加到<code>.gitignore</code>列表中，因为有帐号密码在里面。</p>
 <h4 id="2-Mailing-list"><a href="#2-Mailing-list" class="headerlink" title="2. Mailing list"></a><strong>2. Mailing list</strong></h4><p>对所有列表用户发送的新闻或通知等。上面提到的SMTP转发服务比如SendGrid通常只提供基本的转发服务，这时候需要更加专业的邮件服务来实现群发功能、管理未订阅者、管理不同的邮件模版等。</p>
-<p>群发邮件，可以选择以下邮件服务商：<a href="https://mailchimp.com/pricing/" target="_blank" rel="external">MailChimp</a>、<a href="https://madmimi.com/service_agreements/choose_plan" target="_blank" rel="external">MadMimi</a>、<a href="https://www.constantcontact.com/pricing" target="_blank" rel="external">CampaignMonitor</a>、<a href="https://www.constantcontact.com/pricing" target="_blank" rel="external">Constant Contact</a>、<a href="https://www.ymlp.com/pricing.html" target="_blank" rel="external">YMLP</a>、<a href="https://jangomail.com/pricing.asp" target="_blank" rel="external">JangoMail</a>、<a href="https://www.icontact.com/pricing" target="_blank" rel="external">iContact</a>、<a href="http://www.verticalresponse.com/pricing-plans" target="_blank" rel="external">VerticalResponse</a>。</p>
+<p>群发邮件需要注意一下几点：</p>
+<ul>
+<li>处理退信</li>
+</ul>
+<p>如果你寄出去的email由于某些理由（地址不对，对方邮箱满了等）而被对方的 mail server 退回，这些 email 需要进行处理。如果忽略它一直寄信，可能会被当成发送垃圾邮件的邮箱，被列入到黑名单中。</p>
+<ul>
+<li><p>建立自己的 email 清单</p>
+</li>
+<li><p>不要使用100%以图片为主的内容<br>减少图片的使用，Gmail 预设是不会读取图片的，重要的信息使用图片发送可能会让收件者收不到，全部都是图片的 email 也容易被当成垃圾邮件。</p>
+</li>
+<li><p>使用垃圾邮件检测工作<br>收邮件的 mail server 通常会使用 Spam Assassin 等工具来判断是否是垃圾邮件，自己也应该使用<a href="www.brandonchecketts.com/emailtest.php">这类工具</a>检查自己发送的邮件是否有可能被判定为垃圾邮件。如果分数太低，可以参考<a href="https://help.campaignmonitor.com/support" target="_blank" rel="external">这篇文章</a>。</p>
+</li>
+<li><p>验证HTML<br>如果寄出的 email 是<code>HTML</code>格式的，应该检查格式是否正确。错误的格式也容易被当成垃圾邮件。</p>
+</li>
+<li><p>模拟使用者环境<br>使用不同的email client实际测试。不同的client会有不同的结果。验证是否能收到邮件。</p>
+</li>
+<li><p>专属IP<br>是否和别人共用email server，如果别人被拉入黑名单，那么你也被列入黑名单。</p>
+</li>
+<li><p>验证寄信人地址<br>email服务商会先检查寄件人的地址是否正确，才会收信，所以要保证email地址是正确的。</p>
+</li>
+<li><p>设定 Reverse DNS 反查<br>设定反向查询的DNS记录，如果你寄信的IP无法反查，可能根本寄不到。</p>
+</li>
+<li><p>设定SPF Validation<br>SPF (Sender Policy Framework) 是一个 email协议来确认 return-path address的正确性，用来防止垃圾信件。设定 SPF可以改进信件发送的成功率，特别是MSN。</p>
+</li>
+<li><p>设定 Domain Keys Verification<br>Domain Keys 验证是另一种防止垃圾信件的协议。</p>
+</li>
+</ul>
+<p>综上，我们还是使用专业的邮件服务商来发送群发邮件，可以选择以下邮件服务商：<a href="https://mailchimp.com/pricing/" target="_blank" rel="external">MailChimp</a>、<a href="https://madmimi.com/service_agreements/choose_plan" target="_blank" rel="external">MadMimi</a>、<a href="https://www.constantcontact.com/pricing" target="_blank" rel="external">CampaignMonitor</a>、<a href="https://www.constantcontact.com/pricing" target="_blank" rel="external">Constant Contact</a>、<a href="https://www.ymlp.com/pricing.html" target="_blank" rel="external">YMLP</a>、<a href="https://jangomail.com/pricing.asp" target="_blank" rel="external">JangoMail</a>、<a href="https://www.icontact.com/pricing" target="_blank" rel="external">iContact</a>、<a href="http://www.verticalresponse.com/pricing-plans" target="_blank" rel="external">VerticalResponse</a>。</p>
 <h4 id="3-Company-Email"><a href="#3-Company-Email" class="headerlink" title="3. Company Email"></a><strong>3. Company Email</strong></h4><p>用你的公司邮箱给供应商、客户、同事等发邮件，可以用Gmail解决掉这个问题，设置Gmail代收公司邮箱，然后用Gmail回复时，再选择从不同地址发送邮件。当然你也可以选择更专业版的<a href="https://gsuite.google.com" target="_blank" rel="external">Google Apps for Business</a>。</p>
 ]]></content>
     
@@ -1460,11 +1513,11 @@ end</code></li>
       <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
     
     
-      <category term="学习笔记" scheme="https://wy08271.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="maven" scheme="https://wy08271.github.io/tags/maven/"/>
     
       <category term="构建工具" scheme="https://wy08271.github.io/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="学习笔记" scheme="https://wy08271.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
       <category term="java" scheme="https://wy08271.github.io/tags/java/"/>
     

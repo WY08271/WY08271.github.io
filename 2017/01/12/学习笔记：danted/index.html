@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>学习笔记：PostgreSQL | Sakura</title>
+  <title>学习笔记：Danted | Sakura</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -424,83 +424,315 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-06-27T15:01:35.000Z" itemprop="datePublished">
-          2016-06-27
+      <time datetime="2017-01-12T06:08:20.000Z" itemprop="datePublished">
+          2017-01-12
       </time>
     
     
     | 
-    <a href='/tags/PostgreSQL/'>PostgreSQL</a>,
-    
-    <a href='/tags/导入导出/'>导入导出</a>
+    <a href='/tags/Danted/'>Danted</a>
     
     
 </span>
-                <h1>学习笔记：PostgreSQL</h1>
+                <h1>学习笔记：Danted</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>使用PostgreSQL数据库进行数据的导入和导出。</p>
-<hr>
-<h1 id="导出数据库"><a href="#导出数据库" class="headerlink" title="导出数据库"></a>导出数据库</h1><ol>
-<li><p>导出单个表</p>
-<pre><code>从ip为255.255.255.0的数据库test中导出testTable的表结构和数据到本地文件data.sql：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -t testTable -h 255.255.255.0 test -U userName -p 5432  -f data.sql</div></pre></td></tr></table></figure>
-
-参数说明：-t 指定导出的表名
-        -h 数据库地址
-        -U 数据库用户
-        -p 访问端口
-        -f 导出到指定文件
-</code></pre></li>
-<li><p>导出所有表和所有数据</p>
-<pre><code>从ip为255.255.255.0的数据库test导出所有表结构和数据到文件data.sql:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -h 255.255.255.0 test -U userName -p 5432  -f data.sql</div></pre></td></tr></table></figure>
-
-参数说明：-t 指定导出的表名
-        -h 数据库地址
-        -U 数据库用户
-        -p 访问端口
-        -f 导出到指定文件
-</code></pre></li>
-<li><p>仅导出所有表结构</p>
-<pre><code>从ip为255.255.255.0的数据库test导出所有的表结构到文件data.sql:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -s -h 255.255.255.0 test -U userName -p 5432 -f data.sql</div></pre></td></tr></table></figure>
-
-参数说明：-s 表示只导出表结构，不导数据
-</code></pre></li>
+      		<h2 id="Danted"><a href="#Danted" class="headerlink" title="Danted"></a>Danted</h2><p>&gt;<br>介绍：dante是一个免费的socks代理服务器，用于linux系统。</p>
+<p>&gt;<br>SOCKS是一种网络传输协议，主要用于客户端与外网服务器之间通讯的中间传递。SOCKS是”SOCKetS”的缩写。<br>当防火墙后的客户端要访问外部的服务器时，就跟SOCKS代理服务器连接。这个代理服务器控制客户端访问外网的资格，允许的话，就将客户端的请求发往外部的服务器。<br>网络传输协议或简称为传送协议（Communications Protocol），是指计算机通信或网络设备的共同语言。现在最普及的计算机通信为网络通信，所以“传送协议”一般都指计算机通信的传送协议，如：TCP/IP、NetBEUI、DHCP、FTP等。然而，传送协议也存在于计算机的其他形式通信，例如：面向对象编程里面对象之间的通信；操作系统内不同程序之间的消息，都需要有一个传送协议，以确保传信双方能够沟通无间。</p>
+<h3 id="一、安装和删除"><a href="#一、安装和删除" class="headerlink" title="一、安装和删除"></a><strong>一、安装和删除</strong></h3><p>下载danted服务：<code>sudo apt-get install dante-server</code>；如需删除danted，请参考以下命令删除程序文件<code>service danted stop</code>、<code>rm -rf /etc/danted/</code>、<code>rm -f /etc/init.d/danted</code>。</p>
+<p><strong>特点：</strong></p>
+<ol>
+<li>自动识别系统IP（默认排除192.168.0.<em>， 10.0.0.</em>,127.0.0.*）,根据安装命令选择部分Ip或者全部IP安装(多IP环境)。</li>
+<li>采用PAM 用户认证，认证不需要添加系统用户（默认添加进程用户sock），删除、添加用户方便，安全。</li>
+<li>sock5 运行状态查看,系统启动后自动加载。</li>
+<li>完美支持多访问进出口（多IP的环境，支持 使用IP-1，访问网站IP查询为IP-1）。</li>
+<li>认证方式可选： 无用户名密码，系统用户名密码，Pam用户名密码</li>
+<li>完美支持Centos/Debian,自动识别系统进行安装配置。[注意，经反馈，Centos 5 无法使用。]</li>
+<li>自定义对连接客户端认证方式，支持白名单即支持某些IP/IP段无需认证即可连接。</li>
 </ol>
-<p>PS：一般数据库数据量比较大，如果远程导出所有的表结构和数据的话会非常慢，可以先导入表结构，随后再导出/入单个重要表结构和数据。</p>
 <hr>
-<h1 id="导入数据库"><a href="#导入数据库" class="headerlink" title="导入数据库"></a>导入数据库</h1><ol>
-<li><p>导入到远程数据库</p>
-<pre><code>从本地文件data.sql导入表结构和数据到ip为255.255.255.0的数据库test中：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">psql -h 255.255.255.0 -d test -U userName -f data.sql</div></pre></td></tr></table></figure>
+<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a><strong>二、配置</strong></h3><p>默认的配置文件是/etc/dante.conf，如下所示。</p>
+<pre><code># A sample danted.conf
+#      
+# The configfile is divided into three parts;
+#    1) serversettings
+#    2) rules
+#    3) routes
+#
+# The recommended order is:
+#   Serversettings:
+#               logoutput
+#               internal
+#               external
+#               method
+#               clientmethod
+#               users
+#               compatibility
+#               extension
+#               connecttimeout
+#               iotimeout
+#        srchost
+#
+#  Rules:
+#    client block/pass
+#        from to
+#        libwrap
+#        log
+#
+#     block/pass
+#        from to
+#        method
+#        command
+#        libwrap
+#        log
+#        protocol
+#        proxyprotocol
+#
+#  Routes:
 
-参数说明：-h 数据库地址
-        -d 数据库
-        -U 指定用户
-        -f 要导入的文件
-</code></pre></li>
-<li><p>导入到本地数据库</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">psql -h 127.0.0.1 -d test -U userName -p 5432 -f data.sql</div></pre></td></tr></table></figure>
+# the server will log both via syslog, to stdout and to /var/log/lotsoflogs
+#logoutput: syslog stdout /var/log/lotsoflogs
+logoutput: stderr
 
-参数说明： -p 指定数据库服务端口，默认是5432端口的可以不加
-</code></pre></li>
+# The server will bind to the address 10.1.1.1, port 1080 and will only
+# accept connections going to that address.
+# internal 表示进口ip设置。这里可以是网卡名，也可以是vps外网ip。port是设置端口，端口是1080
+#internal: 10.1.1.1 port = 1080
+# Alternatively, the interface name can be used instead of the address.
+#internal: eth0 port = 1080
+
+# all outgoing connections from the server will use the IP address
+# 出口ip设置，同理，可以是网卡名，也可以是ip
+# 195.168.1.1
+#external: 192.168.1.1
+
+# list over acceptable methods, order of preference.
+# A method not set here will never be selected.
+#
+# If the method field is not set in a rule, the global
+# method is filled in for that rule.
+#
+
+# methods for socks-rules.
+# 认证方式，这里username none表示无需认证
+#method: username none #rfc931
+
+# methods for client-rules.
+#clientmethod: none
+
+#or if you want to allow rfc931 (ident) too
+#method: username rfc931 none
+
+#or for PAM authentification
+#method: pam
+#
+# An important section, pay attention.
+#
+# when doing something that can require privilege, it will use the
+# userid:
+user.privileged: proxy
+
+# when running as usual, it will use the unprivileged userid of:
+user.notprivileged: nobody
+
+# If you compiled with libwrap support, what userid should it use
+# when executing your libwrap commands?  &quot;libwrap&quot;.
+user.libwrap: nobody
+#
+# some options to help clients with compatibility:
+#
+# when a client connection comes in the socksserver will try to use
+# the same port as the client is using, when the socksserver
+# goes out on the clients behalf (external: IP address).
+# If this option is set, Dante will try to do it for reserved ports aswell.
+# This will usually require user.privileged to be set to &quot;root&quot;.
+#compatibility: sameport
+# If you are using the bind extension and have trouble running servers
+# via the server, you might try setting this.  The consequences of it
+# are unknown.
+#compatibility: reuseaddr
+#
+# The Dante server supports some extensions to the socks protocol.
+# These require that the socks client implements the same extension and
+# can be enabled using the &quot;extension&quot; keyword.
+#
+# enable the bind extension.
+#extension: bind
+#
+#
+# misc options.
+#
+# how many seconds can pass from when a client connects til it has
+# sent us it&apos;s request?  Adjust according to your network performance
+# and methods supported.
+#connecttimeout: 30   # on a lan, this should be enough if method is &quot;none&quot;.
+#
+# how many seconds can the client and it&apos;s peer idle without sending
+# any data before we dump it?  Unless you disable tcp keep-alive for
+# some reason, it&apos;s probably best to set this to 0, which is
+# &quot;forever&quot;.
+#iotimeout: 0 # or perhaps 86400, for a day.
+
+# do you want to accept connections from addresses without
+# dns info?  what about addresses having a mismatch in dnsinfo?
+#srchost: nounknown nomismatch
+
+#
+# The actual rules.  There are two kinds and they work at different levels.
+#
+# The rules prefixed with &quot;client&quot; are checked first and say who is allowed
+# and who is not allowed to speak/connect to the server.  I.e the
+# ip range containing possibly valid clients.
+# It is especially important that these only use IP addresses, not hostnames,
+# for security reasons.
+#
+# The rules that do not have a &quot;client&quot; prefix are checked later, when the
+# client has sent its request and are used to evaluate the actual
+# request.
+#
+# The &quot;to:&quot; in the &quot;client&quot; context gives the address the connection
+# is accepted on, i.e the address the socksserver is listening on, or
+# just &quot;0.0.0.0/0&quot; for any address the server is listening on.
+#
+# The &quot;to:&quot; in the non-&quot;client&quot; context gives the destination of the clients
+# socksrequest.
+#
+# &quot;from:&quot; is the source address in both contexts.
+#
+# the &quot;client&quot; rules.  All our clients come from the net 10.0.0.0/8.
+#
+# Allow our clients, also provides an example of the port range command.
+#client pass {
+#    from: 10.0.0.0/8 port 1-65535 to: 0.0.0.0/0
+#    method: rfc931 # match all idented users that also are in passwordfile
+#}
+
+# This is identical to above, but allows clients without a rfc931 (ident)
+# too.  In practise this means the socksserver will try to get a rfc931
+# reply first (the above rule), if that fails, it tries this rule.
+#client pass {
+#    from: 10.0.0.0/8 port 1-65535 to: 0.0.0.0/0
+#}
+
+# drop everyone else as soon as we can and log the connect, they are not
+# on our net and have no business connecting to us.  This is the default
+# but if you give the rule yourself, you can specify details.
+#client block {
+#    from: 0.0.0.0/0 to: 0.0.0.0/0
+#    log: connect error
+#}
+
+# the rules controlling what clients are allowed what requests
+#
+# you probably don&apos;t want people connecting to loopback addresses,
+# who knows what could happen then.
+#block {
+#    from: 0.0.0.0/0 to: 127.0.0.0/8
+#    log: connect error
+#}
+
+# the people at the 172.16.0.0/12 are bad, no one should talk to them.
+# log the connect request and also provide an example on how to
+# interact with libwrap.
+#block {
+#    from: 0.0.0.0/0 to: 172.16.0.0/12
+#    libwrap: spawn finger @%a
+#    log: connect error
+#}
+
+# unless you need it, you could block any bind requests.
+#block {
+#    from: 0.0.0.0/0 to: 0.0.0.0/0
+#    command: bind
+#    log: connect error
+#}
+
+# or you might want to allow it, for instance &quot;active&quot; ftp uses it.
+# Note that a &quot;bindreply&quot; command must also be allowed, it
+# should usually by from &quot;0.0.0.0/0&quot;, i.e if a client of yours
+# has permission to bind, it will also have permission to accept
+# the reply from anywhere.
+#pass {
+#    from: 10.0.0.0/8 to: 0.0.0.0/0
+#    command: bind
+#    log: connect error
+#}
+
+# some connections expect some sort of &quot;reply&quot;, this might be
+# the reply to a bind request or it may be the reply to a
+# udppacket, since udp is packetbased.
+# Note that nothing is done to verify that it&apos;s a &quot;genuine&quot; reply,
+# that is in general not possible anyway.  The below will allow
+# all &quot;replies&quot; in to your clients at the 10.0.0.0/8 net.
+#pass {
+#    from: 0.0.0.0/0 to: 10.0.0.0/8
+#    command: bindreply udpreply
+#    log: connect error
+#}
+
+# pass any http connects to the example.com domain if they
+# authenticate with username.
+# This matches &quot;example.com&quot; itself and everything ending in &quot;.example.com&quot;.
+#pass {
+#    from: 10.0.0.0/8 to: .example.com port = http
+#    log: connect error
+#    method: username
+#}
+
+# block any other http connects to the example.com domain.
+#block {
+#    from: 0.0.0.0/0 to: .example.com port = http
+#    log: connect error
+#}
+
+# everyone from our internal network, 10.0.0.0/8 is allowed to use
+# tcp and udp for everything else.
+#pass {
+#    from: 10.0.0.0/8 to: 0.0.0.0/0
+#    protocol: tcp udp
+#}
+
+# last line, block everyone else.  This is the default but if you provide
+# one  yourself you can specify your own logging/actions
+#block {
+#    from: 0.0.0.0/0 to: 0.0.0.0/0
+#    log: connect error
+#}
+
+# route all http connects via an upstream socks server, aka &quot;server-chaining&quot;.
+#route {
+# from: 10.0.0.0/8 to: 0.0.0.0/0 port = http via: socks.example.net port = socks
+#}
+</code></pre><hr>
+<h3 id="三、命令"><a href="#三、命令" class="headerlink" title="三、命令"></a><strong>三、命令</strong></h3><ol>
+<li>命令参数 /etc/init.d/danted {start|stop|restart|status|add|del}</li>
+<li>重启sock5 /etc/init.d/danted restart 或者 service danted restart</li>
+<li>关闭sock5 /etc/init.d/danted stop 或者 service danted stop</li>
+<li>开启sock5 /etc/init.d/danted start 或者 service danted start</li>
+<li>查看sock5状态 /etc/init.d/danted status 或者 service danted status</li>
+<li>添加SOCK5 PAM用户/修改密码 /etc/init.d/danted add 用户名 密码</li>
+<li>删除SOCK5 PAM用户 /etc/init.d/danted del 用户名</li>
+<li>配置文件路径/etc/danted/sockd.conf</li>
+<li>日志记录路径 /var/log/danted.log</li>
+<li>danted 帮助命令 danted –help</li>
 </ol>
+<p>将命令依次添加到/etc/rc.local ，就能实现随机启动</p>
+<hr>
+<h3 id="四、参考"><a href="#四、参考" class="headerlink" title="四、参考"></a><strong>四、参考</strong></h3><ul>
+<li><a href="https://www.inet.no/dante/" target="_blank" rel="external">官网</a></li>
+<li><a href="https://github.com/Lozy/danted" target="_blank" rel="external">resources1</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_7f2a9a390102vdqn.html" target="_blank" rel="external">resources2</a></li>
+</ul>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/06/28/学习笔记：Flyway/" style="float: left;">
-        ← 学习笔记：Flyway
-    </a>
     
-    
-    <a class="pull-right" href="/2016/06/27/学习笔记：Maven-2/">
-        学习笔记：Maven-2 →
+    <a class="pull-right" href="/2017/01/10/学习笔记：Crontab/">
+        学习笔记：Crontab →
     </a>
     
 </nav>

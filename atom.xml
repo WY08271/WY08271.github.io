@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wy08271.github.io/"/>
-  <updated>2017-01-10T07:57:27.000Z</updated>
+  <updated>2017-01-12T07:17:19.000Z</updated>
   <id>https://wy08271.github.io/</id>
   
   <author>
@@ -14,6 +14,315 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习笔记：Danted</title>
+    <link href="https://wy08271.github.io/2017/01/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9Adanted/"/>
+    <id>https://wy08271.github.io/2017/01/12/学习笔记：danted/</id>
+    <published>2017-01-12T06:08:20.000Z</published>
+    <updated>2017-01-12T07:17:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Danted"><a href="#Danted" class="headerlink" title="Danted"></a>Danted</h2><p>&gt;<br>介绍：dante是一个免费的socks代理服务器，用于linux系统。</p>
+<p>&gt;<br>SOCKS是一种网络传输协议，主要用于客户端与外网服务器之间通讯的中间传递。SOCKS是”SOCKetS”的缩写。<br>当防火墙后的客户端要访问外部的服务器时，就跟SOCKS代理服务器连接。这个代理服务器控制客户端访问外网的资格，允许的话，就将客户端的请求发往外部的服务器。<br>网络传输协议或简称为传送协议（Communications Protocol），是指计算机通信或网络设备的共同语言。现在最普及的计算机通信为网络通信，所以“传送协议”一般都指计算机通信的传送协议，如：TCP/IP、NetBEUI、DHCP、FTP等。然而，传送协议也存在于计算机的其他形式通信，例如：面向对象编程里面对象之间的通信；操作系统内不同程序之间的消息，都需要有一个传送协议，以确保传信双方能够沟通无间。</p>
+<h3 id="一、安装和删除"><a href="#一、安装和删除" class="headerlink" title="一、安装和删除"></a><strong>一、安装和删除</strong></h3><p>下载danted服务：<code>sudo apt-get install dante-server</code>；如需删除danted，请参考以下命令删除程序文件<code>service danted stop</code>、<code>rm -rf /etc/danted/</code>、<code>rm -f /etc/init.d/danted</code>。</p>
+<p><strong>特点：</strong></p>
+<ol>
+<li>自动识别系统IP（默认排除192.168.0.<em>， 10.0.0.</em>,127.0.0.*）,根据安装命令选择部分Ip或者全部IP安装(多IP环境)。</li>
+<li>采用PAM 用户认证，认证不需要添加系统用户（默认添加进程用户sock），删除、添加用户方便，安全。</li>
+<li>sock5 运行状态查看,系统启动后自动加载。</li>
+<li>完美支持多访问进出口（多IP的环境，支持 使用IP-1，访问网站IP查询为IP-1）。</li>
+<li>认证方式可选： 无用户名密码，系统用户名密码，Pam用户名密码</li>
+<li>完美支持Centos/Debian,自动识别系统进行安装配置。[注意，经反馈，Centos 5 无法使用。]</li>
+<li>自定义对连接客户端认证方式，支持白名单即支持某些IP/IP段无需认证即可连接。</li>
+</ol>
+<hr>
+<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a><strong>二、配置</strong></h3><p>默认的配置文件是/etc/dante.conf，如下所示。</p>
+<pre><code># A sample danted.conf
+#      
+# The configfile is divided into three parts;
+#    1) serversettings
+#    2) rules
+#    3) routes
+#
+# The recommended order is:
+#   Serversettings:
+#               logoutput
+#               internal
+#               external
+#               method
+#               clientmethod
+#               users
+#               compatibility
+#               extension
+#               connecttimeout
+#               iotimeout
+#        srchost
+#
+#  Rules:
+#    client block/pass
+#        from to
+#        libwrap
+#        log
+#
+#     block/pass
+#        from to
+#        method
+#        command
+#        libwrap
+#        log
+#        protocol
+#        proxyprotocol
+#
+#  Routes:
+
+# the server will log both via syslog, to stdout and to /var/log/lotsoflogs
+#logoutput: syslog stdout /var/log/lotsoflogs
+logoutput: stderr
+
+# The server will bind to the address 10.1.1.1, port 1080 and will only
+# accept connections going to that address.
+# internal 表示进口ip设置。这里可以是网卡名，也可以是vps外网ip。port是设置端口，端口是1080
+#internal: 10.1.1.1 port = 1080
+# Alternatively, the interface name can be used instead of the address.
+#internal: eth0 port = 1080
+
+# all outgoing connections from the server will use the IP address
+# 出口ip设置，同理，可以是网卡名，也可以是ip
+# 195.168.1.1
+#external: 192.168.1.1
+
+# list over acceptable methods, order of preference.
+# A method not set here will never be selected.
+#
+# If the method field is not set in a rule, the global
+# method is filled in for that rule.
+#
+
+# methods for socks-rules.
+# 认证方式，这里username none表示无需认证
+#method: username none #rfc931
+
+# methods for client-rules.
+#clientmethod: none
+
+#or if you want to allow rfc931 (ident) too
+#method: username rfc931 none
+
+#or for PAM authentification
+#method: pam
+#
+# An important section, pay attention.
+#
+# when doing something that can require privilege, it will use the
+# userid:
+user.privileged: proxy
+
+# when running as usual, it will use the unprivileged userid of:
+user.notprivileged: nobody
+
+# If you compiled with libwrap support, what userid should it use
+# when executing your libwrap commands?  &quot;libwrap&quot;.
+user.libwrap: nobody
+#
+# some options to help clients with compatibility:
+#
+# when a client connection comes in the socksserver will try to use
+# the same port as the client is using, when the socksserver
+# goes out on the clients behalf (external: IP address).
+# If this option is set, Dante will try to do it for reserved ports aswell.
+# This will usually require user.privileged to be set to &quot;root&quot;.
+#compatibility: sameport
+# If you are using the bind extension and have trouble running servers
+# via the server, you might try setting this.  The consequences of it
+# are unknown.
+#compatibility: reuseaddr
+#
+# The Dante server supports some extensions to the socks protocol.
+# These require that the socks client implements the same extension and
+# can be enabled using the &quot;extension&quot; keyword.
+#
+# enable the bind extension.
+#extension: bind
+#
+#
+# misc options.
+#
+# how many seconds can pass from when a client connects til it has
+# sent us it&apos;s request?  Adjust according to your network performance
+# and methods supported.
+#connecttimeout: 30   # on a lan, this should be enough if method is &quot;none&quot;.
+#
+# how many seconds can the client and it&apos;s peer idle without sending
+# any data before we dump it?  Unless you disable tcp keep-alive for
+# some reason, it&apos;s probably best to set this to 0, which is
+# &quot;forever&quot;.
+#iotimeout: 0 # or perhaps 86400, for a day.
+
+# do you want to accept connections from addresses without
+# dns info?  what about addresses having a mismatch in dnsinfo?
+#srchost: nounknown nomismatch
+
+#
+# The actual rules.  There are two kinds and they work at different levels.
+#
+# The rules prefixed with &quot;client&quot; are checked first and say who is allowed
+# and who is not allowed to speak/connect to the server.  I.e the
+# ip range containing possibly valid clients.
+# It is especially important that these only use IP addresses, not hostnames,
+# for security reasons.
+#
+# The rules that do not have a &quot;client&quot; prefix are checked later, when the
+# client has sent its request and are used to evaluate the actual
+# request.
+#
+# The &quot;to:&quot; in the &quot;client&quot; context gives the address the connection
+# is accepted on, i.e the address the socksserver is listening on, or
+# just &quot;0.0.0.0/0&quot; for any address the server is listening on.
+#
+# The &quot;to:&quot; in the non-&quot;client&quot; context gives the destination of the clients
+# socksrequest.
+#
+# &quot;from:&quot; is the source address in both contexts.
+#
+# the &quot;client&quot; rules.  All our clients come from the net 10.0.0.0/8.
+#
+# Allow our clients, also provides an example of the port range command.
+#client pass {
+#    from: 10.0.0.0/8 port 1-65535 to: 0.0.0.0/0
+#    method: rfc931 # match all idented users that also are in passwordfile
+#}
+
+# This is identical to above, but allows clients without a rfc931 (ident)
+# too.  In practise this means the socksserver will try to get a rfc931
+# reply first (the above rule), if that fails, it tries this rule.
+#client pass {
+#    from: 10.0.0.0/8 port 1-65535 to: 0.0.0.0/0
+#}
+
+# drop everyone else as soon as we can and log the connect, they are not
+# on our net and have no business connecting to us.  This is the default
+# but if you give the rule yourself, you can specify details.
+#client block {
+#    from: 0.0.0.0/0 to: 0.0.0.0/0
+#    log: connect error
+#}
+
+# the rules controlling what clients are allowed what requests
+#
+# you probably don&apos;t want people connecting to loopback addresses,
+# who knows what could happen then.
+#block {
+#    from: 0.0.0.0/0 to: 127.0.0.0/8
+#    log: connect error
+#}
+
+# the people at the 172.16.0.0/12 are bad, no one should talk to them.
+# log the connect request and also provide an example on how to
+# interact with libwrap.
+#block {
+#    from: 0.0.0.0/0 to: 172.16.0.0/12
+#    libwrap: spawn finger @%a
+#    log: connect error
+#}
+
+# unless you need it, you could block any bind requests.
+#block {
+#    from: 0.0.0.0/0 to: 0.0.0.0/0
+#    command: bind
+#    log: connect error
+#}
+
+# or you might want to allow it, for instance &quot;active&quot; ftp uses it.
+# Note that a &quot;bindreply&quot; command must also be allowed, it
+# should usually by from &quot;0.0.0.0/0&quot;, i.e if a client of yours
+# has permission to bind, it will also have permission to accept
+# the reply from anywhere.
+#pass {
+#    from: 10.0.0.0/8 to: 0.0.0.0/0
+#    command: bind
+#    log: connect error
+#}
+
+# some connections expect some sort of &quot;reply&quot;, this might be
+# the reply to a bind request or it may be the reply to a
+# udppacket, since udp is packetbased.
+# Note that nothing is done to verify that it&apos;s a &quot;genuine&quot; reply,
+# that is in general not possible anyway.  The below will allow
+# all &quot;replies&quot; in to your clients at the 10.0.0.0/8 net.
+#pass {
+#    from: 0.0.0.0/0 to: 10.0.0.0/8
+#    command: bindreply udpreply
+#    log: connect error
+#}
+
+# pass any http connects to the example.com domain if they
+# authenticate with username.
+# This matches &quot;example.com&quot; itself and everything ending in &quot;.example.com&quot;.
+#pass {
+#    from: 10.0.0.0/8 to: .example.com port = http
+#    log: connect error
+#    method: username
+#}
+
+# block any other http connects to the example.com domain.
+#block {
+#    from: 0.0.0.0/0 to: .example.com port = http
+#    log: connect error
+#}
+
+# everyone from our internal network, 10.0.0.0/8 is allowed to use
+# tcp and udp for everything else.
+#pass {
+#    from: 10.0.0.0/8 to: 0.0.0.0/0
+#    protocol: tcp udp
+#}
+
+# last line, block everyone else.  This is the default but if you provide
+# one  yourself you can specify your own logging/actions
+#block {
+#    from: 0.0.0.0/0 to: 0.0.0.0/0
+#    log: connect error
+#}
+
+# route all http connects via an upstream socks server, aka &quot;server-chaining&quot;.
+#route {
+# from: 10.0.0.0/8 to: 0.0.0.0/0 port = http via: socks.example.net port = socks
+#}
+</code></pre><hr>
+<h3 id="三、命令"><a href="#三、命令" class="headerlink" title="三、命令"></a><strong>三、命令</strong></h3><ol>
+<li>命令参数 /etc/init.d/danted {start|stop|restart|status|add|del}</li>
+<li>重启sock5 /etc/init.d/danted restart 或者 service danted restart</li>
+<li>关闭sock5 /etc/init.d/danted stop 或者 service danted stop</li>
+<li>开启sock5 /etc/init.d/danted start 或者 service danted start</li>
+<li>查看sock5状态 /etc/init.d/danted status 或者 service danted status</li>
+<li>添加SOCK5 PAM用户/修改密码 /etc/init.d/danted add 用户名 密码</li>
+<li>删除SOCK5 PAM用户 /etc/init.d/danted del 用户名</li>
+<li>配置文件路径/etc/danted/sockd.conf</li>
+<li>日志记录路径 /var/log/danted.log</li>
+<li>danted 帮助命令 danted –help</li>
+</ol>
+<p>将命令依次添加到/etc/rc.local ，就能实现随机启动</p>
+<hr>
+<h3 id="四、参考"><a href="#四、参考" class="headerlink" title="四、参考"></a><strong>四、参考</strong></h3><ul>
+<li><a href="https://www.inet.no/dante/" target="_blank" rel="external">官网</a></li>
+<li><a href="https://github.com/Lozy/danted" target="_blank" rel="external">resources1</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_7f2a9a390102vdqn.html" target="_blank" rel="external">resources2</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Danted&quot;&gt;&lt;a href=&quot;#Danted&quot; class=&quot;headerlink&quot; title=&quot;Danted&quot;&gt;&lt;/a&gt;Danted&lt;/h2&gt;&lt;p&gt;&amp;gt;&lt;br&gt;介绍：dante是一个免费的socks代理服务器，用于linux系统。&lt;/p&gt;
+&lt;p&gt;&amp;gt
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="Danted" scheme="https://wy08271.github.io/tags/Danted/"/>
+    
+  </entry>
   
   <entry>
     <title>学习笔记：Crontab</title>
@@ -1464,200 +1773,6 @@ end</code></li>
       <category term="PostgreSQL" scheme="https://wy08271.github.io/tags/PostgreSQL/"/>
     
       <category term="导入导出" scheme="https://wy08271.github.io/tags/%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习笔记：Maven-2</title>
-    <link href="https://wy08271.github.io/2016/06/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMaven-2/"/>
-    <id>https://wy08271.github.io/2016/06/27/学习笔记：Maven-2/</id>
-    <published>2016-06-26T18:31:34.000Z</published>
-    <updated>2016-12-11T14:42:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<h1 id="多模块项目介绍"><a href="#多模块项目介绍" class="headerlink" title="多模块项目介绍"></a>多模块项目介绍</h1><p>Maven中，一个大型项目分为若干个子项目，也就是module。提高重用率。相关的业务逻辑放在一个模块中进行集中管理，体现了单一原则。</p>
-<hr>
-<h1 id="创建骨架结构"><a href="#创建骨架结构" class="headerlink" title="创建骨架结构"></a>创建骨架结构</h1><ol>
-<li>进入helloweb根目录，新建四个文件夹，分别是：/helloweb-core，/helloweb-parent，/helloweb-web，/helloweb-entity</li>
-<li>将根目录下的/src与pom.xml分别复制到新创建的四个文件夹，根目录删掉/src</li>
-<li><p>修改根目录下的pom.xml，删除<name>后的所有标签</name></p>
-<ul>
-<li><code>&lt;modelVersion&gt;</code>用来说明当前的pom文件遵循的是哪个model版本</li>
-<li><code>&lt;packaging&gt;</code>是打包的类型：jar普通的java类库（默认类型）；war普通的javaweb应用程序；ear包含全部企业应用程序，包括jar，war；pom不打包成任何文件，代表副项目</li>
-</ul>
-</li>
-<li><p>添加以下内容，用来添加模块列表，<module>里面填写文件的相对路径</module></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;modules&gt;</div><div class="line">    &lt;module&gt;helloweb-parent&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-entity&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-web&lt;/module&gt;</div><div class="line">    &lt;module&gt;helloweb-core&lt;/module&gt;</div><div class="line">&lt;/modules&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在四个文件夹下的pom.xml的<modelversion>下面添加以下代码：</modelversion></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;parent&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;relationPath&gt;&lt;/relationPath&gt;</div><div class="line">&lt;/parent&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>删除四个文件pom.xml的冗余配置信息，从<name>下的标签开始，helloweb-web从<build>开始删除</build></name></p>
-<hr>
-<h1 id="使用dependencyManagement管理依赖"><a href="#使用dependencyManagement管理依赖" class="headerlink" title="使用dependencyManagement管理依赖"></a>使用dependencyManagement管理依赖</h1><p>Maven使用dependencyManagement元素来定义一种管理依赖版本号的方法。</p>
-<ol>
-<li><p>在helloweb-parent的pom.xml中，添加以下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;dependencyManagement&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;3.0.1&lt;/version&gt;</div><div class="line">            &lt;scope&gt;provided&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;2.1&lt;/version&gt;</div><div class="line">            &lt;scope&gt;provided&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;4.11&lt;/version&gt;</div><div class="line">            &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line"></div><div class="line">        &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;5.1.21&lt;/version&gt;</div><div class="line">            &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line">    &lt;/dependencies&gt;</div><div class="line">&lt;/dependencyManagement&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>构建项目，<code>$maven install</code>    ，成功后不需要再子项目中添加具体依赖的版本号</p>
-</li>
-<li><p>例如在helloweb-entity的pom.xml中加上以下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpency&gt;</div><div class="line">        &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">        &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">    &lt;/denpency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>构建成功即可说明，在父项目中添加dependencyManagement了就可以在子项目中省略版本号        </p>
-</li>
-</ol>
-<h1 id="使用PluginManagement管理插件"><a href="#使用PluginManagement管理插件" class="headerlink" title="使用PluginManagement管理插件"></a>使用PluginManagement管理插件</h1><p>PluginManagement作用：Maven使用PluginManagement元素来提供了一种管理插件的方式。</p>
-<ol>
-<li><p>进入helloweb-parent文件夹下的pom.xml，添加以下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;</div><div class="line">    &lt;pluginManagement&gt;</div><div class="line">        &lt;plugins&gt;</div><div class="line">            &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.3.2&lt;/version&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;source&gt;1.7&lt;/source&gt;</div><div class="line">                    &lt;target&gt;1.7&lt;/source&gt;</div><div class="line">                    &lt;encoding&gt;UTF-8&lt;encouding&gt;</div><div class="line">                &lt;/configuration&gt;                    &lt;/plugin&gt;</div><div class="line"></div><div class="line">        &lt;plugin&gt;</div><div class="line">            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.6&lt;/version&gt;</div><div class="line">        &lt;/plugin&gt;</div><div class="line">        &lt;plugin&gt;</div><div class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;</div><div class="line">                &lt;version&gt;2.4&lt;/version&gt;</div><div class="line">                &lt;configuration&gt;</div><div class="line">                    &lt;warName&gt;$&#123;priject.artifactId&#125;&lt;/warName&gt;</div><div class="line">                &lt;/configuration&gt;                    &lt;/plugin&gt;</div><div class="line">        &lt;/plugins&gt;</div><div class="line">    &lt;/pluginManagement&gt;</div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>进入helloweb-entity文件夹下的pom.xml的<plugin>已经进行了相应的改变</plugin></p>
-</li>
-</ol>
-<h1 id="定义项目属性及配置信息"><a href="#定义项目属性及配置信息" class="headerlink" title="定义项目属性及配置信息"></a>定义项目属性及配置信息</h1><ol>
-<li><p>打开helloweb-parent文件夹下的pom.xml文件，在<name>标签下添加以下的代码：</name></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;properties&gt;</div><div class="line">    &lt;jdk.version&gt;1.7&lt;/jdk.version&gt;</div><div class="line">    &lt;servlet.api.version&gt;3.0.1&lt;/servlet.api.version&gt;</div><div class="line">    &lt;jsp.api.version&gt;2.1&lt;/jsp.api.version&gt;</div><div class="line">    &lt;junit.version&gt;4.11&lt;/junit.version&gt;</div><div class="line">    &lt;mysql.version&gt;5.1.21&lt;/mysql.version&gt;</div><div class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</div><div class="line">&lt;/properties&gt;</div><div class="line"></div><div class="line">//ps:&lt;properties&gt;功能是定义一些常量，可以在pom.xml的其他地方进行引用</div></pre></td></tr></table></figure>
-</li>
-<li><p>替换常量时候的格式<code>${jdk.version}</code></p>
-</li>
-<li>重新构建<code>$maven install</code>，若正确则说明修改成功</li>
-</ol>
-<ul>
-<li>description 项目表示信息</li>
-<li>url 项目的地址</li>
-<li>inceptionYear 项目起止年份</li>
-<li>其他</li>
-</ul>
-<hr>
-<h1 id="完善helloweb-entity模块"><a href="#完善helloweb-entity模块" class="headerlink" title="完善helloweb-entity模块"></a>完善helloweb-entity模块</h1><ol>
-<li>启动MySQL，新建数据库<code>maven_db</code></li>
-<li>在新建的数据库上点击右键，将其设置为默认的”scheme”</li>
-<li><p>新建表，语句成功后点击”闪电”图标，刷新scheme</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">create table users(</div><div class="line">id int(11) unsigned not null auto_increment,</div><div class="line">name varchar(50) not null,</div><div class="line">password varchar(50) not null,</div><div class="line">email varchar(50),</div><div class="line">primary key(id) engine = InnoDB default charset=utf8</div><div class="line">)</div></pre></td></tr></table></figure>
-</li>
-<li><p>插入一条数据，填写完成后选中这条sql语句，点击闪电图标，显示插入成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into user(name,password,email)values(&apos;Tom&apos;,&apos;123456&apos;,&apos;tom@163.com&apos;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>在helloweb-entity的src/中建立User.java文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class User&#123;</div><div class="line">    private long id;</div><div class="line">    private String name;</div><div class="line">    private String password;</div><div class="line">    private String email;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Override</div><div class="line">public String toString()&#123;</div><div class="line">    return &quot;User [id=&quot;+ id +&quot;,name=&quot; + name + &quot;,password=&quot; +  password+ &quot;,email=&quot;   + email + &quot;]&quot;;</div><div class="line">&#125;</div><div class="line">//自动生成get，set方法</div></pre></td></tr></table></figure>
-</li>
-<li><p>打包，run as <code>$maven install</code></p>
-</li>
-</ol>
-<hr>
-<h1 id="完善helloweb-core模块"><a href="#完善helloweb-core模块" class="headerlink" title="完善helloweb-core模块"></a>完善helloweb-core模块</h1><ol>
-<li>在helloweb-code的src/main中建立resources/文件夹，设置其为Source Folder</li>
-<li>在其下建立一个新文件dbconfig.properties</li>
-<li><p>在属性文件里添加数据库的配置信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//驱动名称</div><div class="line">driver=com.mysql.jdbc.Driver</div><div class="line">//jdbc链接地址</div><div class="line">dburl=jdbc:mysql://localhost:3306/maven_db</div><div class="line">//用户名</div><div class="line">user=root</div><div class="line">//密码为空</div><div class="line">password</div></pre></td></tr></table></figure>
-</li>
-<li><p>新建一个java/util文件夹，其下新建ConnectionFactory.java文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">package com.XXX.util;</div><div class="line">public class ConnectionFactory&#123;</div><div class="line">    private static String driver;</div><div class="line">    private static String dburl;</div><div class="line">    private static String user;</div><div class="line">    private static String password;</div><div class="line"></div><div class="line">    private static final ConnectionFactory factory = new ConnectionFactory();</div><div class="line">    private Connection conn;</div><div class="line">    static&#123;</div><div class="line">        Properties prop = new Properties();</div><div class="line">        try&#123;</div><div class="line">            InputStream in = ConnectionFactory class getClassLoader().getResourceAsStream(&quot;dbconfig.properties&quot;);</div><div class="line">            prop.load(in);</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            //TODO</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        driver = prop.getProperty(&quot;driver&quot;);</div><div class="line">        dburl=prop.getProperty(&quot;dburl&quot;);</div><div class="line">        user=prop.getProperty(&quot;user&quot;);</div><div class="line">        password=prop.getProperty(&quot;password&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private ConnectionFactory()&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static ConnectionFactory getInstance()&#123;</div><div class="line">        return factory;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Connection makeConnection()&#123;</div><div class="line">        try&#123;</div><div class="line">            Class forName(driver)</div><div class="line">            conn = DriverManager.getConnection(dburl,user,password);</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return conn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在helloweb-code的pom.xml文件中添加MySQL驱动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpency&gt;</div><div class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</div><div class="line">            &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">        &lt;/denpency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>与util同级建立dao和service文件夹，dao文件夹下建立impl文件夹和UserDao.java，service文件夹下建立CheckUserService.java；</p>
-</li>
-<li><p>添加依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.sakura&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;helloweb-entity&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;1.0&lt;/version&gt;</div><div class="line">    &lt;type&gt;jar&lt;/type&gt;</div><div class="line">    &lt;scope&gt;complie&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>打包项目，<code>$mvn install</code></p>
-</li>
-</ol>
-<hr>
-<h1 id="完善helloweb-web模块"><a href="#完善helloweb-web模块" class="headerlink" title="完善helloweb-web模块"></a>完善helloweb-web模块</h1><ol>
-<li><p>在helloweb-web的main/下建立<code>action</code>包，再建立<code>CheckAction.java</code>，引入<code>HttpServlet</code>，引入<code>doGet</code>和<code>doPost</code>方法，并在其中补充完整业务逻辑代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">private CheckUserService cku = new CheckUserService();</div><div class="line"></div><div class="line">@Override</div><div class="line">protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOExceotion&#123;</div><div class="line">    doPost(req, resp);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Override</div><div class="line">protected void doPost(HttpservletRequest req, HttpServletResopnse resp)throws SerletException, IOException&#123;</div><div class="line">    String uname = req.getParameter(&quot;uname&quot;);</div><div class="line">    String password = req.getParameter(&quot;upwd&quot;);</div><div class="line"></div><div class="line">    RequestDispatcher rd = null;</div><div class="line">    String forward = null;</div><div class="line"></div><div class="line">    if(uname == null || password == null)&#123;</div><div class="line">    req.setAttribute(&quot;msg&quot;,&quot;error!&quot;);</div><div class="line">    rd = req.getRequestDispatcher(&quot;error.jsp&quot;);</div><div class="line">    rd.forward(req,resp);</div><div class="line">    &#125;else&#123;</div><div class="line">        User user = new User();</div><div class="line">        user.setName(uname);</div><div class="line">        user.setPassword(password);</div><div class="line">        boolean bool = cku check(user);</div><div class="line"></div><div class="line">        if(bool)&#123;</div><div class="line">            forward = &quot;success.jsp&quot;;</div><div class="line">        &#125;else&#123;</div><div class="line">            req.setAttribute(&quot;msg&quot;,&quot;error&quot;);</div><div class="line">            forward = &quot;error.jsp&quot;;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        rd = req.getRequestDispatcher(forward);</div><div class="line">        rd.forward(req,resp);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>添加依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.XXX&lt;groupId&gt;</div><div class="line">    &lt;artifactId&gt;helloweb-core&lt;artifactId&gt;</div><div class="line">    &lt;version&gt;1.0&lt;version&gt;</div><div class="line">    &lt;type&gt;jar&lt;type&gt;</div><div class="line">    &lt;scope&gt;compile&lt;scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在webapp文件夹下写入<code>error.jsp,index.jsp,login.jsp,success.jsp</code></p>
-</li>
-<li>在webapp/WEB-INF下写入<code>web.xml</code></li>
-<li>使用Tomcat启动</li>
-</ol>
-<hr>
-<h1 id="使用log4j打印日志"><a href="#使用log4j打印日志" class="headerlink" title="使用log4j打印日志"></a>使用log4j打印日志</h1><ol>
-<li><p>打开helloweb-parent的pom.xml，添加依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-api&lt;/            artifactId&gt;</div><div class="line">    &lt;version&gt;2.2&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-core&lt;/            artifactId&gt;</div><div class="line">    &lt;version&gt;2.2&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>打开helloweb-entity的pom.xml，添加依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-api&lt;/            artifactId&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;log4j-core&lt;/            artifactId&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>构建helloweb-parent模块，在构建helloweb-entity.<code>$mvn install</code></p>
-</li>
-<li>在helloweb-entity的main/建立与java同级的resources文件夹</li>
-<li>在新建的文件夹中建立log4j2.xml文件</li>
-<li><p>添加内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;configuration status=&quot;OFF&quot;&gt;</div><div class="line">&lt;appenders&gt;</div><div class="line">&lt;Console name=&quot;Console&quot; target=&quot;SYSTEM_OUT&quot;&gt;</div><div class="line">    &lt;PatternLayout pattern=&quot;%d&#123;HH:mm:ss.SSS&#125; [%t] %-5level %logger&#123;36&#125; - %msg%n&quot;/&gt;</div><div class="line">&lt;/Console&gt;</div><div class="line">&lt;/appenders&gt;</div><div class="line">&lt;loggers&gt;</div><div class="line">&lt;root level=&quot;trace&quot;&gt;</div><div class="line">    &lt;appender-ref ref=&quot;Console&quot;/&gt;</div><div class="line">&lt;/root&gt;</div><div class="line">&lt;/loggers&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="POM-xml的配置信息"><a href="#POM-xml的配置信息" class="headerlink" title="POM.xml的配置信息"></a>POM.xml的配置信息</h1><ul>
-<li>project 包含了pom的信息</li>
-<li>modelVersion 指定当前pom版本</li>
-<li>groupId 包名，反写的公司网址+项目名</li>
-<li>artifactId 模块名，项目名+模块名</li>
-<li>version 三位数，大版本号+分支版本号+小版本号</li>
-<li>packaging 打包类型，默认是jar</li>
-<li>name 项目描述名</li>
-<li>url 项目地址</li>
-<li>description 项目的描述</li>
-<li>developers 开发者列表</li>
-<li>licenses 许可号</li>
-<li>organization 组织信息</li>
-<li><p>dependencies 依赖信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;type&gt;&lt;/type&gt;</div><div class="line">    &lt;scope&gt;&lt;/scope&gt;  //可用的范围，test,system,runtime等</div><div class="line">    &lt;optional&gt;&lt;/optional&gt; //设置依赖是否可选</div><div class="line">    &lt;exclusions&gt; //排除依赖传递列表</div><div class="line">        &lt;exclusion&gt;</div><div class="line">        &lt;/exclusion&gt;</div><div class="line">    &lt;/exclusions&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>dependencyManagement 依赖管理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;denpendency&gt;</div><div class="line">        &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;/denpendency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>build 插件列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;plugins&gt;</div><div class="line">    &lt;plugin&gt;</div><div class="line">        &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;/plugin&gt;</div><div class="line">&lt;/plugins&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>parent 子模块中对父模块pom的继承</p>
-</li>
-<li>modules 聚合运行多个模块</li>
-</ul>
-<p>具体的结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">    &lt;project&gt;</div><div class="line"></div><div class="line">    &lt;modelVersion&gt;&lt;/modelVersion&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;&lt;/version&gt;</div><div class="line">    &lt;packaging&gt;&lt;/packaging&gt;</div><div class="line">    &lt;name&gt;&lt;/name&gt;</div><div class="line">    &lt;url&gt;&lt;/url&gt;</div><div class="line">    &lt;description&gt;&lt;/description&gt;</div><div class="line"></div><div class="line">    &lt;developers&gt;</div><div class="line">        &lt;developer&gt;</div><div class="line">        &lt;/developer&gt;</div><div class="line">    &lt;/developers&gt;</div><div class="line"></div><div class="line">    &lt;licenses&gt;&lt;/licenses&gt;</div><div class="line">    &lt;organization&gt;&lt;/organization&gt;</div><div class="line"></div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;dependency&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">            &lt;type&gt;&lt;/type&gt;</div><div class="line">            &lt;scope&gt;&lt;/scope&gt;</div><div class="line">            &lt;optional&gt;&lt;/optional&gt;</div><div class="line">            &lt;exclusions&gt;</div><div class="line">                &lt;exclusion&gt;</div><div class="line">                &lt;/exclusion&gt;</div><div class="line">            &lt;/exclusions&gt;</div><div class="line">        &lt;/dependency&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line"></div><div class="line">&lt;dependencyManagement&gt;</div><div class="line">    &lt;dependencies&gt;</div><div class="line">        &lt;denpendency&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">        &lt;/denpendency&gt;</div><div class="line">    &lt;/dependencies&gt;</div><div class="line">&lt;/dependencyManagement&gt;            </div><div class="line"></div><div class="line">&lt;build&gt;</div><div class="line">    &lt;plugins&gt;</div><div class="line">        &lt;plugin&gt;</div><div class="line">            &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">            &lt;version&gt;&lt;/version&gt;</div><div class="line">        &lt;/plugin&gt;</div><div class="line">    &lt;/plugins&gt;</div><div class="line">&lt;/build&gt;        </div><div class="line"></div><div class="line">&lt;parent&gt;</div><div class="line">    &lt;groupId&gt;&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;&lt;/artifactId&gt;</div><div class="line">&lt;/parent&gt;</div><div class="line">&lt;modules&gt;</div><div class="line">    &lt;module&gt;&lt;/module&gt;</div><div class="line">&lt;/modules&gt;</div><div class="line"></div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
-<h1 id="依赖的范围"><a href="#依赖的范围" class="headerlink" title="依赖的范围"></a>依赖的范围</h1><p>maven中提供了三种classpath：<strong>编译，测试，运行</strong> scope共有六种：</p>
-<ul>
-<li>complie 默认，只在编译测试运行时有效</li>
-<li>provided 编译测试时有效</li>
-<li>runtime 测试和运行时有效</li>
-<li>test 测试时有效</li>
-<li>system 编译和测试时有效，与本机系统相关联</li>
-<li>import 导入的依赖范围，表示从其他的pom中继承过来，只在dependencesManagement中使用</li>
-</ul>
-<h1 id="依赖传递"><a href="#依赖传递" class="headerlink" title="依赖传递"></a>依赖传递</h1><h1 id="依赖冲突"><a href="#依赖冲突" class="headerlink" title="依赖冲突"></a>依赖冲突</h1><ol>
-<li>短路优先</li>
-<li>路径相同，先声明先依赖</li>
-</ol>
-<h1 id="聚合和继承"><a href="#聚合和继承" class="headerlink" title="聚合和继承"></a>聚合和继承</h1><p>聚合：使用modules标签</p>
-<p>继承：使用parent标签</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;h1 id=&quot;多模块项目介绍&quot;&gt;&lt;a href=&quot;#多模块项目介绍&quot; class=&quot;headerlink&quot; title=&quot;多模块项目介绍&quot;&gt;&lt;/a&gt;多模块项目介绍&lt;/h1&gt;&lt;p&gt;Maven中，一个大型项目分为若干个子项目，也就是module。提高重用率。相关的业务逻辑
-    
-    </summary>
-    
-      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
-    
-    
-      <category term="maven" scheme="https://wy08271.github.io/tags/maven/"/>
-    
-      <category term="构建工具" scheme="https://wy08271.github.io/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="学习笔记" scheme="https://wy08271.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="java" scheme="https://wy08271.github.io/tags/java/"/>
     
   </entry>
   

@@ -1569,6 +1569,22 @@ validates :name, :email, uniqueness: { case_sensitive: false }
       &lt;li&gt;&lt;%= link_to t(&quot;navbar.signup&quot;), signup_path %&gt;&lt;/li&gt;
   &lt;% end %&gt;
 &lt;/ul&gt;
+</code></pre><hr>
+<h3 id="十二、添加简单的权限"><a href="#十二、添加简单的权限" class="headerlink" title="十二、添加简单的权限"></a><strong>十二、添加简单的权限</strong></h3><p>登录后才能创建新活动，点击首页的发布新活动按钮，如果用户没有登录，无法创建，需要的代码调整是在 issues_controller.rb 中， new 改成</p>
+<pre><code>def new
+  if not current_user
+    redirect_to :root
+    return
+  else
+    @issue = Issue.new
+  end
+end
+</code></pre><p>隐藏评论框。退出登录条件下再来访问一个活动的展示页面就会报错。因为在评论框的代码中用到了 current_user 。解决方法是到 issues/show.html.erb 中</p>
+<pre><code>+ &lt;% if current_user %&gt;
+   &lt;%= render partial: &apos;shared/comment_box&apos;, locals: {issue: @issue} %&gt;
++ &lt;% else %&gt;
++   &lt;%= link_to &quot;登录发评论&quot;, login_path %&gt;
++ &lt;% end %&gt;
 </code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">

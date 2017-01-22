@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wy08271.github.io/"/>
-  <updated>2017-01-22T05:43:50.000Z</updated>
+  <updated>2017-01-22T23:34:36.000Z</updated>
   <id>https://wy08271.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://wy08271.github.io/2017/01/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ARails-Demo/"/>
     <id>https://wy08271.github.io/2017/01/19/学习笔记：Rails-Demo/</id>
     <published>2017-01-19T02:54:15.000Z</published>
-    <updated>2017-01-22T05:43:50.000Z</updated>
+    <updated>2017-01-22T23:34:36.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="使用Rails搭建简单的约饭板"><a href="#使用Rails搭建简单的约饭板" class="headerlink" title="使用Rails搭建简单的约饭板"></a><strong>使用Rails搭建简单的约饭板</strong></h2><h3 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a><strong>一、准备工作</strong></h3><p>适合Mac OS X和任何 Linux 发行版本。在安装之前，先码几个概念性的词。<br><strong>RVM</strong> 用于帮你安装Ruby环境，帮你管理多个Ruby环境，帮你管理你开发的每个Ruby应用使用机器上哪个Ruby环境。Ruby环境不仅仅是Ruby本身，还包括依赖的第三方Ruby插件。都由RVM管理。</p>
 <p><strong>Rails</strong> 著名开发框架。</p>
@@ -1148,6 +1148,22 @@ validates :name, :email, uniqueness: { case_sensitive: false }
       &lt;li&gt;&lt;%= link_to t(&quot;navbar.signup&quot;), signup_path %&gt;&lt;/li&gt;
   &lt;% end %&gt;
 &lt;/ul&gt;
+</code></pre><hr>
+<h3 id="十二、添加简单的权限"><a href="#十二、添加简单的权限" class="headerlink" title="十二、添加简单的权限"></a><strong>十二、添加简单的权限</strong></h3><p>登录后才能创建新活动，点击首页的发布新活动按钮，如果用户没有登录，无法创建，需要的代码调整是在 issues_controller.rb 中， new 改成</p>
+<pre><code>def new
+  if not current_user
+    redirect_to :root
+    return
+  else
+    @issue = Issue.new
+  end
+end
+</code></pre><p>隐藏评论框。退出登录条件下再来访问一个活动的展示页面就会报错。因为在评论框的代码中用到了 current_user 。解决方法是到 issues/show.html.erb 中</p>
+<pre><code>+ &lt;% if current_user %&gt;
+   &lt;%= render partial: &apos;shared/comment_box&apos;, locals: {issue: @issue} %&gt;
++ &lt;% else %&gt;
++   &lt;%= link_to &quot;登录发评论&quot;, login_path %&gt;
++ &lt;% end %&gt;
 </code></pre>]]></content>
     
     <summary type="html">
@@ -2842,13 +2858,13 @@ end</code></li>
       <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
     
     
+      <category term="flyway" scheme="https://wy08271.github.io/tags/flyway/"/>
+    
       <category term="插件" scheme="https://wy08271.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
     
       <category term="maven" scheme="https://wy08271.github.io/tags/maven/"/>
     
       <category term="构建工具" scheme="https://wy08271.github.io/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="flyway" scheme="https://wy08271.github.io/tags/flyway/"/>
     
   </entry>
   

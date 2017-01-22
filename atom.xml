@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wy08271.github.io/"/>
-  <updated>2017-01-12T07:17:19.000Z</updated>
+  <updated>2017-01-22T05:43:50.000Z</updated>
   <id>https://wy08271.github.io/</id>
   
   <author>
@@ -14,6 +14,1154 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习笔记：Rails Demo</title>
+    <link href="https://wy08271.github.io/2017/01/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ARails-Demo/"/>
+    <id>https://wy08271.github.io/2017/01/19/学习笔记：Rails-Demo/</id>
+    <published>2017-01-19T02:54:15.000Z</published>
+    <updated>2017-01-22T05:43:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用Rails搭建简单的约饭板"><a href="#使用Rails搭建简单的约饭板" class="headerlink" title="使用Rails搭建简单的约饭板"></a><strong>使用Rails搭建简单的约饭板</strong></h2><h3 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a><strong>一、准备工作</strong></h3><p>适合Mac OS X和任何 Linux 发行版本。在安装之前，先码几个概念性的词。<br><strong>RVM</strong> 用于帮你安装Ruby环境，帮你管理多个Ruby环境，帮你管理你开发的每个Ruby应用使用机器上哪个Ruby环境。Ruby环境不仅仅是Ruby本身，还包括依赖的第三方Ruby插件。都由RVM管理。</p>
+<p><strong>Rails</strong> 著名开发框架。</p>
+<p><strong>RubyGems</strong> 是一个方便而强大的Ruby程序包管理器（ package manager），类似RedHat的RPM。它将一个Ruby应用程序打包到一个gem里，作为一个安装单元。无需安装，最新的Ruby版本已经包含RubyGems了。</p>
+<p><strong>Gem</strong> 是封装起来的Ruby应用程序或代码库。在终端使用的gem命令，是指通过RubyGems管理Gem包。</p>
+<p><strong>Gemfile</strong> 定义你的应用依赖哪些第三方包，bundle根据该配置去寻找这些包。</p>
+<p><strong>Rake</strong> 是一门构建语言，和make类似。Rake是用Ruby写的，Rails用rake扩展来完成多种任务，如数据库初始化、更新等。</p>
+<p><strong>Rakefile</strong> 是由Ruby编写，Rake的命令执行就是由Rakefile文件定义。</p>
+<p><strong>Bundle</strong> 相当于多个RubyGems批处理运行。在配置文件gemfilel里说明你的应用依赖哪些第三方包，他自动帮你下载安装多个包，并且会下载这些包依赖的包。</p>
+<ul>
+<li><p>安装系统需要的包</p>
+<pre><code>$ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+#安装brew
+$ brew install libxml2 libxslt libiconv
+#安装 Rails 必要的一些三方库
+</code></pre></li>
+<li><p>安装 RVM</p>
+<pre><code>$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+$ curl -sSL https://get.rvm.io | bash -s stable
+$ curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
+
+$ source ~/.rvm/scripts/rvm
+#载入 RVM 环境（新开的Termal就不用了）
+$ echo &quot;ruby_url=https://cache.ruby-china.org/pub/ruby&quot; &gt; ~/.rvm/user/db
+#修改 RVM 下载 Ruby 的源，到 Ruby China 的镜像
+$ rvm -v
+#检查一下是否安装正确
+</code></pre></li>
+<li><p>用 RVM 安装 Ruby</p>
+<pre><code>$ rvm list known
+#列出已知的 Ruby 版本
+$ rvm install 2.3.0
+#安装一个 Ruby 版本
+</code></pre></li>
+<li><p>设置 Ruby 版本</p>
+<pre><code>$ rvm use 2.3.0 --default
+#将指定版本的 Ruby 设置为系统默认版本
+$ ruby -v
+#测试
+$ gem -v
+$ gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+$ gem install bundler
+</code></pre></li>
+<li><p>安装 Rails 环境</p>
+<pre><code>$ gem install rails
+$ rails -v
+</code></pre></li>
+<li><p>安装 MySQL 数据库</p>
+<pre><code>$ sudo apt-get install mysql-server  mysql-client  libmysqlclient-dev
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="二、Hello-World"><a href="#二、Hello-World" class="headerlink" title="二、Hello World"></a><strong>二、Hello World</strong></h3><p>进入某个文件夹，新建一个项目，使用 mysql 作为数据库：<code>rails new showcase -d mysql</code>，showcase就是项目的名字。</p>
+<p>现在打开这个项目：<code>cd showcase &amp;&amp; rails s</code>。</p>
+<p>如果遇到<code>Could not find a JavaScript runtime</code>，解决方法<code>$sudo apt-get install -y nodejs</code>；<br>如果遇到<code>Unknown database &#39;showcase_development&#39;</code>，解决方法<code>$rake db:create db:migrate</code>。</p>
+<p>使用The Rails Way的方式展现hello world。routes -&gt; controller -&gt; view，如果需要调用数据库中的数据，则在controller中调用model。</p>
+<p>到 routes.rb 中添加一行代码</p>
+<pre><code>root &apos;page#welcome&apos;
+</code></pre><p>新建 app/controllers/page_controller.rb 文件</p>
+<pre><code>class PageController &lt; ApplicationController
+  def welcome
+  end
+end
+</code></pre><p>新建 app/views/page/welome.html 文件</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;hello world&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>添加about页面，到 routes.rb 中添加代码</p>
+<pre><code>get &apos;/about&apos; =&gt; &apos;page#about&apos;
+</code></pre><p>到page_controller.rb中添加</p>
+<pre><code>def about
+end
+</code></pre><p>新建 app/views/page/about.html 文件</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;about&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><hr>
+<h3 id="三、静态页面"><a href="#三、静态页面" class="headerlink" title="三、静态页面"></a><strong>三、静态页面</strong></h3><p> 给welcome页面和about页面加一些内容和简单的样式吧。</p>
+<p> 首先在<code>app/assets/images</code>下放一张你喜欢的大图，改名为<code>home-banner-bg.jpg</code>（不改也行，不过所有的样式名字都显示不出来，233）。</p>
+<p> 在<code>assets/javascripts</code>下新建文件夹<code>/vendor</code>，进入文件夹后执行<code>$wget https://raw.githubusercontent.com/danmillar/jquery-anystretch/master/jquery.anystretch.min.js</code>，这个插件可以使图片自适应屏幕。</p>
+<p> 进入到<code>app/assets/javascripts/application.js</code>，添加<code>//= require vendor/jquery.anystretch.min</code>。</p>
+<p> 这样准备工作就做完了。</p>
+<p>修改 <code>app/views/page/welcome.html</code> 文件</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Meal&lt;/title&gt;
+  &lt;%= stylesheet_link_tag &quot;application&quot; %&gt;
+  &lt;%= javascript_include_tag &apos;application&apos;, &apos;data-turbolinks-track&apos; =&gt; true %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class=&quot;navbar clearfix&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&gt;
+      Meetup
+    &lt;/a&gt;
+    &lt;ul class=&quot;nav left&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;placeholder&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul class=&quot;nav right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;login&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;signup&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;home-banner&quot; data-stretch=&quot;&lt;%= image_url &quot;home-banner-bg.jpg&quot; %&gt;&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;footer&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    出现吧!黑暗泽克斯原始型二,爆裂吧现实!粉碎吧精神! 放逐这个世界!遵从血的盟/约 我在此召唤汝,夜之女王爆裂吧现实 崩断把神经 消失吧 这个世界！愚蠢的人类啊，我再给你一次选择的机会竟敢与身为黑骑士的我提出挑战，做好觉悟了么！
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  $(&apos;.home-banner&apos;).anystretch();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>修改 <code>app/views/page/about.html</code> 文件</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Meal&lt;/title&gt;
+  &lt;%= stylesheet_link_tag &quot;application&quot; %&gt;
+  &lt;%= javascript_include_tag &apos;application&apos;, &apos;data-turbolinks-track&apos; =&gt; true %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class=&quot;navbar clearfix&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&gt;
+      Meetup
+    &lt;/a&gt;
+    &lt;ul class=&quot;nav left&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;/about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;placeholder&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul class=&quot;nav right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;login&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;signup&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1&gt;about&lt;/h1&gt;
+
+&lt;div class=&quot;footer&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    出现吧!黑暗泽克斯原始型二,爆裂吧现实!粉碎吧精神! 放逐这个世界!遵从血的盟/约 我在此召唤汝,夜之女王爆裂吧现实 崩断把神经 消失吧 这个世界！愚蠢的人类啊，我再给你一次选择的机会竟敢与身为黑骑士的我提出挑战，做好觉悟了么！
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  $(&apos;.home-banner&apos;).anystretch();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>在<code>app/assets/stylesheets</code>下新建<code>index.css</code></p>
+<pre><code>body {
+    font-family: sans-serif;
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.container {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: &quot; &quot;;
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar {
+    background: #222;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: #fff;
+}
+
+.navbar a:hover {
+    color: #c0865e;
+}
+
+.navbar-brand {
+    float: left;
+    padding-left: 0;
+    line-height: 80px;
+    font-size: 40px;
+}
+
+.nav.left {
+    float: left;
+    margin-left: 40px;
+    font-size: 15px;
+}
+
+.nav.right {
+    float: right;
+}
+
+.nav li {
+    float: left;
+}
+
+.nav li a {
+    display: block;
+    font-size: 1.1em;
+    line-height: 40px;
+    padding: 5px 10px;
+    margin: 15px 10px;
+}
+
+.nav li a:hover {
+    color: #000;
+    background: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #c0865e;
+}
+
+a:hover {
+    color: #845534;
+}
+
+.footer {
+    border-top: 1px solid #c5c5c5;
+    min-height: 200px;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    background: #f8f5f0;
+}
+
+.home-banner {
+    padding-top: 80px;
+    height: 1000px;
+}
+
+.index .navbar {
+    background: transparent;
+}
+</code></pre><hr>
+<h3 id="四、第一次重构"><a href="#四、第一次重构" class="headerlink" title="四、第一次重构"></a><strong>四、第一次重构</strong></h3><p>welcome.html.erb和about.html.erb中有很多相同的代码，可以把相同的部分提出来，放在application.html.erb中。移动后的三个文件分别为：</p>
+<p>application.html.erb</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Meal&lt;/title&gt;
+  &lt;%= stylesheet_link_tag &quot;application&quot; %&gt;
+  &lt;%= javascript_include_tag &apos;application&apos;, &apos;data-turbolinks-track&apos; =&gt; true %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class=&quot;navbar clearfix&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&gt;
+      Meetup
+    &lt;/a&gt;
+    &lt;ul class=&quot;nav left&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;placeholder&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul class=&quot;nav right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;login&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;signup&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;%= yield %&gt;
+
+&lt;div class=&quot;footer&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    出现吧!黑暗泽克斯原始型二,爆裂吧现实!粉碎吧精神! 放逐这个世界!遵从血的盟/约 我在此召唤汝,夜之女王爆裂吧现实 崩断把神经 消失吧 这个世界！愚蠢的人类啊，我再给你一次选择的机会竟敢与身为黑骑士的我提出挑战，做好觉悟了么！
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>about.html.erb</p>
+<pre><code>&lt;h1&gt;about&lt;/h1&gt;
+</code></pre><p>welcome.html.erb</p>
+<pre><code>&lt;div class=&quot;home-banner&quot; data-stretch=&quot;&lt;%= image_url &quot;home-banner-bg.jpg&quot; %&gt;&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  $(&apos;.home-banner&apos;).anystretch();
+&lt;/script&gt;
+</code></pre><p>随着html页面结构的调整，layout文件的引入，css文件也需要做相应的修改。新建一个目录<code>sections</code>里面专门放各个页面具体区块的css。把 index.css 移动进去，拆成 layout.css.scss 和 welcome.css.scss 。分别负责 application.html.erb 和 welcome.html.erb 页面的样式。再新建<code>shared</code>，将common.css.scss放入。</p>
+<pre><code>cd app/assets/stylesheets
+mkdir sections
+mkdir shared
+</code></pre><hr>
+<h3 id="五、添加留言板"><a href="#五、添加留言板" class="headerlink" title="五、添加留言板"></a><strong>五、添加留言板</strong></h3><p>在welcome页面添加一个可以发布聚餐活动的按钮。在 welcome.html.erb 中， class=”home-banner” 的 div 之内添加</p>
+<pre><code>&lt;div class=&quot;banner-inner container clearfix&quot;&gt;
+  &lt;h1&gt;约饭!&lt;/h1&gt;
+  &lt;p class=&quot;subheading&quot;&gt;说说你想吃啥呀&lt;/p&gt;
+  &lt;div class=&quot;home-banner-links&quot;&gt;
+    &lt;%= link_to &quot;发布新聚餐&quot;, &quot;#&quot;, class: &quot;banner-btn btn&quot; %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>在对应的 css 文件中添加样式</p>
+<pre><code>.home-banner {
+  margin-top: -80px;
+  padding-top: 80px;
+  .banner-inner {
+    height: 1000px;
+    position: relative;
+    h1 {
+      font-family: &quot;museo-sans-condensed&quot;;
+      font-size: 88px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      border-radius: 5px;
+      margin-top: 60px;
+      line-height: 1.2;
+      max-width: 50%;
+      text-transform: capitalize;
+      color: #fff;
+      text-shadow: 0 1px 81px rgba(0, 0, 0, 0.3);
+    }
+    .subheading {
+      color: #fff;
+      font-weight: 300;
+      font-size: 1.3em;
+      margin-top: 26px;
+      background: rgba(0, 0, 0, 0.5);
+      display: block;
+      width: 45%;
+      padding: 5px 10px;
+      line-height: 30px;
+      text-align: center;
+    }
+  }
+}
+
+.home-banner-links {
+  position: absolute;
+  right: 160px;
+  top: 194px;
+  .banner-btn {
+    padding: 15px 15px;
+    font-size: 1.2em;
+    font-weight: 300;
+    font-family: &quot;museo-sans-condensed&quot;;
+    border-radius: 5px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    margin-left: 8px;
+    border: 2px solid;
+    position: relative;
+    top: 200px;
+    left: -700px;
+    &amp;:hover {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+</code></pre><p>在 welcome.html.erb 中添加聚餐列表</p>
+<pre><code>&lt;div class=&quot;issue-list-header&quot;&gt;
+  &lt;div class=&quot;container clearfix&quot;&gt;
+    &lt;h1 class=&quot;issue-list-heading&quot;&gt;聚餐列表&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>添加聚餐列表的样式</p>
+<pre><code>.issue-list-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  margin-top: 0;
+  margin-bottom: 35px;
+  background: #7EB6AD;
+  color: #fff;
+  .issue-list-heading {
+    font-size: 2em;
+    font-weight: normal;
+  }
+}
+</code></pre><p>在 welcome.html.erb 中添加一个活动</p>
+<pre><code>&lt;div class=&quot;container clearfix&quot;&gt;
+  &lt;div class=&quot;issue-list&quot;&gt;
+    &lt;article class=&quot;issue clearfix&quot;&gt;
+      &lt;div class=&quot;avatar&quot;&gt;
+        &lt;a href=&quot;#&quot;&gt;
+          &lt;img src=http://img1.3lian.com/gif/more/11/201301/e47524afabdc211536e595743be46e92.jpg alt=&quot;&quot;&gt;
+        &lt;/a&gt;      &lt;/div&gt;
+      &lt;div class=&quot;body&quot;&gt;
+        &lt;h5 class=&quot;title&quot;&gt;
+          &lt;a href=&quot;#&quot;&gt;test&lt;/a&gt;
+        &lt;/h5&gt;
+        &lt;a class=&quot;read-more&quot; href=&quot;#&quot;&gt;read&lt;/a&gt;
+        &lt;span class=&quot;meta-data&quot;&gt;
+          &lt;a href=&quot;#&quot;&gt;avatar&lt;/a&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;issue-comment-count&quot;&gt;
+        &lt;a href=&quot;#&quot;&gt;
+          4
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>对应的样式</p>
+<pre><code>.issue-list {
+  background: #fff;
+  clear: both;
+  padding: 0 2em;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  article {
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+    margin-top: 0;
+    padding: 1em 0;
+    .body {
+      margin-right: 2em;
+      width: 70%;
+      float: left;
+      .read-more{
+        background-color: #316A72;
+        color: #fff;
+        font-size: 13px;
+        border-radius: 4px;
+        letter-spacing: -0.3px;
+        display: inline-block;
+        line-height: 1.7;
+        font-weight: 100;
+        padding: 0 6px;
+      }
+      .meta-data {
+        color: #999;
+        font-size: 12px;
+      }
+
+      h5 {
+        font-size: 22px;
+        line-height: 35px;
+        font-weight: normal;
+        margin: 0 0 5px;
+        a {
+          color: #555;
+          &amp;:hover {
+            color: black;
+          }
+        }
+      }
+    }
+    .issue-comment-count {
+      float: right;
+      margin-top: 15px;
+      a {
+        font-size: 45px;
+      }
+    }
+    .avatar {
+      width: 75px;
+      float: left;
+      img {
+        width: 65px;
+        padding: 4px;
+        border: 1px solid #ddd;
+      }
+    }
+  }
+}
+</code></pre><p>修改controller，使数据可以灵活一点地显示。page_controller.rb 中添加</p>
+<pre><code>def welcome
+@issues  = [ { title: &quot;test1&quot;, comments: &quot;4&quot; }, { title: &quot;test2&quot;, comments: &quot;5&quot; } ]
+end
+</code></pre><p>修改 welcome.html.erb 将 issue-list 中的内容抽出来，新建一个文件 <code>_issue_list.html.erb</code></p>
+<pre><code>&lt;div class=&quot;issue-list&quot;&gt;
+  &lt;% issues.each do |i| %&gt;
+      &lt;article class=&quot;issue clearfix&quot;&gt;
+        &lt;div class=&quot;avatar&quot;&gt;
+          &lt;a href=&quot;#&quot;&gt;
+            &lt;img src=http://img1.3lian.com/gif/more/11/201301/e47524afabdc211536e595743be46e92.jpg alt=&quot;&quot;&gt;
+          &lt;/a&gt;&lt;/div&gt;
+        &lt;div class=&quot;body&quot;&gt;
+          &lt;h5 class=&quot;title&quot;&gt;
+            &lt;%= link_to i[:title], &quot;#&quot; %&gt;
+          &lt;/h5&gt;
+          &lt;a class=&quot;read-more&quot; href=&quot;#&quot;&gt;read&lt;/a&gt;
+        &lt;span class=&quot;meta-data&quot;&gt;
+          &lt;a href=&quot;#&quot;&gt;avatar&lt;/a&gt;
+        &lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;issue-comment-count&quot;&gt;
+          &lt;%= link_to i[:comments], &quot;#&quot; %&gt;
+        &lt;/div&gt;
+      &lt;/article&gt;
+  &lt;% end %&gt;
+&lt;/div&gt;
+</code></pre><p>welcome.html.erb 中改为</p>
+<pre><code>&lt;%= render partial: &apos;issue_list&apos;, locals: { issues: @issues } %&gt;
+</code></pre><hr>
+<h3 id="六、添加数据库"><a href="#六、添加数据库" class="headerlink" title="六、添加数据库"></a><strong>六、添加数据库</strong></h3><p>配置文件 config/database.yml 里面写明了要使用哪个数据库。建立数据表结构</p>
+<pre><code>rails g migration CreateIssues
+</code></pre><p>在 db/migrate  会自动生成一个文件，文件名前面是时间戳，里面可以添加需要的字段。</p>
+<pre><code>class CreateIssues &lt; ActiveRecord::Migration
+  def change
+    create_table :issues do |t|
+      t.string :title
+      t.timestamps
+    end
+  end
+end
+</code></pre><p>运行 <code>rake db:migrate</code>，来把修改内容真正写进 mysql 数据库。会生成 db/schema.rb 文件，该文件显示了当前数据库的表结构。</p>
+<p>新建 issue.rb 的 model 文件放在 app/models 下面。</p>
+<pre><code>class Issue &lt; ActiveRecord::Base
+end
+</code></pre><p>这里的 class 命名是很关键的，如果数据库中的表名是 issues 那这里的 class 名就必须是 Issue，也就是首字母大写，同时变成单数。因为 Rails 可以建立自动的 class 到 table 的映射关系。</p>
+<p>执行 <code>rails console</code> 或 <code>rails c</code> 对表进行操作。</p>
+<pre><code>Issue.create(title: &quot;test111&quot;)
+Issue.create(title: &quot;test111222&quot;)
+Issue.all
+</code></pre><p>修改 controller 中加载数据的方法</p>
+<pre><code>def welcome
+  @issues = Issue.all
+end
+</code></pre><p>到 _issue_list.html.erb 中，由于数据表中没有添加 commit 个数，所以要将 commit 个数改为固定值</p>
+<pre><code>&lt;div class=&quot;issue-comment-count&quot;&gt;
+  &lt;%= link_to i[:comments], &quot;11&quot; %&gt;
+&lt;/div&gt;
+</code></pre><hr>
+<h3 id="七、CRUD"><a href="#七、CRUD" class="headerlink" title="七、CRUD"></a><strong>七、CRUD</strong></h3><p>对 issue 进行 Create Read Update Delete 操作。参考网站：<a href="http://railsforzombies.org/levels/1" target="_blank" rel="external">http://railsforzombies.org/levels/1</a></p>
+<p>用 rails generator 来自动生成 controller ，为了避免生成太多用不到的文件，到 application.rb 中添加</p>
+<pre><code>config.generators do |g|
+    g.assets false
+    g.helper false
+    g.test_framework false
+end
+</code></pre><p>然后执行 <code>$rails g controller issues show</code>，在生成的内容中 routes.rb 中的语句删掉。</p>
+<p>修改 issues_controller.rb 中的内容，根据 id 从数据库中读取数据。</p>
+<pre><code>def show
+  @issue = Issue.find(params[:id])
+end
+</code></pre><p>在新生成的 show.html.erb 中添加</p>
+<pre><code>&lt;div class=&quot;issue-heading&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;%= @issue.title %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;replies&quot;&gt;
+    &lt;article class=&quot;reply clearfix&quot;&gt;
+      &lt;div class=&quot;avatar&quot;&gt;
+        &lt;img src=http://img1.3lian.com/gif/more/11/201301/e47524afabdc211536e595743be46e92.jpg alt=&quot;&quot; class=&quot;image-circle&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;body&quot;&gt;
+        &lt;div class=&quot;heading&quot;&gt;
+          &lt;h5 class=&quot;name&quot;&gt;&lt;a href=&quot;#&quot;&gt;avatar&lt;/a&gt;&lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;%= @issue.content %&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>在 sections 中添加相应的样式 issue_show.css.scss</p>
+<pre><code>.issue-heading {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  margin-top: 0;
+  margin-bottom: 35px;
+  background: #7EB6AD;
+  color: #fff;
+  font-size: 2em;
+}
+
+.reply {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  width: 91%;
+  .heading {
+    margin-bottom: 5px;
+    .name {
+      font-size: 18px;
+      display: inline;
+      font-weight: normal;
+    }
+  }
+  .body {
+    padding: 15px;
+    border-radius: 5px;
+    position: relative;
+    overflow: visible;
+    float: left;
+    width: 87%;
+    border: 1px solid #ddd;
+    line-height: 26px;
+    &amp;::before {
+      content: &quot;&quot;;
+      display: block;
+      position: absolute;
+      top: 21px;
+      left: -6px;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-left: 1px solid #cad5e0;
+      border-top: 1px solid #cad5e0;
+      -moz-transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
+  }
+  .avatar {
+    float: left;
+    margin-right: 29px;
+    position: relative;
+    overflow: visible;
+    text-align: center;
+    .image-circle {
+      width: 75px;
+      border-radius: 50%;
+    }
+  }
+}
+</code></pre><p>在 issues/show.html.erb 中添加一个删除的链接。</p>
+<pre><code>&lt;%= link_to &apos;Destroy&apos;, &quot;/issues/#{@issue.id}&quot;, method: :delete, data: { confirm: &apos;Are you sure?&apos; }, class: &quot;btn btn-primary&quot; %&gt;
+</code></pre><p>在 routes.rb 中添加相应的路由。</p>
+<pre><code>delete &apos;issues/:id&apos; =&gt; &apos;issues#destroy&apos;
+</code></pre><p>到 issues_controller.rb 添加</p>
+<pre><code>def destroy
+  issue = Issue.find(params[:id])
+  issue.destroy
+  redirect_to :root
+end
+</code></pre><p>到 app/assets/stylesheets/shared/common.css 添加一些按钮样式。</p>
+<pre><code>.btn-primary {
+  color: white;
+  background: #c0865e;
+  border-color: #b9784c;
+  &amp;:hover {
+    background-color: #b9784c;
+    border-color: #845534;
+  }
+}
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+</code></pre><p>如果删除失败，则是在操纵数据库过程中触发了rails的保护机制，只需要在 application.html.erb 中添加一句 <code>&lt;%= csrf_meta_tags %&gt;</code> 即可。</p>
+<p>想要创建新的聚餐信息，将 welcome.html.erb 的发布按钮的信息改为 <code>&lt;%= link_to &quot;发布新聚餐&quot;, &quot;/issues/new&quot;, class: &quot;banner-btn btn&quot; %&gt;</code></p>
+<p>在 routes.rb 中添加新的路由</p>
+<pre><code>get &apos;issues&apos; =&gt; &apos;issues#index&apos;, :as =&gt; &apos;issues&apos;
+get &apos;/issues/new&apos; =&gt; &quot;issues#new&quot;
+post &apos;issues&apos; =&gt; &apos;issues#create&apos;
+</code></pre><p>在 issues_controller.rb 中添加</p>
+<pre><code>def new
+  @issue = Issue.new
+end
+
+def create
+  Issue.create(issue_params)
+  redirect_to :root
+end
+
+private
+def issue_params
+  params.require(:issue).permit(:title, :content)
+end
+</code></pre><p><strong> Strong Parameters </strong> 是 Rails 为了防止坏人通过表单提交攻击网站，采用的自我保护机制。如果不加说明任何人都可以在 params[:issue] 中加入任何参数，比如 admin: true 这样就可以给他自己管理员权限了，所以就用这种方式进行修改。使用的方式就是 <a href="https://github.com/rails/strong_parameters" target="_blank" rel="external">https://github.com/rails/strong_parameters</a> 。</p>
+<p>创建 app/view/issues/new.html.erb 新页面</p>
+<pre><code>&lt;div class=&quot;new-issue-form-container clearfix&quot;&gt;
+  &lt;div class=&quot;new-issue-form clearfix&quot;&gt;
+    &lt;%= form_for @issue do |f| %&gt;
+      &lt;dl class=&quot;form&quot;&gt;
+        &lt;dt&gt;&lt;%= f.label :title %&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;%= f.text_field :title %&gt;&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;form&quot;&gt;
+        &lt;dt&gt;&lt;%= f.label :content %&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;%= f.text_area :content %&gt;&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;p&gt;&lt;%= f.submit &quot;发布新活动&quot;, :class =&gt; &quot;submit-issue-button btn btn-primary&quot; %&gt;&lt;/p&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>在 common.css.sass 中添加关于 form 的样式</p>
+<pre><code>form {
+  input {
+    font-size: 21px;
+    width: 100%;
+    padding: 10px 12px;
+    color: #555;
+  }
+  textarea {
+    height: 180px;
+    font-size: 21px;
+    width: 100%;
+    padding: 10px 12px;
+    color: #555;
+  }
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  dd {
+    margin: 0;
+  }
+}
+</code></pre><p>创建 sections/issue_new.css.scss 添加特有样式</p>
+<pre><code>.new-issue-form-container {
+  width: 800px;
+  background: white;
+  margin: 30px auto;
+  .new-issue-form {
+    width: 600px;
+    margin: 10px auto;
+  }
+}
+.submit-issue-button {
+  height: 50px;
+  width: 100%;
+}
+</code></pre><p>到 views/issues/show.html.erb 添加一个 edit 按钮</p>
+<pre><code>&lt;%= link_to &apos;edit&apos;, edit_issue_path(@issue), class: &quot;btn btn-primary&quot; %&gt;
+</code></pre><p>到 routes.rb 中，所有的指向 issues_controller.rb 的语句都可以删除，而用一行代替。具体参考文档 <a href="http://guides.rubyonrails.org/routing.html" target="_blank" rel="external">http://guides.rubyonrails.org/routing.html</a> 。</p>
+<pre><code>resources :issues
+</code></pre><p>issues_controller.rb 中添加</p>
+<pre><code>def edit
+  @issue = Issue.find(params[:id])
+end
+</code></pre><p>创建  views/issues/edit.html.erb 复制 views/issues/new.html.erb 即可</p>
+<p>到 issues_controller.rb 中来添加 update 功能</p>
+<pre><code>def update
+  i = Issue.find(params[:id])
+  i.update_attributes(issue_params)
+  redirect_to :root
+end
+</code></pre><p>新建一个 views/issues/_form.html.erb，把 issues/new.html.erb 和 issues/edit.html.erb 共用。</p>
+<pre><code>&lt;div class=&quot;new-issue-form-container clearfix&quot;&gt;
+  &lt;div class=&quot;new-issue-form clearfix&quot;&gt;
+    &lt;%= form_for issue do |f| %&gt;
+      &lt;dl class=&quot;form&quot;&gt;
+        &lt;dt&gt;&lt;%= f.label :title %&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;%= f.text_field :title %&gt;&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;form&quot;&gt;
+        &lt;dt&gt;&lt;%= f.label :content %&gt;&lt;/dt&gt;
+        &lt;dd&gt;&lt;%= f.text_area :content %&gt;&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;p&gt;&lt;%= f.submit :class =&gt; &quot;submit-issue-button btn btn-primary&quot; %&gt;&lt;/p&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>把 views/issues/edit.html.erb 和 views/issues/new.html.erb 改为</p>
+<pre><code>&lt;%= render partial: &apos;form&apos;, locals: {issue: @issue} %&gt;
+</code></pre><hr>
+<h3 id="八、数据库一对多关系"><a href="#八、数据库一对多关系" class="headerlink" title="八、数据库一对多关系"></a><strong>八、数据库一对多关系</strong></h3><p>活动与留言属于一对多的关系，先来创建留言的 model 和 migration 文件。</p>
+<pre><code>rails g model comment content:text username:string email:string issue_id:integer
+</code></pre><p>到 views/issues/show.html.erb 中添加</p>
+<pre><code>&lt;%= render partial: &apos;shared/comment_box&apos;, locals: {issue: @issue} %&gt;
+</code></pre><p>创建 views/shared/_comment_box.html.erb</p>
+<pre><code>&lt;article class=&quot;reply clearfix&quot;&gt;
+  &lt;div class=&quot;avatar&quot;&gt;
+    &lt;%= link_to &quot;#&quot; do %&gt;
+      &lt;%= image_tag &quot;default_avatar.png&quot;, class: &quot;image-circle&quot; %&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;body&quot;&gt;
+  &lt;%= form_tag(&quot;/issues/#{issue.id}/comments&quot;, method: :post) do  %&gt;
+    &lt;%= label_tag :username, &quot;用户名&quot; %&gt;
+    &lt;%= text_field_tag(:username) %&gt;
+    &lt;%= label_tag :email, &quot;邮箱&quot; %&gt;
+    &lt;%= text_field_tag(:email) %&gt;
+    &lt;%= text_area_tag(:content) %&gt;
+    &lt;%= submit_tag &apos;提交评论&apos;, class: &apos;btn btn-primary btn-submit&apos; %&gt;
+  &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre><p>到 routes.rb 添加</p>
+<pre><code>post &apos;/issues/:issue_id/comments&apos; =&gt; &quot;comments#create&quot;
+</code></pre><p>创建 app/controllers/comments_controller.rb</p>
+<pre><code>rails g controller comments
+
+def create
+  c = Comment.new
+  c.username = params[:username]
+  c.email = params[:email]
+  c.content = params[:content]
+  c.issue_id = params[:issue_id]
+  c.save
+  issue = Issue.find(params[:issue_id])
+  redirect_to issue
+end
+</code></pre><p>将 comment 显示出来，到 views/issues/show.html.erb 中添加</p>
+<pre><code>&lt;%= render partial: &apos;shared/comment_list&apos;, locals: {comments: @comments} %&gt;
+</code></pre><p>创建 shared/_comment_list.html.erb</p>
+<pre><code>&lt;% comments.each do |c| %&gt;
+    &lt;div class=&quot;reply clearfix&quot;&gt;
+       &lt;div class=&quot;avatar&quot;&gt;
+         &lt;%= link_to &apos;#&apos; do %&gt;
+           &lt;%= image_tag &apos;default_avatar.png&apos;, class: &apos;image-circle&apos; %&gt;
+         &lt;% end %&gt;
+       &lt;/div&gt;
+       &lt;div class=&quot;body&quot;&gt;
+         &lt;div class=&quot;heading&quot;&gt;
+            &lt;h5 class=&quot;name&quot;&gt;&lt;%= link_to c.username, &quot;#&quot; %&gt;&lt;/h5&gt;
+            &lt;span class=&quot;datetime&quot;&gt;
+              &lt;%= time_ago_in_words c.created_at %&gt;
+            &lt;/span&gt;
+         &lt;/div&gt;
+         &lt;%= c.content %&gt;
+       &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;% end %&gt;
+</code></pre><p>在 issues_controller.rb 的 show 方法中添加</p>
+<pre><code>def show
+   @issue = Issue.find(params[:id])
+   @comments = @issue.comments
+end
+</code></pre><p>建立一对多的关系，第一步，到 issue.rb 文件中添加：<code>has_many :comments</code>；第二步，到 comment.rb 中添加：<code>belongs_to :issue</code></p>
+<p>修改评论个数，到 views/page/_issue_list.html.erb 中</p>
+<pre><code>- &lt;%= link_to &apos;5&apos;, &quot;#&quot; %&gt;
++ &lt;%= link_to i.comments.count, i %&gt;
+</code></pre><p>修改用户头像，在 comment.rb 添加</p>
+<pre><code>def user_avatar
+  gravatar_id = Digest::MD5.hexdigest(self.email.downcase)
+  &quot;http://gravatar.com/avatar/#{gravatar_id}.png?s=512&amp;d=retro&quot;
+end
+</code></pre><p>到 views/shared/_comment_list.html.erb 修改使用头像的地方 <code>&lt;%= image_tag c.user_avatar, class: &#39;image-circle&#39; %&gt;</code></p>
+<hr>
+<h3 id="九、用户注册与登录退出"><a href="#九、用户注册与登录退出" class="headerlink" title="九、用户注册与登录退出"></a><strong>九、用户注册与登录退出</strong></h3><p>创建 users 表，用户密码一般不明文存储，而是经过加密后，存放在 password_digest 这个字段中。</p>
+<pre><code>rails g controller users signup
+rails g model user name:string email:string password_digest:string
+rake db:migrate
+</code></pre><p>使用 has_secure_password 首先要在 Gemfile 里面添加 Bcrypt，其次在表里有 password_digest 这个字段，然后到 user.rb 中，添加 <code>has_secure_password</code></p>
+<p>添加 /signup 页面，到 application.html.erb 中添加指向 /signup 的链接：<code>&lt;li&gt;&lt;a href=&quot;/signup&quot;&gt;signup&lt;/a&gt;&lt;/li&gt;</code>，然后到 route.rb 中添加：<code>get &quot;signup&quot; =&gt; &quot;users#signup&quot;, :as =&gt; &quot;signup&quot;</code>、<code>resources :users</code></p>
+<p>到 users_controller.rb 中</p>
+<pre><code>def signup
+  @user = User.new
+end
+
+def create
+  user = User.new(user_params)
+  user.save
+  redirect_to :root
+end
+
+private
+  def user_params
+    params.require(:user).permit!
+  end
+</code></pre><p>在相应的 app/views/users/signup.html.erb 添加</p>
+<pre><code>&lt;div class=&quot;signup-form-container clearfix&quot;&gt;
+  &lt;div class=&quot;signup-form&quot;&gt;
+    &lt;%= form_for @user do |f| %&gt;
+        &lt;dl class=&quot;form&quot;&gt;
+          &lt;dt&gt;&lt;%= f.label :name, &quot;用户名&quot; %&gt;&lt;/dt&gt;
+          &lt;dd&gt;&lt;%= f.text_field :name %&gt;&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;form&quot;&gt;
+          &lt;dt&gt;&lt;%= f.label :email %&gt;&lt;/dt&gt;
+          &lt;dd&gt;&lt;%= f.text_field :email %&gt;&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;form&quot;&gt;
+          &lt;dt&gt;&lt;%= f.label :password, &quot;密码&quot; %&gt;&lt;/dt&gt;
+          &lt;dd&gt;&lt;%= f.password_field :password %&gt;&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;form&quot;&gt;
+          &lt;dt&gt;&lt;%= f.label :password_confirmation, &quot;请再输入一次&quot; %&gt;&lt;/dt&gt;
+          &lt;dd&gt;&lt;%= f.password_field :password_confirmation %&gt;&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;p&gt;&lt;%= f.submit &quot;注册&quot;, :class =&gt; &quot;signup-button btn btn-primary&quot; %&gt;&lt;/p&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>添加对应的样式 app/assets/stylesheets/sections/users.css.scss</p>
+<pre><code>.signup-form-container, .login-form-container{
+  width: 670px;
+  margin: 50px auto;
+  border:1px solid #ddd;
+  padding: 2em;
+  .signup-form, .login-form {
+    width: 100%;
+  }
+  .signup-button, .login-button {
+    padding: 13px;
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+</code></pre><p>用这个账户来登陆，在 application.html.erb 中来添加 <code>&lt;%= link_to &quot;login&quot;, login_path %&gt;</code></p>
+<p>route.rb 中添加<code>get &quot;login&quot; =&gt; &quot;users#login&quot;, :as =&gt; &quot;login&quot;</code></p>
+<p>users_controller.rb 中添加</p>
+<pre><code>def login
+end
+</code></pre><p>app/views/users/login.html.erb 中添加</p>
+<pre><code>&lt;div class=&quot;login-form-container clearfix&quot;&gt;
+  &lt;div class=&quot;login-form&quot;&gt;
+    &lt;%= form_tag &quot;/create_login_session&quot; do %&gt;
+      &lt;dl class=&quot;form&quot;&gt;
+        &lt;dt&gt;
+          &lt;%= label_tag &quot;用户名&quot; %&gt;
+        &lt;/dt&gt;
+        &lt;dd&gt;
+          &lt;%= text_field_tag :name, params[:name] %&gt;
+        &lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;form&quot;&gt;
+        &lt;dt&gt;
+          &lt;%= label_tag &quot;密码&quot; %&gt;
+        &lt;/dt&gt;
+        &lt;dd&gt;
+          &lt;%= password_field_tag :password, params[:password] %&gt;
+        &lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;p&gt; &lt;%= submit_tag &quot;登录&quot;, :class =&gt; &quot;login-button btn btn-primary&quot; %&gt; &lt;/p&gt;
+      &lt;div class=&quot;need-signup&quot;&gt;
+        &lt;%= link_to &quot;没有账号？注册一个吧&quot;, signup_path %&gt;
+      &lt;/div&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>表单中把数据提交到 “/create_login_session” 在 route.rb 中添加 <code>post &quot;create_login_session&quot; =&gt; &quot;users#create_login_session&quot;</code></p>
+<p>在 users_controller.rb 中添加</p>
+<pre><code>def create_login_session
+  user = User.find_by_name(params[:name])
+  if user &amp;&amp; user.authenticate(params[:password])
+    session[:user_id] = user.id
+    redirect_to :root
+  else
+    redirect_to :login
+  end
+end
+</code></pre><p>到 application_controller.rb 中添加</p>
+<pre><code>def current_user
+  @current_user ||= User.find(session[:user_id]) if session[:user_id]
+end
+helper_method :current_user
+</code></pre><p>application.html.erb 中添加</p>
+<pre><code>&lt;% if current_user %&gt;
+  &lt;li&gt;&lt;%= link_to current_user.name, &quot;#&quot; %&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;%= link_to &quot;logout&quot;, &quot;#&quot; %&gt;&lt;/li&gt;
+&lt;% else %&gt;
+  &lt;li&gt;&lt;%= link_to &quot;login&quot;, login_path %&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;%= link_to &quot;signup&quot;, signup_path %&gt;&lt;/li&gt;
+&lt;% end %&gt;
+</code></pre><p>退出登录，在 application.html.erb 中 logout 对应的这一行改为：<code>&lt;li&gt;&lt;%= link_to &quot;logout&quot;, logout_path, method: &quot;delete&quot; %&gt;&lt;/li&gt;</code></p>
+<p>route.rb 中添加：<code>delete &quot;logout&quot; =&gt; &quot;users#logout&quot;, :as =&gt; &quot;logout&quot;</code></p>
+<p>在 users_controller.rb 中修改</p>
+<pre><code>def logout
+  session[:user_id] = nil
+  redirect_to :root
+end
+</code></pre><p>此时就可以登录、退出已经注册了，但是测试时需要重新开一个窗口。</p>
+<p>记住密码的功能。为了保持登陆状态，引入了 session 方法，但是 session 中存储的数据毕竟是临时性的，虽然目前最新的浏览器有各种保持临时数据的缓存方式，但是基本上可以认为如果网站关闭了或是关机重启了，session 中的数据也就丢失了。</p>
+<p>添加 checkbox 的代码，到 login.html.erb 中的提交按钮上方，添加</p>
+<pre><code>&lt;dl class=&quot;form remember-me&quot;&gt;
+  &lt;%= check_box_tag :remember_me, 1, params[:remember_me] %&gt;
+  &lt;%= label_tag :remember_me %&gt;
+&lt;/dl&gt;
+</code></pre><p>user.css.scss 添加样式</p>
+<pre><code>.remember-me {
+  * {
+    width: auto;
+  }
+  #remember_me {
+    margin-left: 0;
+  }
+}
+</code></pre><p>为每一个用户生成一串随机数，用来代表 token。</p>
+<pre><code>rails g migration AddAuthTokenToUsers auth_token:string
+rake db:migrate
+</code></pre><p>user.rb 中，添加</p>
+<pre><code>before_create { generate_token(:auth_token) }
+
+def generate_token(column)
+  begin
+    self[column] = SecureRandom.urlsafe_base64
+  end while User.exists?(column =&gt; self[column])
+end
+</code></pre><p>users_controller.rb 中的 create_login_session 方法修改为</p>
+<pre><code>- session[:user_id] = user.id
++ if params[:remember_me]
++   cookies.permanent[:auth_token] = user.auth_token
++ else
++   cookies[:auth_token] = user.auth_token
++ end
+</code></pre><p>退出登录的代码 logout 修改为</p>
+<pre><code>- session[:user_id] = nil
++ cookies.delete(:auth_token)
+</code></pre><p>application_controller.rb 中 current_user 改为</p>
+<pre><code>def current_user
+  @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+end
+</code></pre><p>需要注册结束后直接跳转，则在 users_controller.rb 的 create 方法中，user.save 语句之后添加 <code>cookies[:auth_token] = user.auth_token</code></p>
+<hr>
+<h3 id="十、数据安全-validation"><a href="#十、数据安全-validation" class="headerlink" title="十、数据安全 validation"></a><strong>十、数据安全 validation</strong></h3><p>form validation 表单验证。当用户填写注册表单的时候如果填写的内容有问题，程序能够检查并且报错，避免直接把有问题的内容 直接存入数据库。</p>
+<p> user.rb 中添加</p>
+<pre><code>validates :name, :email, presence: true
+validates :name, :email, uniqueness: { case_sensitive: false }
+</code></pre><p>users_controller.rb 中的 create 方法需要调整，要用实例变量，同时最后不能用 redirect_to 而要用 render</p>
+<pre><code>-    user = User.new(user_params)
+-    user.save
+-    cookies[:auth_token] = user.auth_token
+-    redirect_to :root
++    @user = User.new(user_params)
++    if @user.save
++      cookies[:auth_token] = @user.auth_token
++      redirect_to :root
++    else
++      render :signup
++    end
+</code></pre><p>在 signup.html.erb 中适当显示报错信息了</p>
+<pre><code>&lt;div class=&quot;signup-form-container clearfix&quot;&gt;
+  &lt;div class=&quot;signup-form&quot;&gt;
+    &lt;%= form_for @user do |f| %&gt;
+        &lt;dl class=&quot;form&quot;&gt;
+          &lt;dt&gt;&lt;%= f.label :name, &quot;用户名&quot; %&gt;&lt;/dt&gt;
+          &lt;dd&gt;&lt;%= f.text_field :name %&gt;&lt;/dd&gt;
+          &lt;% if @user.errors[:name].any? %&gt;
+              &lt;dd class=&quot;error&quot;&gt;&lt;%= @user.errors[:name][0] %&gt;&lt;/dd&gt;
+          &lt;% end %&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;form&quot;&gt;
+          &lt;dt&gt;&lt;%= f.label :email %&gt;&lt;/dt&gt;
+          &lt;dd&gt;&lt;%= f.text_field :email %&gt;&lt;/dd&gt;
+          &lt;% if @user.errors[:email].any? %&gt;
+              &lt;dd class=&quot;error&quot;&gt;&lt;%= @user.errors[:email][0] %&gt;&lt;/dd&gt;
+          &lt;% end %&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;form&quot;&gt;
+          &lt;dt&gt;&lt;%= f.label :password, &quot;密码&quot; %&gt;&lt;/dt&gt;
+          &lt;dd&gt;&lt;%= f.password_field :password %&gt;&lt;/dd&gt;
+          &lt;% if @user.errors[:password].any? %&gt;
+              &lt;dd class=&quot;error&quot;&gt;&lt;%= @user.errors[:password][0] %&gt;&lt;/dd&gt;
+          &lt;% end %&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;form&quot;&gt;
+          &lt;dt&gt;&lt;%= f.label :password_confirmation, &quot;请再输入一次&quot; %&gt;&lt;/dt&gt;
+          &lt;dd&gt;&lt;%= f.password_field :password_confirmation %&gt;&lt;/dd&gt;
+          &lt;% if @user.errors[:password_confirmation].any? %&gt;
+              &lt;dd class=&quot;error&quot;&gt;&lt;%= @user.errors[:password_confirmation][0] %&gt;&lt;/dd&gt;
+          &lt;% end %&gt;
+        &lt;/dl&gt;
+        &lt;p&gt;&lt;%= f.submit &quot;注册&quot;, :class =&gt; &quot;signup-button btn btn-primary&quot; %&gt;&lt;/p&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>common.css.scss 中 form 里面添加</p>
+<pre><code>.error {
+  margin: 5px 0 9px 0;
+  color: #DB8A14;
+}
+</code></pre><hr>
+<h3 id="十一、添加多语言"><a href="#十一、添加多语言" class="headerlink" title="十一、添加多语言"></a><strong>十一、添加多语言</strong></h3><p>到 application.rb 中添加 <code>config.i18n.default_locale = &#39;zh-CN&#39;</code></p>
+<p>添加 config/locals/zh-CN.yml 文件，注意缩进关系，使用两个空格做为一个缩进级别</p>
+<p>zh-CN:<br>  navbar:<br>    about: 关于<br>    signup: 注册<br>    logout: 退出<br>    login: 登录</p>
+<p>到 application.html.erb 中</p>
+<pre><code>&lt;ul class=&quot;nav left&quot;&gt;
+  &lt;li&gt;&lt;%= link_to t(&quot;navbar.about&quot;), &quot;/about&quot; %&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class=&quot;nav right&quot;&gt;
+  &lt;% if current_user %&gt;
+      &lt;li&gt;&lt;%= link_to current_user.name, &quot;#&quot; %&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;%= link_to t(&quot;navbar.logout&quot;), logout_path, method: &quot;delete&quot; %&gt;&lt;/li&gt;
+  &lt;% else %&gt;
+      &lt;li&gt;&lt;%= link_to t(&quot;navbar.login&quot;), login_path %&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;%= link_to t(&quot;navbar.signup&quot;), signup_path %&gt;&lt;/li&gt;
+  &lt;% end %&gt;
+&lt;/ul&gt;
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;使用Rails搭建简单的约饭板&quot;&gt;&lt;a href=&quot;#使用Rails搭建简单的约饭板&quot; class=&quot;headerlink&quot; title=&quot;使用Rails搭建简单的约饭板&quot;&gt;&lt;/a&gt;&lt;strong&gt;使用Rails搭建简单的约饭板&lt;/strong&gt;&lt;/h2&gt;&lt;h3 
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="Rails" scheme="https://wy08271.github.io/tags/Rails/"/>
+    
+  </entry>
   
   <entry>
     <title>学习笔记：Danted</title>
@@ -418,7 +1566,7 @@ user.libwrap: nobody
     <link href="https://wy08271.github.io/2017/01/10/%E7%BD%91%E5%9D%80/"/>
     <id>https://wy08271.github.io/2017/01/10/网址/</id>
     <published>2017-01-10T03:43:23.000Z</published>
-    <updated>2017-01-10T07:24:38.000Z</updated>
+    <updated>2017-01-19T02:54:26.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li><p>tcp/ip<br><a href="http://www.w3school.com.cn/tcpip/tcpip_intro.asp" target="_blank" rel="external">website1</a></p>
@@ -444,6 +1592,10 @@ user.libwrap: nobody
 <li><p>iTerm2<br><a href="https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/" target="_blank" rel="external">shortcuts</a></p>
 </li>
 <li><p>crontab<br><a href="http://www.jianshu.com/p/838db0269fd0" target="_blank" rel="external">website1</a></p>
+</li>
+<li><p>Ruby on Rails<br><a href="https://railstutorial-china.org/book/" target="_blank" rel="external">website1</a><br><a href="https://railstutorial-china.org/" target="_blank" rel="external">website2</a><br><a href="http://www.imooc.com/learn/291" target="_blank" rel="external">website3</a></p>
+</li>
+<li><p>Nginx<br><a href="https://www.zybuluo.com/phper/note/89391" target="_blank" rel="external">website1</a><br><a href="http://petermis.blog.51cto.com/2336802/903044" target="_blank" rel="external">website2</a><br><a href="http://blog.csdn.net/wzb56_earl/article/details/46834409" target="_blank" rel="external">website3</a><br><a href="https://segmentfault.com/a/1190000002797601" target="_blank" rel="external">website4</a><br><a href="https://segmentfault.com/a/1190000000437323" target="_blank" rel="external">website5</a></p>
 </li>
 </ul>
 ]]></content>
@@ -664,43 +1816,6 @@ production:
   </entry>
   
   <entry>
-    <title>学习笔记：MySQL-2</title>
-    <link href="https://wy08271.github.io/2016/10/21/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMySQL-2/"/>
-    <id>https://wy08271.github.io/2016/10/21/学习笔记：MySQL-2/</id>
-    <published>2016-10-21T00:28:56.000Z</published>
-    <updated>2016-12-11T15:40:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="三、事务与存储过程"><a href="#三、事务与存储过程" class="headerlink" title="三、事务与存储过程"></a><strong>三、事务与存储过程</strong></h3><p>事务的概念，会开启、提交和回滚事务<br>事务的四种隔离级别<br>创建存储过程<br>调用、查看、修改和删除存储过程</p>
-<hr>
-<h4 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1.事务管理"></a>1.事务管理</h4><p>– 开启事务<br><code>start transaction;</code><br>– 提交事务<br><code>commit;</code><br>– 取消事务(回滚)<br><code>rollback;</code><br>–创建表account，插入数据<br><code>create table account(</code><br><code>id int primary key auto_increment,</code><br><code>name varchar(40),</code><br><code>money float</code><br><code>);</code><br><code>insert into account(name,money) values(&#39;a&#39;,1000),(&#39;b&#39;,2000),(&#39;c&#39;,3000);</code><br>–利用事务实现转账功能，首先开启事务，然后执行语句，提交事务<br><code>start transaction;</code><br><code>update account set money=money-100 where name=&#39;a&#39;;</code><br><code>update account set money=money+100 where name=&#39;b&#39;;</code><br><code>commit;</code><br>–事务的提交，通过这个命令查看mysql提交方式（若为1，表示自动提交，为0，就要手动提交）<br><code>select @@autocommit;</code><br>–若事务的提交方式为手动提交<br><code>set @@autocommit = 0;</code> (设置手动提交)<br><code>start transaction;</code><br><code>update account set money=money+100 where name=&#39;a&#39;;</code><br><code>update account set money=money-100 where name=&#39;b&#39;;</code><br>–现在执行select * from account 可以看到转账成功，若此时退出数据库重新登录，会看到各账户余额没有改变，所以一定要用commit语句提交事务，否则会失败<br>(事务的回滚，别忘记设置为手动提交的模式)<br><code>start transaction;</code><br><code>update account set money=money-100 where name=&#39;a&#39;;</code><br><code>update account set money=money+100 where name=&#39;b&#39;;</code><br>–若此时a不想转账给b，可以使用事务的回滚<br><code>rollback;</code><br>–事务的隔离级别<br><code>read uncommitted;</code><br><code>read committed;</code><br><code>repeatable read;</code><br><code>serializable;</code></p>
-<hr>
-<h4 id="2-存储过程"><a href="#2-存储过程" class="headerlink" title="2.存储过程"></a>2.存储过程</h4><p>–创建查看student表的存储过程<br>–创建student表<br><code>create table student(</code><br><code>id int not null primary key auto_increment,</code><br><code>name varchar(4),</code><br><code>grade float</code><br><code>)ENGINE=InnoDB default character set utf8;</code><br>–将mysql的结束符设置为//<br><code>delimiter //;</code><br><code>create procedure Proc()</code><br>  <code>begin</code><br>  <code>select * from student;</code><br>  <code>end //</code><br><code>delimiter ;  (将mysql的结束符设置为;)</code><br><code>call Proc();</code>(调用该存储过程)<br>–变量的使用,mysql中变量不用事前申明，在用的时候直接用“@变量名”使用就可以<br><code>set @number=100; -- 或set @num:=1;</code><br>–定义条件和处理程序<br>—声明光标<br><code>DECLARE * cursor_name* CURSOR FOR select_statement;</code><br>—光标OPEN语句<br><code>OPEN cursor_name;</code><br>—光标FETCH语句<br><code>FETCH cursor_name INTO var_name [, var_name] ...</code><br>—光标CLOSE语句<br><code>CLOSE cursor_name;</code></p>
-<hr>
-<h4 id="3-调用存储过程"><a href="#3-调用存储过程" class="headerlink" title="3.调用存储过程"></a>3.调用存储过程</h4><p>–定义存储过程<br><code>delimiter //</code><br><code>create procedure proc1(in name varchar(4),out num int)</code><br><code>begin</code><br><code>select count(*) into num from student where name=name;</code><br><code>end//</code><br><code>delimiter ;</code><br>–调用存储过程<br><code>call proc1(&quot;tom&quot;,@num)</code>(查找名为tom学生人数)<br>–查看结果<br><code>select @num;</code><br>–查看存储过程<br><code>show procedure status like &#39;p%&#39;;</code> (获得以p开头的存储过程信息)<br>–修改存储过程<br><code>alter {procedure|function} sp_name[characteristic...]</code><br>–删除存储过程</p>
-<h2 id="drop-procedure-proc1"><a href="#drop-procedure-proc1" class="headerlink" title="drop procedure proc1;"></a><code>drop procedure proc1;</code></h2><h3 id="四、视图"><a href="#四、视图" class="headerlink" title="四、视图"></a><strong>四、视图</strong></h3><p>如何创建视图<br>查看、修改、更新、删除视图</p>
-<hr>
-<h4 id="1-视图的基本操作"><a href="#1-视图的基本操作" class="headerlink" title="1.视图的基本操作"></a>1.视图的基本操作</h4><p>–在单表上创建视图,重新创建student表，插入数据<br><code>create table student(</code><br><code>id int not null primary key auto_increment,</code><br><code>name varchar(10) not null,</code><br><code>math float,</code><br><code>chinese float</code><br><code>);</code><br><code>insert into student(name,math,chinese) values</code><br><code>(&#39;howie1&#39;,66,77),</code><br><code>(&#39;howie2&#39;,66,77),</code><br><code>(&#39;howie3&#39;,66,77);</code><br>–开始创建视图<br><code>create view stu_view as select math,chinese,math+chinese from student;</code><br>–创建自定义字段名称的视图<br><code>create view stu_view2(math,chin,sum) as select math,chinese,math+chinese from student;</code><br>–在多表上创建视图，创建表stu_info，插入数据<br><code>create table stu_info(</code><br><code>id int not null primary key auto_increment,</code><br><code>class varchar(10) not null,</code><br><code>addr varchar(100)</code><br><code>);</code><br><code>insert into stu_info(class,addr) values</code><br><code>(&#39;1&#39;,&#39;anhui&#39;),</code><br><code>(&#39;2&#39;,&#39;fujian&#39;),</code><br><code>(&#39;3&#39;,&#39;guangdong&#39;);</code><br>–创建视图stu_class<br><code>create view stu_class(id,name,class) as</code><br><code>select student.id,student.name,stu_info.class from</code><br><code>student,stu_info where student.id=stu_info.id;</code><br>–查看视图<br><code>desc stu_class;</code><br><code>show table status like &#39;stu_class&#39;\G</code><br><code>show create view stu_class\G</code><br>–修改视图<br><code>create or replace view stu_view as select * from student;</code><br><code>alter view stu_view as select chinese from student;</code><br>–更新视图<br><code>update stu_view set chinese=100;</code><br><code>insert into student values(null,&#39;haha&#39;,100,100);</code><br><code>delete from stu_view2 where math=100;</code><br>–删除视图<br><code>drop view if exists stu_view2;</code></p>
-<hr>
-<h3 id="五、数据库的导入导出"><a href="#五、数据库的导入导出" class="headerlink" title="五、数据库的导入导出"></a><strong>五、数据库的导入导出</strong></h3><p>导入导出数据库的数据<br>导入导出数据库SQL<br>备份数据库</p>
-<hr>
-<h4 id="1-导入导出数据库的数据"><a href="#1-导入导出数据库的数据" class="headerlink" title="1.导入导出数据库的数据"></a>1.导入导出数据库的数据</h4><p>–导出整个数据库的数据<br><code>mysqldump -u root -p RUNOOB &gt; database_name.txt</code></p>
-<p>–备份所有数据库<br><code>mysqldump -u root -p --all-databases &gt; database_dump.txt</code></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;三、事务与存储过程&quot;&gt;&lt;a href=&quot;#三、事务与存储过程&quot; class=&quot;headerlink&quot; title=&quot;三、事务与存储过程&quot;&gt;&lt;/a&gt;&lt;strong&gt;三、事务与存储过程&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;事务的概念，会开启、提交和回滚事务&lt;br&gt;事务的四
-    
-    </summary>
-    
-      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
-    
-    
-      <category term="MySQL" scheme="https://wy08271.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
     <title>学习笔记：MySQL-1</title>
     <link href="https://wy08271.github.io/2016/10/21/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMySQL-1/"/>
     <id>https://wy08271.github.io/2016/10/21/学习笔记：MySQL-1/</id>
@@ -814,6 +1929,43 @@ SQL: select a.a, a.b, a.c, b.c, b.d, b.f from a LEFT OUT JOIN b ON a.a = b.c</co
     <summary type="html">
     
       &lt;h2 id=&quot;mysql基本操作命令汇总&quot;&gt;&lt;a href=&quot;#mysql基本操作命令汇总&quot; class=&quot;headerlink&quot; title=&quot;mysql基本操作命令汇总&quot;&gt;&lt;/a&gt;&lt;strong&gt;mysql基本操作命令汇总&lt;/strong&gt;&lt;/h2&gt;&lt;h4 id=&quot;一、基本
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="MySQL" scheme="https://wy08271.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记：MySQL-2</title>
+    <link href="https://wy08271.github.io/2016/10/21/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMySQL-2/"/>
+    <id>https://wy08271.github.io/2016/10/21/学习笔记：MySQL-2/</id>
+    <published>2016-10-21T00:28:56.000Z</published>
+    <updated>2017-01-12T07:18:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="三、事务与存储过程"><a href="#三、事务与存储过程" class="headerlink" title="三、事务与存储过程"></a><strong>三、事务与存储过程</strong></h3><p>事务的概念，会开启、提交和回滚事务<br>事务的四种隔离级别<br>创建存储过程<br>调用、查看、修改和删除存储过程</p>
+<hr>
+<h4 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1.事务管理"></a>1.事务管理</h4><p>– 开启事务<br><code>start transaction;</code><br>– 提交事务<br><code>commit;</code><br>– 取消事务(回滚)<br><code>rollback;</code><br>–创建表account，插入数据<br><code>create table account(</code><br><code>id int primary key auto_increment,</code><br><code>name varchar(40),</code><br><code>money float</code><br><code>);</code><br><code>insert into account(name,money) values(&#39;a&#39;,1000),(&#39;b&#39;,2000),(&#39;c&#39;,3000);</code><br>–利用事务实现转账功能，首先开启事务，然后执行语句，提交事务<br><code>start transaction;</code><br><code>update account set money=money-100 where name=&#39;a&#39;;</code><br><code>update account set money=money+100 where name=&#39;b&#39;;</code><br><code>commit;</code><br>–事务的提交，通过这个命令查看mysql提交方式（若为1，表示自动提交，为0，就要手动提交）<br><code>select @@autocommit;</code><br>–若事务的提交方式为手动提交<br><code>set @@autocommit = 0;</code> (设置手动提交)<br><code>start transaction;</code><br><code>update account set money=money+100 where name=&#39;a&#39;;</code><br><code>update account set money=money-100 where name=&#39;b&#39;;</code><br>–现在执行select * from account 可以看到转账成功，若此时退出数据库重新登录，会看到各账户余额没有改变，所以一定要用commit语句提交事务，否则会失败<br>(事务的回滚，别忘记设置为手动提交的模式)<br><code>start transaction;</code><br><code>update account set money=money-100 where name=&#39;a&#39;;</code><br><code>update account set money=money+100 where name=&#39;b&#39;;</code><br>–若此时a不想转账给b，可以使用事务的回滚<br><code>rollback;</code><br>–事务的隔离级别<br><code>read uncommitted;</code><br><code>read committed;</code><br><code>repeatable read;</code><br><code>serializable;</code></p>
+<hr>
+<h4 id="2-存储过程"><a href="#2-存储过程" class="headerlink" title="2.存储过程"></a>2.存储过程</h4><p>–创建查看student表的存储过程<br>–创建student表<br><code>create table student(</code><br><code>id int not null primary key auto_increment,</code><br><code>name varchar(4),</code><br><code>grade float</code><br><code>)ENGINE=InnoDB default character set utf8;</code><br>–将mysql的结束符设置为//<br><code>delimiter //;</code><br><code>create procedure Proc()</code><br>  <code>begin</code><br>  <code>select * from student;</code><br>  <code>end //</code><br><code>delimiter ;  (将mysql的结束符设置为;)</code><br><code>call Proc();</code>(调用该存储过程)<br>–变量的使用,mysql中变量不用事前申明，在用的时候直接用“@变量名”使用就可以<br><code>set @number=100; -- 或set @num:=1;</code><br>–定义条件和处理程序<br>—声明光标<br><code>DECLARE * cursor_name* CURSOR FOR select_statement;</code><br>—光标OPEN语句<br><code>OPEN cursor_name;</code><br>—光标FETCH语句<br><code>FETCH cursor_name INTO var_name [, var_name] ...</code><br>—光标CLOSE语句<br><code>CLOSE cursor_name;</code></p>
+<hr>
+<h4 id="3-调用存储过程"><a href="#3-调用存储过程" class="headerlink" title="3.调用存储过程"></a>3.调用存储过程</h4><p>–定义存储过程<br><code>delimiter //</code><br><code>create procedure proc1(in name varchar(4),out num int)</code><br><code>begin</code><br><code>select count(*) into num from student where name=name;</code><br><code>end//</code><br><code>delimiter ;</code><br>–调用存储过程<br><code>call proc1(&quot;tom&quot;,@num)</code>(查找名为tom学生人数)<br>–查看结果<br><code>select @num;</code><br>–查看存储过程<br><code>show procedure status like &#39;p%&#39;;</code> (获得以p开头的存储过程信息)<br>–修改存储过程<br><code>alter {procedure|function} sp_name[characteristic...]</code><br>–删除存储过程</p>
+<h2 id="drop-procedure-proc1"><a href="#drop-procedure-proc1" class="headerlink" title="drop procedure proc1;"></a><code>drop procedure proc1;</code></h2><h3 id="四、视图"><a href="#四、视图" class="headerlink" title="四、视图"></a><strong>四、视图</strong></h3><p>如何创建视图<br>查看、修改、更新、删除视图</p>
+<hr>
+<h4 id="1-视图的基本操作"><a href="#1-视图的基本操作" class="headerlink" title="1.视图的基本操作"></a>1.视图的基本操作</h4><p>–在单表上创建视图,重新创建student表，插入数据<br><code>create table student(</code><br><code>id int not null primary key auto_increment,</code><br><code>name varchar(10) not null,</code><br><code>math float,</code><br><code>chinese float</code><br><code>);</code><br><code>insert into student(name,math,chinese) values</code><br><code>(&#39;howie1&#39;,66,77),</code><br><code>(&#39;howie2&#39;,66,77),</code><br><code>(&#39;howie3&#39;,66,77);</code><br>–开始创建视图<br><code>create view stu_view as select math,chinese,math+chinese from student;</code><br>–创建自定义字段名称的视图<br><code>create view stu_view2(math,chin,sum) as select math,chinese,math+chinese from student;</code><br>–在多表上创建视图，创建表stu_info，插入数据<br><code>create table stu_info(</code><br><code>id int not null primary key auto_increment,</code><br><code>class varchar(10) not null,</code><br><code>addr varchar(100)</code><br><code>);</code><br><code>insert into stu_info(class,addr) values</code><br><code>(&#39;1&#39;,&#39;anhui&#39;),</code><br><code>(&#39;2&#39;,&#39;fujian&#39;),</code><br><code>(&#39;3&#39;,&#39;guangdong&#39;);</code><br>–创建视图stu_class<br><code>create view stu_class(id,name,class) as</code><br><code>select student.id,student.name,stu_info.class from</code><br><code>student,stu_info where student.id=stu_info.id;</code><br>–查看视图<br><code>desc stu_class;</code><br><code>show table status like &#39;stu_class&#39;\G</code><br><code>show create view stu_class\G</code><br>–修改视图<br><code>create or replace view stu_view as select * from student;</code><br><code>alter view stu_view as select chinese from student;</code><br>–更新视图<br><code>update stu_view set chinese=100;</code><br><code>insert into student values(null,&#39;haha&#39;,100,100);</code><br><code>delete from stu_view2 where math=100;</code><br>–删除视图<br><code>drop view if exists stu_view2;</code></p>
+<hr>
+<h3 id="五、数据库的导入导出"><a href="#五、数据库的导入导出" class="headerlink" title="五、数据库的导入导出"></a><strong>五、数据库的导入导出</strong></h3><p>导入导出数据库的数据<br>导入导出数据库SQL<br>备份数据库</p>
+<hr>
+<h4 id="1-导入导出数据库的数据"><a href="#1-导入导出数据库的数据" class="headerlink" title="1.导入导出数据库的数据"></a>1.导入导出数据库的数据</h4><p>–导出整个数据库的数据<br><code>mysqldump -u root -p RUNOOB &gt; database_name.txt</code></p>
+<p>–备份所有数据库<br><code>mysqldump -u root -p --all-databases &gt; database_dump.txt</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;三、事务与存储过程&quot;&gt;&lt;a href=&quot;#三、事务与存储过程&quot; class=&quot;headerlink&quot; title=&quot;三、事务与存储过程&quot;&gt;&lt;/a&gt;&lt;strong&gt;三、事务与存储过程&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;事务的概念，会开启、提交和回滚事务&lt;br&gt;事务的四
     
     </summary>
     
@@ -1697,82 +2849,6 @@ end</code></li>
       <category term="构建工具" scheme="https://wy08271.github.io/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
     
       <category term="flyway" scheme="https://wy08271.github.io/tags/flyway/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习笔记：PostgreSQL</title>
-    <link href="https://wy08271.github.io/2016/06/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9APostgreSQL/"/>
-    <id>https://wy08271.github.io/2016/06/27/学习笔记：PostgreSQL/</id>
-    <published>2016-06-27T15:01:35.000Z</published>
-    <updated>2016-12-11T14:44:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用PostgreSQL数据库进行数据的导入和导出。</p>
-<hr>
-<h1 id="导出数据库"><a href="#导出数据库" class="headerlink" title="导出数据库"></a>导出数据库</h1><ol>
-<li><p>导出单个表</p>
-<pre><code>从ip为255.255.255.0的数据库test中导出testTable的表结构和数据到本地文件data.sql：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -t testTable -h 255.255.255.0 test -U userName -p 5432  -f data.sql</div></pre></td></tr></table></figure>
-
-参数说明：-t 指定导出的表名
-        -h 数据库地址
-        -U 数据库用户
-        -p 访问端口
-        -f 导出到指定文件
-</code></pre></li>
-<li><p>导出所有表和所有数据</p>
-<pre><code>从ip为255.255.255.0的数据库test导出所有表结构和数据到文件data.sql:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -h 255.255.255.0 test -U userName -p 5432  -f data.sql</div></pre></td></tr></table></figure>
-
-参数说明：-t 指定导出的表名
-        -h 数据库地址
-        -U 数据库用户
-        -p 访问端口
-        -f 导出到指定文件
-</code></pre></li>
-<li><p>仅导出所有表结构</p>
-<pre><code>从ip为255.255.255.0的数据库test导出所有的表结构到文件data.sql:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_dump -s -h 255.255.255.0 test -U userName -p 5432 -f data.sql</div></pre></td></tr></table></figure>
-
-参数说明：-s 表示只导出表结构，不导数据
-</code></pre></li>
-</ol>
-<p>PS：一般数据库数据量比较大，如果远程导出所有的表结构和数据的话会非常慢，可以先导入表结构，随后再导出/入单个重要表结构和数据。</p>
-<hr>
-<h1 id="导入数据库"><a href="#导入数据库" class="headerlink" title="导入数据库"></a>导入数据库</h1><ol>
-<li><p>导入到远程数据库</p>
-<pre><code>从本地文件data.sql导入表结构和数据到ip为255.255.255.0的数据库test中：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">psql -h 255.255.255.0 -d test -U userName -f data.sql</div></pre></td></tr></table></figure>
-
-参数说明：-h 数据库地址
-        -d 数据库
-        -U 指定用户
-        -f 要导入的文件
-</code></pre></li>
-<li><p>导入到本地数据库</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">psql -h 127.0.0.1 -d test -U userName -p 5432 -f data.sql</div></pre></td></tr></table></figure>
-
-参数说明： -p 指定数据库服务端口，默认是5432端口的可以不加
-</code></pre></li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;使用PostgreSQL数据库进行数据的导入和导出。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;导出数据库&quot;&gt;&lt;a href=&quot;#导出数据库&quot; class=&quot;headerlink&quot; title=&quot;导出数据库&quot;&gt;&lt;/a&gt;导出数据库&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;导出单个表&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
-    
-    
-      <category term="PostgreSQL" scheme="https://wy08271.github.io/tags/PostgreSQL/"/>
-    
-      <category term="导入导出" scheme="https://wy08271.github.io/tags/%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/"/>
     
   </entry>
   

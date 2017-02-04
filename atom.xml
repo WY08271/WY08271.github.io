@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wy08271.github.io/"/>
-  <updated>2017-01-22T23:34:36.000Z</updated>
+  <updated>2017-02-04T03:27:17.000Z</updated>
   <id>https://wy08271.github.io/</id>
   
   <author>
@@ -14,6 +14,188 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习笔记：IntelliJ IDEA Shortcuts</title>
+    <link href="https://wy08271.github.io/2017/02/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIntelliJ-IDEA-Shortcuts/"/>
+    <id>https://wy08271.github.io/2017/02/04/学习笔记：IntelliJ-IDEA-Shortcuts/</id>
+    <published>2017-02-04T03:17:55.000Z</published>
+    <updated>2017-02-04T03:27:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="IntelliJ-IDEA-Shortcuts"><a href="#IntelliJ-IDEA-Shortcuts" class="headerlink" title="IntelliJ IDEA Shortcuts"></a><strong>IntelliJ IDEA Shortcuts</strong></h2><hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;IntelliJ-IDEA-Shortcuts&quot;&gt;&lt;a href=&quot;#IntelliJ-IDEA-Shortcuts&quot; class=&quot;headerlink&quot; title=&quot;IntelliJ IDEA Shortcuts&quot;&gt;&lt;/a&gt;&lt;strong&gt;IntelliJ 
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="shortcuts" scheme="https://wy08271.github.io/tags/shortcuts/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记：Mac Shortcuts</title>
+    <link href="https://wy08271.github.io/2017/02/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMac-Shortcuts/"/>
+    <id>https://wy08271.github.io/2017/02/04/学习笔记：Mac-Shortcuts/</id>
+    <published>2017-02-04T02:30:17.000Z</published>
+    <updated>2017-02-04T03:15:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Mac-键盘快捷键"><a href="#Mac-键盘快捷键" class="headerlink" title="Mac 键盘快捷键"></a><strong>Mac 键盘快捷键</strong></h2><p>Mac 经常使用按键：</p>
+<ul>
+<li>Command ⌘</li>
+<li>Shift ⇧</li>
+<li>Option ⌥</li>
+<li>Control ⌃</li>
+<li>Caps Lock ⇪</li>
+<li>Fn</li>
+</ul>
+<hr>
+<h3 id="剪切、拷贝、粘贴和其他常用快捷键"><a href="#剪切、拷贝、粘贴和其他常用快捷键" class="headerlink" title="剪切、拷贝、粘贴和其他常用快捷键"></a><strong>剪切、拷贝、粘贴和其他常用快捷键</strong></h3><ul>
+<li>Command-X 剪切：删除所选项并将其拷贝到剪贴板</li>
+<li>Command-C 将所选项拷贝到剪贴板</li>
+<li>Command-V 将剪贴板的内容粘贴到当前文稿或 app 中</li>
+<li>Command-Z 撤销前一个命令</li>
+<li>Command-Shift-Z 反撤销命令</li>
+<li>Command-A 全选各项</li>
+<li>Command-F 查找</li>
+<li>Command-G 再次查找：查找之前所找到项目出现的下一个位置</li>
+<li>Command-Shift-G 再次查找：查找之前所找到项目的上一个位置</li>
+<li>Command-H 隐藏最前面的 app 的窗口</li>
+<li>Command-Option-H 查看最前面的 app 同时隐藏所有其他 app</li>
+<li>Command-M 将最前面的窗口最小化至 Dock</li>
+<li>Command-Option-M 最小化最前面的 app 的所有窗口</li>
+<li>Command-N 新建：打开一个新文稿或窗口</li>
+<li>Command-O 打开所选项，或打开一个对话框以选择要打开的文件</li>
+<li>Command-P 打印当前文稿</li>
+<li>Command-S 存储当前文稿</li>
+<li>Command-W 关闭最前面的窗口</li>
+<li>Command-Option-W 关闭该 app 的所有窗口</li>
+<li>Command-Q 退出 app</li>
+<li>Option-Command-Esc 强制退出</li>
+<li>Command–空格键 Spotlight</li>
+<li>Command-Tab 切换 app</li>
+<li>Shift-Command-3 屏幕快照</li>
+<li>Command-逗号 打开最前面的 app 的偏好设置</li>
+</ul>
+<hr>
+<h3 id="睡眠、注销和关机快捷键"><a href="#睡眠、注销和关机快捷键" class="headerlink" title="睡眠、注销和关机快捷键"></a><strong>睡眠、注销和关机快捷键</strong></h3><ul>
+<li>Control–Command–电源按钮 强制 Mac 重新启动</li>
+<li>Shift-Command-Q 注销 macOS 帐户</li>
+<li>Option-Shift-Command-Q 立即注销 macOS 帐户，且系统不提示确认</li>
+</ul>
+<hr>
+<h3 id="文稿快捷键"><a href="#文稿快捷键" class="headerlink" title="文稿快捷键"></a><strong>文稿快捷键</strong></h3><ul>
+<li>Command-B 粗体显示所选文本</li>
+<li>Command-I 斜体显示所选文本</li>
+<li>Command-U 对所选文本加下划线</li>
+<li>Command-T 显示或隐藏“字体”窗口</li>
+<li>Command-分号 查找文稿中拼写错误的字词</li>
+<li>Option-Delete 删除插入点左边的字词</li>
+<li>Control-H 删除插入点左边的字符，同 Delete</li>
+<li>Control-D 删除插入点右边的字符，同 Fn-Delete</li>
+<li>Control-K 删除插入点与行或段落末尾处之间的文本</li>
+<li>Command-Delete 在包含“删除”或“不存储”按钮的对话框中选择“删除”或“不存储”</li>
+<li>Fn–上箭头 向上翻页：向上滚动一页</li>
+<li>Fn–下箭头 向下翻页：向下滚动一页</li>
+<li>Fn–左箭头 开头：滚动到文稿开头</li>
+<li>Fn–右箭头 结尾：滚动到文稿末尾</li>
+<li>Command–上箭头 将插入点移至文稿开头</li>
+<li>Command–下箭头 将插入点移至文稿末尾</li>
+<li>Command–左箭头 将插入点移至当前行的行首</li>
+<li>Command–右箭头 将插入点移至当前行的行尾</li>
+<li>Option–左箭头 将插入点移至上一字词的词首</li>
+<li>Option–右箭头 将插入点移至下一字词的词尾</li>
+<li>Shift–Command–上箭头 选中插入点与文稿开头之间的文本</li>
+<li>Shift–Command–下箭头 选中插入点与文稿末尾之间的文本</li>
+<li>Shift–Command–左箭头 选中插入点与当前行行首之间的文本</li>
+<li>Shift–Command–右箭头 选中插入点与当前行行尾之间的文本</li>
+<li>Shift–上箭头 将文本选择范围扩展到上一行相同水平位置的最近字符处</li>
+<li>Shift–下箭头 将文本选择范围扩展到下一行相同水平位置的最近字符处</li>
+<li>Shift–左箭头 将文本选择范围向左扩展一个字符</li>
+<li>Shift–右箭头 将文本选择范围向右扩展一个字符</li>
+<li>Option–Shift–上箭头 将文本选择范围扩展到当前段落的段首，再按一次则扩展到下一段落的段首</li>
+<li>Option–Shift–下箭头 将文本选择范围扩展到当前段落的段尾，再按一次则扩展到下一段落的段尾</li>
+<li>Option–Shift–左箭头 将文本选择范围扩展到当前字词的词首，再按一次则扩展到后一字词的词首</li>
+<li>Option–Shift–右箭头 将文本选择范围扩展到当前字词的词尾，再按一次则扩展到后一字词的词尾</li>
+<li>Control-A 移至行或段落的开头</li>
+<li>Control-E 移至行或段落的末尾</li>
+<li>Control-L 将光标或所选内容置于可见区域中央</li>
+<li>Control-P 上移一行</li>
+<li>Control-N 下移一行</li>
+<li>Control-O 在插入点后插入一行</li>
+<li>Control-T 将插入点后面的字符与插入点前面的字符交换</li>
+<li>Command–左花括号 ({) 左对齐</li>
+<li>Command–右花括号 (}) 右对齐</li>
+<li>Shift–Command–竖线 (|) 居中对齐</li>
+<li>Option-Command-C 拷贝样式</li>
+<li>Option-Command-V 粘贴样式</li>
+<li>Option-Shift-Command-V 粘贴并匹配样式</li>
+<li>Shift–Command–减号 (-) 缩小所选项</li>
+<li>Shift–Command–加号 (+) 放大所选项</li>
+<li>Shift–Command–问号 (?) 打开“帮助”菜单</li>
+</ul>
+<hr>
+<h3 id="Finder-快捷键"><a href="#Finder-快捷键" class="headerlink" title="Finder 快捷键"></a><strong>Finder 快捷键</strong></h3><ul>
+<li>Command-D 复制所选文件</li>
+<li>Command-E 退出所选磁盘或宗卷</li>
+<li>Command-F 在 Finder 窗口中开始 Spotlight 搜索</li>
+<li>Command-I 显示所选文件的信息</li>
+<li>Shift-Command-C 打开“电脑”窗口</li>
+<li>Shift-Command-D 打开“桌面”文件夹</li>
+<li>Shift-Command-F 打开“我的所有文件”窗口</li>
+<li>Shift-Command-G 打开“前往文件夹”窗口</li>
+<li>Shift-Command-H 打开当前帐户的个人文件夹</li>
+<li>Shift-Command-I 打开 iCloud Drive</li>
+<li>Shift-Command-K 打开“网络”窗口</li>
+<li>Option-Command-L 打开“下载”文件夹</li>
+<li>Shift-Command-O 打开“文稿”文件夹</li>
+<li>Shift-Command-R 打开“AirDrop”窗口</li>
+<li>Shift-Command-U 打开“实用工具”文件夹</li>
+<li>Option-Command-D 显示或隐藏 Dock</li>
+<li>Control-Command-T 将所选项添加到边栏</li>
+<li>Option-Command-P 隐藏或显示 Finder 窗口中的路径栏</li>
+<li>Option-Command-S 隐藏或显示 Finder 窗口中的边栏</li>
+<li>Command–斜线 (/) 隐藏或显示 Finder 窗口中的状态栏</li>
+<li>Command-J 调出“显示”选项</li>
+<li>Command-L 为所选项添加快捷键</li>
+<li>Command-N 打开一个新的 Finder 窗口</li>
+<li>Shift-Command-N 新建文件夹</li>
+<li>Option-Command-N 新建智能文件夹</li>
+<li>Command-Y 使用“快速查看”预览所选文件</li>
+<li>Command-1 以图标方式显示 Finder 窗口中的项目</li>
+<li>Command-2 以列表方式显示 Finder 窗口中的项目</li>
+<li>Command-3 以分栏方式显示 Finder 窗口中的项目</li>
+<li>Command-4 以 Cover Flow 方式显示 Finder 窗口中的项目</li>
+<li>Command–左中括号 ([) 前往上一文件夹</li>
+<li>Command–右中括号 (]) 前往下一文件夹</li>
+<li>Command–上箭头 打开包含当前文件夹的文件夹</li>
+<li>Command–Control–上箭头 在新窗口中打开包含当前文件夹的文件夹</li>
+<li>Command–下箭头 打开所选项</li>
+<li>Command-Delete 将所选项移到废纸篓</li>
+<li>Shift-Command-Delete 清倒废纸篓</li>
+<li>Option-Shift-Command-Delete 清倒废纸篓（不显示确认对话框）</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Mac-键盘快捷键&quot;&gt;&lt;a href=&quot;#Mac-键盘快捷键&quot; class=&quot;headerlink&quot; title=&quot;Mac 键盘快捷键&quot;&gt;&lt;/a&gt;&lt;strong&gt;Mac 键盘快捷键&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Mac 经常使用按键：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="shortcuts" scheme="https://wy08271.github.io/tags/shortcuts/"/>
+    
+  </entry>
   
   <entry>
     <title>学习笔记：Rails Demo</title>
@@ -1582,7 +1764,7 @@ user.libwrap: nobody
     <link href="https://wy08271.github.io/2017/01/10/%E7%BD%91%E5%9D%80/"/>
     <id>https://wy08271.github.io/2017/01/10/网址/</id>
     <published>2017-01-10T03:43:23.000Z</published>
-    <updated>2017-02-03T02:39:03.000Z</updated>
+    <updated>2017-02-04T03:17:16.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li><p>tcp/ip<br><a href="http://www.w3school.com.cn/tcpip/tcpip_intro.asp" target="_blank" rel="external">website1</a></p>
@@ -1613,13 +1795,19 @@ user.libwrap: nobody
 </li>
 <li><p>Nginx<br><a href="https://www.zybuluo.com/phper/note/89391" target="_blank" rel="external">website1</a><br><a href="http://petermis.blog.51cto.com/2336802/903044" target="_blank" rel="external">website2</a><br><a href="http://blog.csdn.net/wzb56_earl/article/details/46834409" target="_blank" rel="external">website3</a><br><a href="https://segmentfault.com/a/1190000002797601" target="_blank" rel="external">website4</a><br><a href="https://segmentfault.com/a/1190000000437323" target="_blank" rel="external">website5</a></p>
 </li>
-<li><p>Mac shortcuts<br><a href="https://support.apple.com/zh-cn/HT201236" target="_blank" rel="external">website1</a><br><a href="http://insights.thoughtworkers.org/ocds-guide-to-setting-up-mac/" target="_blank" rel="external">website2</a><br><a href="https://www.smashingmagazine.com/2015/07/become-command-line-power-user-oh-my-zsh-z/" target="_blank" rel="external">website3</a><br><a href="http://blog.csdn.net/childhooders/article/details/4319679" target="_blank" rel="external">website4</a></p>
+<li><p>Mac shortcuts<br><a href="http://insights.thoughtworkers.org/ocds-guide-to-setting-up-mac/" target="_blank" rel="external">website2</a><br><a href="https://www.smashingmagazine.com/2015/07/become-command-line-power-user-oh-my-zsh-z/" target="_blank" rel="external">website3</a><br><a href="https://support.apple.com/zh-cn/HT201236" target="_blank" rel="external">website5</a><br><a href="https://support.apple.com/zh-cn/HT201255" target="_blank" rel="external">website6</a><br><a href="http://xialeizhou.com/2019/06/23/%E9%AB%98%E6%95%88macbook%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_blank" rel="external">website7</a><br><a href="http://sspai.com/33493" target="_blank" rel="external">website8</a></p>
+</li>
+<li><p>Alfred<br><a href="http://wellsnake.com/jekyll/update/2014/06/15/001/" target="_blank" rel="external">website1</a><br><a href="http://wellsnake.com/jekyll/update/2014/08/16/001/" target="_blank" rel="external">website2</a><br><a href="http://www.alfredworkflow.com/" target="_blank" rel="external">website3</a></p>
+</li>
+<li><p>gulp和grunt对比<br><a href="http://xialeizhou.com/2016/02/03/gulp%E5%92%8Cgrunt%E5%AF%B9%E6%AF%94/" target="_blank" rel="external">website1</a></p>
 </li>
 <li><p>WebStorm shortcuts<br><a href="https://www.jetbrains.com/help/webstorm/2016.3/keyboard-shortcuts-you-cannot-miss.html" target="_blank" rel="external">website1</a></p>
 </li>
-<li><p>IntelliJ IDEA shortcuts<br><a href="https://www.jetbrains.com/help/idea/2016.3/keyboard-shortcuts-you-cannot-miss.html" target="_blank" rel="external">website1</a><br><a href="https://shortcutworld.com/en/IntelliJ-IDEA/win/all" target="_blank" rel="external">website2</a></p>
+<li><p>IntelliJ IDEA shortcuts<br><a href="https://www.jetbrains.com/help/idea/2016.3/keyboard-shortcuts-you-cannot-miss.html" target="_blank" rel="external">website1</a><br><a href="https://shortcutworld.com/en/IntelliJ-IDEA/win/all" target="_blank" rel="external">website2</a><br><a href="http://blog.csdn.net/childhooders/article/details/4319679" target="_blank" rel="external">website3</a></p>
 </li>
 <li><p>UML learning<br><a href="http://www.uml.org.cn/oobject/201309023.asp" target="_blank" rel="external">website1</a><br><a href="http://www.uml.org.cn/oobject/200911175.asp" target="_blank" rel="external">website2</a><br><a href="http://blog.csdn.net/column/details/u-m-l.html" target="_blank" rel="external">website3</a><br><a href="http://blog.csdn.net/column/details/uml-11.html" target="_blank" rel="external">website4</a><br><a href="http://www.itdadao.com/articles/c15a493744p0.html" target="_blank" rel="external">website5</a><br><a href="http://www.sparxsystems.cn/resources/tutorial/uml-tutorial.html" target="_blank" rel="external">website6</a></p>
+</li>
+<li><p>Oh my zsh<br><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview" target="_blank" rel="external">website1</a><br><a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">website2</a></p>
 </li>
 </ul>
 ]]></content>
@@ -2773,106 +2961,6 @@ end</code></li>
       <category term="api" scheme="https://wy08271.github.io/tags/api/"/>
     
       <category term="http" scheme="https://wy08271.github.io/tags/http/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习笔记：Markdown</title>
-    <link href="https://wy08271.github.io/2016/07/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMarkdown/"/>
-    <id>https://wy08271.github.io/2016/07/04/学习笔记：Markdown/</id>
-    <published>2016-07-04T02:01:17.000Z</published>
-    <updated>2016-12-11T14:43:11.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="段落前加空格："><a href="#段落前加空格：" class="headerlink" title="段落前加空格："></a>段落前加空格：</h4><p><code>&amp;ensp;</code>来输入一个空格。 <code>&amp;emsp;</code>来输入两个空格。</p>
-<h4 id="居中："><a href="#居中：" class="headerlink" title="居中："></a>居中：</h4><p><code>&lt;center&gt;南宫调&lt;/center&gt;</code></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;段落前加空格：&quot;&gt;&lt;a href=&quot;#段落前加空格：&quot; class=&quot;headerlink&quot; title=&quot;段落前加空格：&quot;&gt;&lt;/a&gt;段落前加空格：&lt;/h4&gt;&lt;p&gt;&lt;code&gt;&amp;amp;ensp;&lt;/code&gt;来输入一个空格。 &lt;code&gt;&amp;amp;emsp;&lt;/
-    
-    </summary>
-    
-      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
-    
-    
-      <category term="markdown" scheme="https://wy08271.github.io/tags/markdown/"/>
-    
-      <category term="学习笔记" scheme="https://wy08271.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习笔记：Flyway</title>
-    <link href="https://wy08271.github.io/2016/06/28/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AFlyway/"/>
-    <id>https://wy08271.github.io/2016/06/28/学习笔记：Flyway/</id>
-    <published>2016-06-28T01:35:01.000Z</published>
-    <updated>2016-12-11T14:43:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>  Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.   It is based around just 6 basic commands: Migrate, Clean, Info, Validate, Baseline and Repair.   Migrations can be written in SQL (database-specific syntax (such as PL/SQL, T-SQL, …) is supported) or Java (for advanced data transformations or dealing with LOBs).   It has a Command-line client. If you are on the JVM, we recommend using the Java API (also works on Android) for migrating the database on application startup. Alternatively, you can also use the Maven plugin, Gradle plugin, SBT plugin or the Ant tasks.   And if that not enough, there are plugins available for Spring Boot, Dropwizard, Grails, Play, Griffon, Grunt, Ninja and more!</p>
-<hr>
-<h1 id="Maven配置"><a href="#Maven配置" class="headerlink" title="Maven配置"></a>Maven配置</h1><p>需要在pom.xml文件中加入flywaydb的插件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;plugin&gt;</div><div class="line">    &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;flyway-maven-plugin&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;3.1&lt;/version&gt;</div><div class="line">    &lt;configuration&gt;</div><div class="line">    ....</div><div class="line">    &lt;/configuration&gt;</div><div class="line">&lt;/plugin&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>配置方法一：在pom.xml里配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;plugin&gt;</div><div class="line">...</div><div class="line">  &lt;configuration&gt;</div><div class="line">    &lt;user&gt;myUser&lt;/user&gt;</div><div class="line">    &lt;password&gt;mySecretPwd&lt;/password&gt;</div><div class="line">    &lt;schemas&gt;</div><div class="line">        &lt;schema&gt;schema1&lt;/schema&gt;</div><div class="line">        &lt;schema&gt;schema2&lt;/schema&gt;</div><div class="line">        &lt;schema&gt;schema3&lt;/schema&gt;</div><div class="line">    &lt;/schemas&gt;</div><div class="line">    &lt;placeholders&gt;</div><div class="line">          &lt;keyABC&gt;valueXYZ&lt;/keyABC&gt;</div><div class="line">          &lt;otherplaceholder&gt;value123&lt;/otherplaceholder&gt;</div><div class="line">    &lt;/placeholders&gt;</div><div class="line">  &lt;/configuration&gt;</div><div class="line">&lt;/plugin&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置方法二：外部的配置文件来配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">flyway.user=</div><div class="line">flyway.password=</div><div class="line">flyway.schemas=schema1,schema2,schema3</div><div class="line">flyway.placeholders.keyABC=</div><div class="line">flyway.placeholders.otherplaceholder=</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置方法三：执行mvn时通过指定参数flyway.configFile的值来指定配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn -Dflyway.configFile=myConfig.properties</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置方法四：使用外部配置文件的方式进行配置，默认的flyway.properties文件和pom.xml在相同的路径下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">flyway.user=</div><div class="line">flyway.password=</div><div class="line">flyway.driver=org.postgresql.Driver</div><div class="line">flyway.url=jdbc:postgresql://localhost:5432/wjia</div><div class="line">flyway.locations=classpath:db/migration</div><div class="line">flyway.sqlMigrationPrefix=V</div><div class="line">flyway.sqlMigrationSeparator=__</div><div class="line">flyway.sqlMigrationSuffix&gt;=.sql</div><div class="line">flyway.encoding=UTF-8</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h1 id="六个命令"><a href="#六个命令" class="headerlink" title="六个命令"></a>六个命令</h1><ul>
-<li><p>Migrate</p>
-<p>flyway的最重要的功能当然是完成数据库迁移了，使用mvn flyway:migrate命令就可以方便的帮助我们执行flyway.locations目录中定义的migration任务。由于我们的使用了外部的flyway配置文件，因此在执行migration任务时需要加上参数flyway.properties来指定配置文件的位置。所以，在我们的工程中需要执行的任务为：</p>
-<p><code>mvn flyway:migrate -Dflyway.configFile=localPath/flyway.properties</code></p>
-<p>其中<code>localPath/</code>为<code>flyway.properties</code>文件在本地的路径。</p>
-</li>
-<li><p>Clean</p>
-<p>如果我们想初始化数据库，删除所有的表和数据，那么只需要执行命令：</p>
-<p><code>mvn flyway:clean</code></p>
-</li>
-<li><p>Info</p>
-<p>如果我们想知道所有migration的详细信息，可以通过执行下面命令来打印信息：</p>
-<p><code>mvn flyway:info</code></p>
-<p>执行之后，Terminal中会打印出所有migration的详细信息，其中包括版本号，描述，执行时间，以及状态.</p>
-</li>
-<li><p>Validate</p>
-<p><code>mvn flyway:validate</code> 用来执行已经执行过的migration任务.</p>
-</li>
-<li><p>Baseline</p>
-<p><code>mvn flyway:baseline</code> 用来回滚数据库到一个配置文件中设定好的baseline.</p>
-</li>
-<li><p>Repair</p>
-<p><code>mvn flyway:repair</code> 用来删除执行失败的migration任务.</p>
-</li>
-</ul>
-<hr>
-<h1 id="查看官方文档"><a href="#查看官方文档" class="headerlink" title="查看官方文档"></a>查看官方文档</h1><p>更多关于flyway的详细用法，请参见其<a href="https://flywaydb.org/documentation/" target="_blank" rel="external">官方文档</a>。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;  Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.   It is based around
-    
-    </summary>
-    
-      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
-    
-    
-      <category term="插件" scheme="https://wy08271.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-      <category term="maven" scheme="https://wy08271.github.io/tags/maven/"/>
-    
-      <category term="构建工具" scheme="https://wy08271.github.io/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="flyway" scheme="https://wy08271.github.io/tags/flyway/"/>
     
   </entry>
   

@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>学习笔记：Restful | Sakura</title>
+  <title>学习笔记：Mac Shortcuts | Sakura</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -434,60 +434,168 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-07-09T09:32:26.000Z" itemprop="datePublished">
-          2016-07-09
+      <time datetime="2017-02-04T02:30:17.000Z" itemprop="datePublished">
+          2017-02-04
       </time>
     
     
     | 
-    <a href='/tags/Restful/'>Restful</a>,
-    
-    <a href='/tags/api/'>api</a>,
-    
-    <a href='/tags/http/'>http</a>
+    <a href='/tags/shortcuts/'>shortcuts</a>
     
     
 </span>
-                <h1>学习笔记：Restful</h1>
+                <h1>学习笔记：Mac Shortcuts</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>Restful 一种软件架构风格，设计风格而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。</p>
-<hr>
-<p><strong>API的设计</strong> 应该有一下几点要求：</p>
-<ol>
-<li>当标准合理的时候遵守标准。</li>
-<li>API应该对程序员友好，并且在浏览器地址栏容易输入。</li>
-<li>API应该简单，直观，容易使用的同时优雅。</li>
-<li>API应该具有足够的灵活性来支持上层ui。</li>
-<li>API设计权衡上述几个原则。</li>
-</ol>
-<p><strong>REST的核心原则是将API拆分为逻辑上的资源。</strong> 这些资源通过http被操作（GET ,POST,PUT,DELETE）。</p>
-<p>如何 <strong>拆分</strong> 资源，可以更有效的利用url。显然从API用户的角度来看，”资源”应该是个名词。即使你的内部数据模型和资源已经有了很好的对应，API设计的时候你仍然不需要把它们一对一的都暴露出来。这里的关键是隐藏内部资源，暴露必需的外部资源。</p>
-<p>一旦定义好了要暴露的资源，你可以定义资源上允许的操作，以及这些操作和你的API的对应关系：</p>
+      		<h2 id="Mac-键盘快捷键"><a href="#Mac-键盘快捷键" class="headerlink" title="Mac 键盘快捷键"></a><strong>Mac 键盘快捷键</strong></h2><p>Mac 经常使用按键：</p>
 <ul>
-<li>GET /tickets # 获取ticket列表</li>
-<li>GET /tickets/12 # 查看某个具体的ticket</li>
-<li>POST /tickets # 新建一个ticket</li>
-<li>PUT /tickets/12 # 更新ticket 12.</li>
-<li>DELETE /tickets/12 #删除ticekt 12</li>
+<li>Command ⌘</li>
+<li>Shift ⇧</li>
+<li>Option ⌥</li>
+<li>Control ⌃</li>
+<li>Caps Lock ⇪</li>
+<li>Fn</li>
 </ul>
-<p>可以看出使用REST的好处在于可以充分利用http的强大实现对资源的CURD功能。</p>
 <hr>
-<h2 id="常用的Http状态码"><a href="#常用的Http状态码" class="headerlink" title="常用的Http状态码"></a>常用的Http状态码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">200 ok  - 成功返回状态，对应，GET,PUT,PATCH,DELETE.</div><div class="line">201 created  - 成功创建。</div><div class="line">304 not modified   - HTTP缓存有效。</div><div class="line">400 bad request   - 请求格式错误。</div><div class="line">401 unauthorized   - 未授权。</div><div class="line">403 forbidden   - 鉴权成功，但是该用户没有权限。</div><div class="line">404 not found - 请求的资源不存在</div><div class="line">405 method not allowed - 该http方法不被允许。</div><div class="line">410 gone - 这个url对应的资源现在不可用。</div><div class="line">415 unsupported media type - 请求类型错误。</div><div class="line">422 unprocessable entity - 校验错误时用。</div><div class="line">429 too many request - 请求过多。</div></pre></td></tr></table></figure>
+<h3 id="剪切、拷贝、粘贴和其他常用快捷键"><a href="#剪切、拷贝、粘贴和其他常用快捷键" class="headerlink" title="剪切、拷贝、粘贴和其他常用快捷键"></a><strong>剪切、拷贝、粘贴和其他常用快捷键</strong></h3><ul>
+<li>Command-X 剪切：删除所选项并将其拷贝到剪贴板</li>
+<li>Command-C 将所选项拷贝到剪贴板</li>
+<li>Command-V 将剪贴板的内容粘贴到当前文稿或 app 中</li>
+<li>Command-Z 撤销前一个命令</li>
+<li>Command-Shift-Z 反撤销命令</li>
+<li>Command-A 全选各项</li>
+<li>Command-F 查找</li>
+<li>Command-G 再次查找：查找之前所找到项目出现的下一个位置</li>
+<li>Command-Shift-G 再次查找：查找之前所找到项目的上一个位置</li>
+<li>Command-H 隐藏最前面的 app 的窗口</li>
+<li>Command-Option-H 查看最前面的 app 同时隐藏所有其他 app</li>
+<li>Command-M 将最前面的窗口最小化至 Dock</li>
+<li>Command-Option-M 最小化最前面的 app 的所有窗口</li>
+<li>Command-N 新建：打开一个新文稿或窗口</li>
+<li>Command-O 打开所选项，或打开一个对话框以选择要打开的文件</li>
+<li>Command-P 打印当前文稿</li>
+<li>Command-S 存储当前文稿</li>
+<li>Command-W 关闭最前面的窗口</li>
+<li>Command-Option-W 关闭该 app 的所有窗口</li>
+<li>Command-Q 退出 app</li>
+<li>Option-Command-Esc 强制退出</li>
+<li>Command–空格键 Spotlight</li>
+<li>Command-Tab 切换 app</li>
+<li>Shift-Command-3 屏幕快照</li>
+<li>Command-逗号 打开最前面的 app 的偏好设置</li>
+</ul>
+<hr>
+<h3 id="睡眠、注销和关机快捷键"><a href="#睡眠、注销和关机快捷键" class="headerlink" title="睡眠、注销和关机快捷键"></a><strong>睡眠、注销和关机快捷键</strong></h3><ul>
+<li>Control–Command–电源按钮 强制 Mac 重新启动</li>
+<li>Shift-Command-Q 注销 macOS 帐户</li>
+<li>Option-Shift-Command-Q 立即注销 macOS 帐户，且系统不提示确认</li>
+</ul>
+<hr>
+<h3 id="文稿快捷键"><a href="#文稿快捷键" class="headerlink" title="文稿快捷键"></a><strong>文稿快捷键</strong></h3><ul>
+<li>Command-B 粗体显示所选文本</li>
+<li>Command-I 斜体显示所选文本</li>
+<li>Command-U 对所选文本加下划线</li>
+<li>Command-T 显示或隐藏“字体”窗口</li>
+<li>Command-分号 查找文稿中拼写错误的字词</li>
+<li>Option-Delete 删除插入点左边的字词</li>
+<li>Control-H 删除插入点左边的字符，同 Delete</li>
+<li>Control-D 删除插入点右边的字符，同 Fn-Delete</li>
+<li>Control-K 删除插入点与行或段落末尾处之间的文本</li>
+<li>Command-Delete 在包含“删除”或“不存储”按钮的对话框中选择“删除”或“不存储”</li>
+<li>Fn–上箭头 向上翻页：向上滚动一页</li>
+<li>Fn–下箭头 向下翻页：向下滚动一页</li>
+<li>Fn–左箭头 开头：滚动到文稿开头</li>
+<li>Fn–右箭头 结尾：滚动到文稿末尾</li>
+<li>Command–上箭头 将插入点移至文稿开头</li>
+<li>Command–下箭头 将插入点移至文稿末尾</li>
+<li>Command–左箭头 将插入点移至当前行的行首</li>
+<li>Command–右箭头 将插入点移至当前行的行尾</li>
+<li>Option–左箭头 将插入点移至上一字词的词首</li>
+<li>Option–右箭头 将插入点移至下一字词的词尾</li>
+<li>Shift–Command–上箭头 选中插入点与文稿开头之间的文本</li>
+<li>Shift–Command–下箭头 选中插入点与文稿末尾之间的文本</li>
+<li>Shift–Command–左箭头 选中插入点与当前行行首之间的文本</li>
+<li>Shift–Command–右箭头 选中插入点与当前行行尾之间的文本</li>
+<li>Shift–上箭头 将文本选择范围扩展到上一行相同水平位置的最近字符处</li>
+<li>Shift–下箭头 将文本选择范围扩展到下一行相同水平位置的最近字符处</li>
+<li>Shift–左箭头 将文本选择范围向左扩展一个字符</li>
+<li>Shift–右箭头 将文本选择范围向右扩展一个字符</li>
+<li>Option–Shift–上箭头 将文本选择范围扩展到当前段落的段首，再按一次则扩展到下一段落的段首</li>
+<li>Option–Shift–下箭头 将文本选择范围扩展到当前段落的段尾，再按一次则扩展到下一段落的段尾</li>
+<li>Option–Shift–左箭头 将文本选择范围扩展到当前字词的词首，再按一次则扩展到后一字词的词首</li>
+<li>Option–Shift–右箭头 将文本选择范围扩展到当前字词的词尾，再按一次则扩展到后一字词的词尾</li>
+<li>Control-A 移至行或段落的开头</li>
+<li>Control-E 移至行或段落的末尾</li>
+<li>Control-L 将光标或所选内容置于可见区域中央</li>
+<li>Control-P 上移一行</li>
+<li>Control-N 下移一行</li>
+<li>Control-O 在插入点后插入一行</li>
+<li>Control-T 将插入点后面的字符与插入点前面的字符交换</li>
+<li>Command–左花括号 ({) 左对齐</li>
+<li>Command–右花括号 (}) 右对齐</li>
+<li>Shift–Command–竖线 (|) 居中对齐</li>
+<li>Option-Command-C 拷贝样式</li>
+<li>Option-Command-V 粘贴样式</li>
+<li>Option-Shift-Command-V 粘贴并匹配样式</li>
+<li>Shift–Command–减号 (-) 缩小所选项</li>
+<li>Shift–Command–加号 (+) 放大所选项</li>
+<li>Shift–Command–问号 (?) 打开“帮助”菜单</li>
+</ul>
+<hr>
+<h3 id="Finder-快捷键"><a href="#Finder-快捷键" class="headerlink" title="Finder 快捷键"></a><strong>Finder 快捷键</strong></h3><ul>
+<li>Command-D 复制所选文件</li>
+<li>Command-E 退出所选磁盘或宗卷</li>
+<li>Command-F 在 Finder 窗口中开始 Spotlight 搜索</li>
+<li>Command-I 显示所选文件的信息</li>
+<li>Shift-Command-C 打开“电脑”窗口</li>
+<li>Shift-Command-D 打开“桌面”文件夹</li>
+<li>Shift-Command-F 打开“我的所有文件”窗口</li>
+<li>Shift-Command-G 打开“前往文件夹”窗口</li>
+<li>Shift-Command-H 打开当前帐户的个人文件夹</li>
+<li>Shift-Command-I 打开 iCloud Drive</li>
+<li>Shift-Command-K 打开“网络”窗口</li>
+<li>Option-Command-L 打开“下载”文件夹</li>
+<li>Shift-Command-O 打开“文稿”文件夹</li>
+<li>Shift-Command-R 打开“AirDrop”窗口</li>
+<li>Shift-Command-U 打开“实用工具”文件夹</li>
+<li>Option-Command-D 显示或隐藏 Dock</li>
+<li>Control-Command-T 将所选项添加到边栏</li>
+<li>Option-Command-P 隐藏或显示 Finder 窗口中的路径栏</li>
+<li>Option-Command-S 隐藏或显示 Finder 窗口中的边栏</li>
+<li>Command–斜线 (/) 隐藏或显示 Finder 窗口中的状态栏</li>
+<li>Command-J 调出“显示”选项</li>
+<li>Command-L 为所选项添加快捷键</li>
+<li>Command-N 打开一个新的 Finder 窗口</li>
+<li>Shift-Command-N 新建文件夹</li>
+<li>Option-Command-N 新建智能文件夹</li>
+<li>Command-Y 使用“快速查看”预览所选文件</li>
+<li>Command-1 以图标方式显示 Finder 窗口中的项目</li>
+<li>Command-2 以列表方式显示 Finder 窗口中的项目</li>
+<li>Command-3 以分栏方式显示 Finder 窗口中的项目</li>
+<li>Command-4 以 Cover Flow 方式显示 Finder 窗口中的项目</li>
+<li>Command–左中括号 ([) 前往上一文件夹</li>
+<li>Command–右中括号 (]) 前往下一文件夹</li>
+<li>Command–上箭头 打开包含当前文件夹的文件夹</li>
+<li>Command–Control–上箭头 在新窗口中打开包含当前文件夹的文件夹</li>
+<li>Command–下箭头 打开所选项</li>
+<li>Command-Delete 将所选项移到废纸篓</li>
+<li>Shift-Command-Delete 清倒废纸篓</li>
+<li>Option-Shift-Command-Delete 清倒废纸篓（不显示确认对话框）</li>
+</ul>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/07/09/学习笔记：Migrate-Nodejs/" style="float: left;">
-        ← 学习笔记：Migrate-Nodejs
+    <a class="pull-left" href="/2017/02/04/学习笔记：IntelliJ-IDEA-Shortcuts/" style="float: left;">
+        ← 学习笔记：IntelliJ IDEA Shortcuts
     </a>
     
     
-    <a class="pull-right" href="/2016/07/04/学习笔记：Markdown/">
-        学习笔记：Markdown →
+    <a class="pull-right" href="/2017/01/19/学习笔记：Rails-Demo/">
+        学习笔记：Rails Demo →
     </a>
     
 </nav>

@@ -1764,7 +1764,7 @@ user.libwrap: nobody
     <link href="https://wy08271.github.io/2017/01/10/%E7%BD%91%E5%9D%80/"/>
     <id>https://wy08271.github.io/2017/01/10/网址/</id>
     <published>2017-01-10T03:43:23.000Z</published>
-    <updated>2017-02-04T03:17:16.000Z</updated>
+    <updated>2017-02-06T06:23:31.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li><p>tcp/ip<br><a href="http://www.w3school.com.cn/tcpip/tcpip_intro.asp" target="_blank" rel="external">website1</a></p>
@@ -1791,7 +1791,7 @@ user.libwrap: nobody
 </li>
 <li><p>crontab<br><a href="http://www.jianshu.com/p/838db0269fd0" target="_blank" rel="external">website1</a></p>
 </li>
-<li><p>Ruby on Rails<br><a href="https://railstutorial-china.org/book/" target="_blank" rel="external">website1</a><br><a href="https://railstutorial-china.org/" target="_blank" rel="external">website2</a><br><a href="http://www.imooc.com/learn/291" target="_blank" rel="external">website3</a></p>
+<li><p>Ruby on Rails<br><a href="https://railstutorial-china.org/book/" target="_blank" rel="external">website1</a><br><a href="https://railstutorial-china.org/" target="_blank" rel="external">website2</a><br><a href="http://www.imooc.com/learn/291" target="_blank" rel="external">website3</a><br><a href="https://ruby-china.org/wiki/rvm-guide" target="_blank" rel="external">website4</a><br><a href="https://ninghao.net/blog/2078" target="_blank" rel="external">website5</a><br><a href="http://happypeter.github.io/rails10/13_comment.html" target="_blank" rel="external">website6</a><br><a href="http://happypeter.github.io/rails-tricks/" target="_blank" rel="external">website7</a><br><a href="happypeter.github.io/tealeaf-http">website8</a><br><a href="guides.rubyonrails.org">website9</a><br><a href="http://guides.rubyonrails.org/i18n.html" target="_blank" rel="external">website10</a><br><a href="http://guides.ruby-china.org/" target="_blank" rel="external">website11</a><br><a href="http://guides.ruby-china.org/getting_started.html" target="_blank" rel="external">website12</a></p>
 </li>
 <li><p>Nginx<br><a href="https://www.zybuluo.com/phper/note/89391" target="_blank" rel="external">website1</a><br><a href="http://petermis.blog.51cto.com/2336802/903044" target="_blank" rel="external">website2</a><br><a href="http://blog.csdn.net/wzb56_earl/article/details/46834409" target="_blank" rel="external">website3</a><br><a href="https://segmentfault.com/a/1190000002797601" target="_blank" rel="external">website4</a><br><a href="https://segmentfault.com/a/1190000000437323" target="_blank" rel="external">website5</a></p>
 </li>
@@ -2028,6 +2028,43 @@ production:
   </entry>
   
   <entry>
+    <title>学习笔记：MySQL-2</title>
+    <link href="https://wy08271.github.io/2016/10/21/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMySQL-2/"/>
+    <id>https://wy08271.github.io/2016/10/21/学习笔记：MySQL-2/</id>
+    <published>2016-10-21T00:28:56.000Z</published>
+    <updated>2017-01-12T07:18:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="三、事务与存储过程"><a href="#三、事务与存储过程" class="headerlink" title="三、事务与存储过程"></a><strong>三、事务与存储过程</strong></h3><p>事务的概念，会开启、提交和回滚事务<br>事务的四种隔离级别<br>创建存储过程<br>调用、查看、修改和删除存储过程</p>
+<hr>
+<h4 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1.事务管理"></a>1.事务管理</h4><p>– 开启事务<br><code>start transaction;</code><br>– 提交事务<br><code>commit;</code><br>– 取消事务(回滚)<br><code>rollback;</code><br>–创建表account，插入数据<br><code>create table account(</code><br><code>id int primary key auto_increment,</code><br><code>name varchar(40),</code><br><code>money float</code><br><code>);</code><br><code>insert into account(name,money) values(&#39;a&#39;,1000),(&#39;b&#39;,2000),(&#39;c&#39;,3000);</code><br>–利用事务实现转账功能，首先开启事务，然后执行语句，提交事务<br><code>start transaction;</code><br><code>update account set money=money-100 where name=&#39;a&#39;;</code><br><code>update account set money=money+100 where name=&#39;b&#39;;</code><br><code>commit;</code><br>–事务的提交，通过这个命令查看mysql提交方式（若为1，表示自动提交，为0，就要手动提交）<br><code>select @@autocommit;</code><br>–若事务的提交方式为手动提交<br><code>set @@autocommit = 0;</code> (设置手动提交)<br><code>start transaction;</code><br><code>update account set money=money+100 where name=&#39;a&#39;;</code><br><code>update account set money=money-100 where name=&#39;b&#39;;</code><br>–现在执行select * from account 可以看到转账成功，若此时退出数据库重新登录，会看到各账户余额没有改变，所以一定要用commit语句提交事务，否则会失败<br>(事务的回滚，别忘记设置为手动提交的模式)<br><code>start transaction;</code><br><code>update account set money=money-100 where name=&#39;a&#39;;</code><br><code>update account set money=money+100 where name=&#39;b&#39;;</code><br>–若此时a不想转账给b，可以使用事务的回滚<br><code>rollback;</code><br>–事务的隔离级别<br><code>read uncommitted;</code><br><code>read committed;</code><br><code>repeatable read;</code><br><code>serializable;</code></p>
+<hr>
+<h4 id="2-存储过程"><a href="#2-存储过程" class="headerlink" title="2.存储过程"></a>2.存储过程</h4><p>–创建查看student表的存储过程<br>–创建student表<br><code>create table student(</code><br><code>id int not null primary key auto_increment,</code><br><code>name varchar(4),</code><br><code>grade float</code><br><code>)ENGINE=InnoDB default character set utf8;</code><br>–将mysql的结束符设置为//<br><code>delimiter //;</code><br><code>create procedure Proc()</code><br>  <code>begin</code><br>  <code>select * from student;</code><br>  <code>end //</code><br><code>delimiter ;  (将mysql的结束符设置为;)</code><br><code>call Proc();</code>(调用该存储过程)<br>–变量的使用,mysql中变量不用事前申明，在用的时候直接用“@变量名”使用就可以<br><code>set @number=100; -- 或set @num:=1;</code><br>–定义条件和处理程序<br>—声明光标<br><code>DECLARE * cursor_name* CURSOR FOR select_statement;</code><br>—光标OPEN语句<br><code>OPEN cursor_name;</code><br>—光标FETCH语句<br><code>FETCH cursor_name INTO var_name [, var_name] ...</code><br>—光标CLOSE语句<br><code>CLOSE cursor_name;</code></p>
+<hr>
+<h4 id="3-调用存储过程"><a href="#3-调用存储过程" class="headerlink" title="3.调用存储过程"></a>3.调用存储过程</h4><p>–定义存储过程<br><code>delimiter //</code><br><code>create procedure proc1(in name varchar(4),out num int)</code><br><code>begin</code><br><code>select count(*) into num from student where name=name;</code><br><code>end//</code><br><code>delimiter ;</code><br>–调用存储过程<br><code>call proc1(&quot;tom&quot;,@num)</code>(查找名为tom学生人数)<br>–查看结果<br><code>select @num;</code><br>–查看存储过程<br><code>show procedure status like &#39;p%&#39;;</code> (获得以p开头的存储过程信息)<br>–修改存储过程<br><code>alter {procedure|function} sp_name[characteristic...]</code><br>–删除存储过程</p>
+<h2 id="drop-procedure-proc1"><a href="#drop-procedure-proc1" class="headerlink" title="drop procedure proc1;"></a><code>drop procedure proc1;</code></h2><h3 id="四、视图"><a href="#四、视图" class="headerlink" title="四、视图"></a><strong>四、视图</strong></h3><p>如何创建视图<br>查看、修改、更新、删除视图</p>
+<hr>
+<h4 id="1-视图的基本操作"><a href="#1-视图的基本操作" class="headerlink" title="1.视图的基本操作"></a>1.视图的基本操作</h4><p>–在单表上创建视图,重新创建student表，插入数据<br><code>create table student(</code><br><code>id int not null primary key auto_increment,</code><br><code>name varchar(10) not null,</code><br><code>math float,</code><br><code>chinese float</code><br><code>);</code><br><code>insert into student(name,math,chinese) values</code><br><code>(&#39;howie1&#39;,66,77),</code><br><code>(&#39;howie2&#39;,66,77),</code><br><code>(&#39;howie3&#39;,66,77);</code><br>–开始创建视图<br><code>create view stu_view as select math,chinese,math+chinese from student;</code><br>–创建自定义字段名称的视图<br><code>create view stu_view2(math,chin,sum) as select math,chinese,math+chinese from student;</code><br>–在多表上创建视图，创建表stu_info，插入数据<br><code>create table stu_info(</code><br><code>id int not null primary key auto_increment,</code><br><code>class varchar(10) not null,</code><br><code>addr varchar(100)</code><br><code>);</code><br><code>insert into stu_info(class,addr) values</code><br><code>(&#39;1&#39;,&#39;anhui&#39;),</code><br><code>(&#39;2&#39;,&#39;fujian&#39;),</code><br><code>(&#39;3&#39;,&#39;guangdong&#39;);</code><br>–创建视图stu_class<br><code>create view stu_class(id,name,class) as</code><br><code>select student.id,student.name,stu_info.class from</code><br><code>student,stu_info where student.id=stu_info.id;</code><br>–查看视图<br><code>desc stu_class;</code><br><code>show table status like &#39;stu_class&#39;\G</code><br><code>show create view stu_class\G</code><br>–修改视图<br><code>create or replace view stu_view as select * from student;</code><br><code>alter view stu_view as select chinese from student;</code><br>–更新视图<br><code>update stu_view set chinese=100;</code><br><code>insert into student values(null,&#39;haha&#39;,100,100);</code><br><code>delete from stu_view2 where math=100;</code><br>–删除视图<br><code>drop view if exists stu_view2;</code></p>
+<hr>
+<h3 id="五、数据库的导入导出"><a href="#五、数据库的导入导出" class="headerlink" title="五、数据库的导入导出"></a><strong>五、数据库的导入导出</strong></h3><p>导入导出数据库的数据<br>导入导出数据库SQL<br>备份数据库</p>
+<hr>
+<h4 id="1-导入导出数据库的数据"><a href="#1-导入导出数据库的数据" class="headerlink" title="1.导入导出数据库的数据"></a>1.导入导出数据库的数据</h4><p>–导出整个数据库的数据<br><code>mysqldump -u root -p RUNOOB &gt; database_name.txt</code></p>
+<p>–备份所有数据库<br><code>mysqldump -u root -p --all-databases &gt; database_dump.txt</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;三、事务与存储过程&quot;&gt;&lt;a href=&quot;#三、事务与存储过程&quot; class=&quot;headerlink&quot; title=&quot;三、事务与存储过程&quot;&gt;&lt;/a&gt;&lt;strong&gt;三、事务与存储过程&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;事务的概念，会开启、提交和回滚事务&lt;br&gt;事务的四
+    
+    </summary>
+    
+      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
+    
+    
+      <category term="MySQL" scheme="https://wy08271.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>学习笔记：MySQL-1</title>
     <link href="https://wy08271.github.io/2016/10/21/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMySQL-1/"/>
     <id>https://wy08271.github.io/2016/10/21/学习笔记：MySQL-1/</id>
@@ -2141,43 +2178,6 @@ SQL: select a.a, a.b, a.c, b.c, b.d, b.f from a LEFT OUT JOIN b ON a.a = b.c</co
     <summary type="html">
     
       &lt;h2 id=&quot;mysql基本操作命令汇总&quot;&gt;&lt;a href=&quot;#mysql基本操作命令汇总&quot; class=&quot;headerlink&quot; title=&quot;mysql基本操作命令汇总&quot;&gt;&lt;/a&gt;&lt;strong&gt;mysql基本操作命令汇总&lt;/strong&gt;&lt;/h2&gt;&lt;h4 id=&quot;一、基本
-    
-    </summary>
-    
-      <category term="note" scheme="https://wy08271.github.io/categories/note/"/>
-    
-    
-      <category term="MySQL" scheme="https://wy08271.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习笔记：MySQL-2</title>
-    <link href="https://wy08271.github.io/2016/10/21/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMySQL-2/"/>
-    <id>https://wy08271.github.io/2016/10/21/学习笔记：MySQL-2/</id>
-    <published>2016-10-21T00:28:56.000Z</published>
-    <updated>2017-01-12T07:18:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="三、事务与存储过程"><a href="#三、事务与存储过程" class="headerlink" title="三、事务与存储过程"></a><strong>三、事务与存储过程</strong></h3><p>事务的概念，会开启、提交和回滚事务<br>事务的四种隔离级别<br>创建存储过程<br>调用、查看、修改和删除存储过程</p>
-<hr>
-<h4 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1.事务管理"></a>1.事务管理</h4><p>– 开启事务<br><code>start transaction;</code><br>– 提交事务<br><code>commit;</code><br>– 取消事务(回滚)<br><code>rollback;</code><br>–创建表account，插入数据<br><code>create table account(</code><br><code>id int primary key auto_increment,</code><br><code>name varchar(40),</code><br><code>money float</code><br><code>);</code><br><code>insert into account(name,money) values(&#39;a&#39;,1000),(&#39;b&#39;,2000),(&#39;c&#39;,3000);</code><br>–利用事务实现转账功能，首先开启事务，然后执行语句，提交事务<br><code>start transaction;</code><br><code>update account set money=money-100 where name=&#39;a&#39;;</code><br><code>update account set money=money+100 where name=&#39;b&#39;;</code><br><code>commit;</code><br>–事务的提交，通过这个命令查看mysql提交方式（若为1，表示自动提交，为0，就要手动提交）<br><code>select @@autocommit;</code><br>–若事务的提交方式为手动提交<br><code>set @@autocommit = 0;</code> (设置手动提交)<br><code>start transaction;</code><br><code>update account set money=money+100 where name=&#39;a&#39;;</code><br><code>update account set money=money-100 where name=&#39;b&#39;;</code><br>–现在执行select * from account 可以看到转账成功，若此时退出数据库重新登录，会看到各账户余额没有改变，所以一定要用commit语句提交事务，否则会失败<br>(事务的回滚，别忘记设置为手动提交的模式)<br><code>start transaction;</code><br><code>update account set money=money-100 where name=&#39;a&#39;;</code><br><code>update account set money=money+100 where name=&#39;b&#39;;</code><br>–若此时a不想转账给b，可以使用事务的回滚<br><code>rollback;</code><br>–事务的隔离级别<br><code>read uncommitted;</code><br><code>read committed;</code><br><code>repeatable read;</code><br><code>serializable;</code></p>
-<hr>
-<h4 id="2-存储过程"><a href="#2-存储过程" class="headerlink" title="2.存储过程"></a>2.存储过程</h4><p>–创建查看student表的存储过程<br>–创建student表<br><code>create table student(</code><br><code>id int not null primary key auto_increment,</code><br><code>name varchar(4),</code><br><code>grade float</code><br><code>)ENGINE=InnoDB default character set utf8;</code><br>–将mysql的结束符设置为//<br><code>delimiter //;</code><br><code>create procedure Proc()</code><br>  <code>begin</code><br>  <code>select * from student;</code><br>  <code>end //</code><br><code>delimiter ;  (将mysql的结束符设置为;)</code><br><code>call Proc();</code>(调用该存储过程)<br>–变量的使用,mysql中变量不用事前申明，在用的时候直接用“@变量名”使用就可以<br><code>set @number=100; -- 或set @num:=1;</code><br>–定义条件和处理程序<br>—声明光标<br><code>DECLARE * cursor_name* CURSOR FOR select_statement;</code><br>—光标OPEN语句<br><code>OPEN cursor_name;</code><br>—光标FETCH语句<br><code>FETCH cursor_name INTO var_name [, var_name] ...</code><br>—光标CLOSE语句<br><code>CLOSE cursor_name;</code></p>
-<hr>
-<h4 id="3-调用存储过程"><a href="#3-调用存储过程" class="headerlink" title="3.调用存储过程"></a>3.调用存储过程</h4><p>–定义存储过程<br><code>delimiter //</code><br><code>create procedure proc1(in name varchar(4),out num int)</code><br><code>begin</code><br><code>select count(*) into num from student where name=name;</code><br><code>end//</code><br><code>delimiter ;</code><br>–调用存储过程<br><code>call proc1(&quot;tom&quot;,@num)</code>(查找名为tom学生人数)<br>–查看结果<br><code>select @num;</code><br>–查看存储过程<br><code>show procedure status like &#39;p%&#39;;</code> (获得以p开头的存储过程信息)<br>–修改存储过程<br><code>alter {procedure|function} sp_name[characteristic...]</code><br>–删除存储过程</p>
-<h2 id="drop-procedure-proc1"><a href="#drop-procedure-proc1" class="headerlink" title="drop procedure proc1;"></a><code>drop procedure proc1;</code></h2><h3 id="四、视图"><a href="#四、视图" class="headerlink" title="四、视图"></a><strong>四、视图</strong></h3><p>如何创建视图<br>查看、修改、更新、删除视图</p>
-<hr>
-<h4 id="1-视图的基本操作"><a href="#1-视图的基本操作" class="headerlink" title="1.视图的基本操作"></a>1.视图的基本操作</h4><p>–在单表上创建视图,重新创建student表，插入数据<br><code>create table student(</code><br><code>id int not null primary key auto_increment,</code><br><code>name varchar(10) not null,</code><br><code>math float,</code><br><code>chinese float</code><br><code>);</code><br><code>insert into student(name,math,chinese) values</code><br><code>(&#39;howie1&#39;,66,77),</code><br><code>(&#39;howie2&#39;,66,77),</code><br><code>(&#39;howie3&#39;,66,77);</code><br>–开始创建视图<br><code>create view stu_view as select math,chinese,math+chinese from student;</code><br>–创建自定义字段名称的视图<br><code>create view stu_view2(math,chin,sum) as select math,chinese,math+chinese from student;</code><br>–在多表上创建视图，创建表stu_info，插入数据<br><code>create table stu_info(</code><br><code>id int not null primary key auto_increment,</code><br><code>class varchar(10) not null,</code><br><code>addr varchar(100)</code><br><code>);</code><br><code>insert into stu_info(class,addr) values</code><br><code>(&#39;1&#39;,&#39;anhui&#39;),</code><br><code>(&#39;2&#39;,&#39;fujian&#39;),</code><br><code>(&#39;3&#39;,&#39;guangdong&#39;);</code><br>–创建视图stu_class<br><code>create view stu_class(id,name,class) as</code><br><code>select student.id,student.name,stu_info.class from</code><br><code>student,stu_info where student.id=stu_info.id;</code><br>–查看视图<br><code>desc stu_class;</code><br><code>show table status like &#39;stu_class&#39;\G</code><br><code>show create view stu_class\G</code><br>–修改视图<br><code>create or replace view stu_view as select * from student;</code><br><code>alter view stu_view as select chinese from student;</code><br>–更新视图<br><code>update stu_view set chinese=100;</code><br><code>insert into student values(null,&#39;haha&#39;,100,100);</code><br><code>delete from stu_view2 where math=100;</code><br>–删除视图<br><code>drop view if exists stu_view2;</code></p>
-<hr>
-<h3 id="五、数据库的导入导出"><a href="#五、数据库的导入导出" class="headerlink" title="五、数据库的导入导出"></a><strong>五、数据库的导入导出</strong></h3><p>导入导出数据库的数据<br>导入导出数据库SQL<br>备份数据库</p>
-<hr>
-<h4 id="1-导入导出数据库的数据"><a href="#1-导入导出数据库的数据" class="headerlink" title="1.导入导出数据库的数据"></a>1.导入导出数据库的数据</h4><p>–导出整个数据库的数据<br><code>mysqldump -u root -p RUNOOB &gt; database_name.txt</code></p>
-<p>–备份所有数据库<br><code>mysqldump -u root -p --all-databases &gt; database_dump.txt</code></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;三、事务与存储过程&quot;&gt;&lt;a href=&quot;#三、事务与存储过程&quot; class=&quot;headerlink&quot; title=&quot;三、事务与存储过程&quot;&gt;&lt;/a&gt;&lt;strong&gt;三、事务与存储过程&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;事务的概念，会开启、提交和回滚事务&lt;br&gt;事务的四
     
     </summary>
     

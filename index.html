@@ -791,7 +791,7 @@ TestingTest it by going to URL:http://localhost:808
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2016/10/21/学习笔记：MySQL-1/">学习笔记：MySQL-1</a></h3>
+                    <h3><a href="/2016/10/21/学习笔记：MySQL-2/">学习笔记：MySQL-2</a></h3>
                     <span>
                         <span class="post-meta">
       <time datetime="2016-10-21T00:28:56.000Z" itemprop="datePublished">
@@ -809,12 +809,14 @@ TestingTest it by going to URL:http://localhost:808
                 <div class="col-md-8">
                     <p>
                       
-                        mysql基本操作命令汇总一、基本操作1.关于数据库–创建数据库create database h_test;–查看数据库show databases;–查看数据库信息show create database h_test;–修改数据库的编码，可使用上一条语句查看是否修改成功alter database h_test default character set gbk collate gbk_bin;–删除数据库drop databas
+                        三、事务与存储过程事务的概念，会开启、提交和回滚事务事务的四种隔离级别创建存储过程调用、查看、修改和删除存储过程
+
+1.事务管理– 开启事务start transaction;– 提交事务commit;– 取消事务(回滚)rollback;–创建表account，插入数据create table account(id int primary key auto_increment,name varchar(40),money float)
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2016/10/21/学习笔记：MySQL-1/">Read More...</a>
+                        <a href="/2016/10/21/学习笔记：MySQL-2/">Read More...</a>
                     </p>
                     
                 </div>
